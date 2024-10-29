@@ -1,41 +1,33 @@
-@charset "UTF-8";
+@charset "utf-8";
 
-#middleModal{
-
-    /* Rectangle 866 */
+#bigModal {
 
     position: absolute;
-    width: 554px;
-    height: 592px;
-    left: 683px;
-    top: 130px;
+    width: 1013px;
+    height: 680px;
+    left: 453px;
+    top: 100px;
 
     background: #FFFFFF;
     border: 1px solid #595959;
-    /*box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);*/
     border-radius: 25px;
-
 }
-#middleBlueHeader{
 
-    /* Group 837 */
-
+#bigBlueHeader{
     position: absolute;
-    width: 554px;
+    width: 1013px;
     height: 51px;
 
     background: #92E2F8;
     border-bottom: 1px solid #282828;
     border-radius: 25px 25px 0px 0px;
-
 }
-#middleXButton{
 
+#bigXButton{
     width: 30px;
     height: 34px;
     font-size: 30px;
     position: absolute;
-    left: 506px;
+    left: 965px;
     top: 5px;
-
 }
