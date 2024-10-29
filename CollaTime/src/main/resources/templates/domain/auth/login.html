@@ -1,0 +1,39 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <link rel="stylesheet" href="/login.css">
+    <link rel="stylesheet" href="/modal.css">
+
+
+
+</head>
+<body>
+<!--배경화면-->
+<div id="login_background">
+    <img id="login_background_img" src="/image/FizzyGroup.png">
+</div>
+<!--중간 모달창-->
+<div id="middleModal">
+    <div id="middleBlueHeader">
+        <div id="middleXButton">X</div>
+    </div>
+    <!-- 로그인 텍스트 -->
+    <div id="login_word">로그인</div>
+    <!-- 아이디 입력창 -->
+    <input id="input_id" type="text" placeholder="아이디">
+    <!-- 비밀번호 입력창 -->
+    <input id="input_pwd" type="text" placeholder="비밀번호">
+    <!-- 아이디 비밀번호 찾기 -->
+    <a id="go_checkIdPwd" onclick="location.href='a'" >아이디나 비밀번호를 잊으셨나요?</a>
+    <!-- 로그인 버튼 -->
+    <button id="login_btn" onclick="location.href='main'">로그인</button>
+    <!-- 회원가입 -->
+    <a id="go_signup" onclick="location.href='main'" >아직 회원이 아니신가요?</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,144 @@
+
+/*중간 모달창*/
+#middleModal{
+    position: absolute;
+    width: 554px;
+    height: 592px;
+    left: 683px;
+    top: 130px;
+
+    background: #FFFFFF;
+    border: 1px solid #595959;
+    /*box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);*/
+    border-radius: 25px;
+
+}
+#middleBlueHeader{
+
+    position: absolute;
+    width: 554px;
+    height: 51px;
+
+    background: #92E2F8;
+    border-bottom: 1px solid #282828;
+    border-radius: 25px 25px 0px 0px;
+
+}
+#middleXButton{
+
+    width: 30px;
+    height: 34px;
+    font-size: 30px;
+    position: absolute;
+    left: 506px;
+    top: 5px;
+
+}
+
+
+
+/* 로그인 텍스트*/
+
+#login_word{
+    position: absolute;
+    left: 56px;
+    top: 85px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+
+    color: #000000;
+}
+
+/* 아이디 입력창 */
+
+#input_id{
+    position: absolute;
+    width: 442px;
+    height: 53px;
+    left: 56px;
+    top: 177px;
+
+    border: 1px solid #595959;
+    border-radius: 10px;
+}
+
+/* 비밀번호 입력창 */
+
+#input_pwd{
+    position: absolute;
+    width: 442px;
+    height: 53px;
+    left: 56px;
+    top: 257px;
+
+    border: 1px solid #595959;
+    border-radius: 10px;
+}
+
+/* 아이디 비밀번호 찾기 */
+
+#go_checkIdPwd{
+    position: absolute;
+    width: 442px;
+    left: 56px;
+    top: 325px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    text-decoration-line: underline;
+
+    color: #000000;
+
+}
+
+
+/* 로그인 버튼 */
+
+#login_btn{
+    position: absolute;
+    width: 442px;
+    height: 53px;
+    left: 56px;
+    top: 418px;
+
+    background: #92E2F8;
+    border: 0px;
+    border-radius: 15px;
+    align-content: center;
+    font-size: 20px;
+
+}
+
+/* 회원가입 */
+
+#go_signup{
+    position: absolute;
+    width: 442px;
+    left: 166px;
+    top: 481px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    text-decoration-line: underline;
+
+    color: #000000;
+}
+
+/* 배경화면 */
+#login_background{
+    position: absolute;
+    width: 1919px;
+    height: 851px;
+    top: 100px;
+    left: -1px;
+    overflow:hidden;
+
+    border: 1px solid black;
+}
