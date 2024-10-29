@@ -1,0 +1,37 @@
+@charset "utf-8";
+/*body{*/
+/*    width: 1920px;*/
+/*    height: 1080px;*/
+/*}*/
+#bigModal {
+    /*box-sizing: border-box;*/
+
+    position: absolute;
+    width: 1013px;
+    height: 680px;
+    left: 453px;
+    top: 100px;
+
+    background: #FFFFFF;
+    border: 1px solid #595959;
+    border-radius: 25px;
+}
+
+#bigBlueHeader{
+    position: absolute;
+    width: 1013px;
+    height: 51px;
+
+    background: #92E2F8;
+    border-bottom: 1px solid #282828;
+    border-radius: 25px 25px 0px 0px;
+}
+
+#bigXButton{
+    width: 30px;
+    height: 34px;
+    font-size: 30px;
+    position: absolute;
+    left: 965px;
+    top: 5px;
+}
