@@ -10,4 +10,4 @@ spring:
 
 ## MyBatis config
 mybatis:
-  mapper-locations: mappers/**/*.xml
+  mapper-locations: mapper/**/*.xml
