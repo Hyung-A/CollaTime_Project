@@ -11,7 +11,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-    <link rel="stylesheet" href="/css/domain/project/modalCreateOrJoin.css">
+    <link rel="stylesheet" href="/static/css/project/modalCreateOrJoin.css">
 </head>
 <body>
 <!-- 중간 모달창 -->
@@ -21,18 +21,33 @@
         </div>
         <div id="body">
             <span id="createProject">프로젝트 생성하기</span>
-            <div id="areaCreateProject"></div>
+            <button type="button" id="areaCreateProject">+</button>
             <span id="joinProject">프로젝트 참가하기</span>
             <div>
                 <input type="text" id="inputCode" placeholder="전달받은 코드를 입력해주세요.">
                 <button type="submit" id="joinButton">참가하기</button>
             </div>
-            <button type="submit" id="cancel">취소</button>
+            <button type="button" id="cancel">취소</button>
             <button type="submit" id="confirm">확인</button>
         </div>
     </div>
-    </body>
-    </html>
 
+    <script>
+        /* ++) 클릭 시 프로젝트 생성 페이지로 넘어가기 넣기 */
+
+        /* 참가 코드 클릭 시 placeHolder 사라지기 */
+        const $inputCode = document.getElementById("inputCode");
+        $inputCode.addEventListener("focus", function(e){
+
+            $inputCode.placeholder = ""
+
+        });
+        $inputCode.addEventListener("blur", function(){
+            $inputCode.placeholder = "전달받은 코드를 입력해주세요."
+        });
+
+        /* ++) 알맞은 참가 코드를 입력하면 프로젝트 생성하기 */
+
+    </script>
 </body>
 </html>
