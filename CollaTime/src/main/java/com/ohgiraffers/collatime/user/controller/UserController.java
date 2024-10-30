@@ -5,9 +5,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class UserController {
-    @GetMapping("/domain/auth/login")
+    @GetMapping("/auth/login")
     public String login(){
-        return "/domain/auth/login";
+        return "/auth/login";
     }
 
+    @GetMapping("/user/signup")
+    public String signup(){
+        return "/user/signup";
+    }
 }

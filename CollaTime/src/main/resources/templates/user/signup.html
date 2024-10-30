@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>회원가입</title>
+    <link rel="stylesheet" href="/css/common/middlemodal.css">
+    <link rel="stylesheet" href="/css/user/signup.css">
+</head>
+<body>
+
+<!--배경화면-->
+<div id="login_background">
+    <img id="login_background_img" src="/css/user/image/FizzyGroup.png">
+</div>
+
+<!-- 중간 모달창 -->
+<div id="middleModal">
+    <div id="middleBlueHeader">
+    </div>
+    <!--  회원가입 텍스트 -->
+    <div id="signup_text">회원가입</div>
+    <!--  아이디 입력창 -->
+    <div id="regist_id_area">
+        <input type="text" id="regist_id_input" placeholder="아이디"><button id="check_duplicate_id" class="btn">확인</button>
+    </div>
+    <!--  아이디 유효성 메세지 -->
+    <div class="message id">사용가능한 아이디입니다.</div>
+    <!--  비밀번호 입력창 -->
+    <div id="regist_pwd_area">
+        <input type="password" id="regist_pwd_input" placeholder="비밀번호">
+    </div>
+    <!--  비밀번호 확인 입력창 -->
+    <div id="regist_check_pwd_area">
+        <input type="password" id="compare_pwd_input" placeholder="비밀번호 확인">
+    </div>
+    <!--  비밀번호 확인 메세지 -->
+    <div class="message nickname">비밀번호가 동일합니다.</div>
+    <!--  이름 입력창 -->
+    <div id="regist_name_area">
+        <input type="text" id="regist_name_input" placeholder="이름">
+    </div>
+    <!--  닉네임 입력창 -->
+    <div id="regist_nickname_area">
+        <input type="text" id="regist_nickname_input" placeholder="닉네임"><button id="check_duplicate_nickname" class="btn">확인</button>
+    </div>
+    <!--  닉네임 유효성 메세지 -->
+    <div class="message nickname">사용가능한 닉네임입니다.</div>
+    <!--  이메일 입력창 -->
+    <div id="regist_email_area">
+        <input type="email" id="regist_email_input" placeholder="이메일"><button id="send_code_email" class="btn">코드전송</button>
+    </div>
+    <!--  이메일 코드 입력창 -->
+    <div id="check_emailCode_area">
+        <input type="email" id="randomCode_input" placeholder="이메일"><button id="compare_code_emil" class="btn">확인</button>
+    </div>
+    <!--  이메일 유효성 메세지 -->
+    <div class="message email">이메일이 확인되었습니다.</div>
+    <!--  이용약관 -->
+    <div id="read_termsOfUse">
+        <input type="checkbox" id="termsOfUse"><label for="termsOfUse">본 이용약관에 동의합니다.</label>
+    </div>
+    <!--  회원가입 버튼 -->
+    <div id="signup_btn">회원가입</div>
+</div>
+
+</body>
+</html>
