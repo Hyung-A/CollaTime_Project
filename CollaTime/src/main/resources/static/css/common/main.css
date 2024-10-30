@@ -1,0 +1,111 @@
+@charset "UTF-8";
+
+body {
+    margin: 0;
+}
+
+#header {
+    width: 1920px;
+    height: 100px;
+    position: fixed;
+    border-bottom: solid;
+    border-color: #92E2F8;
+}
+
+#header-logo-img {
+    position: absolute;
+    top:15px;
+    left: 39px;
+    width: 186px;
+    height: 67px;
+}
+
+#intro1 {
+    position: absolute;
+    width: 79px;
+    height: 50px;
+    left: 300px;
+    top: 25px;
+    background-color: transparent;
+    border: none;
+    border-radius: 10px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    line-height: 50px;
+    color: #000000;
+    transform: 1s;
+}
+
+#intro1:hover {
+    transform: scale(1.5);
+}
+
+#intro2 {
+    position: absolute;
+    width: 79px;
+    height: 50px;
+    left: 390px;
+    top: 25px;
+    background-color: transparent;
+    border: none;
+    border-radius: 10px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    line-height: 50px;
+    color: #000000;
+    transform: 1s;
+}
+
+#intro2:hover {
+    transform: scale(1.5);
+}
+
+#sign-up {
+    position: absolute;
+    width: 130px;
+    height: 50px;
+    left: 1746px;
+    top: 25px;
+    background-color: #92E2F8;
+    border: none;
+    border-radius: 10px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    line-height: 50px;
+    color: #000000;
+}
+
+#login {
+    position: absolute;
+    width: 130px;
+    height: 50px;
+    left: 1600px;
+    top: 25px;
+    background-color: #DFF7FD;
+    border: none;
+    border-radius: 10px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    line-height: 50px;
+    color: #000000;
+}
