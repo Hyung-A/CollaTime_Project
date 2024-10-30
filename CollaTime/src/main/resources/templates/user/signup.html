@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>회원가입</title>
     <link rel="stylesheet" href="/css/common/middlemodal.css">
+    <link rel="stylesheet" href="/css/common/smallmodal.css">
     <link rel="stylesheet" href="/css/user/signup.css">
 </head>
 <body>
@@ -80,6 +81,7 @@
     <div id="signup_btn">회원가입</div>
 </div>
 
+<!-- -------------------------------------이용약관--------------------------------------------- -->
 
 <!-- 이용약관 모달창 -->
 <div id="middleModal_termsOfUse">
@@ -180,7 +182,16 @@
 
 </div>
 
+<!-- -------------------------------------회원가입 유효성--------------------------------------------- -->
 
-
+<!-- 작은 모달창 -->
+<div id="smallModal" class="modal">
+    <div id="smallBlueHeader">
+        <div id="smallXButton">X</div>
+    </div>
+    <!-- 로그인 유효성 메세지 -->
+    <div class="success_message">회원가입이 완료되었습니다.</div>
+    <button id="ok_btn">확인</button>
+</div>
 </body>
 </html>
