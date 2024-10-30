@@ -1,0 +1,33 @@
+/* 모달 전체 */
+#modalContent {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* 모달의 전체 높이 사용 */
+}
+
+/* 가운데 정렬을 위한 컨테이너 */
+#centeredContent {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-left: 40%;
+
+    margin-top: 50%;
+}
+
+/* 이미지 스타일 */
+#centerImage {
+
+    width: 100px; /* 원하는 크기로 조정 */
+    margin-bottom: 10px; /* 이미지와 텍스트 간격 */
+}
+
+/* 텍스트 스타일 */
+#centerText {
+    font-size: 16px;
+    color: #888888; /* 텍스트 색상 */
+}
