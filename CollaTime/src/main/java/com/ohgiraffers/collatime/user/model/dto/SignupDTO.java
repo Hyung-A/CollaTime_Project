@@ -1,4 +1,4 @@
-package com.ohgiraffers.collatime.domain.user.model.dto;
+package com.ohgiraffers.collatime.user.model.dto;
 
 public class SignupDTO {
 

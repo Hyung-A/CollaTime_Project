@@ -1,4 +1,4 @@
-package com.ohgiraffers.collatime.domain.user.controller;
+package com.ohgiraffers.collatime.user.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

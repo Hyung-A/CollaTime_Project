@@ -1,4 +1,4 @@
-package com.ohgiraffers.collatime.domain.user.model.dao;
+package com.ohgiraffers.collatime.user.model.dao;
 
 import org.apache.ibatis.annotations.Mapper;
 

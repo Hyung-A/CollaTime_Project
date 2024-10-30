@@ -1,4 +1,4 @@
-package com.ohgiraffers.collatime.domain.user.model.service;
+package com.ohgiraffers.collatime.user.model.service;
 
 import org.springframework.stereotype.Service;
 

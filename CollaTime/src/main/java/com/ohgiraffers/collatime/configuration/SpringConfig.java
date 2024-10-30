@@ -6,7 +6,4 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ComponentScan(basePackages = "com.ohgiraffers.collatime")
 public class SpringConfig {
-
-
-
 }
