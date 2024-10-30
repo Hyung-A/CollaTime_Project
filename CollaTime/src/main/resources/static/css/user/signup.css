@@ -187,6 +187,7 @@
     font-weight: 800;
 }
 
+/*----------------------------------이용약관------------------------------------------------------*/
 
 /*이용약관 모달창*/
 #middleModal_termsOfUse{
@@ -226,6 +227,7 @@
 
 }
 
+/*이용약관 텍스트*/
 #termsOfUse_text{
 
     position: absolute;
@@ -241,6 +243,7 @@
     color: #000000;
 }
 
+/*이용약관 내용*/
 #termsOfUse_content{
     overflow: auto;
     white-space: normal;
@@ -257,17 +260,20 @@
     scrollbar-track-color: white;
 
 }
+
+/*이용약관 스크롤*/
 #termsOfUse_content::-webkit-scrollbar{
     width: 15px;
-
 }
 
+/*이용약관 스크롤바*/
 #termsOfUse_content::-webkit-scrollbar-thumb{
     background-color: #858585;
     border-radius: 15px;
     margin-right: 5px;
 }
 
+/*이용약관 취소버튼*/
 #termsOfUse_btn_cancel{
 
     position: absolute;
@@ -286,6 +292,7 @@
 
 }
 
+/*이용약관 확인 버튼*/
 #termsOfUse_btn_accept{
 
     position: absolute;
@@ -302,4 +309,47 @@
     color: #000000;
 
     border: none;
+}
+
+/*-----------------------------회원가입 유효성-----------------------------------------------------------*/
+
+/* 작은 모달창 메세지 */
+.success_message{
+    position: absolute;
+    width: 400px;
+    left: 83px;
+    top: 135px;
+
+    font-family: 'Abril Fatface';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 25px;
+
+    text-align: center;
+    color: #000000;
+
+
+}
+
+
+/* 작은 모달창 확인 */
+#ok_btn{
+    position: absolute;
+    width: 100px;
+    height: 40px;
+    left: 430px;
+    top: 222px;
+
+    font-weight: 600;
+    font-size: 20px;
+
+    color: #000000;
+    background: #92E2F8;
+    border: none;
+    border-radius: 15px;
+
+}
+
+.modal{
+    /*display: none;*/
 }
