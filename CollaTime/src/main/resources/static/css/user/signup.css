@@ -186,3 +186,120 @@
     text-align: center;
     font-weight: 800;
 }
+
+
+/*이용약관 모달창*/
+#middleModal_termsOfUse{
+    display: none;
+
+    position: absolute;
+    width: 554px;
+    height: 592px;
+    left: 683px;
+    top: 130px;
+
+    background: #FFFFFF;
+    border: 1px solid #595959;
+    /*box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);*/
+    border-radius: 25px;
+
+}
+#middleBlueHeader_termsOfUse{
+
+    position: absolute;
+    width: 554px;
+    height: 51px;
+
+    background: #92E2F8;
+    border-bottom: 1px solid #282828;
+    border-radius: 25px 25px 0px 0px;
+
+}
+#middleXButton_termsOfUse{
+
+    width: 30px;
+    height: 34px;
+    font-size: 30px;
+    position: absolute;
+    left: 506px;
+    top: 5px;
+
+}
+
+#termsOfUse_text{
+
+    position: absolute;
+    width: 124px;
+    left: 56px;
+    top: 85px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+
+    color: #000000;
+}
+
+#termsOfUse_content{
+    overflow: auto;
+    white-space: normal;
+
+    position: absolute;
+    width: 495px;
+    height: 343px;
+    left: 28px;
+    top: 147px;
+
+    background: #D9D9D9;
+    border-radius: 25px;
+
+    scrollbar-track-color: white;
+
+}
+#termsOfUse_content::-webkit-scrollbar{
+    width: 15px;
+
+}
+
+#termsOfUse_content::-webkit-scrollbar-thumb{
+    background-color: #858585;
+    border-radius: 15px;
+    margin-right: 5px;
+}
+
+#termsOfUse_btn_cancel{
+
+    position: absolute;
+    width: 100px;
+    height: 40px;
+    left: 315px;
+    top: 530px;
+
+    font-weight: 600;
+    font-size: 20px;
+    color: #000000;
+
+    border: none;
+    background: rgba(146, 226, 248, 0.3);
+    border-radius: 15px;
+
+}
+
+#termsOfUse_btn_accept{
+
+    position: absolute;
+    width: 100px;
+    height: 40px;
+    left: 430px;
+    top: 530px;
+
+    background: #92E2F8;
+    border-radius: 15px;
+
+    font-weight: 600;
+    font-size: 20px;
+    color: #000000;
+
+    border: none;
+}
