@@ -41,13 +41,13 @@
 
 }
 
-/* 프로젝트 생성하기 텍스트 부분 */
+/* 프로젝트 생성하기 텍스트 */
 #createProject{
 
     position: absolute;
     width: 300px;
     height: 28px;
-    left: 20px;
+    left: 40px;
     top: 110px;
 
     font-family: 'Inter';
@@ -64,7 +64,7 @@
 
 }
 
-/* 텍스트 생성 버튼 */
+/* 프로젝트 생성 버튼 */
 #areaCreateProject{
 
     position: absolute;
@@ -74,6 +74,17 @@
     top: 170px;
     background: #DFF7FD;
     border-radius: 25px;
+    border: none;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 100px;
+    display: flex;
+    justify-content: center;
+    line-height: 105px;
+
+    color: #898989;
 
 }
 
@@ -83,7 +94,7 @@
     position: absolute;
     width: 300px;
     height: 28px;
-    left: 20px;
+    left: 40px;
     top: 350px;
 
     font-family: 'Inter';
@@ -109,6 +120,7 @@
     left: 55px;
     top: 400px;
     border-radius: 15px;
+    border: solid 1px #282828;
     font-size: 15px;
     text-align: center
 
