@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Document</title>
+    <title>로그인</title>
     <link rel="stylesheet" href="/css/user/login.css">
     <link rel="stylesheet" href="/css/common/middlemodal.css">
+    <link rel="stylesheet" href="/css/common/smallmodal.css">
 
 
 
@@ -18,9 +19,7 @@
 </div>
 <!--중간 모달창-->
 <div id="middleModal">
-    <div id="middleBlueHeader">
-        <div id="middleXButton">X</div>
-    </div>
+    <div id="middleBlueHeader"></div>
     <!-- 로그인 텍스트 -->
     <div id="login_word">로그인</div>
     <!-- 아이디 입력창 -->
@@ -35,5 +34,17 @@
     <a id="go_signup" onclick="location.href='main'" >아직 회원이 아니신가요?</a>
 </div>
 
+
+
+
+<!-- 작은 모달창 -->
+<div id="smallModal" class="modal">
+    <div id="smallBlueHeader">
+        <div id="smallXButton">X</div>
+    </div>
+    <!-- 로그인 유효성 메세지 -->
+    <div class="message">형석짱짱님 반갑습니다.</div>
+    <button id="ok_btn">확인</button>
+</div>
 </body>
 </html>

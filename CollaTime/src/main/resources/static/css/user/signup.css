@@ -1,0 +1,11 @@
+/* 배경화면 */
+#login_background{
+    position: absolute;
+    width: 1919px;
+    height: 851px;
+    top: 100px;
+    left: -1px;
+    overflow:hidden;
+
+    border: 1px solid black;
+}
