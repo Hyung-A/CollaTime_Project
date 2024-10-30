@@ -9,3 +9,180 @@
 
     border: 1px solid black;
 }
+
+/* 입력창 기본 스타일*/
+.input{
+    height: 27px;
+    box-sizing: border-box;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+/* 짧은 입력창 길이*/
+.short{
+    width: 280px;
+}
+/* 긴 입력창 길이*/
+.long{
+    width: 360px;
+}
+/* 버튼 스타일 */
+.btn{
+    width: 75px;
+    height: 27px;
+    margin-left: 5px;
+
+    background: #B8B8B8;
+    border-radius: 10px;
+    border: none;
+
+
+    font-size: 14px;
+    font-weight: 600;
+    align-content: center;
+
+}
+
+/*메세지 스타일*/
+.message{
+    font-size: 14px;
+    font-weight: 800;
+}
+
+/*회원가입 텍스트*/
+#signup_text{
+
+    position: absolute;
+    width: 124px;
+    left: 56px;
+    top: 85px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+
+    color: #000000;
+}
+
+/*아이디 입력창*/
+#regist_id_area{
+    position: absolute;
+    left: 56px;
+    top: 150px;
+}
+
+/*비밀번호 입력창*/
+#regist_pwd_area{
+    position: absolute;
+    left: 56px;
+    top: 207px;
+}
+
+/*비밀번호 확인 입력창*/
+#compare_pwd_area{
+    position: absolute;
+    left: 56px;
+    top: 241px;
+}
+
+/*이름 입력창*/
+#regist_name_area{
+    position: absolute;
+    left: 56px;
+    top: 305px;
+}
+/*닉네임 입력창*/
+#regist_nickname_area{
+    position: absolute;
+    left: 56px;
+    top: 339px;
+}
+
+/*이메일 입력창*/
+#regist_email_area{
+    position: absolute;
+    left: 56px;
+    top: 398px;
+}
+
+/*이메일 코드 입력창*/
+#check_emailCode_area{
+    position: absolute;
+    left: 56px;
+    top: 431px;
+}
+
+/*아이디 유효성 메세지*/
+.id{
+    display: none;
+    position: absolute;
+    left: 63px;
+    top: 184px;
+}
+
+/*패스워드 유효성 메세지*/
+.pwdCheck{
+    display: none;
+    position: absolute;
+    left: 257px;
+    top: 246px;
+}
+/*패스워드 유의사항 메세지*/
+.pwdNote{
+    position: absolute;
+    left: 33px;
+    top: 277px;
+}
+
+/*닉네임 유효성 메세지*/
+.nickname{
+    display: none;
+    position: absolute;
+    left: 63px;
+    top: 372px;
+}
+
+/*이메일 유효성 메세지*/
+.email{
+    display: none;
+    position: absolute;
+    left: 63px;
+    top: 459px;
+}
+
+/*이용약관*/
+#read_termsOfUse_area{
+    position: absolute;
+    left: 177px;
+    top: 489px;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+/*이용약관 링크*/
+.termsOfUse_href{
+    background-color: white;
+    border: none;
+    color: blue;
+    font-size: 15px;
+    text-decoration-line: underline;
+}
+
+/*회원가입 버튼*/
+#signup_btn{
+
+    position: absolute;
+    width: 177px;
+    height: 40px;
+    left: 188px;
+    top: 521px;
+
+    background: #92E2F8;
+    border-radius: 10px;
+    align-content: center;
+    text-align: center;
+    font-weight: 800;
+}
