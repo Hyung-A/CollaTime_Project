@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class ProjectController {
 
     /* project Controller */
-    @GetMapping("/domain/Project/ProjectMain")
+    @GetMapping("/Project/ProjectMain")
     public void filesUpload(){}
 
 
