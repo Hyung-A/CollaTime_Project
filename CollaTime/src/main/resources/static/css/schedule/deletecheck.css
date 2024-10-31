@@ -1,0 +1,18 @@
+#checkDelete {
+
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#confirmCheck {
+    white-space: nowrap; /* 한 줄로 나오게 하기위해 */
+}
+
