@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/project/reset.css">
+    <link rel="stylesheet" href="/static/css/project/modalCreateProject.css">
+    <title>Title</title>
+</head>
+<body>
+    <!-- 큰 모달창 레이아웃 -->
+    <div id="createProjectModal">
+        <div id="bigBlueHeader">
+          <div id="bigXButton">X</div>
+        </div>
+      <!-- 내용 부분 -->
+        <form>
+          <div id="title">
+            <input type="text" id="inputTitle" placeholder="프로젝트 명을 입력해주세요.">
+          </div>
+          <span id="summaryStar" class="star">*</span>
+          <label id="summaryLabel" for="inputSummary">개요</label>
+          <div id="summary">
+            <textarea id="inputSummary" maxlength="150" placeholder="프로젝트 개요를 적어주세요(최대 150자)."></textarea>
+          </div>
+          <span id="purposeStar" class="star">*</span>
+          <label id="purposeLabel" for="inputPurpose">목적</label>
+          <div id="purpose">
+              <textarea id="inputPurpose" maxlength="150" placeholder="프로젝트 목표 및 목적을 적어주세요(최대 150자)."></textarea>
+          </div>
+          <span id="startDateStar" class="star">*</span>
+          <label for="period" id="periodLabel">기간</label>
+          <div id="period">
+            <input type="date" id="projectStartDate" min="2023-01-01" max="2077-06-20"></input>
+            <div id="wave">~</div>
+            <input type="date" id="projectEndDate"  min="2023-01-01" max="2077-06-20"></input>
+          </div>
+          <label for="category" id="categoryLabel">분류</label>
+          <div id="category">
+            <button type="button" id="bank" class="category">은행</button>
+            <button type="button" id="insurance" class="category">보험사</button>
+            <button type="button" id="publicSector" class="category">공공부문</button>
+            <button type="button" id="web" class="category">웹포털</button>
+            <button type="button" id="application" class="category">앱개발</button>
+            <button type="button" id="etc" class="category">기타</button>
+          </div>
+            <span id="memberStar" class="star">*</span>
+            <label for="member" id="memberLabel">인원초대</label>
+          <div id="member">
+            <button type="button" id="inviteMember">+</button>
+          </div>
+        </form>
+        <button type="button" id="bigCancel1">취소</button>
+        <button type="submit" id="bigConfirm1">생성</button>
+    </div>
+
+    <script>
+        const $bank = document.getElementById("bank");
+        const $insurance = document.getElementById("insurance");
+        const $publicSector = document.getElementById("publicSector");
+        const $web = document.getElementById("web");
+        const $application = document.getElementById("application");
+        const $etc = document.getElementById("etc");
+
+       /* var array = [$bank, $insurance, $publicSector, $web, $application, $etc];
+
+        for(var i = 0; i < array.length; i++){
+            if(array[i].onclick){
+                array[i].style.background = "#92E2F8";
+            }
+        }*/
+
+        $bank.onclick = function(){
+            $bank.style.background = "#92E2F8";
+        };
+        $bank.addEventListener("blur", function(){
+            $bank.style.background = "#FFFFFF";
+        });
+
+        $insurance.onclick = function(){
+            $insurance.style.background = "#92E2F8";
+        };
+        $insurance.addEventListener("blur", function(){
+            $insurance.style.background = "#FFFFFF";
+        });
+        $publicSector.onclick = function(){
+            $publicSector.style.background = "#92E2F8";
+        };
+        $publicSector.addEventListener("blur", function(){
+            $publicSector.style.background = "#FFFFFF";
+        });
+        $web.onclick = function(){
+            $web.style.background = "#92E2F8";
+        };
+        $web.addEventListener("blur", function(){
+            $web.style.background = "#FFFFFF";
+        });
+        $application.onclick = function(){
+            $application.style.background = "#92E2F8";
+        };
+        $application.addEventListener("blur", function(){
+            $application.style.background = "#FFFFFF";
+        });
+        $etc.onclick = function(){
+            $etc.style.background = "#92E2F8";
+        };
+        $etc.addEventListener("blur", function(){
+            $etc.style.background = "#FFFFFF";
+        });
+
+    </script>
+</body>
+</html>

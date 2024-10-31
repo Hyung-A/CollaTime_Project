@@ -1,0 +1,224 @@
+/* 공통 스타일: contenteditable 요소에 대한 스타일 */
+[contenteditable]:empty:before {
+    content: attr(placeholder);
+    color: #999;
+    pointer-events: none;
+}
+/* Placeholder 스타일 */
+#assignmentName.placeholder-active,
+#startDate.placeholder-active,
+#finalDate.placeholder-active,
+#teammate.placeholder-active,
+#memo.placeholder-active {
+    color: #999;
+}
+
+/* 일정 제목 */
+#assignmentName {
+    position: absolute;
+    margin-top: 110px;
+    width: 430px;
+    height: 45px;
+    font-size: 30px;
+    margin-left: 30px;
+    color: #333;
+    outline: none;
+}
+
+#assignmentName::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 340px; /* 원 아이콘 전까지만 보더라인 길이 설정 */
+    height: 4px;
+    background-color: #92E2F8;
+}
+/* 날짜 */
+#assignmentPeriod::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 340px;
+    height: 4px;
+    background-color: #92E2F8;
+}
+
+#assignmentPeriod {
+    position: absolute;
+    margin-top: 160px;
+    justify-content: space-between;
+    margin-left: 30px;
+    width: 430px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+
+}
+
+#watch {
+    width: 30px;
+    height: 30px;
+    margin-top: 5px;
+}
+
+#startDate, #finalDate {
+    font-size: 15px;
+    font-weight: bold;
+    color: #333;
+    width: 100px;
+    height: 25px;
+    outline: none;
+    margin-left: 10px;
+}
+
+/* 슬래시 */
+#slash {
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 5px;
+    color: #333;
+}
+
+/* 참여자 */
+#participant {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    width: 500px;
+    height: 35px;
+    margin-top: 240px;
+    border-bottom: 4px solid #92E2F8;
+    margin-left: 30px;
+}
+
+#people {
+    margin-bottom: 5px;
+}
+
+#teammate {
+    font-size: 15px;
+    font-weight: bold;
+    color: #333;
+    margin-left: 10px;
+    outline: none;
+}
+
+/* 메모 */
+
+#memoContainer {
+    position: absolute;
+    margin-top: 300px;
+    width: 430px;
+    height: 200px;
+    margin-left: 30px;
+    background-color: #e6f7ff;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+}
+
+#memoIcon {
+
+
+    margin-right: 20px;
+    width: 20px;
+    height: 20px;
+}
+
+#memo {
+    font-size: 15px;
+    font-weight: bold;
+    color: #333;
+    outline: none;
+
+}
+#assignmentColor{
+
+    cursor: pointer;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #e78f81;
+    margin-left: 380px;
+    margin-top: 115px;
+
+}
+
+#create {
+
+    position: absolute;
+    display: flex;
+    margin-top: 550px;
+    margin-left: 30px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#bottomButtons {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+}
+
+.bottomButton {
+    width: 130px;
+    height: 40px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    text-align: center;
+    align-content: center;
+}
+
+#cancelButton {
+    background-color: rgba(146, 226, 248, 0.3);
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+#confirmButton {
+    background-color: #92E2F8;
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+}
+/* 색상 선택 팝업 스타일 */
+#colorOptions {
+    display: none; /* 기본적으로 숨김 */
+    position: absolute;
+    top: 100px;
+    left: 450px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+/* 색상 버튼 스타일 */
+.color-option {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: 5px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* 각 색상 옵션 */
+.color-red { background-color: #ff6666; }
+.color-blue { background-color: #66b3ff; }
+.color-green { background-color: #66ff66; }
+
+
+

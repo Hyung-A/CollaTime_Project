@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/common/middlemodal.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="/static/css/schedule/makeschedule.css">
+    <title>Title</title>
+
+</head>
+<body>
+<div id="middleModal">
+    <div id="middleBlueHeader">
+        <div id="middleXButton">X</div>
+        <div id="assignmentContainer">
+            <!-- 일정 제목 -->
+            <div id="assignmentName" contenteditable="true"></div>
+            <div id="assignmentColor"></div>
+
+            <!-- 색상 선택 옵션 -->
+            <div id="colorOptions">
+                <div class="color-option color-red" data-color="#ff6666"></div>
+                <div class="color-option color-blue" data-color="#66b3ff"></div>
+                <div class="color-option color-green" data-color="#66ff66"></div>
+            </div>
+
+            <!-- 날짜 -->
+            <div id="assignmentPeriod">
+                <img src="/static/css/schedule/image/시계.png" id="watch">
+                <div id="startDate" contenteditable="true"></div>
+                <div id="slash">ㅡ</div>
+                <div id="finalDate" contenteditable="true"></div>
+            </div>
+
+            <!-- 참여자 -->
+            <div id="participant">
+                <img src="/static/css/schedule/image/인원.png" id="people">
+                <div id="teammate" contenteditable="true"></div>
+            </div>
+
+            <!-- 메모 -->
+
+            <div id="memoContainer">
+                <img src="/static/css/schedule/image/과제내용.png" id="memoIcon">
+                <div id="memo" contenteditable="true"></div>
+            </div>
+
+        </div>
+        <div id="create">
+            <div id="creator">생성자 | </div>
+            <div id="creatorName">김주혜</div>
+        </div>
+    </div>
+
+    <div id="bottomButtons">
+        <div class="bottomButton" id="cancelButton">취소</div>
+        <div class="bottomButton" id="confirmButton">확인</div>
+    </div>
+</div>
+
+<script>
+    // Placeholder 관리 함수
+    function setupPlaceholder(element, placeholderText) {
+        function showPlaceholder() {
+            if (element.innerText.trim() === '') {
+                element.innerText = placeholderText;
+                element.classList.add('placeholder-active');
+            }
+        }
+
+        function hidePlaceholder() {
+            if (element.innerText === placeholderText) {
+                element.innerText = '';
+                element.classList.remove('placeholder-active');
+            }
+        }
+
+        element.addEventListener('focus', hidePlaceholder);
+        element.addEventListener('blur', showPlaceholder);
+
+        showPlaceholder();
+    }
+
+    // 각 contenteditable 요소에 placeholder 설정
+    setupPlaceholder(document.getElementById('assignmentName'), '일정 제목');
+    setupPlaceholder(document.getElementById('startDate'), '시작 날짜');
+    setupPlaceholder(document.getElementById('finalDate'), '종료 날짜');
+    setupPlaceholder(document.getElementById('teammate'), '참여자(닉네임)');
+    setupPlaceholder(document.getElementById('memo'), '메모');
+</script>
+
+</body>
+</html>

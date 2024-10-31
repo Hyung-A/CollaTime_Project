@@ -1,0 +1,189 @@
+    #modifyList {
+
+        position: absolute;
+        width: 20px;
+        height: 24px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        margin-top: 60px;
+        right: 12%;
+    }
+
+    #deleteList {
+        position: absolute;
+        width: 20px;
+        height: 24px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        right: 4%;
+        margin-top: 60px;
+    }
+
+    #watch {
+        width: 30px;
+        height: 34px;
+        background: none;
+        border: none;
+    }
+
+    #assignmentName {
+
+        position: absolute;
+        margin-top: 110px;
+        width: 430px;
+        height: 45px;
+        font-size: 30px;
+        margin-left: 30px;
+        border-bottom : 4px solid #92E2F8;
+
+    }
+
+    #assignmentColor{
+
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: #e78f81;
+        margin-left: 380px;
+        margin-top: -33px;
+
+    }
+
+    #watch {
+        margin-top: 15px;
+
+    }
+
+    #assignmentPeriod {
+
+        position: absolute;
+        margin-top: 140px;
+        justify-content: space-between;
+        margin-left: 30px;
+        width: 430px;
+        height: 60px;
+        display: flex;
+        border-bottom : 4px solid #92E2F8;
+    }
+
+    #startDate{
+
+        font-size: 15px;
+        font-weight: bold;
+        text-align: center;
+        align-content: center;
+        width: 150px;
+        height: 50px;
+        margin-top: 10px;
+    }
+
+
+    #finalDate {
+        width: 150px;
+        height: 50px;
+        margin-top: 10px;
+        margin-right: 20px;
+        font-size: 15px;
+        font-weight: bold;
+        text-align: center;
+        align-content: center;
+    }
+
+    #slash{
+        font-size: 22px;
+        font-weight: bold;
+        margin-top: 18px;
+    }
+
+    #participant {
+
+        position: absolute;
+        display: flex;
+        width: 500px;
+        height: 35px;
+        margin-top: 200px;
+        border-bottom : 4px solid #92E2F8;
+        margin-left: 30px;
+    }
+
+    #people {
+       margin-bottom: 15px;
+    }
+
+    #teammate {
+        font-size: 15px;
+        font-weight: bold;
+        margin-left: 40px;
+    }
+
+    #assignmentSubject {
+
+        position: absolute;
+        margin-top: 240px;
+        display: flex;
+        width: 500px;
+        height: 35px;
+        border-bottom: 4px solid #92E2F8;
+        margin-left: 30px;
+    }
+
+    #assignment {
+        margin-bottom: 20px;
+
+    }
+
+    #assignmentDetail {
+        font-size: 15px;
+        font-weight: bold;
+        margin-left: 30px;
+    }
+
+    #create {
+
+        position: relative;
+        display: flex;
+        margin-top: 470px;
+        margin-left: 30px;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    #bottomButtons {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+
+    }
+
+    .bottomButton {
+        width: 130px;
+        height: 40px;
+        border: none;
+        border-radius: 15px;
+        cursor: pointer;
+        text-align: center;
+        align-content: center;
+    }
+
+    #cancelButton {
+        background-color: rgba(146, 226, 248, 0.3);
+        color: black;
+        font-size: 15px;
+        font-weight: bold;
+        margin-right: 10px;
+    }
+
+    #confirmButton {
+        background-color: #92E2F8;
+        color: black;
+        font-size: 15px;
+        font-weight: bold;
+    }
+

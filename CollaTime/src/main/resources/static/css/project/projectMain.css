@@ -1,1 +1,1162 @@
 @charset "UTF-8";
+
+/* 헤더 */
+#head{
+
+    cursor: default;
+    width: 1915px;
+    height: 100px;
+    /*border-bottom: solid 1px #282828;*/
+    border-bottom: solid;
+    border-color: #92E2F8;
+
+}
+
+#logo{
+
+    position: absolute;
+    width: 186px;
+    height: 67px;
+    left: 39px;
+    top: 15px;
+
+}
+
+#logOut{
+
+    position: absolute;
+    width: 130px;
+    height: 50px;
+    left: 1746px;
+    top: 25px;
+    background: #DFF7FD;
+    border: none;
+    border-radius: 10px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    line-height: 50px;
+
+    color: #000000;
+
+}
+
+#signUp{
+
+    position: absolute;
+    width: 142px;
+    height: 50px;
+    left: 1750px;
+    top: 25px;
+    background: #92E2F8;
+    border-radius: 10px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    line-height: 50px;
+
+    color: #000000;
+
+}
+
+/* 왼쪽바 */
+#leftBarLayout{
+
+    cursor: default;
+    position: absolute;
+    width: 310px;
+    height: 813px;
+    top: 103px;
+
+    background: #FFFFFF;
+    border-right: solid 1px #282828;
+
+}
+
+#blueBackground{
+
+    position: absolute;
+    width: 250px;
+    height: 720px;
+    left: 32px;
+    top: 48px;
+
+    background: #92E2F8;
+    border-radius: 25px;
+
+}
+
+#profile{
+
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    left: 85px;
+    top: 34px;
+
+    background: #FFFFFF;
+    border: solid 1px #FFFFFF;
+    border-radius: 6355px;
+
+}
+
+#nickname{
+
+    position: absolute;
+    width: 200px;
+    height: 178px;
+    left: 30px;
+    top: 135px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 18px;
+
+    color: #000000;
+
+}
+
+#mypage{
+
+    position: absolute;
+    width: 130px;
+    height: 30px;
+    left: 65px;
+    top: 180px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 30px;
+
+    color: #000000;
+
+}
+
+#whiteBar1{
+
+    position: absolute;
+    width: 210px;
+    left: 20px;
+    top: 230px;
+
+    border: 3px solid #FFFFFF;
+    transform: matrix(-1, 0, 0, -1, 0, 0);
+
+}
+
+#textMyProject{
+
+    position: absolute;
+    width: 100px;
+    height: 15px;
+    left: 30px;
+    top: 250px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 15px;
+
+    color: #282828;
+
+}
+
+#firstFolderIcon{
+
+    position: absolute;
+    left: 30px;
+    top: 280px;
+
+}
+
+#firstProjectName{
+
+    position: absolute;
+    left: 55px;
+    top: 280px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height:15px;
+
+    color: #282828;
+
+}
+
+#secondFolderIcon{
+
+    position: absolute;
+    left: 30px;
+    top: 305px;
+
+}
+
+#secondProjectName{
+
+    position: absolute;
+    left: 55px;
+    top: 305px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 15px;
+
+    color: #282828;
+
+}
+
+#thirdFolderIcon{
+
+    position: absolute;
+    left: 30px;
+    top: 330px;
+
+}
+
+#thirdProjectName{
+
+    position: absolute;
+    left: 55px;
+    top: 330px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 15px;
+
+    color: #282828;
+
+}
+
+/* 4번째 프로젝트 */
+#fourth{
+
+    /*display: none;*/
+
+}
+#fourthFolderIcon{
+
+    position: absolute;
+    left: 30px;
+    top: 355px;
+
+}
+
+#fourthProjectName{
+
+    position: absolute;
+    left: 55px;
+    top: 355px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 15px;
+
+    color: #282828;
+
+}
+
+/* 5번째 프로젝트 */
+#fifth{
+
+    /*display: none;*/
+
+}
+#fifthFolderIcon{
+
+    position: absolute;
+    left: 30px;
+    top: 380px;
+
+}
+
+#fifthProjectName{
+
+    position: absolute;
+    left: 55px;
+    top: 380px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 15px;
+
+    color: #282828;
+
+}
+
+/* 6번째 프로젝트 */
+#sixth{
+
+    /*display: none;*/
+
+}
+#sixthFolderIcon{
+
+    position: absolute;
+    left: 30px;
+    top: 405px;
+
+}
+
+#sixthProjectName{
+
+    position: absolute;
+    left: 55px;
+    top: 405px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 15px;
+
+    color: #282828;
+
+}
+
+/* 7번째 프로젝트 */
+#seventh{
+
+    /*display: none;*/
+
+}
+#seventhFolderIcon{
+
+    position: absolute;
+    left: 30px;
+    top: 430px;
+
+}
+
+#seventhProjectName{
+
+    position: absolute;
+    left: 55px;
+    top: 430px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 15px;
+
+    color: #282828;
+
+}
+/* 8번째 프로젝트 */
+#eighth{
+
+     /*display: none;*/
+
+ }
+#eighthFolderIcon{
+
+    position: absolute;
+    left: 30px;
+    top: 455px;
+
+}
+
+#eighthProjectName{
+
+    position: absolute;
+    left: 55px;
+    top: 455px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 15px;
+
+    color: #282828;
+
+}
+
+#whiteBar2{
+
+    position: absolute;
+    width: 210px;
+    left: 20px;
+    top: 580px;
+
+    border: 3px solid #FFFFFF;
+    transform: matrix(-1, 0, 0, -1, 0, 0);
+
+}
+
+/* 문의하기 */
+#firstInquiry{
+
+    position: absolute;
+    left: 30px;
+    top: 600px;
+
+}
+
+#doInquiryText{
+
+    position: absolute;
+    left: 55px;
+    top: 600px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 15px;
+
+    color: #282828;
+}
+
+/* 권한 위임 요청 */
+#secondInquiry{
+
+    position: absolute;
+    left: 30px;
+    top: 625px;
+
+}
+
+#authorityText{
+
+    position: absolute;
+    left: 55px;
+    top: 625px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 15px;
+
+    color: #282828;
+}
+
+/* ----------------------------------------------------------- */
+/* 메인 구역 */
+#mainArea{
+
+    position: absolute;
+    width: 1605px;
+    height: 816px;
+    left: 311px;
+
+}
+
+/* Project 글자 */
+#mainTitle{
+
+    position: absolute;
+    width: 186px;
+    height: 54px;
+    left: 398px;
+    top: 151px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 45px;
+    line-height: 56px;
+
+    color: #282828;
+
+}
+
+/* 폴더 공통 */
+.folderHead{
+
+    width: 49.72px;
+    height: 22.06px;
+
+}
+
+.folderBody{
+
+    width: 210px;
+    height: 141px;
+    border: solid 1px #282828;
+
+    /*background: #F33A3A;*/
+}
+
+.folderTitle{
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 20px;
+    line-height: 32px;
+    /*display: flex;*/
+    align-items: center;
+    text-align: center;
+
+    color: #282828;
+
+}
+
+/* 첫 번째 폴더 */
+
+#folderBigBody1{
+
+    cursor: default;
+    position: absolute;
+    width: 210px;
+    height: 141px;
+    left: 153px;
+    top: 225px;
+    border: solid 1px #282828;
+    /* 색상 나중에 자스로 랜덤으로 바꾸기 */
+    background: #FEC4C4;
+
+}
+
+#folderSmallBody1{
+
+    position: absolute;
+    width: 50px;
+    height: 22px;
+    left: 153px;
+    top: 205px;
+    border-left: solid 1px #282828;
+    border-right: solid 1px #282828;
+    border-top: solid 1px #282828;
+    background: #FEC4C4;
+
+}
+
+#folderName1{
+
+    position: absolute;
+    left: 75px;
+    top: 50px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 25px;
+    line-height: 32px;
+    /*display: flex;*/
+    align-items: center;
+    text-align: center;
+
+    color: #282828;
+}
+
+#menu1{
+
+    position: absolute;
+    left: 186px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: 0.03em;
+
+    color: #282828;
+
+}
+
+#folderFullName1{
+
+    cursor: default;
+    position: absolute;
+    left: 158px;
+    top: 375px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 21px;
+
+    color: #282828;
+
+}
+
+/* 두 번째 폴더 */
+#folderBigBody2{
+
+    cursor: default;
+    position: absolute;
+    width: 210px;
+    height: 141px;
+    left: 516px;
+    top: 225px;
+    border: solid 1px #282828;
+    /* 색상 나중에 자스로 랜덤으로 바꾸기 */
+    background: #D9F0FB;
+
+}
+
+#folderSmallBody2{
+
+    position: absolute;
+    width: 50px;
+    height: 22px;
+    left: 516px;
+    top: 205px;
+    border-left: solid 1px #282828;
+    border-right: solid 1px #282828;
+    border-top: solid 1px #282828;
+    background: #D9F0FB;
+
+}
+
+#folderName2{
+
+    position: absolute;
+    left: 70px;
+    top: 50px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 25px;
+    line-height: 32px;
+    /*display: flex;*/
+    align-items: center;
+    text-align: center;
+
+    color: #282828;
+}
+
+#menu2{
+
+    position: absolute;
+    left: 186px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: 0.03em;
+
+    color: #282828;
+
+}
+
+#folderFullName2{
+
+    cursor: default;
+    position: absolute;
+    left: 521px;
+    top: 375px;
+
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 21px;
+
+    color: #282828;
+
+}
+
+/* 세 번째 폴더 */
+#folderBigBody3{
+
+    cursor: default;
+    position: absolute;
+    width: 210px;
+    height: 141px;
+    left: 879px;
+    top: 225px;
+    border: solid 1px #282828;
+    /* 색상 나중에 자스로 랜덤으로 바꾸기 */
+    background: #FFEFCC;
+
+}
+
+#folderSmallBody3{
+
+    position: absolute;
+    width: 50px;
+    height: 22px;
+    left: 879px;
+    top: 205px;
+    border-left: solid 1px #282828;
+    border-right: solid 1px #282828;
+    border-top: solid 1px #282828;
+    background: #FFEFCC;
+
+}
+
+#folderName3{
+
+    position: absolute;
+    left: 45px;
+    top: 50px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 25px;
+    line-height: 32px;
+    /*display: flex;*/
+    align-items: center;
+    text-align: center;
+
+    color: #282828;
+}
+
+#menu3{
+
+    position: absolute;
+    left: 186px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: 0.03em;
+
+    color: #282828;
+
+}
+
+#folderFullName3{
+
+    cursor: default;
+    position: absolute;
+    left: 884px;
+    top: 375px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 21px;
+
+    color: #282828;
+
+}
+
+/* 새 폴더1 */
+#newFolderBigBody1{
+
+    cursor: default;
+    position: absolute;
+    width: 210px;
+    height: 141px;
+    left: 1242px;
+    top: 225px;
+    border: solid 1px #282828;
+    /* 색상 나중에 자스로 랜덤으로 바꾸기 */
+    background: #F5F4F4;
+
+}
+
+#newFolderSmallBody1{
+
+    position: absolute;
+    width: 50px;
+    height: 22px;
+    left: 1242px;
+    top: 205px;
+    border-left: solid 1px #282828;
+    border-right: solid 1px #282828;
+    border-top: solid 1px #282828;
+    background: #F5F4F4;
+
+}
+
+#newFolderName1{
+
+    position: absolute;
+    left: 75px;
+    top: 45px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 80px;
+    line-height: 32px;
+    /*display: flex;*/
+    align-items: center;
+    text-align: center;
+
+    color: #282828;
+}
+
+/*#newMenu1{*/
+
+/*    position: absolute;*/
+/*    left: 186px;*/
+
+/*    font-family: 'Inter';*/
+/*    font-style: normal;*/
+/*    font-weight: 900;*/
+/*    font-size: 18px;*/
+/*    line-height: 21px;*/
+/*    letter-spacing: 0.03em;*/
+
+/*    color: #282828;*/
+
+/*}*/
+
+#newFolderFullName1{
+
+    cursor: default;
+    position: absolute;
+    left: 1247px;
+    top: 375px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 21px;
+
+    color: #282828;
+
+}
+
+/* 새 폴더2 */
+#newFolderBigBody2{
+
+    cursor: default;
+    position: absolute;
+    width: 210px;
+    height: 141px;
+    left: 153px;
+    top: 507px;
+    border: solid 1px #282828;
+    /* 색상 나중에 자스로 랜덤으로 바꾸기 */
+    background: #F5F4F4;
+
+}
+
+#newFolderSmallBody2{
+
+    position: absolute;
+    width: 50px;
+    height: 22px;
+    left: 153px;
+    top: 487px;
+    border-left: solid 1px #282828;
+    border-right: solid 1px #282828;
+    border-top: solid 1px #282828;
+    background: #F5F4F4;
+
+}
+
+#newFolderName2{
+
+    position: absolute;
+    left: 75px;
+    top: 45px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 80px;
+    line-height: 32px;
+    /*display: flex;*/
+    align-items: center;
+    text-align: center;
+
+    color: #282828;
+}
+
+/*#newMenu2{*/
+
+/*    position: absolute;*/
+/*    left: 186px;*/
+
+/*    font-family: 'Inter';*/
+/*    font-style: normal;*/
+/*    font-weight: 900;*/
+/*    font-size: 18px;*/
+/*    line-height: 21px;*/
+/*    letter-spacing: 0.03em;*/
+
+/*    color: #282828;*/
+
+/*}*/
+
+#newFolderFullName2{
+
+    cursor: default;
+    position: absolute;
+    left: 158px;
+    top: 657px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 21px;
+
+    color: #282828;
+
+}
+
+/* 새 폴더3 */
+#newFolderBigBody3{
+
+    cursor: default;
+    position: absolute;
+    width: 210px;
+    height: 141px;
+    left: 516px;
+    top: 507px;
+    border: solid 1px #282828;
+    /* 색상 나중에 자스로 랜덤으로 바꾸기 */
+    background: #F5F4F4;
+
+}
+
+#newFolderSmallBody3{
+
+    position: absolute;
+    width: 50px;
+    height: 22px;
+    left: 516px;
+    top: 487px;
+    border-left: solid 1px #282828;
+    border-right: solid 1px #282828;
+    border-top: solid 1px #282828;
+    background: #F5F4F4;
+
+}
+
+#newFolderName3{
+
+    position: absolute;
+    left: 75px;
+    top: 45px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 80px;
+    line-height: 32px;
+    /*display: flex;*/
+    align-items: center;
+    text-align: center;
+
+    color: #282828;
+}
+
+/*#newMenu3{*/
+
+/*    position: absolute;*/
+/*    left: 186px;*/
+
+/*    font-family: 'Inter';*/
+/*    font-style: normal;*/
+/*    font-weight: 900;*/
+/*    font-size: 18px;*/
+/*    line-height: 21px;*/
+/*    letter-spacing: 0.03em;*/
+
+/*    color: #282828;*/
+
+/*}*/
+
+#newFolderFullName3{
+
+    cursor: default;
+    position: absolute;
+    left: 521px;
+    top: 657px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 21px;
+
+    color: #282828;
+
+}
+
+/* 새 폴더4 */
+#newFolderBigBody4{
+
+    cursor: default;
+    position: absolute;
+    width: 210px;
+    height: 141px;
+    left: 879px;
+    top: 507px;
+    border: solid 1px #282828;
+    /* 색상 나중에 자스로 랜덤으로 바꾸기 */
+    background: #F5F4F4;
+
+}
+
+#newFolderSmallBody4{
+
+    position: absolute;
+    width: 50px;
+    height: 22px;
+    left: 879px;
+    top: 487px;
+    border-left: solid 1px #282828;
+    border-right: solid 1px #282828;
+    border-top: solid 1px #282828;
+    background: #F5F4F4;
+
+}
+
+#newFolderName4{
+
+    position: absolute;
+    left: 75px;
+    top: 45px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 80px;
+    line-height: 32px;
+    /*display: flex;*/
+    align-items: center;
+    text-align: center;
+
+    color: #282828;
+}
+
+/*#newMenu4{*/
+
+/*    position: absolute;*/
+/*    left: 186px;*/
+
+/*    font-family: 'Inter';*/
+/*    font-style: normal;*/
+/*    font-weight: 900;*/
+/*    font-size: 18px;*/
+/*    line-height: 21px;*/
+/*    letter-spacing: 0.03em;*/
+
+/*    color: #282828;*/
+
+/*}*/
+
+#newFolderFullName4{
+
+    cursor: default;
+    position: absolute;
+    left: 884px;
+    top: 657px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 21px;
+
+    color: #282828;
+
+}
+
+/* 새 폴더5 */
+#newFolderBigBody5{
+
+    cursor: default;
+    position: absolute;
+    width: 210px;
+    height: 141px;
+    left: 1242px;
+    top: 507px;
+    border: solid 1px #282828;
+    /* 색상 나중에 자스로 랜덤으로 바꾸기 */
+    background: #F5F4F4;
+
+}
+
+#newFolderSmallBody5{
+
+    position: absolute;
+    width: 50px;
+    height: 22px;
+    left: 1242px;
+    top: 487px;
+    border-left: solid 1px #282828;
+    border-right: solid 1px #282828;
+    border-top: solid 1px #282828;
+    background: #F5F4F4;
+
+}
+
+#newFolderName5{
+
+    position: absolute;
+    left: 75px;
+    top: 45px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 80px;
+    line-height: 32px;
+    /*display: flex;*/
+    align-items: center;
+    text-align: center;
+
+    color: #282828;
+}
+
+/*#newMenu5{*/
+
+/*    position: absolute;*/
+/*    left: 186px;*/
+
+/*    font-family: 'Inter';*/
+/*    font-style: normal;*/
+/*    font-weight: 900;*/
+/*    font-size: 18px;*/
+/*    line-height: 21px;*/
+/*    letter-spacing: 0.03em;*/
+
+/*    color: #282828;*/
+
+/*}*/
+
+#newFolderFullName5{
+
+    cursor: default;
+    position: absolute;
+    left: 1247px;
+    top: 657px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 21px;
+
+    color: #282828;
+
+}
+
+
