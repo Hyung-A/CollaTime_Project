@@ -1,12 +1,25 @@
 package com.ohgiraffers.collatime.user.controller;
 
+import com.ohgiraffers.collatime.user.model.dto.SignupDTO;
+import com.ohgiraffers.collatime.user.model.dto.UserDTO;
+import com.ohgiraffers.collatime.user.model.service.UserService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
 //    회원가입 흐름
 //    회원가입 시에는 아이디, 비밀번호, 이메일, 닉네임 유효성을 판단해야한다.
@@ -21,5 +34,45 @@ public class UserController {
     
 
     @GetMapping("/signup")
-    public void signup(){}
+    public void signup(){
+        System.out.println("hi");
+    }
+
+    @PostMapping("/signup")
+    public ModelAndView signup(ModelAndView mv, @ModelAttribute SignupDTO signupDTO){
+        System.out.println("hi post");
+        System.out.println(signupDTO);
+        int result = userService.registUser(signupDTO);
+
+
+
+        System.out.println(result);
+        String message = "";
+        boolean isSuccess = true;
+
+        if(result>0){
+            message = "회원가입이 완료되었습니다.";
+            isSuccess = true;
+            mv.setViewName("auth/login");
+            System.out.println("yes");
+        }else{
+            message = "내용을 다시 확인해주세요.";
+            isSuccess = false;
+            System.out.println("no");
+            mv.setViewName("user/signup");
+
+        }
+
+        mv.addObject("message", message);
+
+        return mv;
+    }
+
+    @GetMapping(value = "check", produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public List<UserDTO> Check(){
+        userService.selectAllUser().forEach(System.out::println);
+
+        return userService.selectAllUser();
+    }
 }

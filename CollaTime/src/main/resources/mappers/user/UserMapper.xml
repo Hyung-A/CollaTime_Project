@@ -2,6 +2,56 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper>
+<mapper namespace="com.ohgiraffers.collatime.user.model.dao.UserMapper">
+    <resultMap id="login" type="com.ohgiraffers.collatime.user.model.dto.UserDTO">
+        <id property="userCode" column="CT_USER_NO"/>
+        <result property="userId" column="CT_USER_ID"/>
+        <result property="userPwd" column="CT_USER_PWD"/>
+        <result property="userEmail" column="CT_USER_EMAIL"/>
+        <result property="userName" column="CT_USER_NAME"/>
+        <result property="userNickname" column="CT_USER_NICKNAME"/>
+        <result property="userPicture" column="CT_USER_PICTURE"/>
+        <result property="userColor" column="CT_USER_COLOR"/>
+        <result property="userRole" column="CT_USER_ROLE"/>
+    </resultMap>
+
+    <insert id="registUser" parameterType="com.ohgiraffers.collatime.user.model.dto.UserDTO">
+        INSERT INTO CT_USER
+        (
+            CT_USER_NO
+        ,   CT_USER_ID
+        ,   CT_USER_PWD
+        ,   CT_USER_EMAIL
+        ,   CT_USER_NAME
+        ,   CT_USER_NICKNAME
+        ,   CT_USER_PICTURE
+        ,   CT_USER_COLOR
+        ,   CT_USER_ROLE
+
+        )
+        VALUES
+        (
+            '0'
+        ,   #{userId}
+        ,   #{userPwd}
+        ,   #{userEmail}
+        ,   #{userName}
+        ,   #{userNickname}
+        ,   'a1'
+        ,   'red'
+        ,   'USER'
+        )
+    </insert>
+
+    <select id="findByUsername" resultMap="login">
+        SELECT *
+        FROM CT_USER
+        WHERE CT_USER_ID = #{username}
+    </select>
+
+    <select id="selectAllUser" resultMap="login">
+        SELECT *
+        FROM CT_USER
+    </select>
 
 </mapper>

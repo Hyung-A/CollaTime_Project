@@ -18,33 +18,36 @@
     <img id="login_background_img" src="/css/user/image/FizzyGroup.png">
 </div>
 <!--중간 모달창-->
+<form th:action="@{/auth/login}" method="post">
 <div id="middleModal">
     <div id="middleBlueHeader"></div>
     <!-- 로그인 텍스트 -->
     <div id="login_word">로그인</div>
     <!-- 아이디 입력창 -->
-    <input id="input_id" type="text" placeholder="아이디">
+    <input id="input_id" type="text" placeholder="아이디" name="user">
     <!-- 비밀번호 입력창 -->
-    <input id="input_pwd" type="text" placeholder="비밀번호">
+    <input id="input_pwd" type="password" placeholder="비밀번호" name="pass">
     <!-- 아이디 비밀번호 찾기 -->
     <a id="go_checkIdPwd" onclick="location.href='a'" >아이디나 비밀번호를 잊으셨나요?</a>
     <!-- 로그인 버튼 -->
-    <button id="login_btn" onclick="location.href='main'">로그인</button>
+    <button id="login_btn">로그인</button>
     <!-- 회원가입 -->
-    <a id="go_signup" onclick="location.href='main'" >아직 회원이 아니신가요?</a>
+    <a id="go_signup" onclick="location.href='/user/signup'" >아직 회원이 아니신가요?</a>
+
 </div>
+</form>
 
 
 
 
-<!-- 작은 모달창 -->
-<div id="smallModal" class="modal">
-    <div id="smallBlueHeader">
-        <div id="smallXButton">X</div>
-    </div>
-    <!-- 로그인 유효성 메세지 -->
-    <div class="message">형석짱짱님 반갑습니다.</div>
-    <button id="ok_btn">확인</button>
-</div>
+<!--&lt;!&ndash; 작은 모달창 &ndash;&gt;-->
+<!--<div id="smallModal" class="modal">-->
+<!--    <div id="smallBlueHeader">-->
+<!--        <div id="smallXButton">X</div>-->
+<!--    </div>-->
+<!--    &lt;!&ndash; 로그인 유효성 메세지 &ndash;&gt;-->
+<!--    <div class="message">형석짱짱님 반갑습니다.</div>-->
+<!--    <button id="ok_btn">확인</button>-->
+<!--</div>-->
 </body>
 </html>
