@@ -11,7 +11,7 @@ public class UserDTO implements java.io.Serializable{
 
     private int userNo;
     private String userId;
-    private String userPwd;
+    private String password;
     private String userEmail;
     private String userName;
     private String userNickname;
@@ -32,7 +32,7 @@ public class UserDTO implements java.io.Serializable{
     public UserDTO(int userNo, String userId, String userPwd, String userEmail, String userName, String userNickname, String userPicture, String userColor, UserRole userRole) {
         this.userNo = userNo;
         this.userId = userId;
-        this.userPwd = userPwd;
+        this.password = userPwd;
         this.userEmail = userEmail;
         this.userName = userName;
         this.userNickname = userNickname;
@@ -58,11 +58,11 @@ public class UserDTO implements java.io.Serializable{
     }
 
     public String getUserPwd() {
-        return userPwd;
+        return password;
     }
 
     public void setUserPwd(String userPwd) {
-        this.userPwd = userPwd;
+        this.password = userPwd;
     }
 
     public String getUserEmail() {

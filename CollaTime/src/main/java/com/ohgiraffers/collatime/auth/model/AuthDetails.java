@@ -1,4 +1,4 @@
-
+//
 //package com.ohgiraffers.collatime.auth.model;
 //import com.ohgiraffers.collatime.user.model.dto.UserDTO;
 //import org.springframework.security.core.GrantedAuthority;
@@ -14,8 +14,6 @@
 //    public AuthDetails(){}
 //
 //    public AuthDetails(UserDTO userDTO){this.userDTO = userDTO;}
-//
-//    public UserDTO getUserDTO(){return userDTO;}
 //
 //    public void setUserDTO(UserDTO userDTO){this.userDTO = userDTO;}
 //
@@ -36,7 +34,7 @@
 //
 //    @Override
 //    public String getUsername() {
-//        return userDTO.getUserName();
+//        return userDTO.getUserId();
 //    }
 //
 //    @Override

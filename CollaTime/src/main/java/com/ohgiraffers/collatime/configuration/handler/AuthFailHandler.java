@@ -26,6 +26,7 @@
 //    public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
 //        String errorMessage = "";
 //        System.out.println("로그인 실패");
+//        System.out.println(exception.getMessage());
 //        if(exception instanceof UsernameNotFoundException) {
 ////            DB에 사용자의 정보가 없는 경우 발생하는 에러
 //            errorMessage = "존재하지 않는 ID입니다.";
@@ -45,7 +46,7 @@
 ////        응답 메세지와 페이지 경로를 설정할 수 있게 하도록 재정의
 ////        URL을 안전하게 인코딩 하는데 사용되는 유틸로 문자열을 URL에 사용가능한 형식으로 인코딩 할 수 있다.
 //        errorMessage = URLEncoder.encode(errorMessage, "UTF-8");
-//
+//        System.out.println(errorMessage);
 //        setDefaultFailureUrl("/auth/fail?message=" + errorMessage);
 //
 //        super.onAuthenticationFailure(request, response, exception);
