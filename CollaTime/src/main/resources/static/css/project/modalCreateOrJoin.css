@@ -38,6 +38,8 @@
     position: absolute;
     left: 506px;
     top: 5px;
+    border: none;
+    background: none;
 
 }
 
@@ -153,13 +155,13 @@
 }
 
 /* 취소 버튼 */
-#cancel{
+#smallCancel{
 
     position: absolute;
     width: 99px;
     height: 31px;
-    left: 300px;
-    top: 550px;
+    left: 330px;
+    top: 540px;
     border-radius: 25px;
     background: #DFF7FD;
     border: #DFF7FD;
@@ -179,13 +181,13 @@
 }
 
 /* 확인 버튼 */
-#confirm{
+#smallConfirm{
 
     position: absolute;
     width: 99px;
     height: 31px;
-    left: 407px;
-    top: 550px;
+    left: 437px;
+    top: 540px;
 
     font-family: 'Inter';
     font-style: normal;

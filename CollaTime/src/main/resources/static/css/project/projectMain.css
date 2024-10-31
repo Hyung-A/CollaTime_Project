@@ -3,6 +3,7 @@
 /* 헤더 */
 #head{
 
+    cursor: default;
     width: 1915px;
     height: 100px;
     /*border-bottom: solid 1px #282828;*/
@@ -69,6 +70,7 @@
 /* 왼쪽바 */
 #leftBarLayout{
 
+    cursor: default;
     position: absolute;
     width: 310px;
     height: 813px;
@@ -155,8 +157,6 @@
 }
 
 #textMyProject{
-
-    /* My Project */
 
     position: absolute;
     width: 100px;
@@ -455,7 +455,7 @@
     color: #282828;
 }
 
-
+/* ----------------------------------------------------------- */
 /* 메인 구역 */
 #mainArea{
 
@@ -467,7 +467,7 @@
 }
 
 /* Project 글자 */
-#title{
+#mainTitle{
 
     position: absolute;
     width: 186px;
@@ -518,16 +518,10 @@
 }
 
 /* 첫 번째 폴더 */
-#folder1{
-
-    width: 210px;
-    height: 164px;
-    background: #FEC4C4;
-
-}
 
 #folderBigBody1{
 
+    cursor: default;
     position: absolute;
     width: 210px;
     height: 141px;
@@ -589,6 +583,7 @@
 
 #folderFullName1{
 
+    cursor: default;
     position: absolute;
     left: 158px;
     top: 375px;
@@ -606,6 +601,7 @@
 /* 두 번째 폴더 */
 #folderBigBody2{
 
+    cursor: default;
     position: absolute;
     width: 210px;
     height: 141px;
@@ -667,6 +663,7 @@
 
 #folderFullName2{
 
+    cursor: default;
     position: absolute;
     left: 521px;
     top: 375px;
@@ -685,6 +682,7 @@
 /* 세 번째 폴더 */
 #folderBigBody3{
 
+    cursor: default;
     position: absolute;
     width: 210px;
     height: 141px;
@@ -746,6 +744,7 @@
 
 #folderFullName3{
 
+    cursor: default;
     position: absolute;
     left: 884px;
     top: 375px;
@@ -763,6 +762,7 @@
 /* 새 폴더1 */
 #newFolderBigBody1{
 
+    cursor: default;
     position: absolute;
     width: 210px;
     height: 141px;
@@ -806,24 +806,25 @@
     color: #282828;
 }
 
-#newMenu1{
+/*#newMenu1{*/
 
-    position: absolute;
-    left: 186px;
+/*    position: absolute;*/
+/*    left: 186px;*/
 
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 900;
-    font-size: 18px;
-    line-height: 21px;
-    letter-spacing: 0.03em;
+/*    font-family: 'Inter';*/
+/*    font-style: normal;*/
+/*    font-weight: 900;*/
+/*    font-size: 18px;*/
+/*    line-height: 21px;*/
+/*    letter-spacing: 0.03em;*/
 
-    color: #282828;
+/*    color: #282828;*/
 
-}
+/*}*/
 
 #newFolderFullName1{
 
+    cursor: default;
     position: absolute;
     left: 1247px;
     top: 375px;
@@ -839,14 +840,9 @@
 }
 
 /* 새 폴더2 */
-#createNewFolder2{
-
-    /*display: none;*/
-
-}
-
 #newFolderBigBody2{
 
+    cursor: default;
     position: absolute;
     width: 210px;
     height: 141px;
@@ -890,24 +886,25 @@
     color: #282828;
 }
 
-#newMenu2{
+/*#newMenu2{*/
 
-    position: absolute;
-    left: 186px;
+/*    position: absolute;*/
+/*    left: 186px;*/
 
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 900;
-    font-size: 18px;
-    line-height: 21px;
-    letter-spacing: 0.03em;
+/*    font-family: 'Inter';*/
+/*    font-style: normal;*/
+/*    font-weight: 900;*/
+/*    font-size: 18px;*/
+/*    line-height: 21px;*/
+/*    letter-spacing: 0.03em;*/
 
-    color: #282828;
+/*    color: #282828;*/
 
-}
+/*}*/
 
 #newFolderFullName2{
 
+    cursor: default;
     position: absolute;
     left: 158px;
     top: 657px;
@@ -923,14 +920,9 @@
 }
 
 /* 새 폴더3 */
-#createNewFolder3{
-
-    /*display: none;*/
-
-}
-
 #newFolderBigBody3{
 
+    cursor: default;
     position: absolute;
     width: 210px;
     height: 141px;
@@ -974,24 +966,25 @@
     color: #282828;
 }
 
-#newMenu3{
+/*#newMenu3{*/
 
-    position: absolute;
-    left: 186px;
+/*    position: absolute;*/
+/*    left: 186px;*/
 
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 900;
-    font-size: 18px;
-    line-height: 21px;
-    letter-spacing: 0.03em;
+/*    font-family: 'Inter';*/
+/*    font-style: normal;*/
+/*    font-weight: 900;*/
+/*    font-size: 18px;*/
+/*    line-height: 21px;*/
+/*    letter-spacing: 0.03em;*/
 
-    color: #282828;
+/*    color: #282828;*/
 
-}
+/*}*/
 
 #newFolderFullName3{
 
+    cursor: default;
     position: absolute;
     left: 521px;
     top: 657px;
@@ -1007,14 +1000,9 @@
 }
 
 /* 새 폴더4 */
-#createNewFolder4{
-
-    /*display: none;*/
-
-}
-
 #newFolderBigBody4{
 
+    cursor: default;
     position: absolute;
     width: 210px;
     height: 141px;
@@ -1058,24 +1046,25 @@
     color: #282828;
 }
 
-#newMenu4{
+/*#newMenu4{*/
 
-    position: absolute;
-    left: 186px;
+/*    position: absolute;*/
+/*    left: 186px;*/
 
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 900;
-    font-size: 18px;
-    line-height: 21px;
-    letter-spacing: 0.03em;
+/*    font-family: 'Inter';*/
+/*    font-style: normal;*/
+/*    font-weight: 900;*/
+/*    font-size: 18px;*/
+/*    line-height: 21px;*/
+/*    letter-spacing: 0.03em;*/
 
-    color: #282828;
+/*    color: #282828;*/
 
-}
+/*}*/
 
 #newFolderFullName4{
 
+    cursor: default;
     position: absolute;
     left: 884px;
     top: 657px;
@@ -1091,14 +1080,9 @@
 }
 
 /* 새 폴더5 */
-#createNewFolder5{
-
-    /*display: none;*/
-
-}
-
 #newFolderBigBody5{
 
+    cursor: default;
     position: absolute;
     width: 210px;
     height: 141px;
@@ -1142,24 +1126,25 @@
     color: #282828;
 }
 
-#newMenu5{
+/*#newMenu5{*/
 
-    position: absolute;
-    left: 186px;
+/*    position: absolute;*/
+/*    left: 186px;*/
 
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 900;
-    font-size: 18px;
-    line-height: 21px;
-    letter-spacing: 0.03em;
+/*    font-family: 'Inter';*/
+/*    font-style: normal;*/
+/*    font-weight: 900;*/
+/*    font-size: 18px;*/
+/*    line-height: 21px;*/
+/*    letter-spacing: 0.03em;*/
 
-    color: #282828;
+/*    color: #282828;*/
 
-}
+/*}*/
 
 #newFolderFullName5{
 
+    cursor: default;
     position: absolute;
     left: 1247px;
     top: 657px;
@@ -1173,4 +1158,5 @@
     color: #282828;
 
 }
+
 
