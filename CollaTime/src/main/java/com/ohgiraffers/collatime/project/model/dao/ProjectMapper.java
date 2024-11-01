@@ -8,7 +8,7 @@ public interface ProjectMapper {
     /* ProjectMapper */
 
 
-//    void insertProject(ProjectDTO projectDTO);
+    void insertProject(ProjectDTO projectDTO);
 
 
 
