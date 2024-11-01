@@ -68,11 +68,17 @@ public class UserController {
         return mv;
     }
 
-    @GetMapping(value = "check", produces = "application/json; charset=UTF-8")
+    @GetMapping(value = "/check", produces = "application/json; charset=UTF-8")
     @ResponseBody
-    public List<UserDTO> Check(){
+    public List<String[]> check(){
+        System.out.println("check호출");
         userService.selectAllUser().forEach(System.out::println);
-
-        return userService.selectAllUser();
+        List<UserDTO> user = userService.selectAllUser();
+        List<String[]> checkDB = new ArrayList<>();
+        for(int i = 0; i< user.size();i++){
+            String[] allUserInfo =  {user.get(i).getUserId(), user.get(i).getUserNickname(), user.get(i).getUserEmail()};
+            checkDB.add(allUserInfo);
+        }
+        return checkDB;
     }
 }
