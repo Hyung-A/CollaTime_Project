@@ -1,9 +1,9 @@
+
 //package com.ohgiraffers.collatime.auth.model;
-//
 //import com.ohgiraffers.collatime.user.model.dto.UserDTO;
 //import org.springframework.security.core.GrantedAuthority;
 //import org.springframework.security.core.userdetails.UserDetails;
-//
+//import java.util.ArrayList;
 //import java.util.Collection;
 //import java.util.List;
 //
@@ -21,17 +21,22 @@
 //
 //    @Override
 //    public Collection<? extends GrantedAuthority> getAuthorities() {
-//        return List.of();
+////        사용자의 권한 정보를 반환하기 위한 메소드
+//        Collection<GrantedAuthority> authorities = new ArrayList<>();
+//
+//        userDTO.getRole().forEach(role -> authorities.add(() -> role));
+//
+//        return authorities;
 //    }
 //
 //    @Override
 //    public String getPassword() {
-//        return "";
+//        return userDTO.getUserPwd();
 //    }
 //
 //    @Override
-//    public String getUsername() {
-//        return "";
+//    public String getUsername() 
+//        return userDTO.getUserName();
 //    }
 //
 //    @Override

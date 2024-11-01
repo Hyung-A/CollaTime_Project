@@ -5,155 +5,428 @@
     <title>Project</title>
     <link rel="stylesheet" href="/static/css/project/reset.css">
     <link rel="stylesheet" href="/static/css/project/projectMain.css">
+    <link rel="stylesheet" href="/static/css/project/modalCreateOrJoin.css">
+    <link rel="stylesheet" href="/static/css/project/modalCreateProject.css">
+    <link rel="stylesheet" href="/static/css/project/modalInviteMember.css">
 </head>
 <body>
 <!-- 프로젝트 메인 화면 -->
+<div id="main" style="z-index: 1">
 <!-- Header 구역 -->
-<div id="head">
-    <img src="/static/css/project/image/Logo.png" id="logo"></img>
-    <button id="logOut">로그아웃</button>
-</div>
-<!-- Left Bar 구역 -->
-<div id="leftBarLayout">
-    <div id="blueBackground">
-        <div id="profile"></div>
-        <div id="nickname">닉네임 나중에 바꾸기</div>
-        <div id="mypage">마이페이지</div>
-        <div id="whiteBar1"></div>
-        <span id="textMyProject">My Project</span>
-        <div id="first">
-            <!-- 여기부터 하기  -->
-            <img src="/static/css/project/image/folderIcon.png" id="firstFolderIcon">
-            <span id="firstProjectName">Java 실습</span>
+    <div id="head">
+        <img src="/static/css/project/image/Logo.png" id="logo"></img>
+        <button id="logOut">로그아웃</button>
+    </div>
+    <!-- Left Bar 구역 -->
+    <div id="leftBarLayout">
+        <div id="blueBackground">
+            <div id="profile"></div>
+            <div id="nickname">닉네임 나중에 바꾸기</div>
+            <div id="mypage">마이페이지</div>
+            <div id="whiteBar1"></div>
+            <span id="textMyProject">My Project</span>
+            <div id="first">
+                <img src="/static/css/project/image/folderIcon.png" id="firstFolderIcon">
+                <span id="firstProjectName">Java 실습</span>
+            </div>
+            <div id="second">
+                <img src="/static/css/project/image/folderIcon.png" id="secondFolderIcon">
+                <span id="secondProjectName">백엔드 과제</span>
+            </div>
+            <div id="third">
+                <img src="/static/css/project/image/folderIcon.png" id="thirdFolderIcon">
+                <span id="thirdProjectName">프론트엔드 과제</span>
+            </div>
+            <div id="fourth">
+                <img src="/static/css/project/image/folderIcon.png" id="fourthFolderIcon">
+                <span id="fourthProjectName">변경예정</span>
+            </div>
+            <div id="fifth">
+                <img src="/static/css/project/image/folderIcon.png" id="fifthFolderIcon">
+                <span id="fifthProjectName">변경예정</span>
+            </div>
+            <div id="sixth">
+                <img src="/static/css/project/image/folderIcon.png" id="sixthFolderIcon">
+                <span id="sixthProjectName">변경예정</span>
+            </div>
+            <div id="seventh">
+                <img src="/static/css/project/image/folderIcon.png" id="seventhFolderIcon">
+                <span id="seventhProjectName">변경예정</span>
+            </div>
+            <div id="eighth">
+                <img src="/static/css/project/image/folderIcon.png" id="eighthFolderIcon">
+                <span id="eighthProjectName">변경예정</span>
+            </div>
+            <div id="whiteBar2"></div>
+            <div id="doInquiry">
+                <img src="/static/css/project/image/inquiryIcon.png" id="firstInquiry">
+                <span id="doInquiryText">문의하기</span>
+            </div>
+            <div id="authority">
+                <img src="/static/css/project/image/inquiryIcon.png" id="secondInquiry">
+                <span id="authorityText">권한 위임 요청</span>
+            </div>
         </div>
-        <div id="second">
-            <img src="/static/css/project/image/folderIcon.png" id="secondFolderIcon">
-            <span id="secondProjectName">백엔드 과제</span>
-        </div>
-        <div id="third">
-            <img src="/static/css/project/image/folderIcon.png" id="thirdFolderIcon">
-            <span id="thirdProjectName">프론트엔드 과제</span>
-        </div>
-        <div id="fourth">
-            <img src="/static/css/project/image/folderIcon.png" id="fourthFolderIcon">
-            <span id="fourthProjectName">변경예정</span>
-        </div>
-        <div id="fifth">
-            <img src="/static/css/project/image/folderIcon.png" id="fifthFolderIcon">
-            <span id="fifthProjectName">변경예정</span>
-        </div>
-        <div id="sixth">
-            <img src="/static/css/project/image/folderIcon.png" id="sixthFolderIcon">
-            <span id="sixthProjectName">변경예정</span>
-        </div>
-        <div id="seventh">
-            <img src="/static/css/project/image/folderIcon.png" id="seventhFolderIcon">
-            <span id="seventhProjectName">변경예정</span>
-        </div>
-        <div id="eighth">
-            <img src="/static/css/project/image/folderIcon.png" id="eighthFolderIcon">
-            <span id="eighthProjectName">변경예정</span>
-        </div>
-        <div id="whiteBar2"></div>
-        <div id="doInquiry">
-            <img src="/static/css/project/image/inquiryIcon.png" id="firstInquiry">
-            <span id="doInquiryText">문의하기</span>
-        </div>
-        <div id="authority">
-            <img src="/static/css/project/image/inquiryIcon.png" id="secondInquiry">
-            <span id="authorityText">권한 위임 요청</span>
+    </div>
+    <!-- 메인 구역 -->
+    <div>
+        <span id="mainTitle">Project</span>
+        <div id="mainArea">
+            <!-- 첫 번째 폴더 -->
+            <div id="firstFolder">
+                <div id="folderSmallBody1" class="forderHead"></div>
+                <div id="folderBigBody1" class="folderBody">
+                    <!-- 이름 나중에 바꿀 예정 -> DB에서 가져와서 -->
+                    <div id="folderName1" class="folderTitle">JAVA</div>
+                    <div id="menu1" class="folderMenu">...</div>
+                </div>
+                <!-- 여기도 나중에 이름 바꿀 예정 -> DB에서 가져와서 -->
+                <span id="folderFullName1" class="folderFullTitle">Java 실습</span>
+            </div>
+
+            <!-- 두 번째 폴더 -->
+            <div id="secondFolder">
+                <div id="folderSmallBody2" class="forderHead"></div>
+                <div id="folderBigBody2" class="folderBody">
+                    <!-- 이름 나중에 바꿀 예정 -> DB에서 가져와서 -->
+                    <span id="folderName2" class="folderTitle">백엔드</span>
+                    <span id="menu2" class="folderMenu">...</span>
+                </div>
+                <!-- 여기도 나중에 이름 바꿀 예정 -> DB에서 가져와서 -->
+                <span id="folderFullName2" class="folderFullTitle">백엔드 과제</span>
+            </div>
+
+            <!-- 세 번째 폴더 -->
+            <div id="thirdFolder">
+                <div id="folderSmallBody3" class="forderHead"></div>
+                <div id="folderBigBody3" class="folderBody">
+                    <!-- 이름 나중에 바꿀 예정 -> DB에서 가져와서 -->
+                    <span id="folderName3" class="folderTitle">프론트엔드</span>
+                    <span id="menu3" class="folderMenu">...</span>
+                </div>
+                <!-- 여기도 나중에 이름 바꿀 예정 -> DB에서 가져와서 -->
+                <span id="folderFullName3" class="folderFullTitle">프론트엔드 과제</span>
+            </div>
+
+            <!-- 새 폴더 폴더1 -->
+            <div id="createNewFolder1" class="createNewFolder">
+                <div id="newFolderSmallBody1" class="forderHead"></div>
+                <div id="newFolderBigBody1" class="folderBody">
+                    <!-- 이름 나중에 바꿀 예정 -> DB에서 가져와서 -->
+                    <span id="newFolderName1" class="folderTitle">+</span>
+<!--                    <span id="newMenu1" class="folderMenu">...</span>-->
+                </div>
+                <!-- 여기도 나중에 이름 바꿀 예정 -> DB에서 가져와서 -->
+                <span id="newFolderFullName1" class="folderFullTitle">new 프로젝트</span>
+            </div>
+            <!-- 새 폴더 폴더2 -->
+            <div id="createNewFolder2" class="createNewFolder">
+                <div id="newFolderSmallBody2" class="forderHead"></div>
+                <div id="newFolderBigBody2" class="folderBody">
+                    <!-- 이름 나중에 바꿀 예정 -> DB에서 가져와서 -->
+                    <span id="newFolderName2" class="folderTitle">+</span>
+<!--                    <span id="newMenu2" class="folderMenu">...</span>-->
+                </div>
+                <!-- 여기도 나중에 이름 바꿀 예정 -> DB에서 가져와서 -->
+                <span id="newFolderFullName2" class="folderFullTitle">new 프로젝트</span>
+            </div>
+            <!-- 새 폴더 폴더3 -->
+            <div id="createNewFolder3" class="createNewFolder">
+                <div id="newFolderSmallBody3" class="forderHead"></div>
+                <div id="newFolderBigBody3" class="folderBody">
+                    <!-- 이름 나중에 바꿀 예정 -> DB에서 가져와서 -->
+                    <span id="newFolderName3" class="folderTitle">+</span>
+<!--                    <span id="newMenu3" class="folderMenu">...</span>-->
+                </div>
+                <!-- 여기도 나중에 이름 바꿀 예정 -> DB에서 가져와서 -->
+                <span id="newFolderFullName3" class="folderFullTitle">new 프로젝트</span>
+            </div>
+            <!-- 새 폴더 폴더4 -->
+            <div id="createNewFolder4" class="createNewFolder">
+                <div id="newFolderSmallBody4" class="forderHead"></div>
+                <div id="newFolderBigBody4" class="folderBody">
+                    <!-- 이름 나중에 바꿀 예정 -> DB에서 가져와서 -->
+                    <span id="newFolderName4" class="folderTitle">+</span>
+<!--                    <span id="newMenu4" class="folderMenu">...</span>-->
+                </div>
+                <!-- 여기도 나중에 이름 바꿀 예정 -> DB에서 가져와서 -->
+                <span id="newFolderFullName4" class="folderFullTitle">new 프로젝트</span>
+            </div>
+            <!-- 새 폴더 폴더5 -->
+            <div id="createNewFolder5" class="createNewFolder">
+                <div id="newFolderSmallBody5" class="forderHead"></div>
+                <div id="newFolderBigBody5" class="folderBody">
+                    <!-- 이름 나중에 바꿀 예정 -> DB에서 가져와서 -->
+                    <span id="newFolderName5" class="folderTitle">+</span>
+<!--                    <span id="newMenu5" class="folderMenu">...</span>-->
+                </div>
+                <!-- 여기도 나중에 이름 바꿀 예정 -> DB에서 가져와서 -->
+                <span id="newFolderFullName5" class="folderFullTitle">new 프로젝트</span>
+            </div>
         </div>
     </div>
 </div>
-<!-- 메인 구역 -->
-<div>
-    <span id="title">Project</span>
-    <div id="mainArea">
-        <!-- 첫 번째 폴더 -->
-        <div id="folderSmallBody1" class="forderHead"></div>
-        <div id="folderBigBody1" class="folderBody">
-            <!-- 이름 나중에 바꿀 예정 -> DB에서 가져와서 -->
-            <div id="folderName1" class="folderTitle">JAVA</div>
-            <div id="menu1" class="folderMenu">...</div>
-        </div>
-        <!-- 여기도 나중에 이름 바꿀 예정 -> DB에서 가져와서 -->
-        <span id="folderFullName1" class="folderFullTitle">Java 실습</span>
 
-        <!-- 두 번째 폴더 -->
-        <div id="folderSmallBody2" class="forderHead"></div>
-        <div id="folderBigBody2" class="folderBody">
-            <!-- 이름 나중에 바꿀 예정 -> DB에서 가져와서 -->
-            <span id="folderName2" class="folderTitle">백엔드</span>
-            <span id="menu2" class="folderMenu">...</span>
-        </div>
-        <!-- 여기도 나중에 이름 바꿀 예정 -> DB에서 가져와서 -->
-        <span id="folderFullName2" class="folderFullTitle">백엔드 과제</span>
+<script>
+    /* new프로젝트 클릭 시 다음 new프로젝트 생성 아이콘 뜨우기 */
+    const folderElements = [
+        document.getElementById("createNewFolder1"),
+        document.getElementById("createNewFolder2"),
+        document.getElementById("createNewFolder3"),
+        document.getElementById("createNewFolder4"),
+        document.getElementById("createNewFolder5"),
+    ];
 
-        <!-- 세 번째 폴더 -->
-        <div id="folderSmallBody3" class="forderHead"></div>
-        <div id="folderBigBody3" class="folderBody">
-            <!-- 이름 나중에 바꿀 예정 -> DB에서 가져와서 -->
-            <span id="folderName3" class="folderTitle">프론트엔드</span>
-            <span id="menu3" class="folderMenu">...</span>
+    folderElements.forEach((element, index) => {
+        if (index !== 0) {
+            element.style.display = "none";
+        }
+        element.onclick = function() {
+            const nextElement = folderElements[index + 1];
+            if (nextElement) {
+                nextElement.style.display = "";
+            }
+        };
+    });
+
+
+</script>
+
+    <!-- ----------------------------------------------- 프로젝트 참여 혹은 생성 모달창 ----------------------------------------------- -->
+    <div id="middleModal" style="z-index: 2">
+        <div id="middleBlueHeader">
+            <button id="middleXButton">X</button>
         </div>
-        <!-- 여기도 나중에 이름 바꿀 예정 -> DB에서 가져와서 -->
-        <span id="folderFullName3" class="folderFullTitle">프론트엔드 과제</span>
-        <!-- 새 폴더 폴더1 -->
-        <div id="newFolderSmallBody1" class="forderHead"></div>
-        <div id="newFolderBigBody1" class="folderBody">
-            <!-- 이름 나중에 바꿀 예정 -> DB에서 가져와서 -->
-            <span id="newFolderName1" class="folderTitle">+</span>
-            <span id="newMenu1" class="folderMenu">...</span>
-        </div>
-        <!-- 여기도 나중에 이름 바꿀 예정 -> DB에서 가져와서 -->
-        <span id="newFolderFullName1" class="folderFullTitle">new 프로젝트</span>
-        <!-- 새 폴더 폴더2 -->
-        <div id="createNewFolder2">
-            <div id="newFolderSmallBody2" class="forderHead"></div>
-            <div id="newFolderBigBody2" class="folderBody">
-                <!-- 이름 나중에 바꿀 예정 -> DB에서 가져와서 -->
-                <span id="newFolderName2" class="folderTitle">+</span>
-                <span id="newMenu2" class="folderMenu">...</span>
+        <div id="body">
+            <span id="createProject">프로젝트 생성하기</span>
+            <button type="button" id="areaCreateProject">+</button>
+            <span id="joinProject">프로젝트 참가하기</span>
+            <div>
+                <input type="text" id="inputCode" placeholder="전달받은 코드를 입력해주세요.">
+                <button type="submit" id="joinButton">참가하기</button>
             </div>
-            <!-- 여기도 나중에 이름 바꿀 예정 -> DB에서 가져와서 -->
-            <span id="newFolderFullName2" class="folderFullTitle">new 프로젝트</span>
-        </div>
-        <!-- 새 폴더 폴더3 -->
-        <div id="createNewFolder3">
-            <div id="newFolderSmallBody3" class="forderHead"></div>
-            <div id="newFolderBigBody3" class="folderBody">
-                <!-- 이름 나중에 바꿀 예정 -> DB에서 가져와서 -->
-                <span id="newFolderName3" class="folderTitle">+</span>
-                <span id="newMenu3" class="folderMenu">...</span>
-            </div>
-            <!-- 여기도 나중에 이름 바꿀 예정 -> DB에서 가져와서 -->
-            <span id="newFolderFullName3" class="folderFullTitle">new 프로젝트</span>
-        </div>
-        <!-- 새 폴더 폴더4 -->
-        <div id="createNewFolder4">
-            <div id="newFolderSmallBody4" class="forderHead"></div>
-            <div id="newFolderBigBody4" class="folderBody">
-                <!-- 이름 나중에 바꿀 예정 -> DB에서 가져와서 -->
-                <span id="newFolderName4" class="folderTitle">+</span>
-                <span id="newMenu4" class="folderMenu">...</span>
-            </div>
-            <!-- 여기도 나중에 이름 바꿀 예정 -> DB에서 가져와서 -->
-            <span id="newFolderFullName4" class="folderFullTitle">new 프로젝트</span>
-        </div>
-        <!-- 새 폴더 폴더5 -->
-        <div id="createNewFolder5">
-            <div id="newFolderSmallBody5" class="forderHead"></div>
-            <div id="newFolderBigBody5" class="folderBody">
-                <!-- 이름 나중에 바꿀 예정 -> DB에서 가져와서 -->
-                <span id="newFolderName5" class="folderTitle">+</span>
-                <span id="newMenu5" class="folderMenu">...</span>
-            </div>
-            <!-- 여기도 나중에 이름 바꿀 예정 -> DB에서 가져와서 -->
-            <span id="newFolderFullName5" class="folderFullTitle">new 프로젝트</span>
+            <button type="button" id="smallCancel">취소</button>
+            <button type="submit" id="smallConfirm">확인</button>
         </div>
     </div>
 
+    <script>
+        /* 평소에는 모달창이 안보였다가 메인 화면에서 new프로젝트 누르면 모달 창이 띄어지게 하기 */
+        const modalCreateOrJoin = document.getElementById("middleModal");
+        modalCreateOrJoin.style.display = "none";
+        modalCreateOrJoin.style.zIndex = 1;
+
+        var createNewFolder1 = document.getElementById("createNewFolder1");
+        var createNewFolder2 = document.getElementById("createNewFolder2");
+        var createNewFolder3 = document.getElementById("createNewFolder3");
+        var createNewFolder4 = document.getElementById("createNewFolder4");
+        var createNewFolder5 = document.getElementById("createNewFolder5");
+
+        createNewFolder1.onclick = function(){
+            modalCreateOrJoin.style.display = "";
+        }
+
+        createNewFolder2.onclick = function(){
+            modalCreateOrJoin.style.display= "";
+        };
+
+        createNewFolder3.onclick = function(){
+            modalCreateOrJoin.style.display= "";
+        };
+
+        createNewFolder4.onclick = function(){
+            modalCreateOrJoin.style.display= "";
+        };
+
+        createNewFolder5.onclick = function(){
+            modalCreateOrJoin.style.display= "";
+        };
+
+        /* X버튼, 취소 버튼 클릭 시 모달 없애기 */
+        const xButton = document.getElementById("middleXButton");
+        xButton.onclick = function(){
+            modalCreateOrJoin.style.display = "none";
+        }
+
+        const cancelButton = document.getElementById("smallCancel");
+        cancelButton.onclick = function(){
+            modalCreateOrJoin.style.display = "none";
+        }
+
+
+        /* ++) 클릭 시 프로젝트 생성 페이지로 넘어가기 넣기 */
+
+        /* 참가 코드 클릭 시 placeHolder 사라지기 */
+        const $inputCode = document.getElementById("inputCode");
+        $inputCode.addEventListener("focus", function(e){
+
+            $inputCode.placeholder = ""
+
+        });
+        $inputCode.addEventListener("blur", function(){
+            $inputCode.placeholder = "전달받은 코드를 입력해주세요."
+        });
+
+        /* ++) 알맞은 참가 코드를 입력하면 프로젝트 생성하기 */
+
+    </script>
+
+    <!-- ------------------------------------프로젝트 생성 모달창 ------------------------------------ -->
+    <div id="createProjectModal" style="z-index: 3">
+        <div id="bigBlueHeader">
+            <div id="bigXButton">X</div>
+        </div>
+        <!-- 내용 부분 -->
+        <form action="createProject" method="post">
+            <div id="title">
+                <input type="text" id="inputTitle" placeholder="프로젝트 명을 입력해주세요." name="projectName">
+            </div>
+            <span id="summaryStar" class="star">*</span>
+            <label id="summaryLabel" for="inputSummary">개요</label>
+            <div id="summary">
+                <textarea id="inputSummary" maxlength="150" placeholder="프로젝트 개요를 적어주세요(최대 150자)." name="projectPurpose"></textarea>
+            </div>
+            <span id="purposeStar" class="star">*</span>
+            <label id="purposeLabel" for="inputPurpose">목적</label>
+            <div id="purpose">
+                <textarea id="inputPurpose" maxlength="150" placeholder="프로젝트 목표 및 목적을 적어주세요(최대 150자)."></textarea>
+            </div>
+            <span id="startDateStar" class="star">*</span>
+            <label for="period" id="periodLabel">기간</label>
+            <div id="period">
+                <input type="date" id="projectStartDate" min="2023-01-01" max="2077-06-20" name="startDate"></input>
+                <div id="wave">~</div>
+                <input type="date" id="projectEndDate"  min="2023-01-01" max="2077-06-20" name="endDate"></input>
+            </div>
+            <label for="category" id="categoryLabel">분류</label>
+            <div id="category">
+                <input type="button" id="bank" class="category" name="projectCategory" value="은행"/>
+                <input type="button" id="insurance" class="category" name="projectCategory" value="보험사"/>
+                <input type="button" id="publicSector" class="category" name="projectCategory" value="공공부문"/>
+                <input type="button" id="web" class="category" name="projectCategory" value="웹포털"/>
+                <input type="button" id="application" class="category" name="projectCategory" value="앱개발"/>
+                <input type="button" id="etc" class="category" name="projectCategory" value="기타"/>
+            </div>
+            <span id="memberStar" class="star">*</span>
+            <label for="member" id="memberLabel">인원초대</label>
+            <div id="member">
+                <button type="button" id="inviteMember" name="member">+</button>
+            </div>
+        </form>
+        <button type="button" id="bigCancel1">취소</button>
+        <button type="submit" id="bigConfirm1" onclick="href='/projectMainPage/createProjet'">생성</button>
+    </div>
+
+    <script>
+
+        /* "프로젝트 생성 혹은 참가 모달"에서 생성 버튼 클릭 시 생성 모달 띄우기 */
+        const createProjectModal = document.getElementById("createProjectModal");
+        createProjectModal.style.display = "none";
+        const areaCreateProject = document.getElementById("areaCreateProject");
+        areaCreateProject.onclick = function(){
+            createProjectModal.style.display = "";
+        };
+
+        /* x버튼 취소 버튼 클릭 시 모달 없애기 */
+        const bigXButton = document.getElementById("bigXButton");
+        bigXButton.onclick = function(){
+            createProjectModal.style.display = "none";
+        };
+        const bigCancel1 = document.getElementById("bigCancel1");
+        bigCancel1.onclick = function(){
+            createProjectModal.style.display = "none";
+        }
+
+        /* 카테고리 부분 선택 시 버튼 색상 변경 */
+        const $bank = document.getElementById("bank");
+        const $insurance = document.getElementById("insurance");
+        const $publicSector = document.getElementById("publicSector");
+        const $web = document.getElementById("web");
+        const $application = document.getElementById("application");
+        const $etc = document.getElementById("etc");
+
+        $bank.onclick = function(){
+            $bank.style.background = "#92E2F8";
+        };
+        $bank.addEventListener("blur", function(){
+            $bank.style.background = "#FFFFFF";
+        });
+
+        $insurance.onclick = function(){
+            $insurance.style.background = "#92E2F8";
+        };
+        $insurance.addEventListener("blur", function(){
+            $insurance.style.background = "#FFFFFF";
+        });
+        $publicSector.onclick = function(){
+            $publicSector.style.background = "#92E2F8";
+        };
+        $publicSector.addEventListener("blur", function(){
+            $publicSector.style.background = "#FFFFFF";
+        });
+        $web.onclick = function(){
+            $web.style.background = "#92E2F8";
+        };
+        $web.addEventListener("blur", function(){
+            $web.style.background = "#FFFFFF";
+        });
+        $application.onclick = function(){
+            $application.style.background = "#92E2F8";
+        };
+        $application.addEventListener("blur", function(){
+            $application.style.background = "#FFFFFF";
+        });
+        $etc.onclick = function(){
+            $etc.style.background = "#92E2F8";
+        };
+        $etc.addEventListener("blur", function(){
+            $etc.style.background = "#FFFFFF";
+        });
+    </script>
+
+<!-- ---------------------------- 멤버 초대 모달 ---------------------------- -->
+<div id="inviteMemberModal" style="z-index: 4">
+    <div id="inviteMemberBlueHeader">
+        <div id="inviteMemberXButton">X</div>
+    </div>
+    <div id="inviteModalMain">
+        <span id="textMember">팀원관리</span>
+        <div id="emailArea">
+            <span id="textEmail">E-mail</span>
+            <div id="sendEmail">
+                <input type="email" id="inputEmail">
+                <button type="button" id="addIcon">+</button>
+            </div>
+        </div>
+        <div id="store">
+            <img src="/static/css/project/image/memberIcon.png" id="storeEmailIcon" alt="멤버아이콘">
+            <div id="storeEmailArea"></div>
+        </div>
+        <button type="button" id="sendEmailCancel">취소</button>
+        <button type="submit" id="sendEmailConfirm">확인</button>
+    </div>
 </div>
-</div>
+<script>
+
+    const inviteMemberModal = document.getElementById("inviteMemberModal");
+    inviteMemberModal.style.display = "none";
+    const addMemeberBtn = document.getElementById("inviteMember");
+    addMemeberBtn.onclick = function(){
+        inviteMemberModal.style.display = "";
+    }
+
+    const sendEmailCancel = document.getElementById("sendEmailCancel");
+    sendEmailCancel.onclick = function(){
+        inviteMemberModal.style.display = "none";
+    }
+
+    const inviteMemberXButton = document.getElementById("inviteMemberXButton");
+    inviteMemberXButton.onclick = function(){
+        inviteMemberModal.style.display = "none";
+    }
+
+
+</script>
+
 </body>
 </html>

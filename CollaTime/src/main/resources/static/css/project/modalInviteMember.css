@@ -1,0 +1,184 @@
+@charset "utf-8";
+
+#inviteMemberModal {
+
+    cursor: default;
+    position: absolute;
+    width: 1013px;
+    height: 680px;
+    left: 453px;
+    top: 100px;
+
+    background: #FFFFFF;
+    border: 1px solid #595959;
+    border-radius: 25px;
+}
+
+#inviteMemberBlueHeader{
+    position: absolute;
+    width: 1013px;
+    height: 51px;
+
+    background: #92E2F8;
+    border-bottom: 1px solid #282828;
+    border-radius: 25px 25px 0px 0px;
+}
+
+#inviteMemberXButton{
+    width: 30px;
+    height: 34px;
+    font-size: 30px;
+    position: absolute;
+    left: 965px;
+    top: 5px;
+}
+
+#textMember{
+
+    position: absolute;
+    left: 83px;
+    top: 137px;
+
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 42px;
+    text-align: center;
+    letter-spacing: 0.03em;
+
+    color: #282828;
+
+}
+
+#textEmail{
+
+    position: absolute;
+    left: 87px;
+    top: 233px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 28px;
+    letter-spacing: 0.03em;
+
+    color: #282828;
+
+}
+
+#sendEmail{
+
+    position: absolute;
+    width: 731px;
+    height: 40px;
+    left: 180px;
+    top: 230px;
+    border-bottom: solid 3px #92E2F8;
+
+}
+
+#inputEmail{
+
+    position: absolute;
+    width: 675px;
+    height: 30px;
+    left: 15px;
+    border: none;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    letter-spacing: 0.03em;
+
+    color: #282828;
+}
+
+#addIcon{
+
+    position: absolute;
+    height: 40px;
+    left: 695px;
+    top: -4px;
+    border: none;
+    background: none;
+
+    font-family: 'Abhaya Libre SemiBold';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 42px;
+    letter-spacing: 0.03em;
+
+    color: #282828;
+
+}
+
+#storeEmailIcon{
+
+    position: absolute;
+    left: 98px;
+    top: 300px;
+
+}
+
+#storeEmailArea{
+
+    position: absolute;
+    width: 731px;
+    height: 270px;
+    left: 180px;
+    top: 300px;
+
+    background: #DFF7FD;
+    border-radius: 15px;
+
+}
+
+#sendEmailCancel{
+
+    position: absolute;
+    left: 730px;
+    top: 620px;
+    background: #DEF6FD;
+    border: #DEF6FD;
+    width: 114px;
+    height: 36px;
+
+    border-radius: 10px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    line-height: 36px;
+    letter-spacing: 0.03em;
+    color: #282828;
+
+}
+
+#sendEmailConfirm{
+
+    position: absolute;
+    width: 114px;
+    height: 36px;
+    left: 860px;
+    top: 620px;
+    background: #92E2F8;
+    border: #92E2F8;
+    border-radius: 10px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    line-height: 36px;
+    letter-spacing: 0.03em;
+
+    color: #282828;
+
+}
+
+

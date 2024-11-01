@@ -1,6 +1,6 @@
 package com.ohgiraffers.collatime.user.model.dto;
 
-public class SignupDTO {
+public class SignupDTO implements java.io.Serializable{
 
     private String userId;
     private String userPwd;

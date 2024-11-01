@@ -1,6 +1,13 @@
 package com.ohgiraffers.collatime.user.model.dto;
 
-public class UserDTO {
+import com.ohgiraffers.collatime.common.UserRole;
+import org.apache.catalina.User;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class UserDTO implements java.io.Serializable{
 
     private int userNo;
     private String userId;
@@ -10,9 +17,19 @@ public class UserDTO {
     private String userNickname;
     private String userPicture;
     private String userColor;
-    private String userRole;
+    private UserRole userRole;
 
-    public UserDTO(int userNo, String userId, String userPwd, String userEmail, String userName, String userNickname, String userPicture, String userColor, String userRole) {
+    public UserDTO(){}
+
+    public List<String> getRole(){
+        if(this.userRole.getRole().length()>0){
+            return Arrays.asList(this.userRole.getRole().split(","));
+        }
+
+        return new ArrayList<>();
+    }
+
+    public UserDTO(int userNo, String userId, String userPwd, String userEmail, String userName, String userNickname, String userPicture, String userColor, UserRole userRole) {
         this.userNo = userNo;
         this.userId = userId;
         this.userPwd = userPwd;
@@ -88,11 +105,11 @@ public class UserDTO {
         this.userColor = userColor;
     }
 
-    public String getUserRole() {
+    public UserRole getUserRole() {
         return userRole;
     }
 
-    public void setUserRole(String userRole) {
+    public void setUserRole(UserRole userRole) {
         this.userRole = userRole;
     }
 
