@@ -18,26 +18,30 @@
     <img id="login_background_img" src="/css/user/image/FizzyGroup.png">
 </div>
 <!--중간 모달창-->
-<form th:action="@{/auth/login}" method="post">
-<div id="middleModal">
-    <div id="middleBlueHeader"></div>
-    <!-- 로그인 텍스트 -->
-    <div id="login_word">로그인</div>
-    <!-- 아이디 입력창 -->
-    <input id="input_id" type="text" placeholder="아이디" name="user">
-    <!-- 비밀번호 입력창 -->
-    <input id="input_pwd" type="password" placeholder="비밀번호" name="pass">
-    <!-- 아이디 비밀번호 찾기 -->
-    <a id="go_checkIdPwd" onclick="location.href='a'" >아이디나 비밀번호를 잊으셨나요?</a>
-    <!-- 로그인 버튼 -->
-    <button id="login_btn">로그인</button>
-    <!-- 회원가입 -->
-    <a id="go_signup" onclick="location.href='/user/signup'" >아직 회원이 아니신가요?</a>
-
-</div>
+<form th:action="@{/auth/login}" th:method="post">
+    <div id="middleModal">
+        <div id="middleBlueHeader"></div>
+        <!-- 로그인 텍스트 -->
+        <div id="login_word">로그인</div>
+        <!-- 아이디 입력창 -->
+        <input id="input_id" type="text" placeholder="아이디" name="username">
+        <!-- 비밀번호 입력창 -->
+        <input id="input_pwd" type="password" placeholder="비밀번호" name="pass">
+        <!-- 아이디 비밀번호 찾기 -->
+        <a id="go_checkIdPwd" onclick="location.href='a'">아이디나 비밀번호를 잊으셨나요?</a>
+        <!-- 로그인 버튼 -->
+        <button id="login_btn">로그인</button>
+        <!-- 회원가입 -->
+        <a id="go_signup" onclick="location.href='/user/signup'">아직 회원이 아니신가요?</a>
+    </div>
 </form>
 
-
+<script>
+    document.getElementById('login_btn').addEventListener('click',function (){
+    console.log(document.getElementById('input_id').value);
+    console.log(document.getElementById('input_pwd').value);
+    })
+</script>
 
 
 <!--&lt;!&ndash; 작은 모달창 &ndash;&gt;-->
