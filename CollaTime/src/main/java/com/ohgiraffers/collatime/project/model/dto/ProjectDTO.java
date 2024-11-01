@@ -6,24 +6,31 @@ public class ProjectDTO {
 
     /* newProjectDTO */
 
+    private int projectNo;
     private String projectName;
     private String projectSummary;
     private String projectPurpose;
-    private Date startDate;
-    private Date endDate;
-    private ProjectCategoryDTO projectCategoryCode;
+    private String startDate;
+    private String endDate;
+    private String projectCategoryCode;
 
-    public ProjectDTO() {
-        projectCategoryCode = new ProjectCategoryDTO();
-    }
+    public ProjectDTO() {}
 
-    public ProjectDTO(String projectName, String projectSummary, String projectPurpose, Date startDate, Date endDate, ProjectCategoryDTO projectCategoryCode) {
+    public ProjectDTO(int projectNo, String projectName, String projectSummary, String projectPurpose, String startDate, String endDate, String projectCategoryCode) {
         this.projectName = projectName;
         this.projectSummary = projectSummary;
         this.projectPurpose = projectPurpose;
         this.startDate = startDate;
         this.endDate = endDate;
         this.projectCategoryCode = projectCategoryCode;
+    }
+
+    public int getProjectNo(){
+        return projectNo;
+    }
+
+    public void setProjectNo(int projectNo){
+        this.projectNo = projectNo;
     }
 
     public String getProjectName() {
@@ -50,27 +57,27 @@ public class ProjectDTO {
         this.projectPurpose = projectPurpose;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
-    public ProjectCategoryDTO getProjectCategoryCode() {
+    public String getProjectCategoryCode() {
         return projectCategoryCode;
     }
 
-    public void setProjectCategoryCode(ProjectCategoryDTO projectCategoryCode) {
+    public void setProjectCategoryCode(String projectCategoryCode) {
         this.projectCategoryCode = projectCategoryCode;
     }
 
@@ -82,7 +89,7 @@ public class ProjectDTO {
                 ", projectPurpose='" + projectPurpose + '\'' +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
-                ", projectCategoryCode=" + projectCategoryCode +
+                ", projectCategoryCode='" + projectCategoryCode + '\'' +
                 '}';
     }
 }

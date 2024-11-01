@@ -124,7 +124,8 @@
     border-radius: 15px;
     border: solid 1px #282828;
     font-size: 15px;
-    text-align: center
+    text-align: center;
+    outline: none;
 
 }
 

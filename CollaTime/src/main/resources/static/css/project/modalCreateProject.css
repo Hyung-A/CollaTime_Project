@@ -57,14 +57,13 @@
     width: 800px;
     height: 50px;
     border: none;
-
     font-family: 'Inter';
     font-style: normal;
     font-weight: 300;
     font-size: 25px;
     letter-spacing: 0.03em;
-
     color: #282828;
+    outline: none;
 
 }
 
@@ -121,7 +120,6 @@
     height: 60px;
     left: 10px;
     top: 3px;
-
     font-family: 'Inter';
     font-style: normal;
     font-weight: 300;
@@ -129,8 +127,8 @@
     letter-spacing: 0.03em;
     text-align: start;
     border: none;
-
     color: #000000;
+    outline: none;
 
     /* https://11001.tistory.com/149#google_vignette */
 }
@@ -179,7 +177,6 @@
     height: 60px;
     left: 10px;
     top: 3px;
-
     font-family: 'Inter';
     font-style: normal;
     font-weight: 300;
@@ -187,8 +184,8 @@
     letter-spacing: 0.03em;
     text-align: start;
     border: none;
-
     color: #000000;
+    outline: none;
 
 }
 
@@ -237,7 +234,6 @@
     height: 40px;
     left: 10px;
     top: 5px;
-
     font-family: 'Inter';
     font-style: normal;
     font-weight: 300;
@@ -247,8 +243,8 @@
     justify-content: center;
     line-height: 20px;
     border: none;
-
     color: #000000;
+    outline: none;
 
 }
 
@@ -259,7 +255,6 @@
     height: 40px;
     left: 205px;
     top: 5px;
-
     font-family: 'Inter';
     font-style: normal;
     font-weight: 300;
@@ -269,8 +264,8 @@
     justify-content: center;
     line-height: 20px;
     border: none;
-
     color: #282828;
+    outline: none;
 
 }
 
