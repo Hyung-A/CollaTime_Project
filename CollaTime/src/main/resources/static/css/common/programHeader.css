@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+/* 헤더 */
+#head{
+
+    cursor: default;
+    width: 1915px;
+    height: 100px;
+    /*border-bottom: solid 1px #282828;*/
+    border-bottom: solid;
+    border-color: #92E2F8;
+
+}
+
+#logo{
+
+    position: absolute;
+    width: 186px;
+    height: 67px;
+    left: 39px;
+    top: 15px;
+
+}
+
+#logOut{
+
+    position: absolute;
+    width: 130px;
+    height: 50px;
+    left: 1746px;
+    top: 25px;
+    background: #DFF7FD;
+    border: none;
+    border-radius: 10px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    line-height: 50px;
+
+    color: #000000;
+
+}

@@ -13,13 +13,10 @@ public class ProjectService {
         this.projectMapper = projectMapper;
     }
 
-//    @Transactional
-//    public void insertProject(ProjectDTO projectDTO) {
-//        projectMapper.insertProject(projectDTO);
-//    }
-
-    /* projectService */
-
+    @Transactional
+    public void insertProject(ProjectDTO projectDTO) {
+        projectMapper.insertProject(projectDTO);
+    }
 
 
 }

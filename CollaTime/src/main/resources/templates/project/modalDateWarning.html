@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/css/project/reset.css">
+    <link rel="stylesheet" href="/static/css/project/modalDateWarning.css">
+</head>
+<body>
+<!-- 중간 모달창 -->
+<div id="dateWarningModal">
+    <div id="warningBlueHeader">
+        <div id="warningXButton">X</div>
+    </div>
+    <div id="body">
+        <img src="/static/css/project/image/lightIcon.png" id="warningIcon" alt="전구 아이콘">
+        <span id="warningText">본 CollaTime 무료 프로그램이며 <br>
+            협업 경험 제공을 위한 프로그램입니다.<br>
+              본 프로그램은 데이터 관리로 인해 <br>
+              종료된 프로젝트에 한하여 <br>
+              종료일로부터 14일동안만 저장됩니다.<br>
+              14일 이후에는 프로젝트 관련 데이터가 자동 삭제됩니다.</span>
+    </div>
+    <button type="button" id="warningCancel">취소</button>
+    <button type="submit" id="warningConfirm">확인</button>
+
+    <script>
+        let colorArray = ["FEC4C4", "D9F0FB", "FFEFCC", "FFA990", "B7E58E", "FFDAFA", "F3DAFF", "DADFFF", "EDD5C0", "D6EADF"];
+        var randomColor = "";
+        for(let i = 0; i < colorArray.length; i++){
+            randomcolor = colorArray[i];
+        };
+        console.log(randomcolor);
+
+        const headerColor = document.getElementById("warningBlueHeader");
+        const confirm = document.getElementById("warningConfirm");
+        confirm.onclick = function(){
+            headerColor.style.backgroundColor = "#" + randomcolor;
+        };
+    </script>
+
+</div>
+</body>
+</html>
