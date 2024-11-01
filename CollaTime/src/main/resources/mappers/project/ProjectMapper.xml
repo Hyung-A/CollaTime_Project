@@ -2,5 +2,40 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ohgiraffers.collatime.dao.model.project.ProjectMapper">
+<mapper namespace="com.ohgiraffers.collatime.project.model.dao.ProjectMapper">
+
+    <resultMap id="projectResultMap" type="com.ohgiraffers.collatime.project.model.dto.ProjectDTO">
+        <id property="projectNo" column="PROJECT_NO"/>
+        <result property="projectName" column="PROJECT_NAME"/>
+        <result property="projectCategoryCode" column="PROJECT_CATEGORY_CODE"/>
+        <result property="startDate" column="PROJECT_START_DATE"/>
+        <result property="endDate" column="PROJECT_END_DATE"/>
+        <result property="projectSummary" column="PROJECT_SUMMARY"/>
+        <result property="projectPurpose" column="PROJECT_PURPOSE"/>
+    </resultMap>
+
+    <insert id="insertProject" parameterType="com.ohgiraffers.collatime.project.model.dto.ProjectDTO">
+        INSERT INTO PROJECT
+        (
+            PROJECT_NAME
+          , PROJECT_CATEGORY_CODE
+          , PROJECT_START_DATE
+          , PROJECT_END_DATE
+          , PROJECT_SUMMARY
+          , PROJECT_PURPOSE
+          , PRODUCTOR_NO
+        )
+        VALUES
+        (
+            #{ projectName }
+          , #{ projectCategoryCode }
+          , DATE_FORMAT(#{ startDate }, '%y-%m-%d')
+          , DATE_FORMAT(#{ endDate }, '%y-%m-%d')
+          , #{ projectSummary }
+          , #{ projectPurpose }
+          , 1
+        )
+    </insert>
 </mapper>
+
+
