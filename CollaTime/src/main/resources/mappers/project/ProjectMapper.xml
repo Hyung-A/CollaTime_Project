@@ -14,6 +14,19 @@
         <result property="projectPurpose" column="PROJECT_PURPOSE"/>
     </resultMap>
 
+    <select id="getList" resultMap="projectResultMap">
+        SELECT
+                PROJECT_NO
+              , PROJECT_NAME
+              , PROJECT_SUMMARY
+              , PROJECT_PURPOSE
+              , PROJECT_START_DATE
+              , PROJECT_END_DATE
+              , PROJECT_CATEGORY_CODE
+           FROM PROJECT
+          ORDER BY PROJECT_NO
+    </select>
+
     <insert id="insertProject" parameterType="com.ohgiraffers.collatime.project.model.dto.ProjectDTO">
         INSERT INTO PROJECT
         (
