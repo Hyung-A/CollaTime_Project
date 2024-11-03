@@ -109,10 +109,10 @@ CREATE TABLE IF NOT EXISTS JOIN_SCHEDULE
 
 -- 멤버 테이블 데이터 삽입
 INSERT INTO CT_USER VALUES
-                        (1, 'gudtjrWkd', 'gudtjrWkdWKd12!', 'gudtjr@gmail.com', '조형석', '형석짱짱', 'a2','red', 'admin'),
-                        (2, 'wngPqueen', 'wngPking321@@', 'wngP@gmail.com', '김주혜', '주혜퀸', 'a6','green', 'user'),
-                        (3, 'gkdmsgood', 'good1234!@', 'gkdms@gmail.com', '이하은', '하은굿', 'a7','blue', 'user'),
-                        (4, 'tndhksking', 'king!!1', 'tndhks@gmail.com', '박수완', '수완킹', 'a1', 'res', 'user');
+                        (1, 'gudtjrWkd', 'gudtjrWkdWKd12!', 'gudtjr@gmail.com', '조형석', '형석짱짱', 'a2','red', 'ADMIN'),
+                        (2, 'wngPqueen', 'wngPking321@@', 'wngP@gmail.com', '김주혜', '주혜퀸', 'a6','green', 'USER'),
+                        (3, 'gkdmsgood', 'good1234!@', 'gkdms@gmail.com', '이하은', '하은굿', 'a7','blue', 'USER'),
+                        (4, 'tndhksking', 'king!!1', 'tndhks@gmail.com', '박수완', '수완킹', 'a1', 'red', 'USER');
 
 -- 문의 테이블 데이터 삽입
 INSERT INTO INQUIRY VALUES

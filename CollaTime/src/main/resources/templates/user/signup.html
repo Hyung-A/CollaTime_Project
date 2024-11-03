@@ -53,6 +53,7 @@
         <div id="regist_name_area">
             <input class="input long" type="text" id="regist_name_input" placeholder=" 이름" name="userName">
         </div>
+        <div class="message nickname" id="nameMessage"></div>
 
         <!--  닉네임 입력창 -->
         <div id="regist_nickname_area">
@@ -65,7 +66,7 @@
 
         <!--  이메일 입력창 -->
         <div id="regist_email_area">
-            <input class="input short" type="text" id="regist_email_input" placeholder=" 이메일" name="userEmail">
+            <input class="input short" type="email" id="regist_email_input" placeholder=" 이메일" name="userEmail">
             <button id="send_code_email" class="btn" type="button">코드전송</button>
         </div>
 
@@ -81,12 +82,22 @@
         <!--  이용약관 -->
         <div id="read_termsOfUse_area">
             <input type="checkbox" id="termsOfUse"><label for="termsOfUse">본
-            <button class="termsOfUse_href">이용약관</button>에 동의합니다.</label>
+            <button class="termsOfUse_href" type="button">이용약관</button>에 동의합니다.</label>
         </div>
 
         <!--  회원가입 버튼 -->
-        <button type="submit" id="signup_btn">회원가입</button>
+        <button type="button" id="signup_btn">회원가입</button>
     </div>
+
+    <div id="smallModal" class="modal">
+        <div id="smallBlueHeader">
+            <div id="smallXButton">X</div>
+        </div>
+        <!-- 로그인 유효성 메세지 -->
+        <div class="success_message" id="successMessage" th:text="${ message }"></div>
+        <button id="ok_btn" type="submit">확인</button>
+    </div>
+
 </form>
 
 <!-- -------------------------------------이용약관--------------------------------------------- -->
@@ -193,14 +204,7 @@
 <!-- -------------------------------------회원가입 유효성--------------------------------------------- -->
 
 <!-- 작은 모달창 -->
-<div id="smallModal" class="modal">
-    <div id="smallBlueHeader">
-        <div id="smallXButton">X</div>
-    </div>
-    <!-- 로그인 유효성 메세지 -->
-    <div class="success_message">회원가입이 완료되었습니다.</div>
-    <button id="ok_btn">확인</button>
-</div>
+
 
 <script>
     fetch("/user/check")
@@ -249,10 +253,14 @@
         let pwdMessage = document.getElementById('pwdMessage');
         let inputPwd = document.getElementById('regist_pwd_input');
         let comparePwd = document.getElementById('compare_pwd_input');
+        function strongPassword(str){
+            return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(str);
+        }
+
         if(inputPwd.value == ''){
             pwdMessage.style.color = 'red';
             pwdMessage.innerText = '비밀번호가 공백입니다.';
-        }else {
+        }else if(strongPassword(inputPwd.value)){
             if (comparePwd.value == inputPwd.value) {
                 pwdMessage.style.color = 'green';
                 pwdMessage.innerText = '비밀번호가 일치합니다.';
@@ -261,6 +269,9 @@
                 pwdMessage.style.color = 'red';
                 pwdMessage.innerText = '비밀번호가 다릅니다.';
             }
+        } else {
+            pwdMessage.style.color = 'red';
+            pwdMessage.innerText = '유의사항을 확인해주세요.';
         }
     }
     //     이름 확인
@@ -346,29 +357,59 @@
         let cancelBtn = document.getElementById('termsOfUse_btn_cancel');
         let acceptBtn = document.getElementById('termsOfUse_btn_accept');
         let content = document.getElementById('termsOfUse_content');
+        let checkTermsOfUse = document.getElementById('termsOfUse');
         modalController.style.display = 'flex';
         acceptBtn.disabled = true;
         acceptBtn.style.backgroundColor = 'gray';
         acceptBtn.style.color = 'RGBA(0,0,0,0.5)';
-        cancelBtn.addEventListener('click', ()=>{modalController.style.display = 'none'; })
+        cancelBtn.addEventListener('click', ()=>{
+            modalController.style.display = 'none';
+            checkTermsOfUse.checked = false;
+        })
         content.addEventListener('scroll', function (){
             console.log(content.scrollTop);
-            if(content.scrollTop == 1950){
+            if(content.scrollTop >= 1950){
                 acceptBtn.disabled = null;
                 acceptBtn.style.backgroundColor = 'RGB(146, 266, 248)';
                 acceptBtn.style.color = 'black';
+                acceptBtn.addEventListener('click', () =>{
+                    isInput[6] = 'true';
+                    console.log(isInput)
+                    modalController.style.display = 'none';
+                    checkTermsOfUse.checked = true;
+
+                })
             }
         })
 
     })
     //     회원가입 클릭
-    let passRegist = '';
+    let signup_btn = document.getElementById('signup_btn');
+    let smallModal = document.getElementById('smallModal');
+    let smallModalMessage = document.getElementById('successMessage');
+    let smallX = document.getElementById('smallXButton');
+    let smallOk = document.getElementById('small_signupOk_btn');
+    signup_btn.addEventListener('click', ()=>{
+        smallModal.style.display = 'flex'
+        if(!isInput.includes('false')){
+            // 회원가입 버튼이 submit이면 제출과 동시에 새로고침이 되기 때문에 문제가 생긴다. 해결책을 한번 생각해보자.
+            //  1. 서밋버튼을 작은 모달창에서 확인을 누르게 하면 되도록 한다. -> 이건 화면창에 나오는 생성 성공과 실패에 따른 메세지에 문제가 생길 것 같다.
+            //  2. alert 창으로 한다 -> 제일 간단하지만 그렇게 하지 않기로 했다.
+            //  3. 그렇다면 다른 곳으로 매핑을 했다가 다시 돌아오게 한 뒤 그것이 참일 때 모달창이 튀어나오고 그 다음 행동이 이루어지도록 하는 것은? 그렇다면 session에 message값을 가지고 있는지 파악하고 그 값을 찾아가는 것으로?
+            //  일단 현재는 1번으로 만들었기 때문에 1번 방법으로 진행하는 것으로 해보자. -> 로그인에서 닉네임을 띄우면서 진행되게 하는게 가능할까?
+            // signup_btn.type='submit';
+            console.log(isInput)
+            smallModalMessage.innerText = '회원가입이 완료되었습니다.';
+            smallOk.addEventListener('click', ()=>{location.href='auth/login';})
+            smallX.addEventListener('click', ()=>{location.href='auth/login';})
+        }else{
+            smallModalMessage.innerText = '회원가입에 실패했습니다.';
+            smallOk.addEventListener('click', ()=>{smallModal.style.display = 'none';})
+            smallX.addEventListener('click', ()=>{smallModal.style.display = 'none';})
+        }
+    })
 
-    if(isInput.includes('false')){
 
-    }else {
-        document.getElementById('signup_btn').type = 'submit';
-    }
 </script>
 
 </body>
