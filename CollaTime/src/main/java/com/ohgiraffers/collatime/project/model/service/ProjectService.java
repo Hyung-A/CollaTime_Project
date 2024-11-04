@@ -16,9 +16,13 @@ public class ProjectService {
     }
 
     public List<ProjectDTO> getList() {
-
         return projectMapper.getList();
     }
+
+    public ProjectDTO getProject() {
+        return projectMapper.getProject();
+    }
+
 
     @Transactional
     public void insertProject(ProjectDTO projectDTO) {
