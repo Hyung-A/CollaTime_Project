@@ -37,6 +37,16 @@ public class AuthDetails implements UserDetails {
         return userDTO.getUserId();
     }
 
+//    유저에 대한 정보를 세션으로 보냈다. 사용하려면 |${#authentication.principal.userNickname}|
+
+    public int getUserNo(){return userDTO.getUserNo();}
+    public String getUserNickname(){return userDTO.getUserNickname();}
+    public String getUserName(){ return userDTO.getUserName();}
+    public String getUserColor(){return userDTO.getUserColor();}
+    public String getUserEmail(){return userDTO.getUserEmail();}
+    public String getUserPicture(){return userDTO.getUserPicture();}
+
+
     @Override
     public boolean isAccountNonExpired() {
         return true;

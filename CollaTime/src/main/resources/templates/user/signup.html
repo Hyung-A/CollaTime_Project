@@ -321,9 +321,10 @@
     })
 
     //     이메일 비교
+    let mailCode = "";
+    let emailMessage = document.getElementById('emailMessage');
     document.getElementById("send_code_email").addEventListener('click', function () {
         let checkEmail = document.getElementById('regist_email_input').value;
-        let emailMessage = document.getElementById('emailMessage');
         if (checkEmail == '' || checkEmail.length == 0) {
             emailMessage.style.color = 'red';
             emailMessage.innerText = '이메일은 공백이 될 수 없습니다.';
@@ -343,13 +344,41 @@
                             emailMessage.innerText = '해당 이메일로 코드를 보냈습니다.';
                             document.getElementById('compare_code_email').disabled = null;
                             isInput[4] = "true";
+                            console.log("여기까지 옴")
                         }
                     }
                 })
         }
     })
     //     이메일 코드 비교
-    isInput[5] = 'true';
+        console.log("그다음에 넘어옴")
+    document.getElementById("send_code_email").addEventListener('mouseup',function (){
+        let checkEmail = document.getElementById('regist_email_input').value;
+        fetch('/mail/sendMail', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ mail : checkEmail})
+        })
+            .then(res => res.json())
+            .then( data => {
+                console.log(data);})
+    })
+    let inputCode = document.getElementById('randomCode_input').value;
+    let compareCode = document.getElementById('compare_code_email');
+    compareCode.addEventListener('click', function (){
+        if(inputCode == mailCode){
+            emailMessage.style.color = 'green';
+            emailMessage.innerText = '이메일이 확인되었습니다.'
+            isInput[5] = 'true';
+        }else{
+            emailMessage.style.color = 'red';
+            emailMessage.innerText = '코드가 틀렸습니다.'
+            isInput[5] = 'false'
+        }
+    })
+
     //     이용약관 확인
     let termsOfUse = document.getElementById('termsOfUse');
     termsOfUse.addEventListener('click', function (){
