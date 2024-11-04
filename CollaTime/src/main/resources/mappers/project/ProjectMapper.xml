@@ -27,6 +27,19 @@
           ORDER BY PROJECT_NO
     </select>
 
+    <select id="getProject" resultMap="projectResultMap" parameterType="com.ohgiraffers.collatime.project.model.dto.ProjectDTO">
+        SELECT
+               PROJECT_NO
+             , PROJECT_NAME
+             , PROJECT_SUMMARY
+             , PROJECT_PURPOSE
+             , PROJECT_START_DATE
+             , PROJECT_END_DATE
+             , PROJECT_CATEGORY_CODE
+          FROM PROJECT
+         WHERE PROJECT_NO = 1
+    </select>
+
     <insert id="insertProject" parameterType="com.ohgiraffers.collatime.project.model.dto.ProjectDTO">
         INSERT INTO PROJECT
         (
@@ -49,6 +62,21 @@
           , 1
         )
     </insert>
+
+    <update id="updateProject" parameterType="com.ohgiraffers.collatime.project.model.dto.ProjectDTO">
+        UPDATE PROJECT
+        SET
+        (
+            PROJECT_NAME = #{ projectName }
+          , PROJECT_CATEGORY_CODE = #{ projectCategoryCode }
+          , PROJECT_START_DATE = DATE_FORMAT(#{ startDate }, '%y-%m-%d')
+          , PROJECT_END_DATE = DATE_FORMAT(#{ endDate }, '%y-%m-%d')
+          , PROJECT_SUMMARY = #{ projectSummary }
+          , PROJECT_PURPOSE = #{ projectPurpose }
+          , PRODUCTOR_NO = 1
+        )
+         WHERE PROJECT_NO = #{ projectNo }
+    </update>
 </mapper>
 
 

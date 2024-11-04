@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 /* 모달 레이아웃 */
-#createProjectModal{
+#modalUpdateProject{
 
     cursor: default;
     position: absolute;
@@ -15,7 +15,7 @@
     border-radius: 25px;
 }
 
-#bigBlueHeader{
+#updateProjectHead{
     position: absolute;
     width: 1013px;
     height: 51px;
@@ -25,7 +25,7 @@
     border-radius: 25px 25px 0px 0px;
 }
 
-#bigXButton{
+#updateProjectXButton{
     width: 30px;
     height: 34px;
     font-size: 30px;
@@ -38,7 +38,7 @@
 /* --내용-- */
 
 /* 제목 */
-#title{
+#updateTitle{
 
     position: absolute;
     width: 850px;
@@ -52,7 +52,7 @@
 
 }
 
-#inputTitle{
+#updateInputTitle{
 
     width: 800px;
     height: 50px;
@@ -68,7 +68,7 @@
 }
 
 /* 개요 */
-.star{
+.updateStar{
 
     position: absolute;
     color: #E25252;
@@ -77,14 +77,14 @@
 
 }
 
-#summaryStar{
+#updateSummaryStar{
 
     position: absolute;
     top: 205px;
 
 }
 
-#summaryLabel{
+#updateSummaryLabel{
 
     position: absolute;
     left: 70px;
@@ -101,7 +101,7 @@
 
 }
 
-#summary{
+#updateSummary{
 
     position: absolute;
     width: 780px;
@@ -113,7 +113,7 @@
 
 }
 
-#inputSummary{
+#updateInputSummary{
 
     position: absolute;
     width: 760px;
@@ -134,14 +134,14 @@
 }
 
 /* 목표 및 목적 */
-#purposeStar{
+#updatePurposeStar{
 
     position: absolute;
     top: 315px;
 
 }
 
-#purposeLabel{
+#updatePurposeLabel{
 
     position: absolute;
     left: 70px;
@@ -158,7 +158,7 @@
 
 }
 
-#purpose{
+#updatePurpose{
 
     position: absolute;
     width: 780px;
@@ -170,7 +170,7 @@
 
 }
 
-#inputPurpose{
+#updateInputPurpose{
 
     position: absolute;
     width: 760px;
@@ -190,14 +190,14 @@
 }
 
 /* 기간 */
-#startDateStar{
+#updateStartDateStar{
 
     position: absolute;
     top: 415px;
 
 }
 
-#periodLabel{
+#updatePeriodLabel{
 
     position: absolute;
     left: 70px;
@@ -214,7 +214,7 @@
 
 }
 
-#period{
+#updatePeriod{
 
     position: absolute;
     width: 780px;
@@ -227,7 +227,7 @@
 
 }
 
-#projectStartDate{
+#updateStartDate{
 
     position: absolute;
     width: 150px;
@@ -248,7 +248,7 @@
 
 }
 
-#projectEndDate{
+#updateEndDate{
 
     position: absolute;
     width: 150px;
@@ -269,7 +269,7 @@
 
 }
 
-#wave{
+#updateWave{
 
     position: absolute;
     left: 175px;
@@ -290,7 +290,7 @@
 }
 
 /* 카테고리 */
-#categoryLabel{
+#updateCategoryLabel{
 
     position: absolute;
     left: 70px;
@@ -304,7 +304,7 @@
 
 }
 
-#category{
+#updateCategory{
 
     position: absolute;
     width: 780px;
@@ -316,7 +316,7 @@
 
 }
 
-.category{
+.updateCategory{
 
     position: absolute;
     top: 7px;
@@ -334,49 +334,49 @@
 
 }
 
-#bank{
+#updateBank{
 
     position: absolute;
     left: 10px;
 
 }
 
-#insurance{
+#updateInsurance{
 
     position: absolute;
     left: 100px;
 
 }
 
-#publicSector{
+#updatePublicSector{
 
     position: absolute;
     left: 190px;
 
 }
 
-#web{
+#updateWeb{
 
     position: absolute;
     left: 280px;
 
 }
 
-#application{
+#updateApplication{
 
     position: absolute;
     left: 370px;
 
 }
 
-#etc{
+#updateEtc{
 
     position: absolute;
     left: 460px;
 
 }
 
-.categoryLabel{
+.updateCategoryLabel{
 
     position: absolute;
     top: 12px;
@@ -389,7 +389,7 @@
 
 }
 
-#bankLabel{
+#updateBankLabel{
 
     position: absolute;
     left: 35px;
@@ -397,7 +397,7 @@
 
 }
 
-#insuranceLabel{
+#updateInsuranceLabel{
 
     position: absolute;
     left: 110px;
@@ -405,7 +405,7 @@
 
 }
 
-#publicSectorLabel{
+#updatePublicSectorLabel{
 
     position: absolute;
     left: 200px;
@@ -413,7 +413,7 @@
 
 }
 
-#webLabel{
+#updateWebLabel{
 
     position: absolute;
     left: 305px;
@@ -422,7 +422,7 @@
 
 }
 
-#applicationLabel{
+#updateApplicationLabel{
 
     position: absolute;
     left: 395px;
@@ -430,7 +430,7 @@
 
 }
 
-#etcLabel{
+#updateEtcLabel{
 
     position: absolute;
     left: 485px;
@@ -439,14 +439,14 @@
 
 }
 
-#memberStar{
+#updateMemberStar{
 
     position: absolute;
     top: 581px;
 
 }
 
-#memberLabel{
+#updateMemberLabel{
 
     position: absolute;
     width: 50px;
@@ -463,7 +463,7 @@
 
 }
 
-#member{
+#updateMember{
 
     position: absolute;
     width: 780px;
@@ -475,7 +475,7 @@
 
 }
 
-#inviteMember{
+#updateInviteMember{
 
     position: absolute;
     width: 78px;
@@ -494,7 +494,7 @@
 
 }
 
-#bigCancel1{
+#updateCancel{
 
     position: absolute;
     left: 730px;
@@ -516,7 +516,7 @@
 
 }
 
-#bigConfirm1{
+#updateConfirm{
 
     position: absolute;
     width: 114px;
