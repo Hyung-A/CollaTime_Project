@@ -8,15 +8,17 @@
     <link rel="stylesheet" href="/css/project/modalCreateOrJoin.css">
     <link rel="stylesheet" href="/css/project/modalCreateProject.css">
     <link rel="stylesheet" href="/css/project/modalInviteMember.css">
+    <link rel="stylesheet" href="/css/project/modalUpdateProject.css">
 </head>
 <body>
 <!-- 프로젝트 메인 화면 -->
 <div id="main" style="z-index: 1">
 <!-- Header 구역 -->
     <div id="head">
-        <img src="/css/project/image/Logo.png" id="logo"></img>
+        <img src="/css/project/image/Logo.png" id="logo" alt="CollaTime 로고"></img>
         <button id="logOut" onclick="location.href='/auth/logout'">로그아웃</button>
     </div>
+<!--    <div th:replace="common/header.html"></div>-->  <!-- 해당 html 파일은 웹사이트 MainPage라서 프로젝트 도메인 헤더랑 다름. 새로 파일 만들어서 써야할 듯 -->
     <!-- Left Bar 구역 -->
     <div id="leftBarLayout">
         <div id="blueBackground">
@@ -50,11 +52,11 @@
                 <div id="folderBody">
                     <div id="projectTitle" th:text="${ project.projectName }"></div>
                     <div id="folderMenu">...</div>
-<!--                    <div id="crudMenu">-->
-<!--                        <div id="projectUpdate">수정하기</div>-->
-<!--                        <div id="projectDelete">삭제하기</div>-->
-<!--                        <div id="manageMember">멤버관리</div>-->
-<!--                    </div>-->
+                    <div id="crudMenu">
+                        <div id="projectUpdate" class="crudText">수정하기</div>
+                        <div id="projectDelete" class="crudText">삭제하기</div>
+                        <div id="manageMember" class="crudText">멤버관리</div>
+                    </div>
                 </div>
                 <span id="projectFullName" th:text="${ project.projectName }" th:title="${ project.projectName }"></span>
             </div>
@@ -83,6 +85,7 @@
     let colorArray = ["#FEC4C4", "#D9F0FB", "#FFEFCC", "#FFA990", "#B7E58E", "#FFDAFA", "#F3DAFF", "#DADFFF", "#EDD5C0", "#D6EADF"];
 
     /* 생성된 프로젝트 폴더 영역 */
+    // 폴더 전체 영역
     let createdProjectFolder = document.querySelectorAll("#createdProjectFolder");
     for(let i = 0; i < createdProjectFolder.length; i++) {
         if(i < 3){
@@ -94,16 +97,47 @@
             createdProjectFolder[i].style.top = "502px";
         }
     }
-
+    // 폴더 헤더
     let folderHead = document.querySelectorAll("#folderHead");
     for(let i = 0; i < folderHead.length; i++){
         folderHead[i].style.backgroundColor = colorArray[i];
     }
-
+    // 폴더바디
     let folderBody = document.querySelectorAll("#folderBody");
     for(let i = 0; i < folderBody.length; i++){
         folderBody[i].style.backgroundColor = colorArray[i];
     }
+    // 메뉴 텍스트
+    let crudText = document.querySelectorAll(".crudText");
+    for(let i = 0; i < crudText.length; i++){
+        crudText[i].addEventListener("mouseover", function(){
+            crudText[i].style.backgroundColor = "#E2E2E2";
+            crudText[i].style.width = "110px";
+            crudText[i].style.left = "0px";
+        });
+        crudText[i].addEventListener("mouseout", function(){
+            crudText[i].style.backgroundColor = "#F5F5F5";
+            crudText[i].style.width = "90px";
+            crudText[i].style.left = "10px";
+        });
+    }
+    // 메뉴 아이콘 ...
+    // let folderMenu = document.querySelectorAll("#folderMenu");
+    // let crudMenu = document.querySelectorAll("#crudMenu");
+    // for(let i = 0; i < folderMenu.length; i++) {
+    //     for(let j = 0; j < crudMenu.length; j++) {
+    //         crudMenu[j].style.display = "none"
+    //         folderMenu[i].addEventListener("click", function(){
+    //             crudMenu[i].style.display = "";
+    //             folderMenu[i].onclick = function(){
+    //                 crudMenu[i].style.display = "none";
+    //             }
+    //         });
+    //         // folderMenu[i].addEventListener("click", function(){
+    //         //     crudMenu[i].style.display = "none";
+    //         // })
+    //     }
+    // }
 
     /* New 프로젝트 폴더 영역 */
     let maxNum = createdProjectFolder.length;
@@ -127,8 +161,8 @@
         newProject.style.top = "200px";
     }
 </script>
-<!-- ----------------------------------------------- 프로젝트 참여 혹은 생성 모달창 ----------------------------------------------- -->
 
+<!-- ----------------------------------------------- 프로젝트 참여 혹은 생성 모달창 ----------------------------------------------- -->
 <div id="createOrJoin" style="z-index: 2">
     <div id="middleBlueHeader">
         <button id="middleXButton">X</button>
@@ -260,7 +294,7 @@
         })
     }
 </script>
-<!-- ---------------------------- 멤버 초대 모달 ---------------------------- -->
+ <!-- ---------------------------- 멤버 초대 모달 ---------------------------- -->
 <div id="inviteMemberModal" style="z-index: 4">
     <div id="inviteMemberBlueHeader">
         <div id="inviteMemberXButton">X</div>
@@ -299,6 +333,154 @@
     const inviteMemberXButton = document.getElementById("inviteMemberXButton");
     inviteMemberXButton.onclick = function(){
         inviteMemberModal.style.display = "none";
+    }
+</script>
+<!-- ----------------------------------------- 프로젝트 내용 조회 모달 ----------------------------------------- -->
+<!--<form action="project/selectProject" th:each="project : ${ select }" style="z-index: 5">-->
+<!--<a href="project/selectProject" style="z-index: 5">-->
+<!--    <div id="modalUpdateProject">-->
+<!--        <div id="updateProjectHead">-->
+<!--            <div id="updateProjectXButton">X</div>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; 내용 부분 &ndash;&gt;-->
+<!--            <div id="updateTitle">-->
+<!--                <input type="text" id="updateInputTitle" placeholder="프로젝트 명을 입력해주세요." name="projectName" th:text:="${ project.projectName }">-->
+<!--            </div>-->
+<!--            <span id="updateSummaryStar" class="updateStar">*</span>-->
+<!--            <label id="updateSummaryLabel" for="updateInputSummary">개요</label>-->
+<!--            <div id="updateSummary">-->
+<!--                <textarea id="updateInputSummary" maxlength="150" placeholder="프로젝트 개요를 적어주세요(최대 150자)." name="projectSummary" th:text="${ project.projectSummary }"></textarea>-->
+<!--            </div>-->
+<!--            <span id="updatePurposeStar" class="updateStar">*</span>-->
+<!--            <label id="updatePurposeLabel" for="updateInputPurpose">목적</label>-->
+<!--            <div id="updatePurpose">-->
+<!--                <textarea id="updateInputPurpose" maxlength="150" placeholder="프로젝트 목표 및 목적을 적어주세요(최대 150자)." name="projectPurpose" th:text="${ project.projectPurpose }"></textarea>-->
+<!--            </div>-->
+<!--            <span id="updateStartDateStar" class="updateStar">*</span>-->
+<!--            <label for="updatePeriod" id="updatePeriodLabel">기간</label>-->
+<!--            <div id="updatePeriod">-->
+<!--                <input type="date" id="updateStartDate" min="2023-01-01" max="2077-06-20" name="startDate" th:text="${ project.startDate }"></input>-->
+<!--                <div id="updateWave">~</div>-->
+<!--                <input type="date" id="updateEndDate"  min="2023-01-01" max="2077-06-20" name="endDate" th:text="${ project.endDate }"></input>-->
+<!--            </div>-->
+<!--            <label for="updateCategory" id="updateCategoryLabel">분류</label>-->
+<!--            <div id="updateCategory" th:text="${ project.projectCategoryCode }">-->
+<!--                <input type="radio" id="updateBank" class="updateCategory" name="projectCategoryCode" value="CT1"/><label id="updateBankLabel" class="updateCategoryLabel" for="updateBank">은행</label>-->
+<!--                <input type="radio" id="updateInsurance" class="updateCategory" name="projectCategoryCode" value="CT2"/><label id="updateInsuranceLabel" class="updateCategoryLabel" for="updateInsurance">보험사</label>-->
+<!--                <input type="radio" id="updatePublicSector" class="updateCategory" name="projectCategoryCode" value="CT3"/><label id="updatePublicSectorLabel" class="updateCategoryLabel" for="updatePublicSector">공공부문</label>-->
+<!--                <input type="radio" id="updateWeb" class="updateCategory" name="projectCategoryCode" value="CT4"/><label id="updateWebLabel" class="updateCategoryLabel" for="updateWeb">웹포털</label>-->
+<!--                <input type="radio" id="updateApplication" class="updateCategory" name="projectCategoryCode" value="CT5"/><label id="updateApplicationLabel" class="updateCategoryLabel" for="updateApplication">앱개발</label>-->
+<!--                <input type="radio" id="updateEtc" class="updateCategory" name="projectCategoryCode" value="CT6"/><label id="updateEtcLabel" class="updateCategoryLabel" for="updateEtc">기타</label>-->
+<!--            </div>-->
+<!--            <span id="updateMemberStar" class="updateStar">*</span>-->
+<!--            <label for="updateMember" id="updateMemberLabel">인원초대</label>-->
+<!--            <div id="updateMember">-->
+<!--                <button type="button" id="updateInviteMember" name="updateMember">+</button>-->
+<!--            </div>-->
+<!--            <button type="button" id="updateCancel">취소</button>-->
+<!--            <button type="submit" id="updateConfirm">생성</button>-->
+<!--    </div>-->
+<!--</a>-->
+
+<a href="project/selectProject" style="z-index: 5">
+    <div id="modalUpdateProject">
+        <div id="updateProjectHead">
+            <div id="updateProjectXButton">X</div>
+        </div>
+        <!-- 내용 부분 -->
+        <div id="updateTitle">
+            <input type="text" id="updateInputTitle" placeholder="프로젝트 명을 입력해주세요." name="projectName">
+        </div>
+        <span id="updateSummaryStar" class="updateStar">*</span>
+        <label id="updateSummaryLabel" for="updateInputSummary">개요</label>
+        <div id="updateSummary">
+            <textarea id="updateInputSummary" maxlength="150" placeholder="프로젝트 개요를 적어주세요(최대 150자)." name="projectSummary"></textarea>
+        </div>
+        <span id="updatePurposeStar" class="updateStar">*</span>
+        <label id="updatePurposeLabel" for="updateInputPurpose">목적</label>
+        <div id="updatePurpose">
+            <textarea id="updateInputPurpose" maxlength="150" placeholder="프로젝트 목표 및 목적을 적어주세요(최대 150자)." name="projectPurpose"></textarea>
+        </div>
+        <span id="updateStartDateStar" class="updateStar">*</span>
+        <label for="updatePeriod" id="updatePeriodLabel">기간</label>
+        <div id="updatePeriod">
+            <input type="date" id="updateStartDate" min="2023-01-01" max="2077-06-20" name="startDate">
+            <div id="updateWave">~</div>
+            <input type="date" id="updateEndDate"  min="2023-01-01" max="2077-06-20" name="endDate">
+        </div>
+        <label for="updateCategory" id="updateCategoryLabel">분류</label>
+        <div id="updateCategory">
+            <input type="radio" id="updateBank" class="updateCategory" name="projectCategoryCode" value="CT1"/><label id="updateBankLabel" class="updateCategoryLabel" for="updateBank">은행</label>
+            <input type="radio" id="updateInsurance" class="updateCategory" name="projectCategoryCode" value="CT2"/><label id="updateInsuranceLabel" class="updateCategoryLabel" for="updateInsurance">보험사</label>
+            <input type="radio" id="updatePublicSector" class="updateCategory" name="projectCategoryCode" value="CT3"/><label id="updatePublicSectorLabel" class="updateCategoryLabel" for="updatePublicSector">공공부문</label>
+            <input type="radio" id="updateWeb" class="updateCategory" name="projectCategoryCode" value="CT4"/><label id="updateWebLabel" class="updateCategoryLabel" for="updateWeb">웹포털</label>
+            <input type="radio" id="updateApplication" class="updateCategory" name="projectCategoryCode" value="CT5"/><label id="updateApplicationLabel" class="updateCategoryLabel" for="updateApplication">앱개발</label>
+            <input type="radio" id="updateEtc" class="updateCategory" name="projectCategoryCode" value="CT6"/><label id="updateEtcLabel" class="updateCategoryLabel" for="updateEtc">기타</label>
+        </div>
+        <span id="updateMemberStar" class="updateStar">*</span>
+        <label for="updateMember" id="updateMemberLabel">인원초대</label>
+        <div id="updateMember">
+            <button type="button" id="updateInviteMember" name="updateMember">+</button>
+        </div>
+        <button type="button" id="updateCancel">취소</button>
+        <button type="submit" id="updateConfirm">생성</button>
+    </div>
+</a>
+
+<script>
+
+    /* 정보 비동기로 가져오기 */
+
+    fetch("/project/selectProject")
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+                let $projectName = document.getElementById("updateInputTitle");
+                $projectName.innerHTML = data.projectName;
+                let $projectSummary = document.getElementById("updateInputSummary");
+                $projectSummary.innerText = data.projectSummary;
+                let $projectPurpose = document.getElementById("updateInputPurpose");
+                $projectPurpose.innerText = data.projectPurpose;
+                let $startDate = document.getElementById("updateStartDate");
+                $startDate.content = data.startDate;
+                let $endDate = document.getElementById("updateEndDate");
+                $endDate.content = data.endDate;
+                let $projectCategory = document.getElementById("updateCategory");
+                $projectCategory.style = data.projectCategoryCode;
+        });
+
+    /* 프로젝트 정보 수정 모달 띄우기 */
+    const updateProjectModal = document.getElementById("modalUpdateProject");
+    updateProjectModal.style.display = "none";
+    const update = document.querySelectorAll("#projectUpdate");
+    for(let i = 0; i < createdProjectFolder.length; i++) {
+        update[i].addEventListener("click", function () {
+            updateProjectModal.style.display = "";
+        });
+    }
+
+    /* x버튼 취소 버튼 클릭 시 모달 없애기 */
+    // const updateCancel = document.getElementById("updateCancel");
+    // updateCancel.addEventListener("click", function(){
+    //     updateProjectModal.style.display = "none";
+    // });
+    const updateProjectXButton = document.getElementById("updateProjectXButton");
+    updateProjectXButton.addEventListener("click", function(){
+        updateProjectModal.style.display = "none";
+    });
+
+
+    /* 카테고리 부분 선택 시 버튼 색상 변경 */
+    let updateCategoryList = document.querySelectorAll(".updateCategory");
+    let updateCategoryLabelList = document.querySelectorAll(".updateCategoryLabel");
+
+    for(let i = 0; i < updateCategoryList.length; i++){
+        updateCategoryList[i].addEventListener("click", function(){
+            updateCategoryLabelList[i].style.background = "#92E2F8";
+        });
+        updateCategoryList[i].addEventListener("blur", function(){
+            updateCategoryLabelList[i].style.background = "#FFFFFF";
+        });
     }
 </script>
 </body>

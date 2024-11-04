@@ -12,6 +12,10 @@ public interface ProjectMapper {
 
     List<ProjectDTO> getList();
 
+    ProjectDTO getProject();
+
+
     void insertProject(ProjectDTO projectDTO);
 
+//    void updateProject(ProjectDTO projectDTO);
 }

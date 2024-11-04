@@ -84,12 +84,14 @@ public class ProjectDTO {
     @Override
     public String toString() {
         return "ProjectDTO{" +
-                "projectName='" + projectName + '\'' +
+                "projectNo=" + projectNo +
+                ", projectName='" + projectName + '\'' +
                 ", projectSummary='" + projectSummary + '\'' +
                 ", projectPurpose='" + projectPurpose + '\'' +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
+                ", startDate='" + startDate + '\'' +
+                ", endDate='" + endDate + '\'' +
                 ", projectCategoryCode='" + projectCategoryCode + '\'' +
                 '}';
     }
+
 }
