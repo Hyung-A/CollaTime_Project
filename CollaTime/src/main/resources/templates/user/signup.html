@@ -352,31 +352,34 @@
     })
     //     이메일 코드 비교
         console.log("그다음에 넘어옴")
+    let inputCode = document.getElementById('randomCode_input');
+    let compareCode = document.getElementById('compare_code_email');
     document.getElementById("send_code_email").addEventListener('mouseup',function (){
-        let checkEmail = document.getElementById('regist_email_input').value;
+
+        const data = document.getElementById('regist_email_input').value;
         fetch('/mail/sendMail', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ mail : checkEmail})
+            body: JSON.stringify(data)
         })
             .then(res => res.json())
             .then( data => {
-                console.log(data);})
-    })
-    let inputCode = document.getElementById('randomCode_input').value;
-    let compareCode = document.getElementById('compare_code_email');
-    compareCode.addEventListener('click', function (){
-        if(inputCode == mailCode){
-            emailMessage.style.color = 'green';
-            emailMessage.innerText = '이메일이 확인되었습니다.'
-            isInput[5] = 'true';
-        }else{
-            emailMessage.style.color = 'red';
-            emailMessage.innerText = '코드가 틀렸습니다.'
-            isInput[5] = 'false'
-        }
+                console.log(data);
+                console.log(data.code);
+                compareCode.addEventListener('click', ()=>{
+                    if(inputCode.value==data.code){
+                        emailMessage.style.color = 'green';
+                        emailMessage.innerText = '이메일이 확인되었습니다.'
+                        isInput[5] = 'true';
+                    }else {
+                        emailMessage.style.color = 'red';
+                        emailMessage.innerText = '코드가 틀렸습니다.'
+                        isInput[5] = 'false'
+                    }
+                })
+            })
     })
 
     //     이용약관 확인
@@ -424,6 +427,7 @@
             //  2. alert 창으로 한다 -> 제일 간단하지만 그렇게 하지 않기로 했다.
             //  3. 그렇다면 다른 곳으로 매핑을 했다가 다시 돌아오게 한 뒤 그것이 참일 때 모달창이 튀어나오고 그 다음 행동이 이루어지도록 하는 것은? 그렇다면 session에 message값을 가지고 있는지 파악하고 그 값을 찾아가는 것으로?
             //  일단 현재는 1번으로 만들었기 때문에 1번 방법으로 진행하는 것으로 해보자. -> 로그인에서 닉네임을 띄우면서 진행되게 하는게 가능할까?
+            //  다른 곳으로 매핑을 해서 해결했다.
             smallModal.style.display = 'flex'
             smallModalMessage.innerText = '내용을 다시 확인해주세요.';
             smallOk.addEventListener('click', ()=>{smallModal.style.display = 'none';})
