@@ -1,8 +1,11 @@
 package com.ohgiraffers.collatime.user.controller;
 
+import com.fasterxml.jackson.core.JsonParser;
 import com.ohgiraffers.collatime.user.model.dto.SignupDTO;
 import com.ohgiraffers.collatime.user.model.dto.UserDTO;
 import com.ohgiraffers.collatime.user.model.service.UserService;
+import org.apache.catalina.connector.Request;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("/user")
@@ -31,30 +35,29 @@ public class UserController {
 //    ㄴ ex) model.addObject("idPass", true)
 //          그 다음 true인지 아닌지 판단하기
 //          만약 Str로 넘겨야한다면 Boolean.parseBoolean()로 idPass값 뽑아내기
-    
+
 
     @GetMapping("/signup")
-    public void signup(){
+    public void signup() {
         System.out.println("hi");
     }
 
     @PostMapping("/signup")
-    public ModelAndView signup(ModelAndView mv, @ModelAttribute SignupDTO signupDTO){
+    public ModelAndView signup(ModelAndView mv, @ModelAttribute SignupDTO signupDTO) {
         System.out.println("hi post");
         System.out.println(signupDTO);
         int result = userService.registUser(signupDTO);
-
 
 
         System.out.println(result);
         String message = "";
         boolean isPass = true;
 
-        if(result>0){
+        if (result > 0) {
             message = "회원가입이 완료되었습니다.";
             System.out.println("yes");
 
-        }else{
+        } else {
             message = "내용을 다시 확인해주세요.";
             System.out.println("no");
             isPass = false;
@@ -69,17 +72,19 @@ public class UserController {
 
     @GetMapping(value = "/check", produces = "application/json; charset=UTF-8")
     @ResponseBody
-    public List<String[]> check(){
+    public List<String[]> check() {
         System.out.println("check호출");
-        userService.selectAllUser().forEach(System.out::println);
         List<UserDTO> user = userService.selectAllUser();
         List<String[]> checkDB = new ArrayList<>();
-        
-        for(int i = 0; i< user.size();i++){
-            String[] allUserInfo =  {user.get(i).getUserId(), user.get(i).getUserNickname(), user.get(i).getUserEmail()};
+
+        for (int i = 0; i < user.size(); i++) {
+            String[] allUserInfo = {user.get(i).getUserId(), user.get(i).getUserNickname(), user.get(i).getUserEmail()};
             checkDB.add(allUserInfo);
         }
         return checkDB;
 
     }
+
 }
+
+

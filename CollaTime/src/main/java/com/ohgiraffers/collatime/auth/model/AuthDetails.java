@@ -38,8 +38,9 @@ public class AuthDetails implements UserDetails {
     }
 
 //    유저에 대한 정보를 세션으로 보냈다. 사용하려면 |${#authentication.principal.userNickname}|
+
+    public int getUserNo(){return userDTO.getUserNo();}
     public String getUserNickname(){return userDTO.getUserNickname();}
-    public int getUserId(){return userDTO.getUserNo();}
     public String getUserName(){ return userDTO.getUserName();}
     public String getUserColor(){return userDTO.getUserColor();}
     public String getUserEmail(){return userDTO.getUserEmail();}
