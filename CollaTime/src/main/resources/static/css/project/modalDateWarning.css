@@ -1,0 +1,124 @@
+@charset "UTF-8";
+
+#dateWarningModal{
+
+    position: absolute;
+    width: 554px;
+    height: 592px;
+    left: 683px;
+    top: 130px;
+
+    background: #FFFFFF;
+    border: 1px solid #595959;
+    /*box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);*/
+    border-radius: 25px;
+
+}
+#warningBlueHeader{
+
+    position: absolute;
+    width: 554px;
+    height: 51px;
+
+    background: #92E2F8;
+    border-bottom: 1px solid #282828;
+    border-radius: 25px 25px 0px 0px;
+
+}
+#warningXButton{
+
+    width: 30px;
+    height: 34px;
+    font-size: 30px;
+    position: absolute;
+    left: 506px;
+    top: 5px;
+
+}
+
+/* 경고아이콘 */
+#warningIcon{
+
+    position: absolute;
+    width: 80px;
+    height: 94px;
+    left: 55px;
+    top: 260px;
+
+}
+
+#warningText{
+
+    position: absolute;
+    width: 340px;
+    height: 307px;
+    left: 175px;
+    top: 160px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 39px;
+    /* or 193% */
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.03em;
+
+    color: #000000;
+
+
+
+}
+
+
+/* 취소 버튼 */
+#warningCancel{
+
+    position: absolute;
+    width: 99px;
+    height: 31px;
+    left: 330px;
+    top: 540px;
+    border-radius: 25px;
+    background: #DFF7FD;
+    border: #DFF7FD;
+
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 24px;
+    vertical-align: center;
+    text-align: center;
+    letter-spacing: 0.03em;
+
+    color: #000000;
+
+}
+
+/* 확인 버튼 */
+#warningConfirm{
+
+    position: absolute;
+    width: 99px;
+    height: 31px;
+    left: 437px;
+    top: 540px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 24px;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.03em;
+    border-radius: 25px;
+    background: #92E2F8;
+    border: #92E2F8;
+
+    color: #000000;
+}
+

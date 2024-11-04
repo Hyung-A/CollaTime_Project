@@ -74,7 +74,7 @@
         <div id="mainArea">
             <!-- 첫 번째 폴더 -->
             <div id="firstFolder">
-                <div id="folderSmallBody1" class="forderHead"></div>
+                <div id="folderSmallBody1" class="folderHead"></div>
                 <div id="folderBigBody1" class="folderBody">
                     <!-- 이름 나중에 바꿀 예정 -> DB에서 가져와서 -->
                     <div id="folderName1" class="folderTitle">JAVA</div>
@@ -86,7 +86,7 @@
 
             <!-- 두 번째 폴더 -->
             <div id="secondFolder">
-                <div id="folderSmallBody2" class="forderHead"></div>
+                <div id="folderSmallBody2" class="folderHead"></div>
                 <div id="folderBigBody2" class="folderBody">
                     <!-- 이름 나중에 바꿀 예정 -> DB에서 가져와서 -->
                     <span id="folderName2" class="folderTitle">백엔드</span>
@@ -98,7 +98,7 @@
 
             <!-- 세 번째 폴더 -->
             <div id="thirdFolder">
-                <div id="folderSmallBody3" class="forderHead"></div>
+                <div id="folderSmallBody3" class="folderHead"></div>
                 <div id="folderBigBody3" class="folderBody">
                     <!-- 이름 나중에 바꿀 예정 -> DB에서 가져와서 -->
                     <span id="folderName3" class="folderTitle">프론트엔드</span>
@@ -110,7 +110,7 @@
 
             <!-- 새 폴더 폴더1 -->
             <div id="createNewFolder1" class="createNewFolder">
-                <div id="newFolderSmallBody1" class="forderHead"></div>
+                <div id="newFolderSmallBody1" class="folderHead"></div>
                 <div id="newFolderBigBody1" class="folderBody">
                     <!-- 이름 나중에 바꿀 예정 -> DB에서 가져와서 -->
                     <span id="newFolderName1" class="folderTitle">+</span>
@@ -121,7 +121,7 @@
             </div>
             <!-- 새 폴더 폴더2 -->
             <div id="createNewFolder2" class="createNewFolder">
-                <div id="newFolderSmallBody2" class="forderHead"></div>
+                <div id="newFolderSmallBody2" class="folderHead"></div>
                 <div id="newFolderBigBody2" class="folderBody">
                     <!-- 이름 나중에 바꿀 예정 -> DB에서 가져와서 -->
                     <span id="newFolderName2" class="folderTitle">+</span>
@@ -132,7 +132,7 @@
             </div>
             <!-- 새 폴더 폴더3 -->
             <div id="createNewFolder3" class="createNewFolder">
-                <div id="newFolderSmallBody3" class="forderHead"></div>
+                <div id="newFolderSmallBody3" class="folderHead"></div>
                 <div id="newFolderBigBody3" class="folderBody">
                     <!-- 이름 나중에 바꿀 예정 -> DB에서 가져와서 -->
                     <span id="newFolderName3" class="folderTitle">+</span>
@@ -143,7 +143,7 @@
             </div>
             <!-- 새 폴더 폴더4 -->
             <div id="createNewFolder4" class="createNewFolder">
-                <div id="newFolderSmallBody4" class="forderHead"></div>
+                <div id="newFolderSmallBody4" class="folderHead"></div>
                 <div id="newFolderBigBody4" class="folderBody">
                     <!-- 이름 나중에 바꿀 예정 -> DB에서 가져와서 -->
                     <span id="newFolderName4" class="folderTitle">+</span>
@@ -154,7 +154,7 @@
             </div>
             <!-- 새 폴더 폴더5 -->
             <div id="createNewFolder5" class="createNewFolder">
-                <div id="newFolderSmallBody5" class="forderHead"></div>
+                <div id="newFolderSmallBody5" class="folderHead"></div>
                 <div id="newFolderBigBody5" class="folderBody">
                     <!-- 이름 나중에 바꿀 예정 -> DB에서 가져와서 -->
                     <span id="newFolderName5" class="folderTitle">+</span>
@@ -177,18 +177,18 @@
         document.getElementById("createNewFolder5"),
     ];
 
-    folderElements.forEach((element, index) => {
+    folderElements.forEach((element, index, confirmButton) => {
         if (index !== 0) {
             element.style.display = "none";
         }
-        element.onclick = function() {
-            const nextElement = folderElements[index + 1];
-            if (nextElement) {
-                nextElement.style.display = "";
-            }
-        };
+    //     /* onchange로 변경해보기 */
+    //     element.onclick = function() {
+    //         const nextElement = folderElements[index + 1];
+    //         if (nextElement) {
+    //             nextElement.style.display = "";
+    //         }
+    //     };
     });
-
 
 </script>
 
@@ -214,33 +214,24 @@
         /* 평소에는 모달창이 안보였다가 메인 화면에서 new프로젝트 누르면 모달 창이 띄어지게 하기 */
         const modalCreateOrJoin = document.getElementById("middleModal");
         modalCreateOrJoin.style.display = "none";
-        modalCreateOrJoin.style.zIndex = 1;
 
-        var createNewFolder1 = document.getElementById("createNewFolder1");
-        var createNewFolder2 = document.getElementById("createNewFolder2");
-        var createNewFolder3 = document.getElementById("createNewFolder3");
-        var createNewFolder4 = document.getElementById("createNewFolder4");
-        var createNewFolder5 = document.getElementById("createNewFolder5");
+        const newFolderArray = [
+            document.getElementById("createNewFolder1"),
+            document.getElementById("createNewFolder2"),
+            document.getElementById("createNewFolder3"),
+            document.getElementById("createNewFolder4"),
+            document.getElementById("createNewFolder5")
+        ];
 
-        createNewFolder1.onclick = function(){
-            modalCreateOrJoin.style.display = "";
-        }
+        newFolderArray.forEach((element, index) => {
+            element.onclick = function(){
+                modalCreateOrJoin.style.display = "";
+            };
 
-        createNewFolder2.onclick = function(){
-            modalCreateOrJoin.style.display= "";
-        };
-
-        createNewFolder3.onclick = function(){
-            modalCreateOrJoin.style.display= "";
-        };
-
-        createNewFolder4.onclick = function(){
-            modalCreateOrJoin.style.display= "";
-        };
-
-        createNewFolder5.onclick = function(){
-            modalCreateOrJoin.style.display= "";
-        };
+            if (index !== 0) {
+                element.style.display = "none";
+            }
+        });
 
         /* X버튼, 취소 버튼 클릭 시 모달 없애기 */
         const xButton = document.getElementById("middleXButton");
@@ -252,9 +243,6 @@
         cancelButton.onclick = function(){
             modalCreateOrJoin.style.display = "none";
         }
-
-
-        /* ++) 클릭 시 프로젝트 생성 페이지로 넘어가기 넣기 */
 
         /* 참가 코드 클릭 시 placeHolder 사라지기 */
         const $inputCode = document.getElementById("inputCode");
@@ -277,7 +265,7 @@
             <div id="bigXButton">X</div>
         </div>
         <!-- 내용 부분 -->
-        <form action="/project/createProject" method="post">
+        <form action="/project/ProjectMain" method="post">
             <div id="title">
                 <input type="text" id="inputTitle" placeholder="프로젝트 명을 입력해주세요." name="projectName">
             </div>
@@ -300,13 +288,12 @@
             </div>
             <label for="category" id="categoryLabel">분류</label>
             <div id="category">
-                <input type="button" id="bank" class="category" name="projectCategory" value="은행"/>
-                <input type="button" id="insurance" class="category" name="projectCategory" value="보험사"/>
-                <input type="button" id="publicSector" class="category" name="projectCategory" value="공공부문"/>
-                <input type="button" id="web" class="category" name="projectCategory" value="웹포털"/>
-                <input type="button" id="application" class="category" name="projectCategory" value="앱개발"/>
-                <input type="button" id="etc" class="category" name="projectCategory" value="기타"/>
-                <input type="text" id="categoryParam" name="projectCategoryCode" value="" style="visibility: hidden"/>
+                <input type="radio" id="bank" class="category" name="projectCategoryCode" value="CT1"/><label id="bankLabel" for="bank">은행</label>
+                <input type="radio" id="insurance" class="category" name="projectCategoryCode" value="CT2"/><label id="insuranceLabel" for="insurance">보험사</label>
+                <input type="radio" id="publicSector" class="category" name="projectCategoryCode" value="CT3"/><label id="publicSectorLabel" for="publicSector">공공부문</label>
+                <input type="radio" id="web" class="category" name="projectCategoryCode" value="CT4"/><label id="webLabel" for="web">웹포털</label>
+                <input type="radio" id="application" class="category" name="projectCategoryCode" value="CT5"/><label id="applicationLabel" for="application">앱개발</label>
+                <input type="radio" id="etc" class="category" name="projectCategoryCode" value="CT6"/><label id="etcLabel" for="etc">기타</label>
             </div>
             <span id="memberStar" class="star">*</span>
             <label for="member" id="memberLabel">인원초대</label>
@@ -314,30 +301,13 @@
                 <button type="button" id="inviteMember" name="member">+</button>
             </div>
             <button type="button" id="bigCancel1">취소</button>
-            <button type="submit" id="bigConfirm1" onclick="href='/projectMainPage/createProjet'">생성</button>
+            <button type="submit" id="bigConfirm1">생성</button>
         </form>
     </div>
 
     <script>
-
-        /* category param */
-        let categoryParam = document.getElementById("categoryParam").value;
-        const categoryArray = [
-            document.getElementById("bank"),
-            document.getElementById("insurance"),
-            document.getElementById("publicSector"),
-            document.getElementById("web"),
-            document.getElementById("application"),
-            document.getElementById("etc")
-        ];
-        categoryArray.forEach((element, index) => {
-            element.addEventListener("click", function(){
-                categoryParam = categoryArray[index].value;
-                // console.log(categoryParam);
-            });
-        });
-
         /* "프로젝트 생성 혹은 참가 모달"에서 생성 버튼 클릭 시 생성 모달 띄우기 */
+
         const createProjectModal = document.getElementById("createProjectModal");
         createProjectModal.style.display = "none";
         const areaCreateProject = document.getElementById("areaCreateProject");
@@ -353,53 +323,93 @@
         const bigCancel1 = document.getElementById("bigCancel1");
         bigCancel1.onclick = function(){
             createProjectModal.style.display = "none";
-        }
+        };
 
-        /* 카테고리 부분 선택 시 버튼 색상 변경 */
+        /* 카테고리 부분 선택 시 버튼 색상 변경 */  /* forEach문으로 변경해보기 */
         const $bank = document.getElementById("bank");
+        const $bankLabel = document.getElementById("bankLabel");
         const $insurance = document.getElementById("insurance");
+        const $insuranceLabel = document.getElementById("insuranceLabel");
         const $publicSector = document.getElementById("publicSector");
+        const $publicSectorLabel = document.getElementById("publicSectorLabel");
         const $web = document.getElementById("web");
+        const $webLabel = document.getElementById("webLabel");
         const $application = document.getElementById("application");
+        const $applicationLabel = document.getElementById("applicationLabel");
         const $etc = document.getElementById("etc");
+        const $etcLabel = document.getElementById("etcLabel");
 
         $bank.onclick = function(){
-            $bank.style.background = "#92E2F8";
+            $bankLabel.style.background = "#92E2F8";
         };
         $bank.addEventListener("blur", function(){
-            $bank.style.background = "#FFFFFF";
+            $bankLabel.style.background = "#FFFFFF";
         });
-
         $insurance.onclick = function(){
-            $insurance.style.background = "#92E2F8";
+            $insuranceLabel.style.background = "#92E2F8";
         };
         $insurance.addEventListener("blur", function(){
-            $insurance.style.background = "#FFFFFF";
+            $insuranceLabel.style.background = "#FFFFFF";
         });
         $publicSector.onclick = function(){
-            $publicSector.style.background = "#92E2F8";
+            $publicSectorLabel.style.background = "#92E2F8";
         };
         $publicSector.addEventListener("blur", function(){
-            $publicSector.style.background = "#FFFFFF";
+            $publicSectorLabel.style.background = "#FFFFFF";
         });
         $web.onclick = function(){
-            $web.style.background = "#92E2F8";
+            $webLabel.style.background = "#92E2F8";
         };
         $web.addEventListener("blur", function(){
-            $web.style.background = "#FFFFFF";
+            $webLabel.style.background = "#FFFFFF";
         });
         $application.onclick = function(){
-            $application.style.background = "#92E2F8";
+            $applicationLabel.style.background = "#92E2F8";
         };
         $application.addEventListener("blur", function(){
-            $application.style.background = "#FFFFFF";
+            $applicationLabel.style.background = "#FFFFFF";
         });
         $etc.onclick = function(){
-            $etc.style.background = "#92E2F8";
+            $etcLabel.style.background = "#92E2F8";
         };
         $etc.addEventListener("blur", function(){
-            $etc.style.background = "#FFFFFF";
+            $etcLabel.style.background = "#FFFFFF";
         });
+
+        /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+        /* 생성 버튼 클릭 시 newFolder 띄우기 */
+        const createButton = document.getElementById("bigConfirm1");
+
+        newFolderArray.forEach((index, element) => {
+            if(newFolderArray[index].onclick()) {
+                createButton.onclick = function () {
+                    newFolderArray[index + 1].style.display = "";
+                }
+            }
+        });
+
+        /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+        /* 프로젝트 생성 시 아이콘 디자인 변경 -> 미완성 */
+        // 색상 랜덤  -> url 경로 재설정
+        let colorArray = ["FEC4C4", "D9F0FB", "FFEFCC", "FFA990", "B7E58E", "FFDAFA", "F3DAFF", "DADFFF", "EDD5C0", "D6EADF"];
+        let changedColor = "";
+        randomNum = Math.floor(Math.random() * (colorArray.length - 1));
+        randomColor = colorArray[randomNum];
+        changedColor = "#" + "" + randomColor;
+
+        // forEach문으로 작성하기
+        // const newFolderHead1 = document.getElementById("newFolderSmallBody1");
+        // const newFolderBody1 = document.getElementById("newFolderBigBody1");
+        // const confirm = document.getElementById("bigConfirm1");
+        newFolderArray.forEach(function(index){
+            createButton.onclick = function(){
+                newFolderArray[index].style.backgroundColor = changedColor;
+            }
+        })
+        // createButton.onclick = function(){
+        //     newFolderHead1.style.backgroundColor = changedColor;
+        //     newFolderBody1.style.backgroundColor = changedColor;
+        // }
     </script>
 
 <!-- ---------------------------- 멤버 초대 모달 ---------------------------- -->
