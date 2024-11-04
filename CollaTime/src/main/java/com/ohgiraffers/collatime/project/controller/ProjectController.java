@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/project")
 public class ProjectController {
@@ -17,37 +19,32 @@ public class ProjectController {
 
     }
     @GetMapping("/ProjectMain")
-    public void projectMain(){}
+    public ModelAndView projectMain(ModelAndView mv){
 
-//    @GetMapping("/createProject")
-//    public void createProject(){}
+        projectService.getList().forEach(System.out::println);
+
+        mv.addObject("projectList", projectService.getList());
+
+        mv.setViewName("/project/ProjectMain");
+
+        return mv;
+
+    }
 
     @PostMapping("/ProjectMain")
     public ModelAndView insertProject(ModelAndView mv, @ModelAttribute ProjectDTO projectDTO){
 
         System.out.println(projectDTO);
 
-//        projectService.insertProject(projectDTO);
+        projectService.insertProject(projectDTO);
 
-        mv.setViewName("project/ProjectMain");
+        mv.addObject("projectList", projectService.getList());
+
+        mv.setViewName("/project/ProjectMain");
 
         return mv;
 
     }
 
-//    @GetMapping("/test")
-//    public void testPage(){}
-//
-//    @PostMapping("/test")
-//    public ModelAndView test(ModelAndView mv, @ModelAttribute ProjectDTO projectDTO){
-//
-//        System.out.println(projectDTO);
-//
-////        projectService.insertProject(projectDTO);
-//
-//        mv.setViewName("project/ProjectMain");
-//
-//        return mv;
-//
-//    }
+
 }

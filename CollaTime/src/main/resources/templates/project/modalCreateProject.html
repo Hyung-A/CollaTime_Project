@@ -2,111 +2,91 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/static/css/project/reset.css">
+    <link rel="stylesheet" href="/css/project/reset.css">
     <link rel="stylesheet" href="/static/css/project/modalCreateProject.css">
     <title>Title</title>
 </head>
 <body>
     <!-- 큰 모달창 레이아웃 -->
-    <div id="createProjectModal">
+    <!-- ------------------------------------프로젝트 생성 모달창 ------------------------------------ -->
+    <div id="createProjectModal" style="z-index: 3">
         <div id="bigBlueHeader">
-          <div id="bigXButton">X</div>
+            <div id="bigXButton">X</div>
         </div>
-      <!-- 내용 부분 -->
-        <form>
-          <div id="title">
-            <input type="text" id="inputTitle" placeholder="프로젝트 명을 입력해주세요.">
-          </div>
-          <span id="summaryStar" class="star">*</span>
-          <label id="summaryLabel" for="inputSummary">개요</label>
-          <div id="summary">
-            <textarea id="inputSummary" maxlength="150" placeholder="프로젝트 개요를 적어주세요(최대 150자)."></textarea>
-          </div>
-          <span id="purposeStar" class="star">*</span>
-          <label id="purposeLabel" for="inputPurpose">목적</label>
-          <div id="purpose">
-              <textarea id="inputPurpose" maxlength="150" placeholder="프로젝트 목표 및 목적을 적어주세요(최대 150자)."></textarea>
-          </div>
-          <span id="startDateStar" class="star">*</span>
-          <label for="period" id="periodLabel">기간</label>
-          <div id="period">
-            <input type="date" id="projectStartDate" min="2023-01-01" max="2077-06-20"></input>
-            <div id="wave">~</div>
-            <input type="date" id="projectEndDate"  min="2023-01-01" max="2077-06-20"></input>
-          </div>
-          <label for="category" id="categoryLabel">분류</label>
-          <div id="category">
-            <button type="button" id="bank" class="category">은행</button>
-            <button type="button" id="insurance" class="category">보험사</button>
-            <button type="button" id="publicSector" class="category">공공부문</button>
-            <button type="button" id="web" class="category">웹포털</button>
-            <button type="button" id="application" class="category">앱개발</button>
-            <button type="button" id="etc" class="category">기타</button>
-          </div>
+        <!-- 내용 부분 -->
+        <form action="/project/ProjectMain" method="post">
+            <div id="title">
+                <input type="text" id="inputTitle" placeholder="프로젝트 명을 입력해주세요." name="projectName">
+            </div>
+            <span id="summaryStar" class="star">*</span>
+            <label id="summaryLabel" for="inputSummary">개요</label>
+            <div id="summary">
+                <textarea id="inputSummary" maxlength="150" placeholder="프로젝트 개요를 적어주세요(최대 150자)." name="projectSummary"></textarea>
+            </div>
+            <span id="purposeStar" class="star">*</span>
+            <label id="purposeLabel" for="inputPurpose">목적</label>
+            <div id="purpose">
+                <textarea id="inputPurpose" maxlength="150" placeholder="프로젝트 목표 및 목적을 적어주세요(최대 150자)." name="projectPurpose"></textarea>
+            </div>
+            <span id="startDateStar" class="star">*</span>
+            <label for="period" id="periodLabel">기간</label>
+            <div id="period">
+                <input type="date" id="projectStartDate" min="2023-01-01" max="2077-06-20" name="startDate"></input>
+                <div id="wave">~</div>
+                <input type="date" id="projectEndDate"  min="2023-01-01" max="2077-06-20" name="endDate"></input>
+            </div>
+            <label for="category" id="categoryLabel">분류</label>
+            <div id="category">
+                <input type="radio" id="bank" class="category" name="projectCategoryCode" value="CT1"/><label id="bankLabel" class="categoryLabel" for="bank">은행</label>
+                <input type="radio" id="insurance" class="category" name="projectCategoryCode" value="CT2"/><label id="insuranceLabel" class="categoryLabel" for="insurance">보험사</label>
+                <input type="radio" id="publicSector" class="category" name="projectCategoryCode" value="CT3"/><label id="publicSectorLabel" class="categoryLabel" for="publicSector">공공부문</label>
+                <input type="radio" id="web" class="category" name="projectCategoryCode" value="CT4"/><label id="webLabel" class="categoryLabel" for="web">웹포털</label>
+                <input type="radio" id="application" class="category" name="projectCategoryCode" value="CT5"/><label id="applicationLabel" class="categoryLabel" for="application">앱개발</label>
+                <input type="radio" id="etc" class="category" name="projectCategoryCode" value="CT6"/><label id="etcLabel" class="categoryLabel" for="etc">기타</label>
+            </div>
             <span id="memberStar" class="star">*</span>
             <label for="member" id="memberLabel">인원초대</label>
-          <div id="member">
-            <button type="button" id="inviteMember">+</button>
-          </div>
+            <div id="member">
+                <button type="button" id="inviteMember" name="member">+</button>
+            </div>
+            <button type="button" id="bigCancel1">취소</button>
+            <button type="submit" id="bigConfirm1">생성</button>
         </form>
-        <button type="button" id="bigCancel1">취소</button>
-        <button type="submit" id="bigConfirm1">생성</button>
     </div>
 
     <script>
-        const $bank = document.getElementById("bank");
-        const $insurance = document.getElementById("insurance");
-        const $publicSector = document.getElementById("publicSector");
-        const $web = document.getElementById("web");
-        const $application = document.getElementById("application");
-        const $etc = document.getElementById("etc");
+        /* "프로젝트 생성 혹은 참가 모달"에서 생성 버튼 클릭 시 생성 모달 띄우기 */
 
-       /* var array = [$bank, $insurance, $publicSector, $web, $application, $etc];
+        // const createProjectModal = document.getElementById("createProjectModal");
+        // createProjectModal.style.display = "none";
+        // const areaCreateProject = document.getElementById("areaCreateProject");
+        // areaCreateProject.onclick = function(){
+        //     createProjectModal.style.display = "";
+        // };
 
-        for(var i = 0; i < array.length; i++){
-            if(array[i].onclick){
-                array[i].style.background = "#92E2F8";
-            }
-        }*/
+        /* x버튼 취소 버튼 클릭 시 모달 없애기 */
+        const bigXButton = document.getElementById("bigXButton");
+        bigXButton.onclick = function(){
+            createProjectModal.style.display = "none";
+        };
+        const bigCancel1 = document.getElementById("bigCancel1");
+        bigCancel1.onclick = function(){
+            createProjectModal.style.display = "none";
+        };
 
-        $bank.onclick = function(){
-            $bank.style.background = "#92E2F8";
-        };
-        $bank.addEventListener("blur", function(){
-            $bank.style.background = "#FFFFFF";
-        });
+        /* 카테고리 부분 선택 시 버튼 색상 변경 */
+        let categoryList = document.querySelectorAll(".category");
+        let categoryLabelList = document.querySelectorAll(".categoryLabel");
 
-        $insurance.onclick = function(){
-            $insurance.style.background = "#92E2F8";
-        };
-        $insurance.addEventListener("blur", function(){
-            $insurance.style.background = "#FFFFFF";
-        });
-        $publicSector.onclick = function(){
-            $publicSector.style.background = "#92E2F8";
-        };
-        $publicSector.addEventListener("blur", function(){
-            $publicSector.style.background = "#FFFFFF";
-        });
-        $web.onclick = function(){
-            $web.style.background = "#92E2F8";
-        };
-        $web.addEventListener("blur", function(){
-            $web.style.background = "#FFFFFF";
-        });
-        $application.onclick = function(){
-            $application.style.background = "#92E2F8";
-        };
-        $application.addEventListener("blur", function(){
-            $application.style.background = "#FFFFFF";
-        });
-        $etc.onclick = function(){
-            $etc.style.background = "#92E2F8";
-        };
-        $etc.addEventListener("blur", function(){
-            $etc.style.background = "#FFFFFF";
-        });
-
+        for(let i = 0; i < categoryList.length; i++){
+            categoryList[i].addEventListener("click", function(){
+                categoryLabelList[i].style.background = "#92E2F8";
+            });
+            categoryList[i].addEventListener("blur", function(){
+                categoryLabelList[i].style.background = "#FFFFFF";
+            })
+        }
     </script>
+
 </body>
 </html>

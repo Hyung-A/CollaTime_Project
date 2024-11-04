@@ -10,45 +10,76 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link href="/static/css/project/reset.css">
-    <link rel="stylesheet" href="/static/css/project/modalCreateOrJoin.css">
+    <link rel="stylesheet" href="/css/project/reset.css">
+    <link rel="stylesheet" href="/css/project/modalCreateOrJoin.css">
 </head>
 <body>
-<!-- 중간 모달창 -->
-    <div id="middleModal">
-        <div id="middleBlueHeader">
-            <div id="middleXButton">X</div>
-        </div>
-        <div id="body">
-            <span id="createProject">프로젝트 생성하기</span>
-            <button type="button" id="areaCreateProject">+</button>
-            <span id="joinProject">프로젝트 참가하기</span>
-            <div>
-                <input type="text" id="inputCode" placeholder="전달받은 코드를 입력해주세요.">
-                <button type="submit" id="joinButton">참가하기</button>
-            </div>
-            <button type="button" id="cancel">취소</button>
-            <button type="submit" id="confirm">확인</button>
-        </div>
+<!-- ----------------------------------------------- 프로젝트 참여 혹은 생성 모달창 ----------------------------------------------- -->
+
+<div id="middleModal" style="z-index: 2">
+    <div id="middleBlueHeader">
+        <button id="middleXButton">X</button>
     </div>
+    <div id="body">
+        <span id="createProject">프로젝트 생성하기</span>
+        <button type="button" id="areaCreateProject">+</button>
+        <span id="joinProject">프로젝트 참가하기</span>
+        <div>
+            <input type="text" id="inputCode" placeholder="전달받은 코드를 입력해주세요.">
+            <button type="submit" id="joinButton">참가하기</button>
+        </div>
+        <button type="button" id="smallCancel">취소</button>
+        <button type="submit" id="smallConfirm">확인</button>
+    </div>
+</div>
 
-    <script>
-        /* ++) 클릭 시 프로젝트 생성 페이지로 넘어가기 넣기 */
+<script>
+    /* 평소에는 모달창이 안보였다가 메인 화면에서 new프로젝트 누르면 모달 창이 띄어지게 하기 */
+    const modalCreateOrJoin = document.getElementById("middleModal");
+    modalCreateOrJoin.style.display = "none";
 
-        /* 참가 코드 클릭 시 placeHolder 사라지기 */
-        const $inputCode = document.getElementById("inputCode");
-        $inputCode.addEventListener("focus", function(e){
+    const newFolderArray = [
+        document.getElementById("createNewFolder1"),
+        document.getElementById("createNewFolder2"),
+        document.getElementById("createNewFolder3"),
+        document.getElementById("createNewFolder4"),
+        document.getElementById("createNewFolder5")
+    ];
 
-            $inputCode.placeholder = ""
+    newFolderArray.forEach((element, index) => {
+        element.onclick = function(){
+            modalCreateOrJoin.style.display = "";
+        };
 
-        });
-        $inputCode.addEventListener("blur", function(){
-            $inputCode.placeholder = "전달받은 코드를 입력해주세요."
-        });
+        if (index !== 0) {
+            element.style.display = "none";
+        }
+    });
 
-        /* ++) 알맞은 참가 코드를 입력하면 프로젝트 생성하기 */
+    /* X버튼, 취소 버튼 클릭 시 모달 없애기 */
+    const xButton = document.getElementById("middleXButton");
+    xButton.onclick = function(){
+        modalCreateOrJoin.style.display = "none";
+    }
 
-    </script>
+    const cancelButton = document.getElementById("smallCancel");
+    cancelButton.onclick = function(){
+        modalCreateOrJoin.style.display = "none";
+    }
 
+    /* 참가 코드 클릭 시 placeHolder 사라지기 */
+    const $inputCode = document.getElementById("inputCode");
+    $inputCode.addEventListener("focus", function(e){
+
+        $inputCode.placeholder = ""
+
+    });
+    $inputCode.addEventListener("blur", function(){
+        $inputCode.placeholder = "전달받은 코드를 입력해주세요."
+    });
+
+    /* ++) 알맞은 참가 코드를 입력하면 프로젝트 생성하기 */
+
+</script>
 </body>
 </html>
