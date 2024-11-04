@@ -165,7 +165,7 @@
 
 
 /* 작은 모달창 확인 */
-#ok_btn{
+#loginOk_btn{
     position: absolute;
     width: 100px;
     height: 40px;
@@ -179,6 +179,46 @@
     background: #92E2F8;
     border: none;
     border-radius: 15px;
+
+}
+
+#smallModalLogin{
+
+    position: absolute;
+    width: 554px;
+    height: 284px;
+    left: 683px;
+    top: 260px;
+
+    background: #FFFFFF;
+    border:1px solid #595959;
+    /*box-shadow: 0px 3.02732px 3.02732px rgba(0, 0, 0, 0.25);*/
+    border-radius: 25px;
+
+
+}
+
+#smallBlueHeaderLogin{
+
+    position: absolute;
+    width: 554px;
+    height: 51px;
+
+    background: #92E2F8;
+    border-bottom: 1px solid #282828;
+    border-radius: 25px 25px 0px 0px;
+
+
+}
+
+#smallXButtonLogin{
+
+    width: 30px;
+    height: 34px;
+    font-size: 30px;
+    position: absolute;
+    left: 506px;
+    top: 5px;
 
 }
 

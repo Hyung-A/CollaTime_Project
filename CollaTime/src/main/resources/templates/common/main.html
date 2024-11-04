@@ -3,22 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Main</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-    <link rel="stylesheet" href="/static/css/common/main.css">
+    <link rel="stylesheet" href="/css/common/main.css">
 
 </head>
 <body>
     <!-- 메인 -->
     <!-- 메인 페이지 헤더 부분 -->
-    <div id="header">
-        <div id="header-logo">
-            <img id="header-logo-img" src="/static/css/common/image/CollaTime-Logo.png">
-            <button id="intro1"><a>소개</a></button>
-            <button id="intro2"><a>기능</a></button>
-            <button id="login">로그인</button>
-            <button id="sign-up">회원가입</button>
-        </div>
-    </div>
+    <div th:include="common/header.html"></div>
     <!-- 메인 페이지 메인 부분-->
     <div id="collatime-main">
         <p id="main-intro1">
@@ -85,50 +76,6 @@
             지금 바로 CollaTime을 시작하세요!
         </p>
     </div>
-    <!-- 마지막 아래 페이지 부분-->
-    <div id="collatime-footer">
-        <p id="footer-text1">
-            주소 경기도 하남시 미사강변동로 85, 힐스테이트 에코미사<br><br>
-            콜라타임(주)공동 대표자 &nbsp;&nbsp;이하은 | 조형석 | 김주혜 | 박수완<br><br>
-            이메일 collatime@collatime.team<br><br>
-            통신판매업 신고번호 제2024-경기도하남-1004호<br><br>
-            사업자 등록번호 123-45-1004
-        </p>
-        <p id="footer-text2">
-            회사소개<br><br>
-            스토리<br><br>
-            문화복지<br><br>
-            채용
-        </p>
-        <p id="footer-text3">
-            기능<br><br>
-            프로젝트 & 업무관리<br><br>
-            보안 메신저<br><br>
-            커뮤니티<br><br>
-            보안<br><br>
-            외부 서비스 연동
-        </p>
-        <p id="footer-text4">
-            도움말<br><br>
-            사용 메뉴얼<br><br>
-            도입 가이드<br><br>
-            자주묻는 질문
-        </p>
-        <p id="footer-text5">
-            개발자 센터<br><br>
-            업데이트
-        </p>
-    </div>
-    <div id="footer">
-        <p id="footer-text6">
-            이용약관
-        </p>
-        <p id="footer-text7">
-            개인정보취급방침
-        </p>
-        <p id="footer-text8">
-            오픈소스라이센스
-        </p>
-    </div>
+    <div th:include="common/footer.html"></div>
 </body>
 </html>

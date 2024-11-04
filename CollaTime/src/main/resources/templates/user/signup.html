@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="/css/user/signup.css">
 </head>
 <body>
+<!--헤더-->
+<div th:include="common/header.html"></div>
 
 <!--배경화면-->
 <div id="login_background">
@@ -95,7 +97,7 @@
         </div>
         <!-- 로그인 유효성 메세지 -->
         <div class="success_message" id="successMessage" th:text="${ message }"></div>
-        <button id="ok_btn" type="submit">확인</button>
+        <button id="small_signupOk_btn" type="button">확인</button>
     </div>
 
 </form>
@@ -207,33 +209,28 @@
 
 
 <script>
-    fetch("/user/check")
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-        })
+
 
     var isInput = ['false' ,'false' ,'false' ,'false' ,'false' ,'false' ,'false'];
-    console.log(isInput)
     document.getElementById('compare_code_email').disabled = true;
 
         // 아이디 조회
     document.getElementById("check_duplicate_id").addEventListener('click', function () {
         let checkId = document.getElementById('regist_id_input').value;
         let idMessage = document.getElementById('idMessage');
-        console.log(checkId);
         if (checkId == '' || checkId.length == 0) {
             idMessage.style.color = 'red';
             idMessage.innerText = '아이디는 공백이 될 수 없습니다.';
+            isInput[0] = "false";
         } else {
             fetch("/user/check")
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
                     for (var i = 0; i < data.length; i++) {
                         if (data[i][0] == checkId) {
                             idMessage.style.color = 'red';
                             idMessage.innerText = '중복된 아이디입니다.';
+                            isInput[0] = "false";
                             break;
                         } else {
                             idMessage.style.color = 'green';
@@ -260,6 +257,7 @@
         if(inputPwd.value == ''){
             pwdMessage.style.color = 'red';
             pwdMessage.innerText = '비밀번호가 공백입니다.';
+            isInput[1] = "false";
         }else if(strongPassword(inputPwd.value)){
             if (comparePwd.value == inputPwd.value) {
                 pwdMessage.style.color = 'green';
@@ -268,10 +266,12 @@
             } else {
                 pwdMessage.style.color = 'red';
                 pwdMessage.innerText = '비밀번호가 다릅니다.';
+                isInput[1] = "false";
             }
         } else {
             pwdMessage.style.color = 'red';
             pwdMessage.innerText = '유의사항을 확인해주세요.';
+            isInput[1] = "false";
         }
     }
     //     이름 확인
@@ -282,6 +282,7 @@
         if (document.getElementById('regist_name_input').value == ''){
             nameMessage.style.color = 'red';
             nameMessage.innerText = '이름이 공백입니다.';
+            isInput[2] = "false";
         }else {
             nameMessage.style.display = 'none';
             isInput[2] = 'true';
@@ -295,19 +296,19 @@
 
         let checkNickname = document.getElementById('regist_nickname_input').value;
         let nicknameMessage = document.getElementById('nicknameMessage');
-        console.log(checkNickname);
         if (checkNickname == '' || checkNickname.length == 0) {
             nicknameMessage.style.color = 'red';
             nicknameMessage.innerText = '닉네임은 공백이 될 수 없습니다.';
+            isInput[3] = "false";
         } else {
             fetch("/user/check")
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
                     for (var i = 0; i < data.length; i++) {
                         if (data[i][1] == checkNickname) {
                             nicknameMessage.style.color = 'red';
                             nicknameMessage.innerText = '중복된 닉네임입니다.';
+                            isInput[3] = "false";
                             break;
                         } else {
                             nicknameMessage.style.color = 'green';
@@ -321,13 +322,12 @@
 
     //     이메일 비교
     document.getElementById("send_code_email").addEventListener('click', function () {
-        console.log(isInput.length);
-        console.log('1');
         let checkEmail = document.getElementById('regist_email_input').value;
         let emailMessage = document.getElementById('emailMessage');
         if (checkEmail == '' || checkEmail.length == 0) {
             emailMessage.style.color = 'red';
             emailMessage.innerText = '이메일은 공백이 될 수 없습니다.';
+            isInput[4] = "false";
         } else {
             fetch("/user/check")
                 .then(res => res.json())
@@ -336,13 +336,13 @@
                         if (data[i][2] == checkEmail) {
                             emailMessage.style.color = 'red';
                             emailMessage.innerText = '중복된 이메일입니다.';
+                            isInput[4] = "false";
                             break;
                         } else {
                             emailMessage.style.color = 'black';
                             emailMessage.innerText = '해당 이메일로 코드를 보냈습니다.';
                             document.getElementById('compare_code_email').disabled = null;
                             isInput[4] = "true";
-                            console.log(isInput);
                         }
                     }
                 })
@@ -365,16 +365,15 @@
         cancelBtn.addEventListener('click', ()=>{
             modalController.style.display = 'none';
             checkTermsOfUse.checked = false;
+            isInput[6] = "false";
         })
         content.addEventListener('scroll', function (){
-            console.log(content.scrollTop);
             if(content.scrollTop >= 1950){
                 acceptBtn.disabled = null;
                 acceptBtn.style.backgroundColor = 'RGB(146, 266, 248)';
                 acceptBtn.style.color = 'black';
                 acceptBtn.addEventListener('click', () =>{
                     isInput[6] = 'true';
-                    console.log(isInput)
                     modalController.style.display = 'none';
                     checkTermsOfUse.checked = true;
 
@@ -390,22 +389,18 @@
     let smallX = document.getElementById('smallXButton');
     let smallOk = document.getElementById('small_signupOk_btn');
     signup_btn.addEventListener('click', ()=>{
-        smallModal.style.display = 'flex'
-        if(!isInput.includes('false')){
+        if(isInput.includes('false')){
             // 회원가입 버튼이 submit이면 제출과 동시에 새로고침이 되기 때문에 문제가 생긴다. 해결책을 한번 생각해보자.
             //  1. 서밋버튼을 작은 모달창에서 확인을 누르게 하면 되도록 한다. -> 이건 화면창에 나오는 생성 성공과 실패에 따른 메세지에 문제가 생길 것 같다.
             //  2. alert 창으로 한다 -> 제일 간단하지만 그렇게 하지 않기로 했다.
             //  3. 그렇다면 다른 곳으로 매핑을 했다가 다시 돌아오게 한 뒤 그것이 참일 때 모달창이 튀어나오고 그 다음 행동이 이루어지도록 하는 것은? 그렇다면 session에 message값을 가지고 있는지 파악하고 그 값을 찾아가는 것으로?
             //  일단 현재는 1번으로 만들었기 때문에 1번 방법으로 진행하는 것으로 해보자. -> 로그인에서 닉네임을 띄우면서 진행되게 하는게 가능할까?
-            // signup_btn.type='submit';
-            console.log(isInput)
-            smallModalMessage.innerText = '회원가입이 완료되었습니다.';
-            smallOk.addEventListener('click', ()=>{location.href='auth/login';})
-            smallX.addEventListener('click', ()=>{location.href='auth/login';})
-        }else{
-            smallModalMessage.innerText = '회원가입에 실패했습니다.';
+            smallModal.style.display = 'flex'
+            smallModalMessage.innerText = '내용을 다시 확인해주세요.';
             smallOk.addEventListener('click', ()=>{smallModal.style.display = 'none';})
             smallX.addEventListener('click', ()=>{smallModal.style.display = 'none';})
+        }else{
+            signup_btn.type='submit';
         }
     })
 

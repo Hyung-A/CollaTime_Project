@@ -336,7 +336,7 @@
 
 
 /* 작은 모달창 확인 */
-#ok_btn{
+#small_signupOk_btn{
     position: absolute;
     width: 100px;
     height: 40px;

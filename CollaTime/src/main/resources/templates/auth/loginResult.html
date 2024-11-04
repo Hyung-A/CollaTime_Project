@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+</head>
+<body>
+    <div th:replace="auth/login.html"></div>
+
+<script>
+    let smallModalResult = document.getElementById('smallModalLogin');
+    let smallModalMessageResult = document.getElementById('login_successMessage');
+    let smallXResult = document.getElementById('smallXButtonLogin');
+    let smallOkResult = document.getElementById('loginOk_btn');
+    const message = `[[${message}]]`;
+    smallModalResult.style.display = 'flex'
+    smallModalMessageResult.innerText = message;
+    smallOkResult.addEventListener('click', ()=>{location.href="/project/ProjectMain"})
+    smallXResult.addEventListener('click', ()=>{location.href="/project/ProjectMain"})
+</script>
+</body>
+</html>

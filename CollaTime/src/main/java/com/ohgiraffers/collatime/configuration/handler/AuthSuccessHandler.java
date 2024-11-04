@@ -20,8 +20,8 @@ public class AuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
 
         System.out.println("authentication: " + authentication.getName());
-
         System.out.println(SecurityContextHolder.getContext().getAuthentication().getName());
+
 
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         Iterator<? extends GrantedAuthority> iter = authorities.iterator();
@@ -31,11 +31,11 @@ public class AuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
         if(role.equals("ADMIN")) {
             System.out.println("admin");
-            response.sendRedirect("/admin/dashbord");
+            response.sendRedirect("/admin/dashboard");
         }
         if(role.equals("USER")) {
             System.out.println("user");
-            response.sendRedirect("/project/ProjectMain");
+            response.sendRedirect("/auth/loginResult");
         }
 
         super.onAuthenticationSuccess(request, response, authentication);
