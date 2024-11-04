@@ -36,7 +36,9 @@ public class ProjectController {
 
         System.out.println(projectDTO);
 
-//        projectService.insertProject(projectDTO);
+        projectService.insertProject(projectDTO);
+
+        mv.addObject("projectList", projectService.getList());
 
         mv.setViewName("/project/ProjectMain");
 

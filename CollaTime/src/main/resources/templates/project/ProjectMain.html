@@ -50,6 +50,11 @@
                 <div id="folderBody">
                     <div id="projectTitle" th:text="${ project.projectName }"></div>
                     <div id="folderMenu">...</div>
+<!--                    <div id="crudMenu">-->
+<!--                        <div id="projectUpdate">수정하기</div>-->
+<!--                        <div id="projectDelete">삭제하기</div>-->
+<!--                        <div id="manageMember">멤버관리</div>-->
+<!--                    </div>-->
                 </div>
                 <span id="projectFullName" th:text="${ project.projectName }" th:title="${ project.projectName }"></span>
             </div>
@@ -104,17 +109,22 @@
     let maxNum = createdProjectFolder.length;
     const newProject = document.getElementById("newProject");
     let lastProjectLeft = Number(createdProjectFolder[maxNum-1].style.left.replace("px", ""));
-    for(let i = 0; i < createdProjectFolder.length; i++) {
-        if (i < 3) {
-            newProject.style.left = (lastProjectLeft + 363) + "px";
-            newProject.style.top = "200px";
-        } else if (i === 3) {
-            newProject.style.left = "148px";
-            newProject.style.top = "507px";
-        } else if (i > 3 && i < 5) {
-            newProject.style.left = (lastProjectLeft + 363) + "px";
-            newProject.style.top = "507px";
+    if(maxNum > 0) {
+        for (let i = 0; i < createdProjectFolder.length; i++) {
+            if (i < 3) {
+                newProject.style.left = (lastProjectLeft + 363) + "px";
+                newProject.style.top = "200px";
+            } else if (i === 3) {
+                newProject.style.left = "148px";
+                newProject.style.top = "507px";
+            } else if (i > 3 && i < 5) {
+                newProject.style.left = (lastProjectLeft + 363) + "px";
+                newProject.style.top = "507px";
+            }
         }
+    } else if(maxNum === 0){
+        newProject.style.left = "363px";
+        newProject.style.top = "200px";
     }
 </script>
 <!-- ----------------------------------------------- 프로젝트 참여 혹은 생성 모달창 ----------------------------------------------- -->

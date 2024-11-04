@@ -51,11 +51,11 @@ DataBase : MySQL Workbench 8.0 CE <br>
 
 ### 팀원 소개
 
-| PM<br>(Project Manager) | CM<br>(Config Manager) | DB<br>(Database Manager) | DB<br>(Database Manager) |
-| :------: | :------: | :------: | :------: |
-| [![HS](https://github.com/user-attachments/assets/b9b9af1c-144b-4131-8f4c-01b5550d1113)](https://github.com/Passbob) | [![JH](https://github.com/user-attachments/assets/e582c649-34ab-479d-8d78-e9fb6ddcd0a3)](https://github.com/JUHYE0925) | [![SW](https://github.com/user-attachments/assets/c2f4095c-a507-452a-8a43-655fc01d1d86)](https://github.com/suwanpp) | [![HE](https://github.com/user-attachments/assets/698de351-12dd-484d-8e47-0b04386d305c)](https://github.com/gkdsm) 
-| 팀장 : 조형석 | 팀원 : 김주혜 | 팀원 : 박수완 | 팀원 : 이하은 |
-| 담당 : 회원 관리 | 담당 : 프로젝트 관리 | 담당 : 스케줄러 관리 | 담당 : 관리자 페이지 |
+| PM<br>(Project Manager) | CM<br>(Config Manager) | DB<br>(Database Manager) |  
+| :------: | :------: | :------: | 
+| [![HS](https://github.com/user-attachments/assets/b9b9af1c-144b-4131-8f4c-01b5550d1113)](https://github.com/Passbob) | [![JH](https://github.com/user-attachments/assets/e582c649-34ab-479d-8d78-e9fb6ddcd0a3)](https://github.com/JUHYE0925) | [![SW](https://github.com/user-attachments/assets/c2f4095c-a507-452a-8a43-655fc01d1d86)](https://github.com/suwanpp) | 
+| 팀장 : 조형석 | 팀원 : 김주혜 | 팀원 : 박수완 | 
+| 담당 : 회원 관리 | 담당 : 프로젝트 관리 | 담당 : 스케줄러 관리 | 
 
 -----------------------------------------------
 

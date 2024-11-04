@@ -340,6 +340,66 @@
 
 }
 
+#crudMenu{
+
+    position: absolute;
+    width: 130px;
+    height: 90px;
+    left: 187px;
+    top: 29px;
+    background: #F5F5F5;
+    border: none;
+    display: flex;
+    justify-content: center;
+    line-height: 90px                                                                                                                                                                                                                                                                                                   ;
+
+}
+
+#projectUpdate{
+
+    position: absolute;
+    left: 15px;
+    top: 5px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    letter-spacing: 0.03em;
+    color: #282828;
+    border-bottom: solid 2px #E2E2E2;
+
+}
+
+#projectDelete{
+
+    position: absolute;
+    left: 15px;
+    top: 25px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    letter-spacing: 0.03em;
+    color: #282828;
+    border-bottom: solid 2px #E2E2E2;
+
+}
+
+#manageMember{
+
+    position: absolute;
+    left: 15px;
+    top: 45px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    letter-spacing: 0.03em;
+    color: #282828;
+    border-bottom: solid 2px #E2E2E2;
+
+}
+
 #projectFullName{
 
     cursor: default;
