@@ -7,12 +7,14 @@
     <title>로그인</title>
     <link rel="stylesheet" href="/css/user/login.css">
     <link rel="stylesheet" href="/css/common/middlemodal.css">
-    <link rel="stylesheet" href="/css/common/smallmodal.css">
 
 
 
 </head>
 <body>
+<!--헤더-->
+<div th:replace="common/header.html"></div>
+
 <!--배경화면-->
 <div id="login_background">
     <img id="login_background_img" src="/css/user/image/FizzyGroup.png">
@@ -43,15 +45,14 @@
     })
 </script>
 
-
-<!--&lt;!&ndash; 작은 모달창 &ndash;&gt;-->
-<!--<div id="smallModal" class="modal">-->
-<!--    <div id="smallBlueHeader">-->
-<!--        <div id="smallXButton">X</div>-->
-<!--    </div>-->
-<!--    &lt;!&ndash; 로그인 유효성 메세지 &ndash;&gt;-->
-<!--    <div class="message">형석짱짱님 반갑습니다.</div>-->
-<!--    <button id="ok_btn">확인</button>-->
-<!--</div>-->
+<!-- 작은 모달창 -->
+<div id="smallModalLogin" class="modal">
+    <div id="smallBlueHeaderLogin">
+        <div id="smallXButtonLogin">X</div>
+    </div>
+    <!-- 로그인 유효성 메세지 -->
+    <div class="message" id="login_successMessage"></div>
+    <button id="loginOk_btn">확인</button>
+</div>
 </body>
 </html>

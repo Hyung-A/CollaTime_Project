@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>회원가입</title>
+</head>
+<body>
+    <div th:include="user/signup.html"></div>
+</body>
+    <script>
+        let smallModalResult = document.getElementById('smallModal');
+        let smallModalMessageResult = document.getElementById('successMessage');
+        let smallXResult = document.getElementById('smallXButton');
+        let smallOkResult = document.getElementById('small_signupOk_btn');
+        const message = `[[${message}]]`;
+        const isPass = `[[${isPass}]]`;
+        smallModalResult.style.display = 'flex'
+        smallModalMessageResult.innerText = message;
+        if(isPass){
+            smallOkResult.addEventListener('click', ()=>{location.href="/auth/login"})
+            smallXResult.addEventListener('click', ()=>{location.href="/auth/login"})
+        }else {
+            smallOkResult.addEventListener('click', ()=>{location.href="/user/signup"})
+            smallXResult.addEventListener('click', ()=>{location.href="/user/signup"})
+        }
+    </script>
+</html>

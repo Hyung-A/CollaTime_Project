@@ -48,16 +48,21 @@ public class UserController {
 
         System.out.println(result);
         String message = "";
+        boolean isPass = true;
 
         if(result>0){
             message = "회원가입이 완료되었습니다.";
             System.out.println("yes");
+
         }else{
             message = "내용을 다시 확인해주세요.";
             System.out.println("no");
+            isPass = false;
         }
 
         mv.addObject("message", message);
+        mv.addObject("isPass", isPass);
+        mv.setViewName("user/signupResult");
 
         return mv;
     }

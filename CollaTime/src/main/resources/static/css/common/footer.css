@@ -1,0 +1,89 @@
+/* 푸터 부분 */
+#collatime-footer {
+    position: absolute;
+    width: 1920px;
+    height: 356px;
+    top: 2850px;
+    background-color: #FFFFFF;
+    border-bottom: solid;
+    border-color: #92E2F8;
+}
+#footer-text1 {
+    position: absolute;
+    top: 75px;
+    left: 132px;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: bold;
+    color: #003393;
+}
+#footer-text2 {
+    position: absolute;
+    top: 75px;
+    left: 1190px;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: bold;
+    color: #003393;
+}
+#footer-text3 {
+    position: absolute;
+    top: 75px;
+    left: 1308px;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: bold;
+    color: #003393;
+}
+#footer-text4 {
+    position: absolute;
+    top: 75px;
+    left: 1485px;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: bold;
+    color: #003393;
+}
+#footer-text5 {
+    position: absolute;
+    top: 75px;
+    left: 1636px;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: bold;
+    color: #003393;
+}
+#footer {
+    position: absolute;
+    width: 1920px;
+    height: 121px;
+    top: 3208px;
+    background-color: #FFFFFF;
+}
+#footer-text6 {
+    position: absolute;
+    top: 35px;
+    left: 132px;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: bold;
+    color: #003393;
+}
+#footer-text7 {
+    position: absolute;
+    top: 35px;
+    left: 221px;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: bold;
+    color: #003393;
+}
+#footer-text8 {
+    position: absolute;
+    top: 35px;
+    left: 375px;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: bold;
+    color: #003393;
+}

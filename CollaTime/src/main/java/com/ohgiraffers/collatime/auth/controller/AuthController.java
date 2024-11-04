@@ -25,4 +25,13 @@ public class AuthController {
         return mv;
     }
 
+    @GetMapping("/loginResult")
+    public ModelAndView loginResult(ModelAndView mv) {
+        String message = "로그인에 성공했습니다.";
+        mv.addObject("message", message);
+        mv.setViewName("/auth/loginResult");
+
+        return mv;
+    }
+
 }
