@@ -74,10 +74,12 @@ public class UserController {
         userService.selectAllUser().forEach(System.out::println);
         List<UserDTO> user = userService.selectAllUser();
         List<String[]> checkDB = new ArrayList<>();
+        
         for(int i = 0; i< user.size();i++){
             String[] allUserInfo =  {user.get(i).getUserId(), user.get(i).getUserNickname(), user.get(i).getUserEmail()};
             checkDB.add(allUserInfo);
         }
         return checkDB;
+
     }
 }

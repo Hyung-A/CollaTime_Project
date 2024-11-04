@@ -21,7 +21,7 @@ public class AuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
         System.out.println("authentication: " + authentication.getName());
         System.out.println(SecurityContextHolder.getContext().getAuthentication().getName());
-
+        System.out.println(SecurityContextHolder.getContext().getAuthentication().getDetails());
 
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         Iterator<? extends GrantedAuthority> iter = authorities.iterator();
