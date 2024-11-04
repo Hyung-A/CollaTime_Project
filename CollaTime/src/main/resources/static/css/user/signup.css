@@ -135,17 +135,25 @@
     top: 277px;
 }
 
+/*이름 메세지*/
+#nameMessage{
+    position: absolute;
+    left: 267px;
+    top: 310px;
+}
+
+
 /*닉네임 유효성 메세지*/
 .nickname{
     position: absolute;
-    left: 63px;
+    left: 56px;
     top: 372px;
 }
 
 /*이메일 유효성 메세지*/
 .email{
     position: absolute;
-    left: 63px;
+    left: 56px;
     top: 459px;
 }
 

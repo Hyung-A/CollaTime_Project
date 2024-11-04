@@ -48,19 +48,13 @@ public class UserController {
 
         System.out.println(result);
         String message = "";
-        boolean isSuccess = true;
 
         if(result>0){
             message = "회원가입이 완료되었습니다.";
-            isSuccess = true;
-            mv.setViewName("auth/login");
             System.out.println("yes");
         }else{
             message = "내용을 다시 확인해주세요.";
-            isSuccess = false;
             System.out.println("no");
-            mv.setViewName("user/signup");
-
         }
 
         mv.addObject("message", message);
@@ -68,11 +62,17 @@ public class UserController {
         return mv;
     }
 
-    @GetMapping(value = "check", produces = "application/json; charset=UTF-8")
+    @GetMapping(value = "/check", produces = "application/json; charset=UTF-8")
     @ResponseBody
-    public List<UserDTO> Check(){
+    public List<String[]> check(){
+        System.out.println("check호출");
         userService.selectAllUser().forEach(System.out::println);
-
-        return userService.selectAllUser();
+        List<UserDTO> user = userService.selectAllUser();
+        List<String[]> checkDB = new ArrayList<>();
+        for(int i = 0; i< user.size();i++){
+            String[] allUserInfo =  {user.get(i).getUserId(), user.get(i).getUserNickname(), user.get(i).getUserEmail()};
+            checkDB.add(allUserInfo);
+        }
+        return checkDB;
     }
 }
