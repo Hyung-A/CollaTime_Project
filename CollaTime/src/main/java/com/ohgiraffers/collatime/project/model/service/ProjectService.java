@@ -19,14 +19,19 @@ public class ProjectService {
         return projectMapper.getList();
     }
 
-    public ProjectDTO getProject() {
-        return projectMapper.getProject();
+    public ProjectDTO getProject(ProjectDTO projectDTO) {
+        return projectMapper.getProject(projectDTO);
     }
 
 
     @Transactional
     public void insertProject(ProjectDTO projectDTO) {
         projectMapper.insertProject(projectDTO);
+    }
+
+    @Transactional
+    public void updateProject(ProjectDTO projectDTO){
+        projectMapper.updateProject(projectDTO);
     }
 
 }
