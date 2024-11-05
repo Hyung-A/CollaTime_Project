@@ -1,5 +1,6 @@
 package com.ohgiraffers.collatime.configuration.handler;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -23,6 +24,7 @@ public class AuthFailHandler extends SimpleUrlAuthenticationFailureHandler {
 //    response : 서버 응답값
 //    exception : 발생한 오류를 담는 개체
     @Override
+    @JsonIgnore
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
         String errorMessage = "";
         System.out.println("로그인 실패");
@@ -47,8 +49,11 @@ public class AuthFailHandler extends SimpleUrlAuthenticationFailureHandler {
 //        URL을 안전하게 인코딩 하는데 사용되는 유틸로 문자열을 URL에 사용가능한 형식으로 인코딩 할 수 있다.
         errorMessage = URLEncoder.encode(errorMessage, "UTF-8");
         System.out.println(errorMessage);
-        setDefaultFailureUrl("/auth/fail?message=" + errorMessage);
+//        setDefaultFailureUrl("/auth/fail?message=" + errorMessage);
+        response.sendRedirect("/auth/loginFail?message="+errorMessage);
 
-        super.onAuthenticationFailure(request, response, exception);
+//        super.onAuthenticationFailure(request, response, exception);
+//        ㄴ 로그인 실패 시 Cannot call sendError() after the response has been committed -> 무한 참조가 발생했다.
+//        보안 실패시의 이유들이 계속 부딪히면서 일어난 일 인것 같다. 위의 부분을 주석처리하니 해결이 되었다.
     }
 }

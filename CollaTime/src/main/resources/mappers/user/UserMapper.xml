@@ -63,4 +63,9 @@
         FROM CT_USER
     </select>
 
+    <update id="modifyPwdByEmail" parameterType="String">
+        UPDATE CT_USER
+        SET PASSWORD = #{ code }
+        WHERE CT_USER_EMAIL = #{ email }
+    </update>
 </mapper>

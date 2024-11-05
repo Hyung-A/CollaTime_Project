@@ -323,13 +323,20 @@
     //     이메일 비교
     let mailCode = "";
     let emailMessage = document.getElementById('emailMessage');
+    let emailCheck = false;
     document.getElementById("send_code_email").addEventListener('click', function () {
         let checkEmail = document.getElementById('regist_email_input').value;
         if (checkEmail == '' || checkEmail.length == 0) {
             emailMessage.style.color = 'red';
             emailMessage.innerText = '이메일은 공백이 될 수 없습니다.';
             isInput[4] = "false";
-        } else {
+        }
+        // else if(checkEmail.indexOf('@')!=0 &&checkEmail.indexOf('.')!=0){
+        //     emailMessage.style.color = 'red';
+        //     emailMessage.innerText = '이메일 형식을 다시 확인해주세요.';
+        //     isInput[4] = "false";
+        // }
+        else {
             fetch("/user/check")
                 .then(res => res.json())
                 .then(data => {
@@ -347,28 +354,32 @@
                             console.log("여기까지 옴")
                         }
                     }
+                    if(isInput[4]=='true') {
+                        document.getElementById("send_code_email").disabled = true;
+                    }
                 })
+
         }
     })
     //     이메일 코드 비교
         console.log("그다음에 넘어옴")
     let inputCode = document.getElementById('randomCode_input');
-    let compareCode = document.getElementById('compare_code_email');
+    let compareCodeBtn = document.getElementById('compare_code_email');
     document.getElementById("send_code_email").addEventListener('mouseup',function (){
 
-        const data = document.getElementById('regist_email_input').value;
-        fetch('/mail/sendMail', {
+        const mail = document.getElementById('regist_email_input').value;
+        fetch('/mail/sendNewMail', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(mail)
         })
             .then(res => res.json())
             .then( data => {
                 console.log(data);
                 console.log(data.code);
-                compareCode.addEventListener('click', ()=>{
+                compareCodeBtn.addEventListener('click', ()=>{
                     if(inputCode.value==data.code){
                         emailMessage.style.color = 'green';
                         emailMessage.innerText = '이메일이 확인되었습니다.'
@@ -376,6 +387,7 @@
                     }else {
                         emailMessage.style.color = 'red';
                         emailMessage.innerText = '코드가 틀렸습니다.'
+                        document.getElementById("send_code_email").disabled = false;
                         isInput[5] = 'false'
                     }
                 })

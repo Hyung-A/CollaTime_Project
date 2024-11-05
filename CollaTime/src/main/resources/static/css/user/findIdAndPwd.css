@@ -1,0 +1,253 @@
+/* 입력창 기본 스타일*/
+.input{
+    height: 27px;
+    width: 280px;
+    box-sizing: border-box;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+/* 버튼 스타일 */
+.btn{
+    width: 75px;
+    height: 27px;
+    margin-left: 5px;
+
+    background: #B8B8B8;
+    border-radius: 10px;
+    border: none;
+
+
+    font-size: 14px;
+    font-weight: 600;
+    align-content: center;
+
+}
+
+/* 아이디/비밀번호 찾기 텍스트*/
+
+#find_word{
+    position: absolute;
+    left: 56px;
+    top: 85px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+
+    color: #000000;
+}
+
+/*바디 스타일*/
+#find_action_body_id{
+
+    display: flex;
+
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 433px;
+    height: 350px;
+    left: 60px;
+    top: 145px;
+
+    background: #FFFFFF;
+    border: 1px solid #595959;
+    border-radius: 10px;
+
+}
+
+/*바디 스타일*/
+#find_action_body_pwd{
+
+    display: none;
+
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 433px;
+    height: 350px;
+    left: 60px;
+    top: 145px;
+
+    background: #FFFFFF;
+    border: 1px solid #595959;
+    border-radius: 10px;
+
+}
+
+/*아이디 찾기 헤더*/
+#find_id_header{
+    position: absolute;
+    width: 216px;
+    height: 38px;
+    left: 60px;
+    top: 145px;
+
+    background: #92E2F8;
+    border: 1px solid #595959;
+    box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 10px 0px 0px 0px;
+
+    color: white;
+    text-decoration-line: underline;
+    align-content: center;
+    text-align: center;
+    font-size: 18px;
+}
+
+/*비밀번호 찾기 헤더*/
+#find_pwd_header{
+
+    position: absolute;
+    width: 216px;
+    height: 38px;
+    left: 275px;
+    top: 145px;
+
+    background: #FFFFFF;
+    border: 1px solid #595959;
+    border-radius: 0px 10px 0px 0px;
+
+    align-content: center;
+    text-align: center;
+    font-size: 18px;
+}
+
+/*id 찾기 안내 메세지*/
+#guideMessage_id{
+    position: absolute;
+    left: 20px;
+    top: 48px;
+
+    font-size: 18px;
+    font-weight: 800;
+}
+
+/*pwd 찾기 안내 메세지*/
+#guideMessage_pwd{
+
+    position: absolute;
+    left: 20px;
+    top: 48px;
+
+    font-size: 18px;
+    font-weight: 800;
+}
+
+/*pwd 찾기 이메일 안내 메세지*/
+#guideMessage_pwd_email{
+
+    display: none;
+
+    position: absolute;
+    left: 20px;
+    top: 123px;
+
+    font-size: 18px;
+    font-weight: 800;
+}
+
+/*id 찾기 이메일 입력창*/
+#find_id_by_email_area{
+    position: absolute;
+    left: 35px;
+    top: 88px;
+}
+
+/*id 찾기 이메일 코드 입력창*/
+#find_id_by_emailCode_area{
+    position: absolute;
+    left: 35px;
+    top: 121px;
+    /*    입력창이랑 33px*/
+}
+
+/*비밀번호 찾기 이메일 입력창*/
+#find_pwd_by_email_area{
+    display: none;
+
+    position: absolute;
+    left: 35px;
+    top: 153px;
+}
+
+/*비밀번호 찾기 이메일 코드 입력창*/
+#find_pwd_by_emailCode_area{
+
+    display: none;
+
+    position: absolute;
+    left: 35px;
+    top: 186px;
+/*    입력창이랑 33px*/
+}
+
+/*비밀번호 찾기 아이디 입력창*/
+#find_pwd_by_id_area{
+    position: absolute;
+    left: 35px;
+    top: 80px;
+}
+
+/*비밀번호 찾기 아이디 유효성 메세지*/
+#idMessage{
+    position: absolute;
+    left: 35px;
+    top: 108px;
+
+    font-size: 12px;
+}
+
+/*로그인으로 버튼*/
+#for_login_btn{
+    display: none;
+
+    position: absolute;
+    width: 177px;
+    height: 40px;
+    left: 188px;
+    top: 521px;
+
+    background: #92E2F8;
+    border-radius: 10px;
+    align-content: center;
+    text-align: center;
+    font-weight: 800;
+}
+
+/*결과 반환창*/
+#result_area{
+    position: absolute;
+    width: 413px;
+    height: 100px;
+    left: 69px;
+    top: 380px;
+
+    border-radius: 10px;
+    border: 1px solid black;
+
+    align-content: center;
+    text-align: center;
+    font-weight: 800;
+    font-size: 20px;
+}
+
+#header{
+    position: absolute !important;
+}
+
+/* 배경화면 */
+#find_background{
+    position: absolute;
+    width: 1919px;
+    height: 851px;
+    top: 100px;
+    left: -1px;
+    overflow:hidden;
+
+    border: 1px solid black;
+}

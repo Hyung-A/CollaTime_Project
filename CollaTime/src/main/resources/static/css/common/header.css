@@ -5,11 +5,13 @@ body {
 }
 
 #header {
+    /*position: absolute;*/
     width: 1920px;
     height: 100px;
     position: fixed;
     border-bottom: solid;
     border-color: #92E2F8;
+    background-color: white;
 }
 
 #header-logo-img {
