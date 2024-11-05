@@ -18,4 +18,6 @@ public interface ProjectMapper {
     void insertProject(ProjectDTO projectDTO);
 
     void updateProject(ProjectDTO projectDTO);
+
+    void deleteProject(ProjectDTO projectDTO);
 }

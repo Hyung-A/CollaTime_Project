@@ -34,4 +34,7 @@ public class ProjectService {
         projectMapper.updateProject(projectDTO);
     }
 
+    public void deleteProject(ProjectDTO projectDTO) {
+        projectMapper.deleteProject(projectDTO);
+    }
 }

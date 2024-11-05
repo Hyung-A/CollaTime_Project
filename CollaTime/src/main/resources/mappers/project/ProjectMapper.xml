@@ -76,6 +76,12 @@
 
          WHERE PROJECT_NO = #{ projectNo }
     </update>
+
+    <delete id="deleteProject" parameterType="com.ohgiraffers.collatime.project.model.dto.ProjectDTO">
+        DELETE FROM PROJECT
+        WHERE PROJECT_NO = #{ projectNo }
+    </delete>
+
 </mapper>
 
 

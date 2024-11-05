@@ -6,6 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 import static java.lang.Integer.parseInt;
 
@@ -33,7 +36,6 @@ public class ProjectController {
     }
 
     @PostMapping("/projectMain")
-
     public ModelAndView insertProject(ModelAndView mv, @ModelAttribute ProjectDTO projectDTO){
 
         System.out.println(projectDTO);
@@ -51,7 +53,7 @@ public class ProjectController {
     @GetMapping(value="select-project", produces = "application/json; charset=UTF-8")
     @ResponseBody
     public ProjectDTO selectSpecificProject(ModelAndView mv, @ModelAttribute ProjectDTO projectDTO){
-        System.out.println("1234 = " + projectDTO);
+        System.out.println("select/update = " + projectDTO);
         projectDTO = projectService.getProject(projectDTO);
         mv.addObject("select", projectService.getProject(projectDTO));
         mv.setViewName("/project/projectMain");
@@ -67,6 +69,17 @@ public class ProjectController {
         mv.setViewName("/project/projectMain");
         return mv;
     }
+
+//    @PostMapping("/delete-project")
+//    public ModelAndView deleteProject(ModelAndView mv, @ModelAttribute ProjectDTO projectDTO){
+//        System.out.println(projectDTO);
+//        projectService.deleteProject(projectDTO);
+//        mv.addObject("projectList", projectService.getList());
+//        mv.setViewName("/project/projectMain");
+//        return mv;
+//    }
+
+
 
 
 }

@@ -8,8 +8,9 @@
   <link rel="stylesheet" href="/css/project/modalCreateOrJoin.css">
   <link rel="stylesheet" href="/css/project/modalCreateProject.css">
   <link rel="stylesheet" href="/css/project/modalInviteMember.css">
-  <link rel="stylesheet" href="/css/project/modalSelectProject.css">
+<!--  <link rel="stylesheet" href="/css/project/modalSelectProject.css">-->
   <link rel="stylesheet" href="/css/project/modalUpdateProject.css">
+  <link rel="stylesheet" href="/css/project/modalDeleteProject.css">
 </head>
 <body>
 <!-- 프로젝트 메인 화면 -->
@@ -337,7 +338,7 @@
     inviteMemberModal.style.display = "none";
   }
 </script>
-<!-- ----------------------------------------- 프로젝트 내용 조회 모달 ----------------------------------------- -->
+<!-- ----------------------------------------- 프로젝트 내용 조회 및 수정 모달 ----------------------------------------- -->
 <!--<form action="project/selectProject" th:each="project : ${ select }" style="z-index: 5">-->
 <!-- 방법1 -->
 <form action="/project/update-project" method="post">
@@ -382,7 +383,7 @@
                 <button type="button" id="updateInviteMember" name="updateMember">+</button>
             </div>
             <button type="button" id="updateCancel">취소</button>
-            <button type="submit" id="updateConfirm" >수정</button>
+            <button type="submit" id="updateConfirm">수정</button>
     </div>
 </form>
 <script>
@@ -445,7 +446,6 @@
       })
   }
 
-
   // /* x버튼 취소 버튼 클릭 시 모달 없애기 */
   const updateCancel = document.getElementById("updateCancel");
   updateCancel.addEventListener("click", function(){
@@ -456,21 +456,64 @@
       updateProjectModal.style.display = "none";
   });
 
+</script>
 
+<!-- ---------------------------------- 프로젝트 삭제 알림 모달 ---------------------------------- -->
+<!-- 레이아웃 및 헤더 -->
+<form action="/project/delete-project" method="post">
+    <div id="deleteModal">
+        <div id="deleteHeader">
+            <div id="deleteXButton">X</div>
+        </div>
+        <!-- 내용 -->
+        <div id="deleteBody">
+            <input type="text" style="display: none" id="deleteProjectNo" name="projectNo"/>
+            <img src="/css/project/image/exclamation%20mark.png" id="deleteAlertIcon" alt="경고 느낌표">
+            <span id="deleteProjectName" name="projectName"></span>
+            <span id="deleteAlertText" name="projectName">을(를) 삭제하시겠습니까?</span>
+        </div>
+        <button type="button" id="deleteCancel">취소</button>
+        <button type="submit" id="deleteConfirm">삭제</button>
+    </div>
+</form>
+<script>
 
+    function deleteProject(projectNo){
+        fetch("/project/select-project?projectNo=" + projectNo + "")
+            .then(res => res.json())
+            .then(data =>{
+                console.log(data);
+                let projectName = document.querySelector("#deleteProjectName");
+                projectName.value = data.projectName;
+                let deleteProjectNo = document.getElementById("deleteProjectNo");
+                deleteProjectNo.value = data.projectNo;
+            })
+            .catch(error => console.log(error));
+    }
 
-  /* 카테고리 부분 선택 시 버튼 색상 변경 */
-  // let updateCategoryList = document.querySelectorAll(".updateCategory");
-  // let updateCategoryLabelList = document.querySelectorAll(".updateCategoryLabel");
-  //
-  // for(let i = 0; i < updateCategoryList.length; i++){
-  //     updateCategoryList[i].addEventListener("click", function(){
-  //         updateCategoryLabelList[i].style.background = "#92E2F8";
-  //     });
-  //     updateCategoryList[i].addEventListener("blur", function(){
-  //         updateCategoryLabelList[i].style.background = "#FFFFFF";
-  //     });
-  // }
+    /* 삭제하기 클릭 시 모달 띄우기 */
+    const $delete = document.querySelectorAll("#projectDelete");
+    const $deleteModal = document.getElementById("deleteModal");
+    // const projectNo = document.querySelectorAll("#projectNo");
+    $deleteModal.style.display = "none";
+    for(let i = 0; i < createdProjectFolder.length; i++) {
+        $delete[i].addEventListener("click", function () {
+            deleteProject(projectNo[i].value);
+            console.log(projectNo[i].value);
+            $deleteModal.style.display = "";
+        });
+    }
+
+    // /* x버튼 취소 버튼 클릭 시 모달 없애기 */
+    const deleteCancel = document.getElementById("deleteCancel");
+    deleteCancel.addEventListener("click", function(){
+        $deleteModal.style.display = "none";
+    });
+    const deleteXButton = document.getElementById("deleteXButton");
+    deleteXButton.addEventListener("click", function(){
+        $deleteModal.style.display = "none";
+    });
+
 </script>
 </body>
 </html>

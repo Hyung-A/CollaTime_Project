@@ -1,0 +1,137 @@
+@charset "UTF-8";
+
+#deleteModal{
+
+    position: absolute;
+    width: 554px;
+    height: 284px;
+    left: 683px;
+    top: 260px;
+
+    background: #FFFFFF;
+    border:1px solid #595959;
+    /*box-shadow: 0px 3.02732px 3.02732px rgba(0, 0, 0, 0.25);*/
+    border-radius: 25px;
+
+
+}
+
+#deleteHeader{
+
+    position: absolute;
+    width: 554px;
+    height: 51px;
+
+    background: #92E2F8;
+    border-bottom: 1px solid #282828;
+    border-radius: 25px 25px 0px 0px;
+
+
+}
+
+#deleteXButton{
+
+    width: 30px;
+    height: 34px;
+    font-size: 30px;
+    position: absolute;
+    left: 506px;
+    top: 5px;
+
+}
+
+#deleteBody{
+
+    position: absolute;
+    width: 554px;
+    height: 170px;
+    top: 52px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#deleteAlertIcon{
+
+    position: absolute;
+    width: 29px;
+    top: 50px;
+    left: 67px;
+    height: 70px;
+
+}
+
+#deleteProjectName{
+
+    position: absolute;
+    width: 360px;
+    left:106px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 33px;
+    border: solid 2px red;
+
+    color: #282828;
+
+}
+
+#deleteAlertText{
+
+    position: absolute;
+    width: 360px;
+    left:106px;
+
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 33px;
+
+    color: #282828;
+}
+
+/* 취소 버튼 */
+#deleteCancel{
+
+    position: absolute;
+    width: 99px;
+    height: 31px;
+    left: 286px;
+    top: 226px;
+    border-radius: 25px;
+    background: #DFF7FD;
+    border: #DFF7FD;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 24px;
+    vertical-align: center;
+    text-align: center;
+
+    color: #282828;
+
+}
+
+/* 확인 버튼 */
+#deleteConfirm{
+
+    position: absolute;
+    width: 112px;
+    height: 35px;
+    left: 414px;
+    top: 226px;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 24px;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.03em;
+    border-radius: 25px;
+    background: #92E2F8;
+    border: #92E2F8;
+
+    color: #282828;
+
+}
+
+
