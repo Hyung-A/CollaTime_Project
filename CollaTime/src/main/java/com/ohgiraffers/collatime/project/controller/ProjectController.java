@@ -50,12 +50,10 @@ public class ProjectController {
     @GetMapping(value="selectProject", produces = "application/json; charset=UTF-8")
     @ResponseBody
     public ProjectDTO selectSpecificProject(ModelAndView mv, @ModelAttribute ProjectDTO projectDTO){
-//        System.out.println("1234 = " + projectDTO);
-//        System.out.println("234 = " + projectService.getList());
+        System.out.println("1234 = " + projectDTO);
         projectDTO = projectService.getProject();
         mv.addObject("select", projectService.getProject());
         mv.setViewName("/project/ProjectMain");
-        System.out.println(projectDTO);
         return projectDTO;
 
     }
