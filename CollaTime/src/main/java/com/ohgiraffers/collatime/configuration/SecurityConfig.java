@@ -47,7 +47,7 @@ public class SecurityConfig {
         //        요청 권한 체크
         http.authorizeHttpRequests(auth -> {
             //            권한이 없어도 들어갈 수 있는 페이지
-            auth.requestMatchers("/auth/login", "user/signup", "user/check", "/", "main").permitAll();
+            auth.requestMatchers("/auth/login", "user/signup", "user/check", "/", "main", "mail/*").permitAll();
             //            admin 권한이 있어야 들어갈 수 있음
             auth.requestMatchers("/admin/*").hasAnyAuthority(UserRole.ADMIN.getRole());
             //            user 권한이 있어야 들어갈 수 있는 페이지

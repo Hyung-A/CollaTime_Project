@@ -24,28 +24,7 @@ public class UserService {
     public int registUser(SignupDTO signupDTO){
         System.out.println(signupDTO);
 
-        UserDTO userDTO = new UserDTO();
-//        userDTO.setUserNo(0);
-//        userDTO.setUserId(signupDTO.getUserId());
         signupDTO.setUserPwd((passwordEncoder.encode(signupDTO.getUserPwd())));
-//        userDTO.setUserEmail(signupDTO.getUserEmail());
-//        userDTO.setUserName(signupDTO.getUserName());
-//        userDTO.setUserNickname(signupDTO.getUserNickname());
-//        userDTO.setUserPicture("a1");
-//        userDTO.setUserColor("red");
-//        userDTO.setUserRole(USER);
-
-
-        System.out.println(userDTO);
-        System.out.println(userDTO.getUserNo());
-        System.out.println(userDTO.getUserId());
-        System.out.println(userDTO.getUserPwd());
-        System.out.println(userDTO.getUserEmail());
-        System.out.println(userDTO.getUserName());
-        System.out.println(userDTO.getUserNickname());
-        System.out.println(userDTO.getUserPicture());
-        System.out.println(userDTO.getUserColor());
-        System.out.println(userDTO.getUserRole());
 
         int result = 0;
 
