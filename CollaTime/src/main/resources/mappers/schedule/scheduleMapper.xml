@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.collatime.schedule.model.dao.ScheduleMapper">
+
+    <resultMap id="scheduleResultMap" type="com.ohgiraffers.collatime.schedule.model.dto.ScheduleDTO">
+        <id property="scheduleNo" column="CT_SCHEDULE_NO"/>
+        <result property="projectNo" column="PROJECT_NO"/>
+        <result property="scheduleStartDate" column="CT_SCHEDULE_START_DATE"/>
+        <result property="scheduleEndDate" column="CT_SCHEDULE_END_DATE"/>
+        <result property="scheduleContent" column="CT_SCHEDULE_CONTENT"/>
+        <result property="scheduleTitle" column="CT_SCHEDULE_TITLE"/>
+        <result property="scheduleCreator" column="CT_SCHEDULE_CREATOR"/>
+        <result property="ColorCode" column="COLOR_CODE"/>
+    </resultMap>
+</mapper>

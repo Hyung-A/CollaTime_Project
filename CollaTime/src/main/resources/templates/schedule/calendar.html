@@ -2,88 +2,194 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>calendar</title>
-    <link rel="stylesheet" href="/static/css/schedule/calendar.css">
-    <link rel="stylesheet" href="/static/css/common/header.css">
+    <title>통합된 달력 페이지</title>
+
+    <link rel="stylesheet" href="/css/schedule/calendar.css">
+    <link rel="stylesheet" href="/css/common/header.css">
+    <link rel="stylesheet" href="/css/schedule/empty.css">
+    <link rel="stylesheet" href="/css/schedule/basic.css">
+    <link rel="stylesheet" href="/css/schedule/details.css">
+    <link rel="stylesheet" href="/css/schedule/delete.css">
+    <link rel="stylesheet" href="/css/schedule/makeschedule.css">
+    <link rel="stylesheet" href="/css/schedule/deletecheck.css">
+    <link rel="stylesheet" href="/css/common/middlemodal.css">
 </head>
 <body>
-<div id="header">
-    <div id="header-logo">
-        <img id="header-logo-img" src="/static/css/common/image/CollaTime-Logo.png">
-        <button id="sign-up">로그아웃</button>
+<div th:include="common/header.html"></div>
+
+<!-- 메인 레이아웃 -->
+<div class="main-layout">
+    <!-- 왼쪽 사이드바 -->
+    <div id="leftBarLayout">
+        <div id="blueBackground">
+            <div id="profile">프로필 사진</div>
+            <p id="nickname">사용자 이름</p>
+            <p id="mypage">마이페이지</p>
+            <div id="whiteBar1"></div>
+            <p id="textMyProject">My Project</p>
+            <!-- 추가 프로젝트와 사이드바 내용 여기에 추가 -->
+        </div>
     </div>
-</div>
-<div id="leftBarLayout">
-    <div id="blueBackground">
-        <div id="profile"></div>
-        <div id="nickname">닉네임 나중에 바꾸기</div>
-        <div id="mypage">마이페이지</div>
-        <div id="whiteBar1"></div>
-        <span id="textMyProject">My Project</span>
-        <div id="first">
-            <!-- 여기부터 하기  -->
-            <img src="/static/css/project/image/folderIcon.png" id="firstFolderIcon">
-            <span id="firstProjectName">Java 실습</span>
-        </div>
-        <div id="second">
-            <img src="/static/css/project/image/folderIcon.png" id="secondFolderIcon">
-            <span id="secondProjectName">백엔드 과제</span>
-        </div>
-        <div id="third">
-            <img src="/static/css/project/image/folderIcon.png" id="thirdFolderIcon">
-            <span id="thirdProjectName">프론트엔드 과제</span>
-        </div>
-        <div id="fourth">
-            <img src="/static/css/project/image/folderIcon.png" id="fourthFolderIcon">
-            <span id="fourthProjectName">변경예정</span>
-        </div>
-        <div id="fifth">
-            <img src="/static/css/project/image/folderIcon.png" id="fifthFolderIcon">
-            <span id="fifthProjectName">변경예정</span>
-        </div>
-        <div id="sixth">
-            <img src="/static/css/project/image/folderIcon.png" id="sixthFolderIcon">
-            <span id="sixthProjectName">변경예정</span>
-        </div>
-        <div id="seventh">
-            <img src="/static/css/project/image/folderIcon.png" id="seventhFolderIcon">
-            <span id="seventhProjectName">변경예정</span>
-        </div>
-        <div id="eighth">
-            <img src="/static/css/project/image/folderIcon.png" id="eighthFolderIcon">
-            <span id="eighthProjectName">변경예정</span>
-        </div>
-        <div id="whiteBar2"></div>
-        <div id="doInquiry">
-            <img src="/static/css/project/image/inquiryIcon.png" id="firstInquiry">
-            <span id="doInquiryText">문의하기</span>
-        </div>
-        <div id="authority">
-            <img src="/static/css/project/image/inquiryIcon.png" id="secondInquiry">
-            <span id="authorityText">권한 위임 요청</span>
+
+    <!-- 메인 달력 컨테이너 -->
+    <div class="calendar-container">
+        <!-- 새로 만든 메인 캘린더 div -->
+        <div class="main-calendar">
+            <div class="calendar">
+                <div class="header">
+                    <div class="year-month"></div>
+                    <div class="nav">
+                        <button class="nav-btn go-prev" onclick="prevMonth()">&lt;</button>
+                        <button class="nav-btn go-today" onclick="goToday()">Today</button>
+                        <button class="nav-btn go-next" onclick="nextMonth()">&gt;</button>
+                    </div>
+                </div>
+                <div class="main">
+                    <div class="days">
+                        <div class="day">일</div>
+                        <div class="day">월</div>
+                        <div class="day">화</div>
+                        <div class="day">수</div>
+                        <div class="day">목</div>
+                        <div class="day">금</div>
+                        <div class="day">토</div>
+                    </div>
+                    <div class="dates"></div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-<div id="calender-main">
-<div id="monthly-calenderBox">
-    <div id="sort-area">
-        <div id="year-month"></div>
-        <div id="date-view">
-            <span class="date">2024.10</span>
-            <button id="nav-btn-go-prev">&lt;</button>
-            <button id="nav-btn-go-next">&gt;</button>
-        </div>
-    </div>
-    <div id="grid-header">
-        <div id="sun" title="일">일</div>
-        <div id="monday" title="월">월</div>
-        <div id="tuesday" title="화">화</div>
-        <div id="wednesday" title="수">수</div>
-        <div id="thursday" title="목">목</div>
-        <div id="friday" title="금">금</div>
-        <div id="saturday" title="토">토</div>
-    </div>
-</div>
-</div>
+
+<!-- 모달 창 -->
+<div th:include="schedule/empty.html" id="modalContent" style="display: none"></div>
+<!--<div id="modalContent" style="display: none;">-->
+<!--    <div id="middleModal">-->
+<!--        <div id="middleBlueHeader">-->
+<!--            <div id="middleXButton">X</div>-->
+<!--            <button id="plusList">-->
+<!--                <img src="/css/schedule/image/plusList.png">-->
+<!--            </button>-->
+<!--        </div>-->
+<!--        <div id="centeredContent">-->
+<!--            <img src="/css/schedule/image/emptycalendar.png" id="centerImage">-->
+<!--            <p id="centerText">일정을 등록하세요.</p>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<div th:include="schedule/makeschedule.html" style="display: none; position:absolute; z-index: 10" ></div>
+
+
+
+<script>
+    let date = new Date();
+
+    const renderCalender = () => {
+        const viewYear = date.getFullYear();
+        const viewMonth = date.getMonth();
+
+        document.querySelector('.year-month').textContent = `${viewYear}년 ${viewMonth + 1}월`;
+
+        const prevLast = new Date(viewYear, viewMonth, 0);
+        const thisLast = new Date(viewYear, viewMonth + 1, 0);
+
+        const PLDate = prevLast.getDate();
+        const PLDay = prevLast.getDay();
+
+        const TLDate = thisLast.getDate();
+        const TLDay = thisLast.getDay();
+
+        const prevDates = [];
+        const thisDates = [...Array(TLDate + 1).keys()].slice(1);
+        const nextDates = [];
+
+        if (PLDay !== 6) {
+            for (let i = 0; i < PLDay + 1; i++) {
+                prevDates.unshift(PLDate - i);
+            }
+        }
+
+        for (let i = 1; i < 7 - TLDay; i++) {
+            nextDates.push(i);
+        }
+
+        const dates = prevDates.concat(thisDates, nextDates);
+        const firstDateIndex = dates.indexOf(1);
+        const lastDateIndex = dates.lastIndexOf(TLDate);
+
+        dates.forEach((date, i) => {
+            const condition = i >= firstDateIndex && i < lastDateIndex + 1
+                ? 'this'
+                : 'other';
+            dates[i] = `<div class="date"><span class=${condition}>${date}</span></div>`;
+        });
+
+        document.querySelector('.dates').innerHTML = dates.join('');
+
+        const today = new Date();
+        if (viewMonth === today.getMonth() && viewYear === today.getFullYear()) {
+            for (let date of document.querySelectorAll('.this')) {
+                if (+date.innerText === today.getDate()) {
+                    date.classList.add('today');
+                    break;
+                }
+            }
+        }
+    };
+
+    renderCalender();
+
+    const prevMonth = () => {
+        date.setMonth(date.getMonth() - 1);
+        renderCalender();
+    };
+
+    const nextMonth = () => {
+        date.setMonth(date.getMonth() + 1);
+        renderCalender();
+    };
+
+    const goToday = () => {
+        date = new Date();
+        renderCalender();
+    };
+
+    // 날짜 클릭 시 모달을 열어주는 함수
+    function openModal() {
+        document.getElementById("modalContent").style.display = "flex";
+    }
+
+    // 모달 닫기 버튼 클릭 시 모달을 닫는 함수
+    function closeModal() {
+        document.getElementById("modalContent").style.display = "none";
+    }
+
+    // 모든 날짜 요소에 클릭 이벤트 추가
+    document.querySelectorAll('.date').forEach(date => {
+        date.addEventListener('click', openModal);
+    });
+
+    // X 버튼에 닫기 이벤트 추가
+    document.getElementById("middleXButton").addEventListener('click', closeModal);
+
+
+    // 두 번째 모달 열기
+    function openSecondModal() {
+        document.getElementById("makeScheduleModal").style.display = "flex";
+    }
+
+    // 두 번째 모달 닫기
+    function closeSecondModal() {
+        document.getElementById("makeScheduleModal").style.display = "none";
+    }
+
+    // plusList 버튼에 클릭 이벤트 추가
+    document.getElementById("plusList").addEventListener("click", openSecondModal);
+
+    // 두 번째 모달의 X 버튼에 닫기 이벤트 추가
+    document.getElementById("middleXButton").addEventListener("click", closeSecondModal);
+
+
+</script>
 </body>
 </html>
