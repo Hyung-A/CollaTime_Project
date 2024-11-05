@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>아이디/비밀번호 찾기</title>
+    <link rel="stylesheet" href="/css/common/middlemodal.css">
+    <link rel="stylesheet" href="/css/user/findIdAndPwd.css">
+</head>
+<body>
+<!--헤더-->
+<div th:replace="common/header.html"></div>
+
+<!--배경화면-->
+<div id="find_background">
+    <img id="find_background_img" src="/css/user/image/FizzyGroup.png">
+</div>
+<!--중간 모달창-->
+    <div id="middleModal">
+        <div id="middleBlueHeader"></div>
+        <!-- find 텍스트 -->
+        <div id="find_word">아이디/비밀번호 찾기</div>
+        <!--찾기 바디-->
+        <div id="find_action_body_id">
+            <div id="guideMessage_id">가입하실 때 사용하신 이메일을 입력해주세요.</div>
+
+            <!--  아이디 이메일 입력창 -->
+            <div id="find_id_by_email_area">
+                <input class="input" type="email" id="find_id_email_input" placeholder=" 이메일" name="userEmail">
+                <button id="send_code_id_email" class="btn" type="button">코드전송</button>
+            </div>
+
+            <!--  아이디 이메일 코드 입력창 -->
+            <div id="find_id_by_emailCode_area">
+                <input class="input" type="text" id="id_randomCode_input" placeholder=" 이메일 코드">
+                <button id="compare_code_id_email" class="btn" type="button">확인</button>
+            </div>
+
+        </div>
+        <div id="find_action_body_pwd">
+            <div id="guideMessage_pwd">가입하실 때 사용하신 아이디를 입력해주세요.</div>
+            <!--  아이디 입력창 -->
+            <div id="find_pwd_by_id_area">
+                <input class="input" type="text" id="find_pwd_by_id_input" placeholder=" 아이디" name="userId">
+                <button type="button" id="check_id_for_pwd" class="btn">확인</button>
+            </div>
+            <!--  아이디 유효성 메세지 -->
+            <div id="idMessage"></div>
+
+            <!-- 비밀번호 안내 메세지-->
+            <div id="guideMessage_pwd_email">가입하실 때 사용하신 이메일을 입력해주세요.</div>
+
+            <!-- 비밀번호 찾기 이메일 입력창 -->
+            <div id="find_pwd_by_email_area">
+                <input class="input" type="email" id="find_pwd_email_input" placeholder=" 이메일" name="userEmail">
+                <button id="send_code_pwd_email" class="btn" type="button">코드전송</button>
+            </div>
+
+            <!-- 비밀번호 찾기 이메일 코드 입력창 -->
+            <div id="find_pwd_by_emailCode_area">
+                <input class="input" type="text" id="pwd_randomCode_input" placeholder=" 이메일 코드">
+                <button id="compare_code_pwd_email" class="btn" type="button">확인</button>
+            </div>
+        </div>
+
+        <div id="result_area"></div>
+
+
+
+        <!--id 찾기 헤더-->
+        <div id="find_id_header">ID 찾기</div>
+        <!--pwd 찾기 헤더-->
+        <div id="find_pwd_header">비밀번호 찾기</div>
+        <!--  로그인으로 버튼 -->
+        <button type="button" id="for_login_btn">로그인으로</button>
+    </div>
+
+    <script>
+        const idHeader = document.getElementById('find_id_header');
+        const pwdHeader = document.getElementById('find_pwd_header');
+
+        const find_body_id = document.getElementById('find_action_body_id')
+        const find_body_pwd = document.getElementById('find_action_body_pwd')
+
+        // id 찾기 헤더
+        idHeader.addEventListener('click', ()=>{
+            idHeader.style.textDecorationLine = "underline";
+            idHeader.style.color = "white";
+            idHeader.style.boxShadow = "inset 0px 2px 2px rgba(0, 0, 0, 0.25)";
+            idHeader.style.backgroundColor = "#92E2F8"
+            pwdHeader.style.textDecorationLine = "none"
+            pwdHeader.style.backgroundColor = "white"
+            pwdHeader.style.boxShadow = "none"
+            pwdHeader.style.color = "black";
+            find_body_pwd.style.display = 'none'
+            find_body_id.style.display = 'flex'
+        })
+        // pwd 찾기 헤더
+        pwdHeader.addEventListener('click', ()=>{
+            pwdHeader.style.textDecorationLine = "underline";
+            pwdHeader.style.color = "white";
+            pwdHeader.style.boxShadow = "inset 0px 2px 2px rgba(0, 0, 0, 0.25)";
+            pwdHeader.style.backgroundColor = "#92E2F8"
+            idHeader.style.textDecorationLine = "none"
+            idHeader.style.backgroundColor = "white"
+            idHeader.style.boxShadow = "none"
+            idHeader.style.color = "black";
+            find_body_pwd.style.display = 'flex'
+            find_body_id.style.display = 'flex'
+        })
+
+        const sendCodeId = document.getElementById('send_code_id_email')
+        const checkEmailId = document.getElementById('find_id_email_input')
+        const checkMessage = document.getElementById('result_area');
+
+        // 해당 이메일의 아이디 값
+        let theId = "";
+
+        // 이메일로 코드 보내기
+        sendCodeId.addEventListener('click', sendCode);
+        function sendCode() {
+            fetch("/user/check")
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i][2] == checkEmailId.value) {
+                            checkMessage.style.color = 'black';
+                            checkMessage.innerText = '해당 이메일로 코드를 보냈습니다.';
+                            theId = data[i][0];
+                            console.log(theId)
+                            break;
+                        } else {
+                            checkMessage.style.color = 'red';
+                            checkMessage.innerText = '해당 이메일과 일치하는 아이디가 없습니다.';
+                        }
+                    }
+                    if (theId!="") {
+                        sendCodeId.disabled = true;
+                    }
+                })
+        }
+
+        let idInputCode = document.getElementById('id_randomCode_input');
+        let compareCodeIdBtn = document.getElementById('compare_code_id_email');
+
+        sendCodeId.addEventListener('mouseup', sendCodeCompare);
+
+
+        // 이메일 인증코드 비교
+        function sendCodeCompare() {
+            console.log(checkEmailId.value)
+            const mail = document.getElementById('find_id_email_input').value;
+            fetch('/mail/sendExistingMail', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(mail)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    console.log(data.code);
+                    compareCodeIdBtn.addEventListener('click', () => {
+                        if (idInputCode.value == data.code) {
+                            checkMessage.innerText = `가입하신 아이디는 ${theId} 입니다.`
+                        } else {
+                            checkMessage.style.color = 'red';
+                            checkMessage.innerText = '코드가 틀렸습니다.'
+                            sendCodeId.disabled = false;
+                        }
+                    })
+                })
+        }
+
+        // 이메일 값을 들고오기 위해서
+        let theEmail = "";
+
+        // 클릭 시 디스플레이 바꾸기 위해서
+
+        const pwdGuideArea = document.getElementById('guideMessage_pwd_email')
+        const pwdEmailArea = document.getElementById('find_pwd_by_email_area')
+        const pwdEmailCodeArea = document.getElementById('find_pwd_by_emailCode_area')
+
+        // 아이디 조회 눌렀을 때
+        document.getElementById("check_id_for_pwd").addEventListener('click', function () {
+            let checkId = document.getElementById('find_pwd_by_id_input').value;
+            let idMessage = document.getElementById('idMessage');
+                fetch("/user/check")
+                    .then(res => res.json())
+                    .then(data => {
+                        for (var i = 0; i < data.length; i++) {
+                            if (data[i][0] == checkId) {
+                                idMessage.style.color = 'green';
+                                idMessage.innerText = '존재하는 아이디입니다.';
+                                theEmail = data[i][2];
+                                pwdGuideArea.style.display = 'flex'
+                                pwdEmailArea.style.display = 'flex'
+                                pwdEmailCodeArea.style.display = 'flex'
+                                break;
+                            } else {
+                                idMessage.style.color = 'red';
+                                idMessage.innerText = '존재하지 않는 아이디입니다.';
+                            }
+                        }
+                    })
+        })
+
+        let checkEmailPwd = document.getElementById('find_pwd_email_input')
+        let sendCodePwd = document.getElementById('send_code_pwd_email')
+
+        sendCodePwd.addEventListener('click', () => {
+            console.log(theEmail)
+            if(checkEmailPwd.value == theEmail) {
+                checkMessage.style.color = 'black';
+                checkMessage.innerText = '해당 이메일로 코드를 보냈습니다.';
+                sendCodePwd.disabled = true;
+            }else {
+                checkMessage.style.color = 'red';
+                checkMessage.innerText = '이메일이 일치하지 않습니다.';
+            }
+        })
+
+        let compareCodePwdBtn = document.getElementById('compare_code_pwd_email');
+        compareCodePwdBtn.disabled = true;
+        let pwdInputCode = document.getElementById('pwd_randomCode_input');
+        sendCodePwd.addEventListener('mouseup', () => {
+            compareCodePwdBtn.disabled = false;
+            let mail = document.getElementById('find_pwd_email_input').value
+            fetch('/mail/sendExistingMail', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(mail)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    console.log(data.code);
+                    compareCodePwdBtn.addEventListener('click', () => {
+                        compareCodePwdBtn.disabled = true;
+                        checkMessage.innerText = `이메일을 보내는 중입니다.`;
+                        if (pwdInputCode.value == data.code) {
+                            fetch('/mail/sendNewPwdMail', {
+                                method: 'POST',
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify(mail)
+                            })
+                                .then(res => res.json())
+                                .then(data => {
+                                    if(data.code!=null){
+                                    checkMessage.style.color = 'black';
+                                    checkMessage.innerText = `${data.mail}\n으로 새로운 비밀번호를 보냈습니다.`;
+                                    compareCodePwdBtn.disabled = true;
+                                    }else {
+                                        checkMessage.style.color = 'red';
+                                        checkMessage.innerText = `예기치 못한 오류가 발생했습니다.\n고객센터에 문의해주세요.`
+                                        compareCodePwdBtn.disabled = true;
+                                    }
+                                })
+
+                        } else {
+                            checkMessage.style.color = 'red';
+                            checkMessage.innerText = '코드가 틀렸습니다.'
+                            sendCodePwd.disabled = false;
+                        }
+                    })
+                })
+        })
+    </script>
+
+
+
+
+</body>
+</html>

@@ -1,5 +1,6 @@
 package com.ohgiraffers.collatime.mail;
 
+import com.ohgiraffers.collatime.user.model.service.UserService;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,19 +12,20 @@ import org.springframework.stereotype.Service;
 import java.util.Random;
 
 @Service
-@Repository
 public class MailService {
 
-    @Autowired
-    private final JavaMailSender mailSender;
+    private JavaMailSender mailSender;
+
+    private UserService userService;
 
     @Autowired
-    private JavaMailSender javaMailSender;
+    public MailService(JavaMailSender mailSender, UserService userService) {
 
-    public MailService(JavaMailSender mailSender) {
         this.mailSender = mailSender;
+        this.userService = userService;
     }
 
+//    랜덤코드 함수 -> 사이트보고 참조함
     private String createCode(){
 
         int leftLimit = 48; // number '0'
@@ -50,14 +52,62 @@ public class MailService {
         return mimeMessage;
     }
 
+    private MimeMessage createPwdMessage(String mail, String code) throws MessagingException {
+
+
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+            mimeMessage.addRecipients(MimeMessage.RecipientType.TO, mail);
+            mimeMessage.setSubject("안녕하세요! 회원님의 CollaTime 새 비밀번호입니다.");
+            mimeMessage.setFrom("gudjtr097@gmail.com");
+            mimeMessage.setText(code);
+
+        return mimeMessage;
+    }
+
     public MailDTO sendMail(String data) throws MessagingException {
         String code = createCode();
         MailDTO mailDTO = new MailDTO();
         mailDTO.setMail(data);
         mailDTO.setCode(code);
         MimeMessage mailForm = createMimeMessage(data, code);
-        javaMailSender.send(mailForm);
+        mailSender.send(mailForm);
 
+        return mailDTO;
+    }
+
+    private String createPwd(){
+        String newPwd = "";
+
+        for(int i =0;i <= 8; i++) {
+            int categoryRandom = (int) (Math.random() * 5) + 1;
+            if (categoryRandom == 1) {
+                int signRandom = (int) (Math.random() * 6) + 33;
+                newPwd += (char)signRandom;
+            } else if (categoryRandom == 2 || categoryRandom == 3) {
+                int numRandom = (int) (Math.random() * 10) + 48;
+                newPwd += (char)numRandom;
+            } else {
+                int charRandom = (int) (Math.random() * 26) + 97;
+                newPwd += (char) charRandom;
+            }
+        }
+        System.out.println(newPwd);
+
+        return newPwd;
+    }
+
+    public MailDTO sendPwd(String mail) throws MessagingException {
+        String code = createPwd();
+        MailDTO mailDTO = new MailDTO();
+
+        int result = userService.modifyPwdByEmail(mail, code);
+
+        if(result>0){
+            mailDTO.setMail(mail);
+            mailDTO.setCode(code);
+            MimeMessage mailForm = createPwdMessage(mail, code);
+            mailSender.send(mailForm);
+        }
         return mailDTO;
     }
 }

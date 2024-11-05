@@ -56,4 +56,15 @@ public class UserService {
         }
 
     }
+
+    public int modifyPwdByEmail(String mail, String code) {
+
+        String pwd = passwordEncoder.encode(code);
+
+        System.out.println(mail);
+        System.out.println(code);
+        int result = userMapper.modifyPwdByEmail(mail, pwd);
+
+        return result;
+    }
 }

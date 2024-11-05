@@ -118,7 +118,7 @@
 /*아이디 유효성 메세지*/
 .id{
     position: absolute;
-    left: 63px;
+    left: 56px;
     top: 184px;
 }
 
@@ -355,4 +355,8 @@
 
 .modal{
     display: none;
+}
+
+#header{
+    position: absolute !important;
 }

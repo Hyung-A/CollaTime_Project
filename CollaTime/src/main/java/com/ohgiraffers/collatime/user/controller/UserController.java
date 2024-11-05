@@ -42,6 +42,12 @@ public class UserController {
         System.out.println("hi");
     }
 
+
+    @GetMapping("/findIdAndPwd")
+    public void findIdAndPwd() {
+        System.out.println("find");
+    }
+
     @PostMapping("/signup")
     public ModelAndView signup(ModelAndView mv, @ModelAttribute SignupDTO signupDTO) {
         System.out.println("hi post");
