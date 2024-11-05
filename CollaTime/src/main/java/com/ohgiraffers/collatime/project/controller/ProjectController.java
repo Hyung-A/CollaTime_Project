@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.List;
-
 import static java.lang.Integer.parseInt;
 
 @Controller
@@ -70,16 +68,32 @@ public class ProjectController {
         return mv;
     }
 
+    @PostMapping("/delete-project")
+    public ModelAndView deleteProject(ModelAndView mv, @ModelAttribute ProjectDTO projectDTO){
+        System.out.println(projectDTO);
+        projectService.deleteProject(projectDTO);
+        mv.addObject("projectList", projectService.getList());
+        mv.setViewName("/project/projectMain");
+        return mv;
+    }
+
 //    @PostMapping("/delete-project")
-//    public ModelAndView deleteProject(ModelAndView mv, @ModelAttribute ProjectDTO projectDTO){
-//        System.out.println(projectDTO);
+//    public List<ProjectDTO> deleteProject(ProjectDTO projectDTO, RedirectAttributes rttr){
 //        projectService.deleteProject(projectDTO);
-//        mv.addObject("projectList", projectService.getList());
-//        mv.setViewName("/project/projectMain");
-//        return mv;
+//        rttr.addFlashAttribute("delete", projectService.getList());
+//        return "redirect:/project/projectMain";
 //    }
-
-
+//
+//    @PostMapping("/regist")
+//    public String registMenu(MenuDTO newMenu, RedirectAttributes rttr){
+//
+//        menuService.registNewMenu(newMenu);
+//
+//        rttr.addFlashAttribute("successMessage", "신규 메뉴 등록에 성공하였습니다.");
+//
+//        return "redirect:/menu/list";
+//
+//    }
 
 
 }
