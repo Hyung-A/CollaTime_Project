@@ -37,7 +37,7 @@
              , PROJECT_END_DATE
              , PROJECT_CATEGORY_CODE
           FROM PROJECT
-         WHERE PROJECT_NO = 1
+         WHERE PROJECT_NO = 3
     </select>
 
     <insert id="insertProject" parameterType="com.ohgiraffers.collatime.project.model.dto.ProjectDTO">

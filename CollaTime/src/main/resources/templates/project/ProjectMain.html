@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/css/project/modalCreateOrJoin.css">
     <link rel="stylesheet" href="/css/project/modalCreateProject.css">
     <link rel="stylesheet" href="/css/project/modalInviteMember.css">
-    <link rel="stylesheet" href="/css/project/modalUpdateProject.css">
+    <link rel="stylesheet" href="/css/project/modalSelectProject.css">
 </head>
 <body>
 <!-- 프로젝트 메인 화면 -->
@@ -382,106 +382,116 @@
 <!--    </div>-->
 <!--</a>-->
 
-<a href="project/selectProject" style="z-index: 5">
-    <div id="modalUpdateProject">
-        <div id="updateProjectHead">
-            <div id="updateProjectXButton">X</div>
-        </div>
-        <!-- 내용 부분 -->
-        <div id="updateTitle">
-            <input type="text" id="updateInputTitle" placeholder="프로젝트 명을 입력해주세요." name="projectName">
-        </div>
-        <span id="updateSummaryStar" class="updateStar">*</span>
-        <label id="updateSummaryLabel" for="updateInputSummary">개요</label>
-        <div id="updateSummary">
-            <textarea id="updateInputSummary" maxlength="150" placeholder="프로젝트 개요를 적어주세요(최대 150자)." name="projectSummary"></textarea>
-        </div>
-        <span id="updatePurposeStar" class="updateStar">*</span>
-        <label id="updatePurposeLabel" for="updateInputPurpose">목적</label>
-        <div id="updatePurpose">
-            <textarea id="updateInputPurpose" maxlength="150" placeholder="프로젝트 목표 및 목적을 적어주세요(최대 150자)." name="projectPurpose"></textarea>
-        </div>
-        <span id="updateStartDateStar" class="updateStar">*</span>
-        <label for="updatePeriod" id="updatePeriodLabel">기간</label>
-        <div id="updatePeriod">
-            <input type="date" id="updateStartDate" min="2023-01-01" max="2077-06-20" name="startDate">
-            <div id="updateWave">~</div>
-            <input type="date" id="updateEndDate"  min="2023-01-01" max="2077-06-20" name="endDate">
-        </div>
-        <label for="updateCategory" id="updateCategoryLabel">분류</label>
-        <div id="updateCategory">
-            <input type="radio" id="updateBank" class="updateCategory" name="projectCategoryCode" value="CT1"/><label id="updateBankLabel" class="updateCategoryLabel" for="updateBank">은행</label>
-            <input type="radio" id="updateInsurance" class="updateCategory" name="projectCategoryCode" value="CT2"/><label id="updateInsuranceLabel" class="updateCategoryLabel" for="updateInsurance">보험사</label>
-            <input type="radio" id="updatePublicSector" class="updateCategory" name="projectCategoryCode" value="CT3"/><label id="updatePublicSectorLabel" class="updateCategoryLabel" for="updatePublicSector">공공부문</label>
-            <input type="radio" id="updateWeb" class="updateCategory" name="projectCategoryCode" value="CT4"/><label id="updateWebLabel" class="updateCategoryLabel" for="updateWeb">웹포털</label>
-            <input type="radio" id="updateApplication" class="updateCategory" name="projectCategoryCode" value="CT5"/><label id="updateApplicationLabel" class="updateCategoryLabel" for="updateApplication">앱개발</label>
-            <input type="radio" id="updateEtc" class="updateCategory" name="projectCategoryCode" value="CT6"/><label id="updateEtcLabel" class="updateCategoryLabel" for="updateEtc">기타</label>
-        </div>
-        <span id="updateMemberStar" class="updateStar">*</span>
-        <label for="updateMember" id="updateMemberLabel">인원초대</label>
-        <div id="updateMember">
-            <button type="button" id="updateInviteMember" name="updateMember">+</button>
-        </div>
-        <button type="button" id="updateCancel">취소</button>
-        <button type="submit" id="updateConfirm">생성</button>
-    </div>
-</a>
+<!--<a href="project/selectProject">-->
+<!--    <div id="modalSelectProject">-->
+<!--        <div id="selectProjectHead">-->
+<!--            <div id="selectProjectXButton">X</div>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; 내용 부분 &ndash;&gt;-->
+<!--        <div id="selectTitle">-->
+<!--            <div id="selectInputTitle" name="projectName"></div>-->
+<!--        </div>-->
+<!--        <label id="selectSummaryLabel" for="selectInputSummary">개요</label>-->
+<!--        <div id="selectSummary">-->
+<!--            <div id="selectInputSummary" name="projectSummary"></div>-->
+<!--        </div>-->
+<!--        <label id="selectPurposeLabel" for="selectInputPurpose">목적</label>-->
+<!--        <div id="selectPurpose">-->
+<!--            <div id="selectInputPurpose" name="projectPurpose"></div>-->
+<!--        </div>-->
+<!--        <label for="selectPeriod" id="selectPeriodLabel">기간</label>-->
+<!--        <div id="selectPeriod">-->
+<!--            <div id="selectStartDate" name="startDate"></div>-->
+<!--            <div id="selectWave">~</div>-->
+<!--            <div id="selectEndDate" name="endDate"></div>-->
+<!--        </div>-->
+<!--        <label for="selectCategory" id="selectCategoryLabel">분류</label>-->
+<!--        <div id="selectCategory">-->
+<!--            <div id="selectBank" class="selectCategory" name="projectCategoryCode" value="CT1">은행</div>-->
+<!--            <div id="selectInsurance" class="selectCategory" name="projectCategoryCode" value="CT2">보험사</div>-->
+<!--            <div id="selectPublic" class="selectCategory" name="projectCategoryCode" value="CT3">공공부문</div>-->
+<!--            <div id="selectWeb" class="selectCategory" name="projectCategoryCode" value="CT4">웹포털</div>-->
+<!--            <div id="selectApplication" class="selectCategory" name="projectCategoryCode" value="CT5">앱개발</div>-->
+<!--            <div id="selectEtc" class="selectCategory" name="projectCategoryCode" value="CT6">기타</div>-->
+<!--&lt;!&ndash;            <input type="radio" id="updateBank" class="updateCategory" name="projectCategoryCode" value="CT1"/><label id="updateBankLabel" class="updateCategoryLabel" for="updateBank">은행</label>&ndash;&gt;-->
+<!--&lt;!&ndash;            <input type="radio" id="updateInsurance" class="updateCategory" name="projectCategoryCode" value="CT2"/><label id="updateInsuranceLabel" class="updateCategoryLabel" for="updateInsurance">보험사</label>&ndash;&gt;-->
+<!--&lt;!&ndash;            <input type="radio" id="updatePublicSector" class="updateCategory" name="projectCategoryCode" value="CT3"/><label id="updatePublicSectorLabel" class="updateCategoryLabel" for="updatePublicSector">공공부문</label>&ndash;&gt;-->
+<!--&lt;!&ndash;            <input type="radio" id="updateWeb" class="updateCategory" name="projectCategoryCode" value="CT4"/><label id="updateWebLabel" class="updateCategoryLabel" for="updateWeb">웹포털</label>&ndash;&gt;-->
+<!--&lt;!&ndash;            <input type="radio" id="updateApplication" class="updateCategory" name="projectCategoryCode" value="CT5"/><label id="updateApplicationLabel" class="updateCategoryLabel" for="updateApplication">앱개발</label>&ndash;&gt;-->
+<!--&lt;!&ndash;            <input type="radio" id="updateEtc" class="updateCategory" name="projectCategoryCode" value="CT6"/><label id="updateEtcLabel" class="updateCategoryLabel" for="updateEtc">기타</label>&ndash;&gt;-->
+<!--        </div>-->
+<!--        <label for="selectMember" id="selectMemberLabel">팀원</label>-->
+<!--        <div id="selectMember">-->
+<!--            <div id="selectInvitedMember" name="selectedMember">+</div>-->
+<!--        </div>-->
+<!--        <button type="button" id="selectCancel">취소</button>-->
+<!--        <button type="submit" id="selectConfirm">수정하기</button>-->
+<!--    </div>-->
+<!--</a>-->
 
-<script>
+<!--<script>-->
 
-    /* 정보 비동기로 가져오기 */
+<!--    /* 정보 비동기로 가져오기 */-->
 
-    fetch("/project/selectProject")
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-                let $projectName = document.getElementById("updateInputTitle");
-                $projectName.innerHTML = data.projectName;
-                let $projectSummary = document.getElementById("updateInputSummary");
-                $projectSummary.innerText = data.projectSummary;
-                let $projectPurpose = document.getElementById("updateInputPurpose");
-                $projectPurpose.innerText = data.projectPurpose;
-                let $startDate = document.getElementById("updateStartDate");
-                $startDate.content = data.startDate;
-                let $endDate = document.getElementById("updateEndDate");
-                $endDate.content = data.endDate;
-                let $projectCategory = document.getElementById("updateCategory");
-                $projectCategory.style = data.projectCategoryCode;
-        });
+<!--    fetch("/project/selectProject")-->
+<!--        .then(res => res.json())-->
+<!--        .then(data => {-->
+<!--            console.log(data);-->
+<!--                let $projectName = document.querySelector("#selectInputTitle");-->
+<!--                $projectName.textContent = data.projectName;-->
+<!--                // $projectName.textContent.style.color = "#282828";-->
+<!--                let $projectSummary = document.getElementById("selectInputSummary");-->
+<!--                $projectSummary.innerText = data.projectSummary;-->
+<!--                let $projectPurpose = document.getElementById("selectInputPurpose");-->
+<!--                $projectPurpose.innerText = data.projectPurpose;-->
+<!--                let $startDate = document.getElementById("selectStartDate");-->
+<!--                $startDate.content = Date.parse(data.startDate);-->
+<!--                let $endDate = document.getElementById("selectEndDate");-->
+<!--                $endDate.content = Date.parse(data.endDate);-->
+<!--                let $category = document.querySelectorAll("#selectCategory");-->
+<!--                $category.innerText = data.projectCategoryCode;-->
+<!--                // let $categoryArray = document.querySelectorAll(".selectCategory");-->
+<!--                // for(let i = 0; i < $categoryArray.length; i++) {-->
+<!--                //     if ($categoryArray[i].value === data.projectCategoryCode) {-->
+<!--                //         $categoryArray.style.background = "#92E2F8";-->
+<!--                //     }-->
+<!--                // }-->
+<!--        })-->
+<!--        .catch(error => console.log(error));-->
 
-    /* 프로젝트 정보 수정 모달 띄우기 */
-    const updateProjectModal = document.getElementById("modalUpdateProject");
-    updateProjectModal.style.display = "none";
-    const update = document.querySelectorAll("#projectUpdate");
-    for(let i = 0; i < createdProjectFolder.length; i++) {
-        update[i].addEventListener("click", function () {
-            updateProjectModal.style.display = "";
-        });
-    }
+<!--    /* 프로젝트 정보 수정 모달 띄우기 */-->
+<!--    const selectProjectModal = document.getElementById("modalSelectProject");-->
+<!--    selectProjectModal.style.display = "none";-->
+<!--    const select = document.querySelectorAll("#projectUpdate");-->
+<!--    for(let i = 0; i < createdProjectFolder.length; i++) {-->
+<!--        select[i].addEventListener("click", function () {-->
+<!--            selectProjectModal.style.display = "";-->
+<!--        });-->
+<!--    }-->
 
-    /* x버튼 취소 버튼 클릭 시 모달 없애기 */
-    // const updateCancel = document.getElementById("updateCancel");
-    // updateCancel.addEventListener("click", function(){
-    //     updateProjectModal.style.display = "none";
-    // });
-    const updateProjectXButton = document.getElementById("updateProjectXButton");
-    updateProjectXButton.addEventListener("click", function(){
-        updateProjectModal.style.display = "none";
-    });
+<!--    /* x버튼 취소 버튼 클릭 시 모달 없애기 */-->
+<!--    const updateCancel = document.getElementById("updateCancel");-->
+<!--    updateCancel.addEventListener("click", function(){-->
+<!--        updateProjectModal.style.display = "none";-->
+<!--    });-->
+<!--    const selectProjectXButton = document.getElementById("selectProjectXButton");-->
+<!--    selectProjectXButton.addEventListener("click", function(){-->
+<!--        selectProjectModal.style.display = "none";-->
+<!--    });-->
 
 
-    /* 카테고리 부분 선택 시 버튼 색상 변경 */
-    let updateCategoryList = document.querySelectorAll(".updateCategory");
-    let updateCategoryLabelList = document.querySelectorAll(".updateCategoryLabel");
+<!--    /* 카테고리 부분 선택 시 버튼 색상 변경 */-->
+<!--    let selectCategoryList = document.querySelectorAll(".selectCategory");-->
+<!--    let selectCategoryLabelList = document.querySelectorAll(".selectCategoryLabel");-->
 
-    for(let i = 0; i < updateCategoryList.length; i++){
-        updateCategoryList[i].addEventListener("click", function(){
-            updateCategoryLabelList[i].style.background = "#92E2F8";
-        });
-        updateCategoryList[i].addEventListener("blur", function(){
-            updateCategoryLabelList[i].style.background = "#FFFFFF";
-        });
-    }
-</script>
+<!--    for(let i = 0; i < selectCategoryList.length; i++){-->
+<!--        selectCategoryList[i].addEventListener("click", function(){-->
+<!--            selectCategoryLabelList[i].style.background = "#92E2F8";-->
+<!--        });-->
+<!--        selectCategoryList[i].addEventListener("blur", function(){-->
+<!--            selectCategoryLabelList[i].style.background = "#FFFFFF";-->
+<!--        });-->
+<!--    }-->
+<!--</script>-->
 </body>
 </html>
