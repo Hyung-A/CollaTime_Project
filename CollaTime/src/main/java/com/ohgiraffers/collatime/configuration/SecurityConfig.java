@@ -62,7 +62,7 @@ public class SecurityConfig {
             //            비밀번호 파라미터 키 지정
             login.passwordParameter("pass");
             //            로그인에 성공했을 때 들어갈 기본 페이지
-//            login.defaultSuccessUrl("/project/projectMain");
+//            login.defaultSuccessUrl("/project/projectmain");
             //            로그인 성공 핸들러
             login.successHandler(authSuccessHandler);
             //            로그인 실패 핸들러
