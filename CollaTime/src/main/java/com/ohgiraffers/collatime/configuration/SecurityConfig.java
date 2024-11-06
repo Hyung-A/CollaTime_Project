@@ -47,11 +47,11 @@ public class SecurityConfig {
         //        요청 권한 체크
         http.authorizeHttpRequests(auth -> {
             //            권한이 없어도 들어갈 수 있는 페이지
-            auth.requestMatchers("/auth/*", "user/signup", "user/check", "/", "main", "mail/*", "/user/findIdAndPwd").permitAll();
+            auth.requestMatchers("/auth/*", "user/signup", "user/check", "/", "main", "mail/*", "/user/findidandpwd").permitAll();
             //            admin 권한이 있어야 들어갈 수 있음
             auth.requestMatchers("/admin/*").hasAnyAuthority(UserRole.ADMIN.getRole());
             //            user 권한이 있어야 들어갈 수 있는 페이지
-            auth.requestMatchers("/user/*","/project/*", "/schedule/*").hasAnyAuthority(UserRole.USER.getRole());
+            auth.requestMatchers("/user/*","/project/*", "/schedule/*", "/mypage/mypagemain").hasAnyAuthority(UserRole.USER.getRole());
             //            인증이 있어야 들어갈 수 있다는 메소드
             auth.anyRequest().authenticated();
         }).formLogin(login -> {

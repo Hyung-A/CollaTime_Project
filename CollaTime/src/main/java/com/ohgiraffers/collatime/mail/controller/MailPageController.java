@@ -1,18 +1,15 @@
 package com.ohgiraffers.collatime.mail.controller;
 
-import com.ohgiraffers.collatime.mail.MailDTO;
-import com.ohgiraffers.collatime.mail.MailService;
+import com.ohgiraffers.collatime.mail.model.dto.MailDTO;
+import com.ohgiraffers.collatime.mail.model.service.MailService;
 import com.ohgiraffers.collatime.user.model.dto.UserDTO;
 import com.ohgiraffers.collatime.user.model.service.UserService;
 import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
 @RestController
 @RequestMapping("/mail")
@@ -28,7 +25,7 @@ public class MailPageController {
         this.mailService = mailService;this.userService = userService;
     }
 
-    @PostMapping(value = "/sendNewMail", produces = "application/json; charset=UTF-8")
+    @PostMapping(value = "/sendnewmail", produces = "application/json; charset=UTF-8")
     @ResponseBody
     public MailDTO sendSignupMail(@RequestBody String data) throws MessagingException {
         System.out.println("회원가입 메일값 넘어옴");
@@ -60,7 +57,7 @@ public class MailPageController {
         return mail;
     }
 
-    @PostMapping(value = "/sendExistingMail", produces = "application/json; charset=UTF-8")
+    @PostMapping(value = "/sendexistingmail", produces = "application/json; charset=UTF-8")
     @ResponseBody
     public MailDTO sendMail(@RequestBody String mail) throws MessagingException {
         System.out.println("회원확인 메일값 넘어옴");
@@ -89,7 +86,7 @@ public class MailPageController {
         return Email;
     }
 
-    @PostMapping(value = "/sendNewPwdMail", produces = "application/json; charset=UTF-8")
+    @PostMapping(value = "/sendnewpwdmail", produces = "application/json; charset=UTF-8")
     @ResponseBody
     public MailDTO sendNewPwdMail(@RequestBody String mail) throws MessagingException {
         System.out.println("새비밀번호 메일값 넘어옴");

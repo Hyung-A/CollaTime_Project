@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>마이페이지</title>
+    <link rel="stylesheet" href="/css/mypage/mypagemain.css">
+</head>
+<body>
+
+    <div id="myPage_text">CollaTime 마이페이지</div>
+
+    <div id="myPage_modifyUser_area"></div>
+    <div id="myPage_modifyUser_text">회원정보 수정</div>
+    <img id="myPage_modifyUser_icon" src="/css/mypage/image/sign.png">
+    <div id="myPage_modifyUser_context">비밀번호, 이메일, 닉네임, 이름<br>을 수정할 수 있습니다.</div>
+
+    <div id="myPage_search_inquiry_area"></div>
+    <div id="myPage_search_inquiry_text">문의 내역</div>
+    <img id="myPage_search_inquiry_icon" src="/css/mypage/image/mail.png">
+    <div id="myPage_search_inquiry_context">문의하신 내용을<br>조회할 수 있습니다.</div>
+
+    <div id="guideMessage_profileIcon">※프로필 아이콘 변경은 프로필 옆 주사위를 눌러주세요!※</div>
+
+    <div id="myPage_myInfo_area"></div>
+
+    <div id="myPage_profile_area"></div>
+    <div id="myPage_profile_dice"></div>
+    <div id="myPage_userNickname" th:text="${#authentication.principal.userNickname}"></div>
+    <div class="underBar short" id="myPage_profile_line"></div>
+    <div id="myPage_userInfo_text">정보</div>
+    <div class="underBar Long" id="myPage_userInfo_line"></div>
+    <div id="myPage_userName" th:text="|이름 : ${#authentication.principal.userName}|"></div>
+    <div id="myPage_userEmail" th:text="|이메일 : ${#authentication.principal.userEmail}|"></div>
+    <div id="myPage_participation_project_text">참여프로젝트</div>
+    <div class="underBar Long" id="myPage_participation_project_line"></div>
+    <div id="myPage_participation_project_list">hi</div>
+
+</body>
+</html>

@@ -203,8 +203,27 @@
 }
 
 /*로그인으로 버튼*/
-#for_login_btn{
-    display: none;
+#to_login_btn{
+    visibility: hidden;
+
+    position: absolute;
+    width: 177px;
+    height: 40px;
+    left: 188px;
+    top: 521px;
+
+    background: #92E2F8;
+    border-radius: 10px;
+    align-content: center;
+    text-align: center;
+    font-weight: 800;
+}
+
+
+/*회원가입으로 버튼*/
+#to_signup_btn{
+    visibility: hidden;
+
 
     position: absolute;
     width: 177px;

@@ -1,0 +1,339 @@
+/*마이페이지 텍스트*/
+#myPage_text{
+
+    position: absolute;
+    width: 560px;
+    height: 60px;
+    left: 422px;
+    top: 171px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 55px;
+    line-height: 67px;
+
+    color: #000000;
+}
+
+/*회원정보 수정 area*/
+#myPage_modifyUser_area{
+
+    position: absolute;
+    width: 399px;
+    height: 286px;
+    left: 224px;
+    top: 341px;
+
+    background: #DBF7FF;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 20px;
+
+}
+
+/*회원정보 수정 text*/
+#myPage_modifyUser_text{
+
+    position: absolute;
+    width: 255px;
+    left: 295px;
+    top: 382px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 48px;
+
+    color: #000000;
+
+}
+
+/*회원정보 수정 icon*/
+#myPage_modifyUser_icon{
+
+    position: absolute;
+    left: 397px;
+    top: 430px;
+
+}
+
+/*회원정보 수정 내용*/
+#myPage_modifyUser_context{
+
+    position: absolute;
+    width: 360px;
+    height: 55px;
+    left: 245px;
+    top: 531px;
+
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 30px;
+    text-align: center;
+
+    color: #000000;
+}
+
+/*문의 내역 area*/
+#myPage_search_inquiry_area{
+
+    position: absolute;
+    width: 399px;
+    height: 286px;
+    left: 790px;
+    top: 341px;
+
+    background: #DBF7FF;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 20px;
+
+
+}
+
+/*문의 내역 text*/
+#myPage_search_inquiry_text{
+
+    position: absolute;
+    width: 200px;
+    left: 886px;
+    top: 375px;
+
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 48px;
+    text-align: center;
+
+    color: #000000;
+
+
+}
+
+/*문의내역 아이콘*/
+#myPage_search_inquiry_icon{
+
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    left: 966px;
+    top: 424px;
+
+}
+
+/*문의내역 내용*/
+#myPage_search_inquiry_context{
+
+    position: absolute;
+    width: 285px;
+    height: 72px;
+    left: 854px;
+    top: 531px;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 30px;
+    text-align: center;
+
+    color: #000000;
+
+}
+
+/*프로필아이콘 바꾸기 안내*/
+#guideMessage_profileIcon{
+    /* ※프로필 아이콘 변경은 프로필 옆 주사위를 눌러주세요!※ */
+
+    position: absolute;
+    width: 634px;
+    height: 29px;
+    left: 405px;
+    top: 805px;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 30px;
+    text-align: center;
+
+    color: #000000;
+}
+
+/*내 정보창*/
+#myPage_myInfo_area{
+
+    position: absolute;
+    width: 492px;
+    height: 774px;
+    left: 1368px;
+    top: 135px;
+
+    background: #92E2F8;
+    border-radius: 33px;
+
+}
+
+/*프로필 area*/
+#myPage_profile_area{
+
+    position: absolute;
+    width: 158.85px;
+    height: 154.54px;
+    left: 1535.07px;
+    top: 164.46px;
+
+    border-radius: 999px;
+
+    background: #FFFFFF;
+
+}
+/*프로필 dice*/
+#myPage_profile_dice{
+
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    left: 1672px;
+    top: 295px;
+
+}
+/*프로필 닉네임*/
+#myPage_userNickname{
+
+    position: absolute;
+    width: 116px;
+    height: 39px;
+    left: 1556px;
+    top: 329px;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 36px;
+
+    color: #000000;
+
+
+}
+/*프로필 구분선*/
+#myPage_profile_line{
+
+    position: absolute;
+    left: 1705px;
+    top: 368px;
+
+
+}
+/*정보칸 text*/
+#myPage_userInfo_text{
+
+    position: absolute;
+    width: 49px;
+    height: 24px;
+    left: 1433px;
+    top: 407px;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 30px;
+    text-align: center;
+
+    color: #000000;
+
+
+
+}
+/*정보칸 구분선*/
+#myPage_userInfo_line{
+
+    position: absolute;
+    left: 1795px;
+    top: 442px;
+
+
+}
+/*정보칸 유저이름*/
+#myPage_userName{
+
+    position: absolute;
+    width: 123px;
+    height: 24px;
+    left: 1435px;
+    top: 472px;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+
+    color: #000000;
+
+
+}
+/*정보칸 유저 이메일*/
+#myPage_userEmail{
+
+    position: absolute;
+    width: 332px;
+    height: 24px;
+    left: 1430px;
+    top: 512px;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+
+    color: #000000;
+
+
+}
+/*프로젝트칸 text*/
+#myPage_participation_project_text{
+
+    position: absolute;
+    width: 150px;
+    height: 24px;
+    left: 1433px;
+    top: 593px;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 30px;
+
+    color: #000000;
+
+}
+/*프로젝트칸 구분선*/
+#myPage_participation_project_line{
+
+    position: absolute;
+
+    left: 1433px;
+    top: 629px;
+
+}
+/*프로젝트칸 참여 프로젝트*/
+/*#myPage_participation_project_list*/
+/*구분선*/
+.underBar{
+    position: absolute;
+
+    height: 0px;
+    width: 360px;
+    border: 3.6px solid #FFFFFF;
+
+}
+/*구분선 긴거*/
+.short{
+    width: 180px;
+}
+/*구분선 짧은거*/
+.long{
+    width: 360px;
+}
