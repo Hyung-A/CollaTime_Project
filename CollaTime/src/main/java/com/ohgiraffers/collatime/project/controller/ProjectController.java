@@ -3,7 +3,6 @@ package com.ohgiraffers.collatime.project.controller;
 import com.ohgiraffers.collatime.project.model.dto.ProjectDTO;
 import com.ohgiraffers.collatime.project.model.service.ProjectService;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -20,20 +19,20 @@ public class ProjectController {
         this.projectService = projectService;
 
     }
-    @GetMapping("/projectMain")
-    public ModelAndView projectMain(ModelAndView mv){
+    @GetMapping("/projectmain")
+    public ModelAndView projectmain(ModelAndView mv){
 
         projectService.getList().forEach(System.out::println);
 
         mv.addObject("projectList", projectService.getList());
 
-        mv.setViewName("/project/projectMain");
+        mv.setViewName("/project/projectmain");
 
         return mv;
 
     }
 
-    @PostMapping("/projectMain")
+    @PostMapping("/projectmain")
     public ModelAndView insertProject(ModelAndView mv, @ModelAttribute ProjectDTO projectDTO){
 
         System.out.println(projectDTO);
@@ -42,58 +41,39 @@ public class ProjectController {
 
         mv.addObject("projectList", projectService.getList());
 
-        mv.setViewName("/project/projectMain");
+        mv.setViewName("redirect:/project/projectmain");
 
         return mv;
 
     }
 
-    @GetMapping(value="select-project", produces = "application/json; charset=UTF-8")
+    @GetMapping(value="selectproject", produces = "application/json; charset=UTF-8")
     @ResponseBody
     public ProjectDTO selectSpecificProject(ModelAndView mv, @ModelAttribute ProjectDTO projectDTO){
-        System.out.println("select/update = " + projectDTO);
         projectDTO = projectService.getProject(projectDTO);
         mv.addObject("select", projectService.getProject(projectDTO));
-        mv.setViewName("/project/projectMain");
+        System.out.println("select/update = " + projectDTO);
+        mv.setViewName("/project/projectmain");
         return projectDTO;
 
     }
 
-    @PostMapping("/update-project")
+    @PostMapping("/updateproject")
     public ModelAndView updateProject(ModelAndView mv, @ModelAttribute ProjectDTO projectDTO){
-        System.out.println(projectDTO);
         projectService.updateProject(projectDTO);
         mv.addObject("projectList", projectService.getList());
-        mv.setViewName("/project/projectMain");
+        System.out.println("update" + projectDTO);
+        mv.setViewName("redirect:/project/projectmain");
         return mv;
     }
 
-    @PostMapping("/delete-project")
+    @PostMapping("/deleteproject")
     public ModelAndView deleteProject(ModelAndView mv, @ModelAttribute ProjectDTO projectDTO){
-        System.out.println(projectDTO);
         projectService.deleteProject(projectDTO);
         mv.addObject("projectList", projectService.getList());
-        mv.setViewName("/project/projectMain");
+        System.out.println("delete" + projectDTO);
+        mv.setViewName("redirect:/project/projectmain");
         return mv;
     }
-
-//    @PostMapping("/delete-project")
-//    public List<ProjectDTO> deleteProject(ProjectDTO projectDTO, RedirectAttributes rttr){
-//        projectService.deleteProject(projectDTO);
-//        rttr.addFlashAttribute("delete", projectService.getList());
-//        return "redirect:/project/projectMain";
-//    }
-//
-//    @PostMapping("/regist")
-//    public String registMenu(MenuDTO newMenu, RedirectAttributes rttr){
-//
-//        menuService.registNewMenu(newMenu);
-//
-//        rttr.addFlashAttribute("successMessage", "신규 메뉴 등록에 성공하였습니다.");
-//
-//        return "redirect:/menu/list";
-//
-//    }
-
 
 }
