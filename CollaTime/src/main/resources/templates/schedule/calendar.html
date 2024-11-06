@@ -63,133 +63,140 @@
 
 <!-- 모달 창 -->
 <div th:include="schedule/empty.html" id="modalContent" style="display: none"></div>
-<!--<div id="modalContent" style="display: none;">-->
-<!--    <div id="middleModal">-->
-<!--        <div id="middleBlueHeader">-->
-<!--            <div id="middleXButton">X</div>-->
-<!--            <button id="plusList">-->
-<!--                <img src="/css/schedule/image/plusList.png">-->
-<!--            </button>-->
-<!--        </div>-->
-<!--        <div id="centeredContent">-->
-<!--            <img src="/css/schedule/image/emptycalendar.png" id="centerImage">-->
-<!--            <p id="centerText">일정을 등록하세요.</p>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<div th:include="schedule/makeschedule.html" style="display: none; position:absolute; z-index: 10" ></div>
-
-
+<div th:include="schedule/makeschedule.html" id="makescheduleModal" style="display: none; position:absolute; z-index: 10"></div>
 
 <script>
-    let date = new Date();
+    document.addEventListener("DOMContentLoaded", function() {
+        let date = new Date();
 
-    const renderCalender = () => {
-        const viewYear = date.getFullYear();
-        const viewMonth = date.getMonth();
+        const renderCalender = () => {
+            const viewYear = date.getFullYear();
+            const viewMonth = date.getMonth();
 
-        document.querySelector('.year-month').textContent = `${viewYear}년 ${viewMonth + 1}월`;
+            document.querySelector('.year-month').textContent = `${viewYear}년 ${viewMonth + 1}월`;
 
-        const prevLast = new Date(viewYear, viewMonth, 0);
-        const thisLast = new Date(viewYear, viewMonth + 1, 0);
+            const prevLast = new Date(viewYear, viewMonth, 0);
+            const thisLast = new Date(viewYear, viewMonth + 1, 0);
 
-        const PLDate = prevLast.getDate();
-        const PLDay = prevLast.getDay();
+            const PLDate = prevLast.getDate();
+            const PLDay = prevLast.getDay();
 
-        const TLDate = thisLast.getDate();
-        const TLDay = thisLast.getDay();
+            const TLDate = thisLast.getDate();
+            const TLDay = thisLast.getDay();
 
-        const prevDates = [];
-        const thisDates = [...Array(TLDate + 1).keys()].slice(1);
-        const nextDates = [];
+            const prevDates = [];
+            const thisDates = [...Array(TLDate + 1).keys()].slice(1);
+            const nextDates = [];
 
-        if (PLDay !== 6) {
-            for (let i = 0; i < PLDay + 1; i++) {
-                prevDates.unshift(PLDate - i);
-            }
-        }
-
-        for (let i = 1; i < 7 - TLDay; i++) {
-            nextDates.push(i);
-        }
-
-        const dates = prevDates.concat(thisDates, nextDates);
-        const firstDateIndex = dates.indexOf(1);
-        const lastDateIndex = dates.lastIndexOf(TLDate);
-
-        dates.forEach((date, i) => {
-            const condition = i >= firstDateIndex && i < lastDateIndex + 1
-                ? 'this'
-                : 'other';
-            dates[i] = `<div class="date"><span class=${condition}>${date}</span></div>`;
-        });
-
-        document.querySelector('.dates').innerHTML = dates.join('');
-
-        const today = new Date();
-        if (viewMonth === today.getMonth() && viewYear === today.getFullYear()) {
-            for (let date of document.querySelectorAll('.this')) {
-                if (+date.innerText === today.getDate()) {
-                    date.classList.add('today');
-                    break;
+            if (PLDay !== 6) {
+                for (let i = 0; i < PLDay + 1; i++) {
+                    prevDates.unshift(PLDate - i);
                 }
             }
+
+            for (let i = 1; i < 7 - TLDay; i++) {
+                nextDates.push(i);
+            }
+
+            const dates = prevDates.concat(thisDates, nextDates);
+            const firstDateIndex = dates.indexOf(1);
+            const lastDateIndex = dates.lastIndexOf(TLDate);
+
+            dates.forEach((date, i) => {
+                const condition = i >= firstDateIndex && i < lastDateIndex + 1 ? 'this' : 'other';
+                dates[i] = `<div class="date"><span class=${condition}>${date}</span></div>`;
+            });
+
+            document.querySelector('.dates').innerHTML = dates.join('');
+
+            const today = new Date();
+            if (viewMonth === today.getMonth() && viewYear === today.getFullYear()) {
+                for (let date of document.querySelectorAll('.this')) {
+                    if (+date.innerText === today.getDate()) {
+                        date.classList.add('today');
+                        break;
+                    }
+                }
+            }
+        };
+
+        renderCalender();
+
+        const prevMonth = () => {
+            date.setMonth(date.getMonth() - 1);
+            renderCalender();
+        };
+
+        const nextMonth = () => {
+            date.setMonth(date.getMonth() + 1);
+            renderCalender();
+        };
+
+        const goToday = () => {
+            date = new Date();
+            renderCalender();
+        };
+
+        // 첫 번째 모달 열기
+        function openModal() {
+            document.getElementById("modalContent").style.display = "flex";
         }
-    };
 
-    renderCalender();
+        // 첫 번째 모달 닫기
+        function closeModal() {
+            document.getElementById("modalContent").style.display = "none";
+        }
 
-    const prevMonth = () => {
-        date.setMonth(date.getMonth() - 1);
-        renderCalender();
-    };
+        // 두 번째 모달 열기
+        function openSecondModal() {
+            const makescheduleModal = document.getElementById("makescheduleModal");
+            if (makescheduleModal) {
+                makescheduleModal.style.display = "flex";
+                makescheduleModal.style.zIndex = "20";
+                makescheduleModal.style.position = "absolute";
+                makescheduleModal.style.visibility = "visible";
+            }
+        }
 
-    const nextMonth = () => {
-        date.setMonth(date.getMonth() + 1);
-        renderCalender();
-    };
+        // 두 번째 모달 닫기
+        function closeSecondModal() {
+            const makescheduleModal = document.getElementById("makescheduleModal");
+            if (makescheduleModal) {
+                makescheduleModal.style.display = "none";
+            }
+        }
 
-    const goToday = () => {
-        date = new Date();
-        renderCalender();
-    };
+        // 첫 번째 모달의 plusList 버튼 클릭 시 두 번째 모달 열기
+        const plusListButton = document.getElementById("plusList");
+        if (plusListButton) {
+            plusListButton.addEventListener("click", openSecondModal);
+        }
 
-    // 날짜 클릭 시 모달을 열어주는 함수
-    function openModal() {
-        document.getElementById("modalContent").style.display = "flex";
-    }
+        // 두 번째 모달의 X 버튼 클릭 시 두 번째 모달 닫기
+        const middleXXButton = document.getElementById("middleXXButton");
+        if (middleXXButton) {
+            middleXXButton.addEventListener("click", closeSecondModal);
+        }
 
-    // 모달 닫기 버튼 클릭 시 모달을 닫는 함수
-    function closeModal() {
-        document.getElementById("modalContent").style.display = "none";
-    }
+        // 두 번째 모달의 "취소" 버튼 클릭 시 두 번째 모달 닫기
+        const cancelButton = document.getElementById("cancelButton");
+        if (cancelButton) {
+            cancelButton.addEventListener("click", closeSecondModal);
+        }
 
-    // 모든 날짜 요소에 클릭 이벤트 추가
-    document.querySelectorAll('.date').forEach(date => {
-        date.addEventListener('click', openModal);
+        // 모든 날짜 요소에 첫 번째 모달 열기 이벤트 추가
+        document.querySelectorAll('.date').forEach(date => {
+            date.addEventListener('click', openModal);
+        });
+
+        // 첫 번째 모달의 X 버튼 설정
+        const middleXButton = document.getElementById("middleXButton");
+        if (middleXButton) {
+            middleXButton.addEventListener("click", closeModal);
+        }
     });
-
-    // X 버튼에 닫기 이벤트 추가
-    document.getElementById("middleXButton").addEventListener('click', closeModal);
-
-
-    // 두 번째 모달 열기
-    function openSecondModal() {
-        document.getElementById("makeScheduleModal").style.display = "flex";
-    }
-
-    // 두 번째 모달 닫기
-    function closeSecondModal() {
-        document.getElementById("makeScheduleModal").style.display = "none";
-    }
-
-    // plusList 버튼에 클릭 이벤트 추가
-    document.getElementById("plusList").addEventListener("click", openSecondModal);
-
-    // 두 번째 모달의 X 버튼에 닫기 이벤트 추가
-    document.getElementById("middleXButton").addEventListener("click", closeSecondModal);
-
-
 </script>
+
+
 </body>
 </html>

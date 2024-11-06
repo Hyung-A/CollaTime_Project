@@ -1,233 +1,265 @@
-/* 공통 스타일: contenteditable 요소에 대한 스타일 */
-[contenteditable]:empty:before {
-    content: attr(placeholder);
-    color: #999;
-    pointer-events: none;
-}
-/* Placeholder 스타일 */
-#assignmentName.placeholder-active,
-#startDate.placeholder-active,
-#finalDate.placeholder-active,
-#teammate.placeholder-active,
-#memo.placeholder-active {
-    color: #999;
-}
+@charset "utf-8";
 
 #makeScheduleModal {
+
+    width: 554px;
+    height: 592px;
     position: absolute;
+    left: 453px;
+    top: 120px;
+
+    background: #FFFFFF;
+    border: 1px solid #595959;
+    border-radius: 25px;
+    display: flex !important; /* 중요: 다른 CSS 속성 무시 */
+    z-index: 20 !important;    /* 두 번째 모달이 항상 최상위 */
+}
+
+#middleBlueHeader{
+    position: absolute;
+    width: 554px;
+    height: 49px;
+    background: #92E2F8;
+    border-bottom: 1px solid #282828;
+    border-radius: 25px 25px 0px 0px;
+}
+
+#middleXXButton{
+    width: 30px;
+    height: 34px;
+    font-size: 23px;
+    position: absolute;
+    left: 530px;
+    top: 12px;
+}
+/* 일정 제목 */
+#scheduleTitle {
+
+    position: absolute;
+    width: 350px;
+    height: 60px;
+    left: 40px;
+    top: 75px;
+    border-bottom: solid 3px #92E2F8;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%; /* 모달의 전체 높이 사용 */
-    z-index: 10;
 }
+#scheduleInputTitle{
 
-/* 일정 제목 */
-#assignmentName {
-    position: absolute;
-    margin-top: 110px;
-    width: 430px;
-    height: 45px;
-    font-size: 30px;
-    margin-left: 30px;
-    color: #333;
-    outline: none;
-}
-
-#assignmentName::before {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 340px; /* 원 아이콘 전까지만 보더라인 길이 설정 */
-    height: 4px;
-    background-color: #92E2F8;
-}
-/* 날짜 */
-#assignmentPeriod::before {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 340px;
-    height: 4px;
-    background-color: #92E2F8;
-}
-
-#assignmentPeriod {
-    position: absolute;
-    margin-top: 160px;
-    justify-content: space-between;
-    margin-left: 30px;
-    width: 430px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-
-}
-
-#watch {
-    width: 30px;
-    height: 30px;
-    margin-top: 5px;
-}
-
-#startDate, #finalDate {
-    font-size: 15px;
-    font-weight: bold;
-    color: #333;
-    width: 100px;
-    height: 25px;
-    outline: none;
-    margin-left: 10px;
-}
-
-/* 슬래시 */
-#slash {
-    font-size: 22px;
-    font-weight: bold;
-    margin-top: 5px;
-    color: #333;
-}
-
-/* 참여자 */
-#participant {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    width: 500px;
-    height: 35px;
-    margin-top: 240px;
-    border-bottom: 4px solid #92E2F8;
-    margin-left: 30px;
-}
-
-#people {
-    margin-bottom: 5px;
-}
-
-#teammate {
-    font-size: 15px;
-    font-weight: bold;
-    color: #333;
-    margin-left: 10px;
-    outline: none;
-}
-
-/* 메모 */
-
-#memoContainer {
-    position: absolute;
-    margin-top: 300px;
-    width: 430px;
-    height: 200px;
-    margin-left: 30px;
-    background-color: #e6f7ff;
-    border-radius: 10px;
-    padding: 10px;
-    display: flex;
-}
-
-#memoIcon {
-
-
-    margin-right: 20px;
-    width: 20px;
-    height: 20px;
-}
-
-#memo {
-    font-size: 15px;
-    font-weight: bold;
-    color: #333;
-    outline: none;
-
-}
-#assignmentColor{
-
-    cursor: pointer;
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: #e78f81;
-    margin-left: 380px;
-    margin-top: 115px;
-
-}
-
-#create {
-
-    position: absolute;
-    display: flex;
-    margin-top: 550px;
-    margin-left: 30px;
-    font-size: 15px;
-    font-weight: bold;
-}
-
-#bottomButtons {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-
-}
-
-.bottomButton {
-    width: 130px;
-    height: 40px;
+    width: 400px;
+    height: 50px;
     border: none;
-    border-radius: 15px;
-    cursor: pointer;
-    text-align: center;
-    align-content: center;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 25px;
+    letter-spacing: 0.03em;
+    color: #282828;
+    outline: none;
 }
 
-#cancelButton {
-    background-color: rgba(146, 226, 248, 0.3);
-    color: black;
-    font-size: 15px;
-    font-weight: bold;
-    margin-right: 10px;
+.colorOptions {
+    position: absolute;
+    margin-left: 10px;
+    padding: 5px; /* 버튼 주변 여백 */
+    background-color: #f5f5f5; /* 배경색 추가 */
+    border-radius: 8px; /* 모서리를 둥글게 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 약간의 그림자 효과 */
 }
 
-#confirmButton {
-    background-color: #92E2F8;
-    color: black;
-    font-size: 15px;
-    font-weight: bold;
-}
-/* 색상 선택 팝업 스타일 */
-#colorOptions {
-    display: none; /* 기본적으로 숨김 */
+.color-button {
+
     position: absolute;
     top: 100px;
-    left: 450px;
+    left: 400px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #FF0000; /* 기본 빨간색 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 약간의 그림자 */
+    cursor: pointer;
+    border: 1px solid #ccc;
+}
+
+.color-dropdown {
+    display: none; /* 기본적으로 숨김 */
+    position: absolute;
+    top: 140px;
+    left: 50px;
     background-color: white;
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 5px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 10;
 }
 
-/* 색상 버튼 스타일 */
 .color-option {
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
+    cursor: pointer;
     margin: 5px;
     display: inline-block;
-    cursor: pointer;
 }
 
-/* 각 색상 옵션 */
-.color-red { background-color: #ff6666; }
-.color-blue { background-color: #66b3ff; }
-.color-green { background-color: #66ff66; }
+.dropdown-icon {
+    position: absolute;
+    left: 30px;
+    font-size: 12px;
+    color: #aaa;
+    cursor: pointer;
+}
+#schedulePeriod{
+    position: absolute;
+    width: 350px;
+    height: 62px;
+    left: 40px;
+    top: 150px;
+    border-bottom: solid 3px #92E2F8;
+}
+#scheduleStartDate{
+
+    position: absolute;
+    width: 150px;
+    height: 40px;
+    left: 20px;
+    top: 5px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    letter-spacing: 0.03em;
+    display: flex;
+    justify-content: center;
+    line-height: 20px;
+    border: none;
+    color: #000000;
+    outline: none;
+}
+
+#scheduleEndDate {
+     position: absolute;
+     width: 150px;
+     height: 40px;
+     left: 215px;
+     top: 5px;
+     font-family: 'Inter';
+     font-style: normal;
+     font-weight: 300;
+     font-size: 18px;
+     letter-spacing: 0.03em;
+     display: flex;
+     justify-content: center;
+     line-height: 20px;
+     border: none;
+     color: #282828;
+     outline: none;
+ }
+
+#slash {
+    position: absolute;
+    left: 185px;
+    top: 12px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 40px;
+    letter-spacing: 0.03em;
+    display: flex;
+    justify-content: center;
+    line-height: 20px;
+    border: none;
+    color: #282828;
+}
+
+#watch {
+    position: absolute;
+    width: 20px;
+}
+
+#participant-container {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    width: 450px;
+    height: 60px;
+    left: 40px;
+    top: 230px;
+    border-bottom: solid 3px #92E2F8;
+}
+
+#invite-icon {
+    cursor: pointer;
+
+}
+
+#participant-list {
+    font-size: 18px;
+    color: #666;
+    margin-left: 10px;
+}
+
+#memoIcon {
+    position: absolute;
+    top: 310px;
+    left: 40px;
+}
+
+#memo {
+    position: absolute;
+    top: 310px;
+    left: 80px;
+    width: 370px;
+    height: 200px;
+    border: none;
+    resize: none; /* 크기 조절 비활성화 */
+    outline: none;
+    background-color: #e0f7fa; /* 연한 파란색 배경 */
+    font-size: 14px;
+    color: #333;
+    padding: 5px;
+    border-radius: 10px; /* 모서리를 둥글게 */
+}
+
+#cancelButton {
+    position: absolute;
+    left: 325px;
+    top: 545px;
+    background: #DEF6FD;
+    border: #DEF6FD;
+    width: 99px;
+    height: 31px;
+    border-radius: 10px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    line-height: 36px;
+    letter-spacing: 0.03em;
+    color: #282828;
+}
+
+#confirmButton {
+    position: absolute;
+    width: 99px;
+    height: 31px;
+    left: 440px;
+    top: 545px;
+    background: #92E2F8;
+    border: #92E2F8;
+    border-radius: 10px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    line-height: 36px;
+    letter-spacing: 0.03em;
+    color: #282828;
+}
 
 
 
