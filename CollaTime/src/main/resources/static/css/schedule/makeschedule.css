@@ -11,6 +11,8 @@
     background: #FFFFFF;
     border: 1px solid #595959;
     border-radius: 25px;
+    display: flex !important; /* 중요: 다른 CSS 속성 무시 */
+    z-index: 20 !important;    /* 두 번째 모달이 항상 최상위 */
 }
 
 #middleBlueHeader{
@@ -22,7 +24,7 @@
     border-radius: 25px 25px 0px 0px;
 }
 
-#middleXButton{
+#middleXXButton{
     width: 30px;
     height: 34px;
     font-size: 23px;
@@ -175,7 +177,6 @@
 #watch {
     position: absolute;
     width: 20px;
-    top: 18px;
 }
 
 #participant-container {

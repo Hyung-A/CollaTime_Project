@@ -11,24 +11,37 @@ import java.util.List;
 
 @Service
 public class ScheduleService {
+
     private final ScheduleMapper scheduleMapper;
+
 
     public ScheduleService(ScheduleMapper scheduleMapper) {
         this.scheduleMapper = scheduleMapper;
     }
 
-    public List<ScheduleDTO> getList(){
+    // 모든 일정 조회 (Read)
+    public List<ScheduleDTO> getAllSchedules(){
         return scheduleMapper.getList();
     }
 
-    public ScheduleDTO getSchedule() {
-        return scheduleMapper.getSchedule();
+    // 특정 일정 조회 (Read by ID)
+    public ScheduleDTO getScheduleById(int scheduleNo) {
+        return scheduleMapper.getSchedule(scheduleNo);
     }
 
     @Transactional
-    public void insertSchedule(ScheduleDTO scheduleDTO){
-        scheduleMapper.insertSchedule(scheduleDTO);
-//         taskMapper.insertTask(projectDTO.getTask()); // 예외 발생 시 모든 작업 취소
+    public void insertSchedule(ScheduleDTO schedule) {
+        scheduleMapper.insertSchedule(schedule);
+    }
+
+    // 일정 수정 (Update)
+    public void updateSchedule(ScheduleDTO schedule) {
+        scheduleMapper.updateSchedule(schedule);
+    }
+
+    // 일정 삭제 (Delete)
+    public void deleteSchedule(int scheduleNo) {
+        scheduleMapper.deleteSchedule(scheduleNo);
     }
 
 }

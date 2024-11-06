@@ -10,7 +10,7 @@
 
 <div id="makeScheduleModal" style="z-index: 3">
     <div id="middleBlueHeader">
-        <div id="middleXButton">X</div>
+        <div id="middleXXButton">X</div>
     </div>
     <!-- 내용 -->
     <form action="schedule/schedulemain" method="post">
@@ -67,6 +67,11 @@
     const colorButton = document.getElementById('color-button');
     const colorDropdown = document.getElementById('color-dropdown');
     const colorOptions = document.querySelectorAll('.color-option');
+
+
+    document.getElementById("middleXXButton").addEventListener("click", function() {
+        document.getElementById("makeScheduleModal").style.display = "none";
+    });
 
     // 버튼을 클릭하면 색상 선택 드롭다운이 표시됨
     colorButton.addEventListener('click', () => {
