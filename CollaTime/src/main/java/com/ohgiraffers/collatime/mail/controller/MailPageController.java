@@ -2,6 +2,8 @@ package com.ohgiraffers.collatime.mail.controller;
 
 import com.ohgiraffers.collatime.mail.MailDTO;
 import com.ohgiraffers.collatime.mail.MailService;
+import com.ohgiraffers.collatime.project.model.dto.ProjectDTO;
+import com.ohgiraffers.collatime.project.model.service.ProjectService;
 import com.ohgiraffers.collatime.user.model.dto.UserDTO;
 import com.ohgiraffers.collatime.user.model.service.UserService;
 import jakarta.mail.MessagingException;
@@ -20,12 +22,15 @@ public class MailPageController {
 
     @Autowired
     private final UserService userService;
+    private final ProjectService projectService;
 
     @Autowired
     private final MailService mailService;
 
-    public MailPageController(MailService mailService, UserService userService){
-        this.mailService = mailService;this.userService = userService;
+    public MailPageController(MailService mailService, UserService userService, ProjectService projectService){
+        this.mailService = mailService;
+        this.userService = userService;
+        this.projectService = projectService;
     }
 
     @PostMapping(value = "/sendNewMail", produces = "application/json; charset=UTF-8")
@@ -101,4 +106,15 @@ public class MailPageController {
 
         return Email;
     }
+
+    // 참가 코드 메일 전송
+//    @PostMapping("/deleteproject")
+//    public ModelAndView deleteProject(ModelAndView mv, @ModelAttribute ProjectDTO projectDTO){
+//        projectService.deleteProject(projectDTO);
+//        mv.addObject("projectList", projectService.getList());
+//        System.out.println("delete" + projectDTO);
+//        mv.setViewName("redirect:/project/projectmain");
+//        return mv;
+//    }
+
 }
