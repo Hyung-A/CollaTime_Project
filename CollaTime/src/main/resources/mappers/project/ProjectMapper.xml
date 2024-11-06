@@ -37,7 +37,7 @@
              , PROJECT_END_DATE
              , PROJECT_CATEGORY_CODE
           FROM PROJECT
-         WHERE PROJECT_NO = 3
+         WHERE PROJECT_NO = #{ projectNo }
     </select>
 
     <insert id="insertProject" parameterType="com.ohgiraffers.collatime.project.model.dto.ProjectDTO">
@@ -55,8 +55,8 @@
         (
             #{ projectName }
           , #{ projectCategoryCode }
-          , DATE_FORMAT(#{ startDate }, '%y-%m-%d')
-          , DATE_FORMAT(#{ endDate }, '%y-%m-%d')
+          , #{ startDate }
+          , #{ endDate }
           , #{ projectSummary }
           , #{ projectPurpose }
           , 1
@@ -66,17 +66,22 @@
     <update id="updateProject" parameterType="com.ohgiraffers.collatime.project.model.dto.ProjectDTO">
         UPDATE PROJECT
         SET
-        (
+
             PROJECT_NAME = #{ projectName }
           , PROJECT_CATEGORY_CODE = #{ projectCategoryCode }
-          , PROJECT_START_DATE = DATE_FORMAT(#{ startDate }, '%y-%m-%d')
-          , PROJECT_END_DATE = DATE_FORMAT(#{ endDate }, '%y-%m-%d')
+          , PROJECT_START_DATE = #{ startDate }
+          , PROJECT_END_DATE = #{ endDate }
           , PROJECT_SUMMARY = #{ projectSummary }
           , PROJECT_PURPOSE = #{ projectPurpose }
-          , PRODUCTOR_NO = 1
-        )
+
          WHERE PROJECT_NO = #{ projectNo }
     </update>
+
+    <delete id="deleteProject" parameterType="com.ohgiraffers.collatime.project.model.dto.ProjectDTO">
+        DELETE FROM PROJECT
+        WHERE PROJECT_NO = #{ projectNo }
+    </delete>
+
 </mapper>
 
 

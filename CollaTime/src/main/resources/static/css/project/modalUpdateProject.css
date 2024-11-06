@@ -1,0 +1,539 @@
+@charset "utf-8";
+
+/* 모달 레이아웃 */
+#modalUpdateProject{
+
+    cursor: default;
+    position: absolute;
+    width: 1013px;
+    height: 680px;
+    left: 453px;
+    top: 100px;
+
+    background: #FFFFFF;
+    border: 1px solid #595959;
+    border-radius: 25px;
+}
+
+#updateProjectHead{
+    position: absolute;
+    width: 1013px;
+    height: 51px;
+
+    background: #92E2F8;
+    border-bottom: 1px solid #282828;
+    border-radius: 25px 25px 0px 0px;
+}
+
+#updateProjectXButton{
+    width: 30px;
+    height: 34px;
+    font-size: 30px;
+    position: absolute;
+    left: 965px;
+    top: 5px;
+
+}
+
+/* --내용-- */
+
+/* 제목 */
+#updateTitle{
+
+    position: absolute;
+    width: 850px;
+    height: 60px;
+    left: 56px;
+    top: 91px;
+    border-bottom: solid 3px #92E2F8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#updateInputTitle{
+
+    width: 800px;
+    height: 50px;
+    border: none;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 25px;
+    letter-spacing: 0.03em;
+    color: #282828;
+    outline: none;
+
+}
+
+/* 개요 */
+.updateStar{
+
+    position: absolute;
+    color: #E25252;
+    font-size: 25px;
+    left: 56px;
+
+}
+
+#updateSummaryStar{
+
+    position: absolute;
+    top: 205px;
+
+}
+
+#updateSummaryLabel{
+
+    position: absolute;
+    left: 70px;
+    top: 210px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 23px;
+    letter-spacing: 0.03em;
+
+    color: #282828;
+
+}
+
+#updateSummary{
+
+    position: absolute;
+    width: 780px;
+    height: 70px;
+    left: 130px;
+    top: 190px;
+
+    border-left: solid 3px #92E2F8;
+
+}
+
+#updateInputSummary{
+
+    position: absolute;
+    width: 760px;
+    height: 60px;
+    left: 10px;
+    top: 3px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 15px;
+    letter-spacing: 0.03em;
+    text-align: start;
+    border: none;
+    color: #000000;
+    outline: none;
+
+    /* https://11001.tistory.com/149#google_vignette */
+}
+
+/* 목표 및 목적 */
+#updatePurposeStar{
+
+    position: absolute;
+    top: 315px;
+
+}
+
+#updatePurposeLabel{
+
+    position: absolute;
+    left: 70px;
+    top: 320px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 23px;
+    letter-spacing: 0.03em;
+
+    color: #282828;
+
+}
+
+#updatePurpose{
+
+    position: absolute;
+    width: 780px;
+    height: 70px;
+    left: 130px;
+    top: 299px;
+
+    border-left: solid 3px #92E2F8;
+
+}
+
+#updateInputPurpose{
+
+    position: absolute;
+    width: 760px;
+    height: 60px;
+    left: 10px;
+    top: 3px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 15px;
+    letter-spacing: 0.03em;
+    text-align: start;
+    border: none;
+    color: #000000;
+    outline: none;
+
+}
+
+/* 기간 */
+#updateStartDateStar{
+
+    position: absolute;
+    top: 415px;
+
+}
+
+#updatePeriodLabel{
+
+    position: absolute;
+    left: 70px;
+    top: 420px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 23px;
+    letter-spacing: 0.03em;
+
+    color: #282828;
+
+}
+
+#updatePeriod{
+
+    position: absolute;
+    width: 780px;
+    height: 50px;
+    left: 130px;
+    top: 408px;
+
+    border-left: solid 3px #92E2F8;
+
+
+}
+
+#updateStartDate{
+
+    position: absolute;
+    width: 150px;
+    height: 40px;
+    left: 10px;
+    top: 5px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 15px;
+    letter-spacing: 0.03em;
+    display: flex;
+    justify-content: center;
+    line-height: 20px;
+    border: none;
+    color: #000000;
+    outline: none;
+
+}
+
+#updateEndDate{
+
+    position: absolute;
+    width: 150px;
+    height: 40px;
+    left: 205px;
+    top: 5px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 15px;
+    letter-spacing: 0.03em;
+    display: flex;
+    justify-content: center;
+    line-height: 20px;
+    border: none;
+    color: #282828;
+    outline: none;
+
+}
+
+#updateWave{
+
+    position: absolute;
+    left: 175px;
+    top: 12px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 25px;
+    letter-spacing: 0.03em;
+    display: flex;
+    justify-content: center;
+    line-height: 20px;
+    border: none;
+
+    color: #282828;
+
+}
+
+/* 카테고리 */
+#updateCategoryLabel{
+
+    position: absolute;
+    left: 70px;
+    top: 510px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 23px;
+    letter-spacing: 0.03em;
+    color: #282828;
+
+}
+
+#updateCategory{
+
+    position: absolute;
+    width: 780px;
+    height: 50px;
+    left: 130px;
+    top: 497px;
+
+    border-left: solid 3px #92E2F8;
+
+}
+
+.updateCategory{
+
+    position: absolute;
+    top: 7px;
+    border: solid 2px #92E2F8;
+    border-radius: 15px;
+    background: #FFFFFF;
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 23px;
+    letter-spacing: 0.03em;
+    opacity: 0;
+    top: 15px;
+
+}
+
+#updateBank{
+
+    position: absolute;
+    left: 10px;
+
+}
+
+#updateInsurance{
+
+    position: absolute;
+    left: 100px;
+
+}
+
+#updatePublicSector{
+
+    position: absolute;
+    left: 190px;
+
+}
+
+#updateWeb{
+
+    position: absolute;
+    left: 280px;
+
+}
+
+#updateApplication{
+
+    position: absolute;
+    left: 370px;
+
+}
+
+#updateEtc{
+
+    position: absolute;
+    left: 460px;
+
+}
+
+.updateCategoryLabel{
+
+    position: absolute;
+    top: 12px;
+    border: solid 3px #92E2F8;
+    border-radius: 10px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    line-height: 28px;
+
+}
+
+#updateBankLabel{
+
+    position: absolute;
+    left: 35px;
+    width: 50px;
+
+}
+
+#updateInsuranceLabel{
+
+    position: absolute;
+    left: 110px;
+    width: 65px;
+
+}
+
+#updatePublicSectorLabel{
+
+    position: absolute;
+    left: 200px;
+    width: 80px;
+
+}
+
+#updateWebLabel{
+
+    position: absolute;
+    left: 305px;
+    width: 65px;
+
+
+}
+
+#updateApplicationLabel{
+
+    position: absolute;
+    left: 395px;
+    width: 65px;
+
+}
+
+#updateEtcLabel{
+
+    position: absolute;
+    left: 485px;
+    width: 50px;
+
+
+}
+
+#updateMemberStar{
+
+    position: absolute;
+    top: 581px;
+
+}
+
+#updateMemberLabel{
+
+    position: absolute;
+    width: 50px;
+    left: 70px;
+    top: 586px;
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 23px;
+    letter-spacing: 0.03em;
+
+    color: #282828;
+
+}
+
+#updateMember{
+
+    position: absolute;
+    width: 780px;
+    height: 50px;
+    left: 130px;
+    top: 586px;
+
+    border-left: solid 3px #92E2F8;
+
+}
+
+#updateInviteMember{
+
+    position: absolute;
+    width: 78px;
+    height: 38px;
+    left: 10px;
+    top: 7px;
+    border: solid 2px #E7E7E7;
+    border-radius: 15px;
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 23px;
+    letter-spacing: 0.03em;
+    background: #E7E7E7;
+
+}
+
+#updateCancel{
+
+    position: absolute;
+    left: 730px;
+    top: 620px;
+    background: #DEF6FD;
+    border: #DEF6FD;
+    width: 114px;
+    height: 36px;
+
+    border-radius: 10px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    line-height: 36px;
+    letter-spacing: 0.03em;
+    color: #282828;
+
+}
+
+#updateConfirm{
+
+    position: absolute;
+    width: 114px;
+    height: 36px;
+    left: 860px;
+    top: 620px;
+    background: #92E2F8;
+    border: #92E2F8;
+    border-radius: 10px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    line-height: 36px;
+    letter-spacing: 0.03em;
+
+    color: #282828;
+
+}

@@ -19,8 +19,8 @@ public class ProjectService {
         return projectMapper.getList();
     }
 
-    public ProjectDTO getProject() {
-        return projectMapper.getProject();
+    public ProjectDTO getProject(ProjectDTO projectDTO) {
+        return projectMapper.getProject(projectDTO);
     }
 
 
@@ -29,4 +29,12 @@ public class ProjectService {
         projectMapper.insertProject(projectDTO);
     }
 
+    @Transactional
+    public void updateProject(ProjectDTO projectDTO){
+        projectMapper.updateProject(projectDTO);
+    }
+
+    public void deleteProject(ProjectDTO projectDTO) {
+        projectMapper.deleteProject(projectDTO);
+    }
 }

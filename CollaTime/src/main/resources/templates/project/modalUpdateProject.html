@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="/static/css/project/modalUpdateProject.css">
 </head>
 <body>
 <!-- ----------------------------------------- 프로젝트 내용 조회 모달 ----------------------------------------- -->
@@ -61,14 +62,14 @@
 <script>
 
   /* 프로젝트 정보 수정 모달 띄우기 */
-  const updateProjectModal = document.getElementById("modalUpdateProject");
-  updateProjectModal.style.display = "none";
-  const update = document.querySelectorAll("#projectUpdate");
-  for(let i = 0; i < createdProjectFolder.length; i++) {
-    update[i].addEventListener("click", function () {
-      updateProjectModal.style.display = "";
-    });
-  }
+  // const updateProjectModal = document.getElementById("modalUpdateProject");
+  // updateProjectModal.style.display = "none";
+  // const update = document.querySelectorAll("#projectUpdate");
+  // for(let i = 0; i < createdProjectFolder.length; i++) {
+  //   update[i].addEventListener("click", function () {
+  //     updateProjectModal.style.display = "";
+  //   });
+  // }
 
   /* x버튼 취소 버튼 클릭 시 모달 없애기 */
   const updateCancel = document.getElementById("updateCancel");
