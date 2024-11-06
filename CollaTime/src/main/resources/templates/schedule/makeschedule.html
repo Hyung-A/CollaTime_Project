@@ -2,95 +2,108 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/common/middlemodal.css">
+    <link rel="stylesheet" href="/css/project/reset.css">
     <link rel="stylesheet" href="/css/schedule/makeschedule.css">
     <title>Title</title>
-
 </head>
 <body>
 
-<div id="makeScheduleModal">
-<div id="middleModal">
+<div id="makeScheduleModal" style="z-index: 3">
     <div id="middleBlueHeader">
         <div id="middleXButton">X</div>
-        <div id="assignmentContainer">
-            <!-- 일정 제목 -->
-            <div id="assignmentName" contenteditable="true"></div>
-            <div id="assignmentColor"></div>
-
+    </div>
+    <!-- 내용 -->
+    <form action="schedule/schedulemain" method="post">
+        <div id="scheduleTitle">
+            <input type="text" id="scheduleInputTitle" placeholder="일정 제목" name="scheduleName">
             <!-- 색상 선택 옵션 -->
-            <div id="colorOptions">
-                <div class="color-option color-red" data-color="#ff6666"></div>
-                <div class="color-option color-blue" data-color="#66b3ff"></div>
-                <div class="color-option color-green" data-color="#66ff66"></div>
+        </div>
+        <div id="colorOptions">
+            <div class="color-button" id="color-button">
+                <div class="dropdown-icon">▼</div>
             </div>
-
-            <!-- 날짜 -->
-            <div id="assignmentPeriod">
-                <img src="/css/schedule/image/시계.png" id="watch">
-                <div id="startDate" contenteditable="true"></div>
-                <div id="slash">ㅡ</div>
-                <div id="finalDate" contenteditable="true"></div>
+            <div class="color-dropdown" id="color-dropdown">
+                <div class="color-option" data-color="#ff0000" style="background-color: #ff0000;"></div>
+                <div class="color-option" data-color="#ff8c00" style="background-color: #ff8c00;"></div>
+                <div class="color-option" data-color="#ffff00" style="background-color: #ffff00;"></div>
+                <div class="color-option" data-color="#008000" style="background-color: #008000;"></div>
+                <div class="color-option" data-color="#0000ff" style="background-color: #0000ff;"></div>
+                <div class="color-option" data-color="#4b0082" style="background-color: #4b0082;"></div>
+                <div class="color-option" data-color="#800080" style="background-color: #800080;"></div>
             </div>
+        </div>
 
-            <!-- 참여자 -->
-            <div id="participant">
+        <!-- 스케줄 기간-->
+        <div id="schedulePeriod">
+            <img src="/css/schedule/image/시계.png" id="watch">
+            <input type="date" id="scheduleStartDate" min="2024-01-01" max="2099-12-31" name="scheduleStart"></input>
+            <div id="slash">-</div>
+            <input type="date" id="scheduleEndDate" min="2024-01-01" max="2099-12-31" name="scheduleEnd"></input>
+        </div>
+
+        <!-- 참여자 -->
+        <div id="participant-container">
+            <div id="invite-icon">
                 <img src="/css/schedule/image/인원.png" id="people">
-                <div id="teammate" contenteditable="true"></div>
             </div>
-
-            <!-- 메모 -->
-
-            <div id="memoContainer">
-                <img src="/css/schedule/image/과제내용.png" id="memoIcon">
-                <div id="memo" contenteditable="true"></div>
+            <div id="participant-list">
+                <span id="placeholder-text">참여자(닉네임)</span>
             </div>
-
         </div>
-        <div id="create">
-            <div id="creator">생성자 | </div>
-            <div id="creatorName">김주혜</div>
-        </div>
-    </div>
 
-    <div id="bottomButtons">
-        <div class="bottomButton" id="cancelButton">취소</div>
-        <div class="bottomButton" id="confirmButton">확인</div>
-    </div>
-</div>
-</div>
+        <!-- 메모 -->
+            <span><img src="/css/schedule/image/과제내용.png" id="memoIcon"></span>
+            <textarea id="memo" class="memo-input" placeholder="여기에 메모를 입력하세요..."></textarea>
 
+
+        <button type="button" id="cancelButton">취소</button>
+        <button type="button" id="confirmButton">확인</button>
+
+    </form>
+</div>
 
 
 <script>
-    // Placeholder 관리 함수
-    function setupPlaceholder(element, placeholderText) {
-        function showPlaceholder() {
-            if (element.innerText.trim() === '') {
-                element.innerText = placeholderText;
-                element.classList.add('placeholder-active');
-            }
+    const colorButton = document.getElementById('color-button');
+    const colorDropdown = document.getElementById('color-dropdown');
+    const colorOptions = document.querySelectorAll('.color-option');
+
+    // 버튼을 클릭하면 색상 선택 드롭다운이 표시됨
+    colorButton.addEventListener('click', () => {
+        colorDropdown.style.display = colorDropdown.style.display === 'none' ? 'block' : 'none';
+    });
+
+    // 색상 옵션을 클릭하면 버튼 색상이 변경되고 드롭다운이 닫힘
+    colorOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            const selectedColor = option.getAttribute('data-color');
+            colorButton.style.backgroundColor = selectedColor;
+            colorDropdown.style.display = 'none';
+        });
+    });
+
+    // 드롭다운 외부 클릭 시 닫힘
+    document.addEventListener('click', (event) => {
+        if (!colorButton.contains(event.target) && !colorDropdown.contains(event.target)) {
+            colorDropdown.style.display = 'none';
         }
+    });
 
-        function hidePlaceholder() {
-            if (element.innerText === placeholderText) {
-                element.innerText = '';
-                element.classList.remove('placeholder-active');
-            }
+    const inviteIcon = document.getElementById('invite-icon');
+    const participantList = document.getElementById('participant-list');
+    const placeholderText = document.getElementById('placeholder-text');
+
+    inviteIcon.addEventListener('click', () => {
+        // 팀원을 초대하는 모달을 여는 코드 (여기서는 임시로 구현)
+        const newParticipant = document.createElement('span');
+        newParticipant.textContent = "팀원 1"; // 실제로는 초대한 팀원의 이름으로 변경
+        participantList.appendChild(newParticipant);
+
+        // 기존의 "참여자(닉네임)" 텍스트를 제거
+        if (placeholderText) {
+            placeholderText.remove();
         }
-
-        element.addEventListener('focus', hidePlaceholder);
-        element.addEventListener('blur', showPlaceholder);
-
-        showPlaceholder();
-    }
-
-    // 각 contenteditable 요소에 placeholder 설정
-    setupPlaceholder(document.getElementById('assignmentName'), '일정 제목');
-    setupPlaceholder(document.getElementById('startDate'), '시작 날짜');
-    setupPlaceholder(document.getElementById('finalDate'), '종료 날짜');
-    setupPlaceholder(document.getElementById('teammate'), '참여자(닉네임)');
-    setupPlaceholder(document.getElementById('memo'), '메모');
+    });
 </script>
 
 </body>

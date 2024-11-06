@@ -16,7 +16,7 @@ public class ScheduleController {
         this.scheduleService = scheduleService;
     }
 
-    @GetMapping({"", "/scheduleMain"})
+    @GetMapping({"", "/schedulemain"})
     public String scheduleMain(){
 
         return "schedule/calendar";
