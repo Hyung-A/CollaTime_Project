@@ -2,6 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.ohgiraffers.collatime.schedule.model.dao.ScheduleMapper">
 
     <resultMap id="scheduleResultMap" type="com.ohgiraffers.collatime.schedule.model.dto.ScheduleDTO">
@@ -12,6 +13,80 @@
         <result property="scheduleContent" column="CT_SCHEDULE_CONTENT"/>
         <result property="scheduleTitle" column="CT_SCHEDULE_TITLE"/>
         <result property="scheduleCreator" column="CT_SCHEDULE_CREATOR"/>
-        <result property="ColorCode" column="COLOR_CODE"/>
+        <result property="colorCode" column="COLOR_CODE"/>
     </resultMap>
+
+
+    <!-- 모든 일정 조회 쿼리 -->
+    <select id="getList" resultMap="scheduleResultMap">
+        SELECT CT_SCHEDULE_NO,
+        PROJECT_NO,
+        CT_SCHEDULE_START_DATE,
+        CT_SCHEDULE_END_DATE,
+        CT_SCHEDULE_CONTENT,
+        CT_SCHEDULE_TITLE,
+        CT_SCHEDULE_CREATOR,
+        COLOR_CODE
+        FROM schedule
+    </select>
+
+    <!-- 특정 일정 조회 쿼리 -->
+    <select id="getSchedule" parameterType="int" resultMap="scheduleResultMap">
+        SELECT CT_SCHEDULE_NO,
+        PROJECT_NO,
+        CT_SCHEDULE_START_DATE,
+        CT_SCHEDULE_END_DATE,
+        CT_SCHEDULE_CONTENT,
+        CT_SCHEDULE_TITLE,
+        CT_SCHEDULE_CREATOR,
+        COLOR_CODE
+        FROM schedule
+        WHERE CT_SCHEDULE_NO = #{scheduleNo}
+    </select>
+
+    <!-- 일정 추가 쿼리 -->
+    <insert id="insertSchedule" parameterType="com.ohgiraffers.collatime.schedule.model.dto.ScheduleDTO">
+        INSERT INTO schedule
+        (
+        PROJECT_NO,
+        CT_SCHEDULE_START_DATE,
+        CT_SCHEDULE_END_DATE,
+        CT_SCHEDULE_CONTENT,
+        CT_SCHEDULE_TITLE,
+        CT_SCHEDULE_CREATOR,
+        COLOR_CODE
+        )
+
+        VALUES
+        (
+        #{projectNo},
+        #{scheduleStartDate},
+        #{scheduleEndDate},
+        #{scheduleContent},
+        #{scheduleTitle},
+        #{scheduleCreator},
+        #{colorCode}
+        )
+
+    </insert>
+
+    <!-- 일정 수정 쿼리 -->
+    <update id="updateSchedule" parameterType="com.ohgiraffers.collatime.schedule.model.dto.ScheduleDTO">
+        UPDATE schedule
+        SET PROJECT_NO = #{projectNo},
+        CT_SCHEDULE_START_DATE = #{scheduleStartDate},
+        CT_SCHEDULE_END_DATE = #{scheduleEndDate},
+        CT_SCHEDULE_CONTENT = #{scheduleContent},
+        CT_SCHEDULE_TITLE = #{scheduleTitle},
+        CT_SCHEDULE_CREATOR = #{scheduleCreator},
+        COLOR_CODE = #{colorCode}
+        WHERE CT_SCHEDULE_NO = #{scheduleNo}
+    </update>
+
+    <!-- 일정 삭제 쿼리 -->
+    <delete id="deleteSchedule" parameterType="int">
+        DELETE FROM schedule
+        WHERE CT_SCHEDULE_NO = #{scheduleNo}
+    </delete>
+
 </mapper>

@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="/css/project/modalCreateOrJoin.css">
   <link rel="stylesheet" href="/css/project/modalCreateProject.css">
   <link rel="stylesheet" href="/css/project/modalInviteMember.css">
-<!--  <link rel="stylesheet" href="/css/project/modalSelectProject.css">-->
   <link rel="stylesheet" href="/css/project/modalUpdateProject.css">
   <link rel="stylesheet" href="/css/project/modalDeleteProject.css">
 </head>
@@ -16,34 +15,8 @@
 <!-- 프로젝트 메인 화면 -->
 <div id="main" style="z-index: 1">
   <!-- Header 구역 -->
-  <div id="head">
-    <img src="/css/project/image/Logo.png" id="logo" alt="CollaTime 로고"></img>
-    <button id="logOut" onclick="location.href='/auth/logout'">로그아웃</button>
-  </div>
-  <!--    <div th:replace="common/header.html"></div>-->  <!-- 해당 html 파일은 웹사이트 MainPage라서 프로젝트 도메인 헤더랑 다름. 새로 파일 만들어서 써야할 듯 -->
-  <!-- Left Bar 구역 -->
-  <div id="leftBarLayout">
-    <div id="blueBackground">
-      <div id="profile"></div>
-      <div id="nickname">닉네임 나중에 바꾸기</div>
-      <div id="myPage">마이페이지</div>
-      <div id="whiteBar1"></div>
-      <span id="textMyProject">My Project</span>
-      <div id="projectMenu" th:each="project : ${ projectList }">
-        <img src="/css/project/image/folderIcon.png" id="projectIcon">
-        <span id="menuProjectName" th:text="${ project.projectName }" th:title="${ project.projectName }"></span>
-      </div>
-      <div id="whiteBar2"></div>
-      <div id="doInquiry">
-        <img src="/css/project/image/inquiryIcon.png" id="firstInquiry">
-        <span id="doInquiryText">문의하기</span>
-      </div>
-      <div id="authority">
-        <img src="/css/project/image/inquiryIcon.png" id="secondInquiry">
-        <span id="authorityText">권한 위임 요청</span>
-      </div>
-    </div>
-  </div>
+  <div th:replace="common/programHeader"></div>
+  <div th:replace="common/leftBar.html"></div>
   <!-- 메인 구역 -->
   <div>
     <span id="mainTitle">Project</span>
@@ -56,10 +29,9 @@
           <div id="projectTitle" th:text="${ project.projectName }"></div>
           <div id="folderMenu">...</div>
           <div id="crudMenu">
-<!--            <div id="projectUpdate" class="crudText" onclick="location.href='/project/test'">수정하기</div>-->
-            <div id="projectUpdate" class="crudText">수정하기</div>
-            <div id="projectDelete" class="crudText">삭제하기</div>
-            <div id="manageMember" class="crudText">멤버관리</div>
+            <span id="projectUpdate" class="crudText">수정하기</span>
+            <span id="projectDelete" class="crudText">삭제하기</span>
+            <span id="manageMember" class="crudText">멤버관리</span>
           </div>
         </div>
         <span id="projectFullName" th:text="${ project.projectName }" th:title="${ project.projectName }"></span>
@@ -116,7 +88,7 @@
     crudText[i].addEventListener("mouseover", function(){
       crudText[i].style.backgroundColor = "#E2E2E2";
       crudText[i].style.width = "110px";
-      crudText[i].style.left = "0px";
+      crudText[i].style.left = "opx";
     });
     crudText[i].addEventListener("mouseout", function(){
       crudText[i].style.backgroundColor = "#F5F5F5";
@@ -127,20 +99,17 @@
   // 메뉴 아이콘 ...
   // let folderMenu = document.querySelectorAll("#folderMenu");
   // let crudMenu = document.querySelectorAll("#crudMenu");
-  // for(let i = 0; i < folderMenu.length; i++) {
-  //     for(let j = 0; j < crudMenu.length; j++) {
-  //         crudMenu[j].style.display = "none"
-  //         folderMenu[i].addEventListener("click", function(){
-  //             crudMenu[i].style.display = "";
-  //             folderMenu[i].onclick = function(){
-  //                 crudMenu[i].style.display = "none";
-  //             }
-  //         });
-  //         // folderMenu[i].addEventListener("click", function(){
-  //         //     crudMenu[i].style.display = "none";
-  //         // })
+  // for(let i = 0; i < folderMenu.length; i++){
+  //   crudMenu[i].style.display = "none";
+  //   folderMenu[i].onclick = function() {
+  //     if (crudMenu[i].style.display === 'block') {
+  //       crudMenu[i].style.display = 'none';
+  //     } else {
+  //       crudMenu[i].style.display = 'block';
   //     }
+  //   }
   // }
+
 
   /* New 프로젝트 폴더 영역 */
   let maxNum = createdProjectFolder.length;
@@ -175,7 +144,7 @@
     <button type="button" id="areaCreateProject">+</button>
     <span id="joinProject">프로젝트 참가하기</span>
     <div>
-      <input type="text" id="inputCode" placeholder="전달받은 코드를 입력해주세요.">
+      <input type="text" id="inputCode" placeholder="전달받은 코드를 입력해주세요." name="code">
       <button type="submit" id="joinButton">참가하기</button>
     </div>
     <button type="button" id="smallCancel">취소</button>
@@ -224,7 +193,7 @@
     <div id="bigXButton">X</div>
   </div>
   <!-- 내용 부분 -->
-  <form action="/project/projectMain" method="post">
+  <form action="/project/projectmain" method="post">
     <div id="title">
       <input type="text" id="inputTitle" placeholder="프로젝트 명을 입력해주세요." name="projectName">
     </div>
@@ -307,7 +276,7 @@
     <div id="emailArea">
       <span id="textEmail">E-mail</span>
       <div id="sendEmail">
-        <input type="email" id="inputEmail">
+        <input type="email" multiple id="inputEmail" placeholder="collaTime@gmail.com" value=""/>
         <button type="button" id="addIcon">+</button>
       </div>
     </div>
@@ -321,8 +290,10 @@
 </div>
 <script>
 
+  // 멤버 초대 모달창 띄우기
   const inviteMemberModal = document.getElementById("inviteMemberModal");
   inviteMemberModal.style.display = "none";
+
   const addMemberBtn = document.getElementById("inviteMember");
   addMemberBtn.onclick = function(){
     inviteMemberModal.style.display = "";
@@ -337,100 +308,116 @@
   inviteMemberXButton.onclick = function(){
     inviteMemberModal.style.display = "none";
   }
+
+  // 이메일 저장 공간에 입력한 이메일 잠시 저장하듯 화면에 보여주기
+  let email = document.querySelector("#inputEmail");
+  document.getElementById("addIcon").addEventListener("click", function(){
+    console.log(email.value);
+    let element = document.createElement("div");
+    let emailText = document.createTextNode(email.value);
+    let storeArea = document.getElementById("storeEmailArea");
+    element.appendChild(emailText);
+    storeArea.appendChild(element);
+    console.log(emailText);
+    element.style.background = "#FFFFFF";
+    element.style.width = "150px";
+    element.style.height = "30px";
+    element.style.display = "flex";
+    element.style.justifyContent = "center";
+    element.style.lineHeight = "30px";
+    element.style.borderRadius = "15px";
+  })
 </script>
 <!-- ----------------------------------------- 프로젝트 내용 조회 및 수정 모달 ----------------------------------------- -->
-<!--<form action="project/selectProject" th:each="project : ${ select }" style="z-index: 5">-->
-<!-- 방법1 -->
-<form action="/project/update-project" method="post">
-    <div id="modalUpdateProject">
-        <div id="updateProjectHead">
-            <div id="updateProjectXButton">X</div>
-        </div>
-        <!-- 내용 부분 -->
-            <input type="text" id="updateProjectNo" style="display: none" name="projectNo"/>
-            <div id="updateTitle">
-                <input type="text" id="updateInputTitle" placeholder="프로젝트 명을 입력해주세요." name="projectName">
-            </div>
-            <span id="updateSummaryStar" class="updateStar">*</span>
-            <label id="updateSummaryLabel" for="updateInputSummary">개요</label>
-            <div id="updateSummary">
-                <textarea id="updateInputSummary" maxlength="150" placeholder="프로젝트 개요를 적어주세요(최대 150자)." name="projectSummary"></textarea>
-            </div>
-            <span id="updatePurposeStar" class="updateStar">*</span>
-            <label id="updatePurposeLabel" for="updateInputPurpose">목적</label>
-            <div id="updatePurpose">
-                <textarea id="updateInputPurpose" maxlength="150" placeholder="프로젝트 목표 및 목적을 적어주세요(최대 150자)." name="projectPurpose"></textarea>
-            </div>
-            <span id="updateStartDateStar" class="updateStar">*</span>
-            <label for="updatePeriod" id="updatePeriodLabel">기간</label>
-            <div id="updatePeriod">
-                <input type="date" id="updateStartDate" min="2023-01-01" max="2077-06-20" name="startDate" ></input>
-                <div id="updateWave">~</div>
-                <input type="date" id="updateEndDate"  min="2023-01-01" max="2077-06-20" name="endDate"></input>
-            </div>
-            <label for="updateCategory" id="updateCategoryLabel">분류</label>
-            <div id="updateCategory">
-                <input type="radio" id="updateBank" class="updateCategory" name="projectCategoryCode" value="CT1"/><label id="updateBankLabel" class="updateCategoryLabel" for="updateBank">은행</label>
-                <input type="radio" id="updateInsurance" class="updateCategory" name="projectCategoryCode" value="CT2"/><label id="updateInsuranceLabel" class="updateCategoryLabel" for="updateInsurance">보험사</label>
-                <input type="radio" id="updatePublicSector" class="updateCategory" name="projectCategoryCode" value="CT3"/><label id="updatePublicSectorLabel" class="updateCategoryLabel" for="updatePublicSector">공공부문</label>
-                <input type="radio" id="updateWeb" class="updateCategory" name="projectCategoryCode" value="CT4"/><label id="updateWebLabel" class="updateCategoryLabel" for="updateWeb">웹포털</label>
-                <input type="radio" id="updateApplication" class="updateCategory" name="projectCategoryCode" value="CT5"/><label id="updateApplicationLabel" class="updateCategoryLabel" for="updateApplication">앱개발</label>
-                <input type="radio" id="updateEtc" class="updateCategory" name="projectCategoryCode" value="CT6"/><label id="updateEtcLabel" class="updateCategoryLabel" for="updateEtc">기타</label>
-            </div>
-            <span id="updateMemberStar" class="updateStar">*</span>
-            <label for="updateMember" id="updateMemberLabel">인원초대</label>
-            <div id="updateMember">
-                <button type="button" id="updateInviteMember" name="updateMember">+</button>
-            </div>
-            <button type="button" id="updateCancel">취소</button>
-            <button type="submit" id="updateConfirm">수정</button>
+<form action="/project/updateproject" method="post">
+  <div id="modalUpdateProject">
+    <div id="updateProjectHead">
+      <div id="updateProjectXButton">X</div>
     </div>
+    <!-- 내용 부분 -->
+    <input type="text" id="updateProjectNo" style="display: none" name="projectNo"/>
+    <div id="updateTitle">
+      <input type="text" id="updateInputTitle" placeholder="프로젝트 명을 입력해주세요." name="projectName">
+    </div>
+    <span id="updateSummaryStar" class="updateStar">*</span>
+    <label id="updateSummaryLabel" for="updateInputSummary">개요</label>
+    <div id="updateSummary">
+      <textarea id="updateInputSummary" maxlength="150" placeholder="프로젝트 개요를 적어주세요(최대 150자)." name="projectSummary"></textarea>
+    </div>
+    <span id="updatePurposeStar" class="updateStar">*</span>
+    <label id="updatePurposeLabel" for="updateInputPurpose">목적</label>
+    <div id="updatePurpose">
+      <textarea id="updateInputPurpose" maxlength="150" placeholder="프로젝트 목표 및 목적을 적어주세요(최대 150자)." name="projectPurpose"></textarea>
+    </div>
+    <span id="updateStartDateStar" class="updateStar">*</span>
+    <label for="updatePeriod" id="updatePeriodLabel">기간</label>
+    <div id="updatePeriod">
+      <input type="date" id="updateStartDate" min="2023-01-01" max="2077-06-20" name="startDate" ></input>
+      <div id="updateWave">~</div>
+      <input type="date" id="updateEndDate"  min="2023-01-01" max="2077-06-20" name="endDate"></input>
+    </div>
+    <label for="updateCategory" id="updateCategoryLabel">분류</label>
+    <div id="updateCategory">
+      <input type="radio" id="updateBank" class="updateCategory" name="projectCategoryCode" value="CT1"/><label id="updateBankLabel" class="updateCategoryLabel" for="updateBank">은행</label>
+      <input type="radio" id="updateInsurance" class="updateCategory" name="projectCategoryCode" value="CT2"/><label id="updateInsuranceLabel" class="updateCategoryLabel" for="updateInsurance">보험사</label>
+      <input type="radio" id="updatePublicSector" class="updateCategory" name="projectCategoryCode" value="CT3"/><label id="updatePublicSectorLabel" class="updateCategoryLabel" for="updatePublicSector">공공부문</label>
+      <input type="radio" id="updateWeb" class="updateCategory" name="projectCategoryCode" value="CT4"/><label id="updateWebLabel" class="updateCategoryLabel" for="updateWeb">웹포털</label>
+      <input type="radio" id="updateApplication" class="updateCategory" name="projectCategoryCode" value="CT5"/><label id="updateApplicationLabel" class="updateCategoryLabel" for="updateApplication">앱개발</label>
+      <input type="radio" id="updateEtc" class="updateCategory" name="projectCategoryCode" value="CT6"/><label id="updateEtcLabel" class="updateCategoryLabel" for="updateEtc">기타</label>
+    </div>
+    <span id="updateMemberStar" class="updateStar">*</span>
+    <label for="updateMember" id="updateMemberLabel">인원초대</label>
+    <div id="updateMember">
+      <button type="button" id="updateInviteMember" name="updateMember">+</button>
+    </div>
+    <button type="button" id="updateCancel">취소</button>
+    <button type="submit" id="updateConfirm">수정</button>
+  </div>
 </form>
 <script>
 
   /* 정보 비동기로 가져오기 */
   // DB에서 데이터를 가져오는 함수 작성
   function select(projectNo){
-      fetch("/project/select-project?projectNo=" + projectNo +"")
-      .then(res => res.json())
-      .then(data => {
-          console.log(data);
-          let $projectName = document.querySelector("#updateInputTitle");
-          $projectName.value = data.projectName;
-          // $projectName.textContent.style.color = "#282828";
-          let $projectSummary = document.getElementById("updateInputSummary");
-          $projectSummary.value = data.projectSummary;
-          let $projectPurpose = document.getElementById("updateInputPurpose");
-          $projectPurpose.value = data.projectPurpose;
-          let $startDate = document.getElementById("updateStartDate");
-          $startDate.value = data.startDate;
-          let $endDate = document.getElementById("updateEndDate");
-          $endDate.value = data.endDate;
-          let $updateProjectNo = document.getElementById("updateProjectNo");
-          $updateProjectNo.value = data.projectNo;
+    fetch("/project/selectproject?projectNo=" + projectNo +"")
+            .then(res => res.json())
+            .then(data => {
+              console.log(data);
+              let $projectName = document.querySelector("#updateInputTitle");
+              $projectName.value = data.projectName;
+              let $projectSummary = document.getElementById("updateInputSummary");
+              $projectSummary.value = data.projectSummary;
+              let $projectPurpose = document.getElementById("updateInputPurpose");
+              $projectPurpose.value = data.projectPurpose;
+              let $startDate = document.getElementById("updateStartDate");
+              $startDate.value = data.startDate;
+              let $endDate = document.getElementById("updateEndDate");
+              $endDate.value = data.endDate;
+              let $updateProjectNo = document.getElementById("updateProjectNo");
+              $updateProjectNo.value = data.projectNo;
 
-          let categoryList = document.querySelectorAll("updateCategory input");
-          for(let i = 0; i < categoryList.length; i++){
-              categoryList[i].setAttribute('checked', false);
-          }
-          document.querySelector("#updateCategory input[value='"+data.projectCategoryCode+"']").setAttribute('checked' , true);
-          let updateCategoryList = document.querySelectorAll(".updateCategory");
-          let updateCategoryLabelList = document.querySelectorAll(".updateCategoryLabel");
-          for(let i = 0; i < updateCategoryList.length; i++){
-              updateCategoryList[i].addEventListener("click", function(){
-                  updateCategoryLabelList[i].style.background = "#92E2F8";
-              });
-              updateCategoryList[i].addEventListener("blur", function(){
-                  updateCategoryLabelList[i].style.background = "#FFFFFF";
-              });
-              if(updateCategoryList[i].checked === true){
-                  updateCategoryLabelList[i].style.background = "#92E2F8";
-              } else{
-                  updateCategoryLabelList[i].style.background = "#FFFFFF";
+              let categoryList = document.querySelectorAll("updateCategory input");
+              for(let i = 0; i < categoryList.length; i++){
+                categoryList[i].setAttribute('checked', false);
               }
-          }
-      })
-      .catch(error => console.log(error));
+              document.querySelector("#updateCategory input[value='"+data.projectCategoryCode+"']").setAttribute('checked' , true);
+              let updateCategoryList = document.querySelectorAll(".updateCategory");
+              let updateCategoryLabelList = document.querySelectorAll(".updateCategoryLabel");
+              for(let i = 0; i < updateCategoryList.length; i++){
+                updateCategoryList[i].addEventListener("click", function(){
+                  updateCategoryLabelList[i].style.background = "#92E2F8";
+                });
+                updateCategoryList[i].addEventListener("blur", function(){
+                  updateCategoryLabelList[i].style.background = "#FFFFFF";
+                });
+                if(updateCategoryList[i].checked === true){
+                  updateCategoryLabelList[i].style.background = "#92E2F8";
+                } else{
+                  updateCategoryLabelList[i].style.background = "#FFFFFF";
+                }
+              }
+            })
+            .catch(error => console.log(error));
   }
 
   /* 프로젝트 정보 수정 모달 띄우기 + DB에서 데이터 가져오는 함수 호출 */
@@ -439,80 +426,91 @@
   const projectNo = document.querySelectorAll("#projectNo");
   updateProjectModal.style.display = "none";
   for(let i = 0; i < createdProjectFolder.length; i++) {
-      update[i].addEventListener("click", function () {
-          select(projectNo[i].value);
-          console.log(projectNo[i].value);
-          updateProjectModal.style.display = "";
-      })
+    update[i].addEventListener("click", function () {
+      select(projectNo[i].value);
+      console.log(projectNo[i].value);
+      updateProjectModal.style.display = "";
+    })
   }
 
   // /* x버튼 취소 버튼 클릭 시 모달 없애기 */
   const updateCancel = document.getElementById("updateCancel");
   updateCancel.addEventListener("click", function(){
-      updateProjectModal.style.display = "none";
+    updateProjectModal.style.display = "none";
   });
   const updateProjectXButton = document.getElementById("updateProjectXButton");
   updateProjectXButton.addEventListener("click", function(){
-      updateProjectModal.style.display = "none";
+    updateProjectModal.style.display = "none";
   });
+
+  /* 멤버 수정 창 띄우기 */
+  const updateMember = document.getElementById("updateInviteMember");
+  updateMember.addEventListener("click", function(){
+    inviteMemberModal.style.display = "";
+  })
 
 </script>
 
 <!-- ---------------------------------- 프로젝트 삭제 알림 모달 ---------------------------------- -->
 <!-- 레이아웃 및 헤더 -->
-<form action="/project/delete-project" method="post">
-    <div id="deleteModal">
-        <div id="deleteHeader">
-            <div id="deleteXButton">X</div>
-        </div>
-        <!-- 내용 -->
-        <div id="deleteBody">
-            <input type="text" style="display: none" id="deleteProjectNo" name="projectNo"/>
-            <img src="/css/project/image/exclamation%20mark.png" id="deleteAlertIcon" alt="경고 느낌표">
-            <span id="deleteProjectName" name="projectName"></span>
-            <span id="deleteAlertText" name="projectName">을(를) 삭제하시겠습니까?</span>
-        </div>
-        <button type="button" id="deleteCancel">취소</button>
-        <button type="submit" id="deleteConfirm">삭제</button>
+<form action="/project/deleteproject" method="post">
+  <div id="deleteModal">
+    <div id="deleteHeader">
+      <div id="deleteXButton">X</div>
     </div>
+    <!-- 내용 -->
+    <div id="deleteBody">
+      <input type="text" style="display: none" id="deleteProjectNo" name="projectNo"/>
+      <img src="/css/project/image/exclamation%20mark.png" id="deleteAlertIcon" alt="경고 느낌표"/>
+      <div id="deleteProjectName" class="deleteName" name="projectName"></div>
+    </div>
+    <button type="button" id="deleteCancel">취소</button>
+    <button type="submit" id="deleteConfirm">삭제</button>
+  </div>
 </form>
 <script>
 
-    function deleteProject(projectNo){
-        fetch("/project/select-project?projectNo=" + projectNo + "")
+  /* 비동기 fetch함수로 파라미터 전달 및 DB에서 값 가져오기 */
+  function deleteProject(projectNo){
+    fetch("/project/selectproject?projectNo=" + projectNo + "")
             .then(res => res.json())
             .then(data =>{
-                console.log(data);
-                let projectName = document.querySelector("#deleteProjectName");
-                projectName.value = data.projectName;
-                let deleteProjectNo = document.getElementById("deleteProjectNo");
-                deleteProjectNo.value = data.projectNo;
+              console.log(data);
+              let projectName = document.querySelector("#deleteProjectName");
+              projectName.textContent = '"' + data.projectName + '"' + " 을(를) 삭제하시겠습니까?";
+              console.log(data.projectName);
+              console.log(projectName);
+              let deleteProjectNo = document.getElementById("deleteProjectNo");
+              deleteProjectNo.value = data.projectNo;
             })
             .catch(error => console.log(error));
-    }
+  }
 
-    /* 삭제하기 클릭 시 모달 띄우기 */
-    const $delete = document.querySelectorAll("#projectDelete");
-    const $deleteModal = document.getElementById("deleteModal");
-    // const projectNo = document.querySelectorAll("#projectNo");
+
+  /* 삭제하기 클릭 시 모달 띄우기 */
+  const $delete = document.querySelectorAll("#projectDelete");
+  const $deleteModal = document.getElementById("deleteModal");
+  // const projectNo = document.querySelectorAll("#projectNo");
+  $deleteModal.style.display = "none";
+  for(let i = 0; i < createdProjectFolder.length; i++) {
+    $delete[i].addEventListener("click", function () {
+      deleteProject(projectNo[i].value);
+      console.log(projectNo[i].value);
+      $deleteModal.style.display = "";
+    });
+  }
+
+  // /* x버튼 취소 버튼 클릭 시 모달 없애기 */
+  const deleteCancel = document.getElementById("deleteCancel");
+  deleteCancel.addEventListener("click", function(){
     $deleteModal.style.display = "none";
-    for(let i = 0; i < createdProjectFolder.length; i++) {
-        $delete[i].addEventListener("click", function () {
-            deleteProject(projectNo[i].value);
-            console.log(projectNo[i].value);
-            $deleteModal.style.display = "";
-        });
-    }
+  });
+  const deleteXButton = document.getElementById("deleteXButton");
+  deleteXButton.addEventListener("click", function(){
+    $deleteModal.style.display = "none";
+  });
 
-    // /* x버튼 취소 버튼 클릭 시 모달 없애기 */
-    const deleteCancel = document.getElementById("deleteCancel");
-    deleteCancel.addEventListener("click", function(){
-        $deleteModal.style.display = "none";
-    });
-    const deleteXButton = document.getElementById("deleteXButton");
-    deleteXButton.addEventListener("click", function(){
-        $deleteModal.style.display = "none";
-    });
+
 
 </script>
 </body>

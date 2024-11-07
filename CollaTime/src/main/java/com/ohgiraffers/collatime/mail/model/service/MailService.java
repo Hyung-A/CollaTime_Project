@@ -1,6 +1,7 @@
 package com.ohgiraffers.collatime.mail.model.service;
 
 import com.ohgiraffers.collatime.mail.model.dto.MailDTO;
+import com.ohgiraffers.collatime.project.model.service.ProjectService;
 import com.ohgiraffers.collatime.user.model.service.UserService;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
@@ -17,11 +18,14 @@ public class MailService {
 
     private UserService userService;
 
+    private ProjectService projectService;
+
     @Autowired
-    public MailService(JavaMailSender mailSender, UserService userService) {
+    public MailService(JavaMailSender mailSender, UserService userService, ProjectService projectService) {
 
         this.mailSender = mailSender;
         this.userService = userService;
+        this.projectService = projectService;
     }
 
 //    랜덤코드 함수 -> 사이트보고 참조함
@@ -108,4 +112,47 @@ public class MailService {
         }
         return mailDTO;
     }
+
+    /* project 참가 코드 메일 전송 */
+
+//    // 랜덤 코드 발생
+//    private String createJoinCode(){
+//        int min = 48;
+//        int max = 122;
+//        int codeLength = 8;
+//        Random random = new Random();
+//
+//        String randomJoinCode = random.ints(min, max + 1)
+//                .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
+//                .limit(codeLength)
+//                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+//                .toString();
+////        System.out.println("코드" + randomJoinCode);
+//
+//        return randomJoinCode;
+//    }
+
+//    // 참가코드 메일 작성
+//    public MimeMessage createEmailForm(String email, String joinCode) throws MessagingException{
+//        MimeMessage message = mailSender.createMimeMessage();
+//        message.addRecipients(MimeMessage.RecipientType.TO, email);
+//        message.setFrom("gudjtr097@gmail.com");
+//        message.setSubject("안녕하세요! CollaTime 프로젝트 참가 인증 코드입니다.");
+//        joinCode = createJoinCode();
+//        message.setText(joinCode);
+//
+//        return message;
+//    }
+
+    // 참가 코드 전송
+//    public MailDTO sendMailJoinCode(String data) throws MessagingException{
+//        String joinCode = createJoinCode();
+//        MailDTO mailDTO = new MailDTO();
+//        mailDTO.setMail(data);
+//        mailDTO.setCode(joinCode);
+//        MimeMessage mailForm = createMimeMessage(data, joinCode);
+//        mailSender.send(mailForm);
+//
+//        return mailDTO;
+//    }
 }

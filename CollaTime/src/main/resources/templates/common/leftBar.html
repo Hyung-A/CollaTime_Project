@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/common/leftBar.css">
+</head>
+<body>
+<!-- Left Bar 구역 -->
+<div id="leftBarLayout">
+    <div id="blueBackground">
+        <div id="profile"></div>
+        <div id="nickname">닉네임 나중에 바꾸기</div>
+        <div id="myPage">마이페이지</div>
+        <div id="whiteBar1"></div>
+        <span id="textMyProject">My Project</span>
+        <div id="projectMenu" th:each="project : ${ projectList }">
+            <img src="/css/project/image/folderIcon.png" id="projectIcon">
+            <span id="menuProjectName" th:text="${ project.projectName }" th:title="${ project.projectName }"></span>
+        </div>
+        <div id="whiteBar2"></div>
+        <div id="doInquiry">
+            <img src="/css/project/image/inquiryIcon.png" id="firstInquiry">
+            <span id="doInquiryText">문의하기</span>
+        </div>
+        <div id="authority">
+            <img src="/css/project/image/inquiryIcon.png" id="secondInquiry">
+            <span id="authorityText">권한 위임 요청</span>
+        </div>
+    </div>
+</div>
+</body>
+</html>
