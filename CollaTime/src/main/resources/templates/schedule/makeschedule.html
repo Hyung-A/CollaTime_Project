@@ -12,12 +12,16 @@
     <div id="middleBlueHeader">
         <div id="middleXXButton">X</div>
     </div>
-    <!-- 내용 -->
-    <form action="schedule/schedulemain" method="post">
+
+    <!-- 내용, 일정 저장 폼  -->
+    <form id="scheduleForm">
+
+        <!-- 일정 제목 -->
         <div id="scheduleTitle">
-            <input type="text" id="scheduleInputTitle" placeholder="일정 제목" name="scheduleName">
-            <!-- 색상 선택 옵션 -->
+            <input type="text" id="scheduleInputTitle" placeholder="일정 제목" name="scheduleName" required>
         </div>
+
+        <!-- 색상 선택 옵션 -->
         <div id="colorOptions">
             <div class="color-button" id="color-button">
                 <div class="dropdown-icon">▼</div>
@@ -31,14 +35,15 @@
                 <div class="color-option" data-color="#4b0082" style="background-color: #4b0082;"></div>
                 <div class="color-option" data-color="#800080" style="background-color: #800080;"></div>
             </div>
+            <input type="hidden" name="colorCode" id="selectedColor"> <!-- 선택된 색상 값 저장 -->
         </div>
 
         <!-- 스케줄 기간-->
         <div id="schedulePeriod">
             <img src="/css/schedule/image/시계.png" id="watch">
-            <input type="date" id="scheduleStartDate" min="2024-01-01" max="2099-12-31" name="scheduleStart"></input>
+            <input type="date" id="scheduleStartDate" min="2024-01-01" max="2099-12-31" name="scheduleStart" required></input>
             <div id="slash">-</div>
-            <input type="date" id="scheduleEndDate" min="2024-01-01" max="2099-12-31" name="scheduleEnd"></input>
+            <input type="date" id="scheduleEndDate" min="2024-01-01" max="2099-12-31" name="scheduleEnd" required></input>
         </div>
 
         <!-- 참여자 -->
@@ -53,12 +58,14 @@
 
         <!-- 메모 -->
             <span><img src="/css/schedule/image/과제내용.png" id="memoIcon"></span>
-            <textarea id="memo" class="memo-input" placeholder="여기에 메모를 입력하세요..."></textarea>
+            <textarea id="memo" class="memo-input" placeholder="여기에 메모를 입력하세요..." name="scheduleContent"></textarea>
 
 
         <button type="button" id="cancelButton">취소</button>
-        <button type="button" id="confirmButton">확인</button>
-
+        <div id="creator-info">
+            생성자 | <span th:text="${creatorName}"></span>
+        </div>
+        <button type="button" id="confirmButton" onclick="submitSchedule()">확인</button>
     </form>
 </div>
 
@@ -84,6 +91,7 @@
             const selectedColor = option.getAttribute('data-color');
             colorButton.style.backgroundColor = selectedColor;
             colorDropdown.style.display = 'none';
+            colorCodeInput.value = selectedColor; // hidden input의 값 업데이트
         });
     });
 
@@ -109,7 +117,40 @@
             placeholderText.remove();
         }
     });
-</script>
 
+    // JavaScript로 폼 데이터 전송
+    function submitSchedule() {
+
+        const colorCodeInput = document.getElementById("selectedColor");
+        colorCodeInput.value = "#ff0000"; // 기본값 설정
+
+        const scheduleData = {
+            projectNo: 1,
+            scheduleTitle: document.getElementById("scheduleInputTitle").value,
+            colorCode: document.getElementById("selectedColor").value,
+            scheduleStartDate: document.getElementById("scheduleStartDate").value,
+            scheduleEndDate: document.getElementById("scheduleEndDate").value,
+            scheduleContent: document.getElementById("memo").value,
+            scheduleCreator: document.getElementById("creator-info").textContent.trim().split('|')[1].trim()
+        };
+
+        fetch('/api/schedules', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(scheduleData)
+        })
+            .then(response => {
+                if (response.ok) {
+                    alert("일정이 저장되었습니다!");
+                    window.location.reload();  // 새로고침하여 업데이트 반영
+                } else {
+                    alert("저장에 실패했습니다. 다시 시도해주세요.");
+                }
+            })
+            .catch(error => console.error("Error:", error));
+    }
+</script>
 </body>
 </html>

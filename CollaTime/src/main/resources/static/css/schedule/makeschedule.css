@@ -5,8 +5,8 @@
     width: 554px;
     height: 592px;
     position: absolute;
-    left: 453px;
-    top: 120px;
+    left: 683px;
+    top: 130px;
 
     background: #FFFFFF;
     border: 1px solid #595959;
@@ -27,10 +27,10 @@
 #middleXXButton{
     width: 30px;
     height: 34px;
-    font-size: 23px;
+    font-size: 30px;
     position: absolute;
-    left: 530px;
-    top: 12px;
+    left: 506px;
+    top: 5px;
 }
 /* 일정 제목 */
 #scheduleTitle {
@@ -125,7 +125,7 @@
     width: 150px;
     height: 40px;
     left: 20px;
-    top: 5px;
+    top: 15px;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 300;
@@ -144,7 +144,7 @@
      width: 150px;
      height: 40px;
      left: 215px;
-     top: 5px;
+     top: 15px;
      font-family: 'Inter';
      font-style: normal;
      font-weight: 300;
@@ -161,7 +161,7 @@
 #slash {
     position: absolute;
     left: 185px;
-    top: 12px;
+    top: 1px;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 300;
@@ -223,6 +223,15 @@
     border-radius: 10px; /* 모서리를 둥글게 */
 }
 
+#creator-info {
+
+    position: absolute;
+    bottom: 60px; /* 버튼 위에 위치할 수 있도록 설정 */
+    left: 40px;   /* 왼쪽 여백 */
+    font-size: 14px;
+    color: #666;  /* 텍스트 색상 */
+    font-weight: bold;
+}
 #cancelButton {
     position: absolute;
     left: 325px;

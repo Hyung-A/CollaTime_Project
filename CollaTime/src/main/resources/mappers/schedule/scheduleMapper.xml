@@ -46,7 +46,7 @@
 
     <!-- 일정 추가 쿼리 -->
     <insert id="insertSchedule" parameterType="com.ohgiraffers.collatime.schedule.model.dto.ScheduleDTO">
-        INSERT INTO schedule
+        INSERT INTO ct_schedule
         (
         PROJECT_NO,
         CT_SCHEDULE_START_DATE,

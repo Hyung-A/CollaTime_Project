@@ -1,7 +1,5 @@
 package com.ohgiraffers.collatime.schedule.model.service;
 
-
-import com.ohgiraffers.collatime.project.model.dto.ProjectDTO;
 import com.ohgiraffers.collatime.schedule.model.dao.ScheduleMapper;
 import com.ohgiraffers.collatime.schedule.model.dto.ScheduleDTO;
 import org.springframework.stereotype.Service;
