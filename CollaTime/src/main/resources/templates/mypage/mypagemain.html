@@ -8,6 +8,8 @@
 </head>
 <body>
 
+    <div th:replace="common/programHeader.html"></div>
+
     <div id="myPage_text">CollaTime 마이페이지</div>
 
     <div id="myPage_modifyUser_area"></div>
@@ -34,7 +36,7 @@
     <div id="myPage_userEmail" th:text="|이메일 : ${#authentication.principal.userEmail}|"></div>
     <div id="myPage_participation_project_text">참여프로젝트</div>
     <div class="underBar Long" id="myPage_participation_project_line"></div>
-    <div id="myPage_participation_project_list">hi</div>
+<!--    <div id="myPage_participation_project_list">hi</div>-->
 
 </body>
 </html>
