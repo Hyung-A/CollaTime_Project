@@ -72,7 +72,9 @@
         <!--pwd 찾기 헤더-->
         <div id="find_pwd_header">비밀번호 찾기</div>
         <!--  로그인으로 버튼 -->
-        <button type="button" id="for_login_btn">로그인으로</button>
+        <button type="button" id="to_login_btn" onclick="location.href='/auth/login'">로그인으로</button>
+        <!-- 회원가입으로 버튼 -->
+        <button type="button" id="to_signup_btn" onclick="location.href='/user/signup'">회원가입으로</button>
     </div>
 
     <script>
@@ -81,6 +83,8 @@
 
         const find_body_id = document.getElementById('find_action_body_id')
         const find_body_pwd = document.getElementById('find_action_body_pwd')
+        const goSignup = document.getElementById('to_signup_btn');
+        const goLogin = document.getElementById('to_login_btn');
 
         // id 찾기 헤더
         idHeader.addEventListener('click', ()=>{
@@ -129,10 +133,12 @@
                             checkMessage.innerText = '해당 이메일로 코드를 보냈습니다.';
                             theId = data[i][0];
                             console.log(theId)
+                            goSignup.style.visibility = 'hidden';
                             break;
                         } else {
                             checkMessage.style.color = 'red';
                             checkMessage.innerText = '해당 이메일과 일치하는 아이디가 없습니다.';
+                            goSignup.style.visibility = 'visible';
                         }
                     }
                     if (theId!="") {
@@ -151,7 +157,7 @@
         function sendCodeCompare() {
             console.log(checkEmailId.value)
             const mail = document.getElementById('find_id_email_input').value;
-            fetch('/mail/sendExistingMail', {
+            fetch('/mail/sendexistingmail', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",
@@ -165,6 +171,7 @@
                     compareCodeIdBtn.addEventListener('click', () => {
                         if (idInputCode.value == data.code) {
                             checkMessage.innerText = `가입하신 아이디는 ${theId} 입니다.`
+                            goLogin.style.visibility = 'visible';
                         } else {
                             checkMessage.style.color = 'red';
                             checkMessage.innerText = '코드가 틀렸습니다.'
@@ -198,10 +205,12 @@
                                 pwdGuideArea.style.display = 'flex'
                                 pwdEmailArea.style.display = 'flex'
                                 pwdEmailCodeArea.style.display = 'flex'
+                                goSignup.style.visibility = 'hidden';
                                 break;
                             } else {
                                 idMessage.style.color = 'red';
                                 idMessage.innerText = '존재하지 않는 아이디입니다.';
+                                goSignup.style.visibility = 'visible';
                             }
                         }
                     })
@@ -228,7 +237,7 @@
         sendCodePwd.addEventListener('mouseup', () => {
             compareCodePwdBtn.disabled = false;
             let mail = document.getElementById('find_pwd_email_input').value
-            fetch('/mail/sendExistingMail', {
+            fetch('/mail/sendexistingmail', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",
@@ -243,7 +252,7 @@
                         compareCodePwdBtn.disabled = true;
                         checkMessage.innerText = `이메일을 보내는 중입니다.`;
                         if (pwdInputCode.value == data.code) {
-                            fetch('/mail/sendNewPwdMail', {
+                            fetch('/mail/sendnewpwdmail', {
                                 method: 'POST',
                                 headers: {
                                     "Content-Type": "application/json",
@@ -256,6 +265,7 @@
                                     checkMessage.style.color = 'black';
                                     checkMessage.innerText = `${data.mail}\n으로 새로운 비밀번호를 보냈습니다.`;
                                     compareCodePwdBtn.disabled = true;
+                                    goLogin.style.visibility = 'visible';
                                     }else {
                                         checkMessage.style.color = 'red';
                                         checkMessage.innerText = `예기치 못한 오류가 발생했습니다.\n고객센터에 문의해주세요.`

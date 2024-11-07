@@ -368,7 +368,7 @@
     document.getElementById("send_code_email").addEventListener('mouseup',function (){
 
         const mail = document.getElementById('regist_email_input').value;
-        fetch('/mail/sendNewMail', {
+        fetch('/mail/sendnewmail', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",

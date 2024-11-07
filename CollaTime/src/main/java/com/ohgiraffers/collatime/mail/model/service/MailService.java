@@ -1,13 +1,12 @@
-package com.ohgiraffers.collatime.mail;
+package com.ohgiraffers.collatime.mail.model.service;
 
+import com.ohgiraffers.collatime.mail.model.dto.MailDTO;
 import com.ohgiraffers.collatime.project.model.service.ProjectService;
 import com.ohgiraffers.collatime.user.model.service.UserService;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.Random;
@@ -44,8 +43,8 @@ public class MailService {
                 .toString();
     }
 
-    private MimeMessage createMimeMessage(String mail, String code) throws MessagingException {
 
+    private MimeMessage createMimeMessage(String mail, String code) throws MessagingException {
 
         MimeMessage mimeMessage = mailSender.createMimeMessage();
             mimeMessage.addRecipients(MimeMessage.RecipientType.TO, mail);
@@ -57,7 +56,6 @@ public class MailService {
     }
 
     private MimeMessage createPwdMessage(String mail, String code) throws MessagingException {
-
 
         MimeMessage mimeMessage = mailSender.createMimeMessage();
             mimeMessage.addRecipients(MimeMessage.RecipientType.TO, mail);

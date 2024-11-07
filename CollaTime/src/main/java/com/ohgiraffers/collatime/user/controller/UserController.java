@@ -1,20 +1,14 @@
 package com.ohgiraffers.collatime.user.controller;
 
-import com.fasterxml.jackson.core.JsonParser;
 import com.ohgiraffers.collatime.user.model.dto.SignupDTO;
 import com.ohgiraffers.collatime.user.model.dto.UserDTO;
 import com.ohgiraffers.collatime.user.model.service.UserService;
-import org.apache.catalina.connector.Request;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
 @Controller
 @RequestMapping("/user")
@@ -43,7 +37,7 @@ public class UserController {
     }
 
 
-    @GetMapping("/findIdAndPwd")
+    @GetMapping("/findidandpwd")
     public void findIdAndPwd() {
         System.out.println("find");
     }
@@ -71,7 +65,7 @@ public class UserController {
 
         mv.addObject("message", message);
         mv.addObject("isPass", isPass);
-        mv.setViewName("user/signupResult");
+        mv.setViewName("/user/signupresult");
 
         return mv;
     }

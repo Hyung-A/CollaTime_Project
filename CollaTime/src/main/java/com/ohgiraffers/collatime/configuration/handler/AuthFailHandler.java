@@ -24,7 +24,6 @@ public class AuthFailHandler extends SimpleUrlAuthenticationFailureHandler {
 //    response : 서버 응답값
 //    exception : 발생한 오류를 담는 개체
     @Override
-    @JsonIgnore
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
         String errorMessage = "";
         System.out.println("로그인 실패");
@@ -50,7 +49,7 @@ public class AuthFailHandler extends SimpleUrlAuthenticationFailureHandler {
         errorMessage = URLEncoder.encode(errorMessage, "UTF-8");
         System.out.println(errorMessage);
 //        setDefaultFailureUrl("/auth/fail?message=" + errorMessage);
-        response.sendRedirect("/auth/loginFail?message="+errorMessage);
+        response.sendRedirect("/auth/loginfail?message="+errorMessage);
 
 //        super.onAuthenticationFailure(request, response, exception);
 //        ㄴ 로그인 실패 시 Cannot call sendError() after the response has been committed -> 무한 참조가 발생했다.

@@ -1,4 +1,4 @@
-package com.ohgiraffers.collatime.mail;
+package com.ohgiraffers.collatime.mail.model.dto;
 
 public class MailDTO {
 

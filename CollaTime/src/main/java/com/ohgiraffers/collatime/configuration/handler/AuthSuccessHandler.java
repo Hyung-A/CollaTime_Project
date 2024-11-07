@@ -31,7 +31,7 @@ public class AuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
         }
         if(role.equals("USER")) {
             System.out.println("user");
-            response.sendRedirect("/auth/loginResult");
+            response.sendRedirect("/auth/loginresult");
         }
 
         super.onAuthenticationSuccess(request, response, authentication);
