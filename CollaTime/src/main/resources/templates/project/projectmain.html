@@ -85,10 +85,13 @@
   // 메뉴 텍스트
   let crudText = document.querySelectorAll(".crudText");
   for(let i = 0; i < crudText.length; i++){
+    crudText[i].style.backgroundColor = "#F5F5F5";
+    crudText[i].style.width = "90px";
+    crudText[i].style.left = "10px";
     crudText[i].addEventListener("mouseover", function(){
       crudText[i].style.backgroundColor = "#E2E2E2";
       crudText[i].style.width = "110px";
-      crudText[i].style.left = "opx";
+      crudText[i].style.left = "0px";
     });
     crudText[i].addEventListener("mouseout", function(){
       crudText[i].style.backgroundColor = "#F5F5F5";
@@ -97,18 +100,18 @@
     });
   }
   // 메뉴 아이콘 ...
-  // let folderMenu = document.querySelectorAll("#folderMenu");
-  // let crudMenu = document.querySelectorAll("#crudMenu");
-  // for(let i = 0; i < folderMenu.length; i++){
-  //   crudMenu[i].style.display = "none";
-  //   folderMenu[i].onclick = function() {
-  //     if (crudMenu[i].style.display === 'block') {
-  //       crudMenu[i].style.display = 'none';
-  //     } else {
-  //       crudMenu[i].style.display = 'block';
-  //     }
-  //   }
-  // }
+  let folderMenu = document.querySelectorAll("#folderMenu");
+  let crudMenu = document.querySelectorAll("#crudMenu");
+  for(let i = 0; i < folderMenu.length; i++){
+    crudMenu[i].style.display = "none";
+    folderMenu[i].onclick = function() {
+      if (crudMenu[i].style.display === 'block') {
+        crudMenu[i].style.display = 'none';
+      } else {
+        crudMenu[i].style.display = 'block';
+      }
+    }
+  }
 
 
   /* New 프로젝트 폴더 영역 */
@@ -225,7 +228,7 @@
     </div>
     <span id="memberStar" class="star">*</span>
     <label for="member" id="memberLabel">인원초대</label>
-    <div id="member">
+    <div id="member" style="display: flex; flex-direction: row; flex-wrap: wrap;">
       <button type="button" id="inviteMember" name="member">+</button>
     </div>
     <button type="button" id="bigCancel1">취소</button>
@@ -265,30 +268,112 @@
       categoryLabelList[i].style.background = "#FFFFFF";
     })
   }
+
+  // let email = document.querySelector("#inputEmail");
+  // document.getElementById("sendEmailConfirm").addEventListener("click", function () {
+  //   let member = document.getElementById("member");
+  //   let storeMail = document.createElement("div");
+  //   let adressArea = document.createElement("div");
+  //   let xBtnArea = document.createElement("div");
+  //   let emailAdress = document.createTextNode(email.value);
+  //   let xButton = document.createTextNode("X");
+  //   storeMail.appendChild(adressArea);
+  //   storeMail.appendChild(xBtnArea);
+  //   adressArea.appendChild(emailAdress);
+  //   xBtnArea.appendChild(xButton);
+  //   storeArea.appendChild(storeMail);
+  //   storeMail.style.backgroundColor = "#FFFFFF";
+  //   storeMail.style.height = "30px";
+  //   storeMail.style.display = "flex";
+  //   storeMail.style.alignItems = "center";
+  //   storeMail.style.justifyContent = "center";
+  //   storeMail.style.lineHeight = "20px";
+  //   storeMail.style.borderRadius = "15px";
+  //   storeMail.style.width = "max-content";
+  //   storeMail.style.margin = "10px"; // 기본 여백 설정
+  //   storeMail.style.padding = "5px 10px"; // 공간을 더 줘서 컴팩트하게
+  //   adressArea.style.marginRight = "10px"; // 오른쪽 여백 추가
+  //   xBtnArea.style.cursor = "pointer"; // 클릭 가능한 커서로 변경
+  //   xBtnArea.onclick = function () {
+  //     storeArea.removeChild(storeMail);
+  //   }
+  // })
 </script>
 <!-- ---------------------------- 멤버 초대 모달 ---------------------------- -->
-<div id="inviteMemberModal" style="z-index: 4">
-  <div id="inviteMemberBlueHeader">
-    <div id="inviteMemberXButton">X</div>
-  </div>
-  <div id="inviteModalMain">
-    <span id="textMember">팀원관리</span>
-    <div id="emailArea">
-      <span id="textEmail">E-mail</span>
-      <div id="sendEmail">
-        <input type="email" multiple id="inputEmail" placeholder="collaTime@gmail.com" value=""/>
-        <button type="button" id="addIcon">+</button>
+<form action="/project/emaillist" method="post">
+  <div id="inviteMemberModal" style="z-index: 4">
+    <div id="inviteMemberBlueHeader">
+      <div id="inviteMemberXButton">X</div>
+    </div>
+    <div id="inviteModalMain">
+      <span id="textMember">팀원관리</span>
+      <div id="emailArea">
+        <span id="textEmail">E-mail</span>
+        <div id="sendEmail">
+          <input type="email" id="inputEmail" name="inputEmail" placeholder="collaTime@gmail.com" value=""/>
+          <input type="email" style="display: none" id="emailList" name="email"/>
+          <button type="button" id="addIcon">+</button>
+        </div>
       </div>
+      <div id="store">
+        <img src="/css/project/image/memberIcon.png" id="storeEmailIcon" alt="멤버아이콘">
+        <div id="storeEmailArea" style="display: flex; flex-wrap: wrap; align-content: flex-start; gap: 5px"></div>
+      </div>
+      <button type="button" id="sendEmailCancel">취소</button>
+      <button type="submit" id="sendEmailConfirm">확인</button>
     </div>
-    <div id="store">
-      <img src="/css/project/image/memberIcon.png" id="storeEmailIcon" alt="멤버아이콘">
-      <div id="storeEmailArea"></div>
-    </div>
-    <button type="button" id="sendEmailCancel">취소</button>
-    <button type="submit" id="sendEmailConfirm">확인</button>
   </div>
-</div>
+</form>
+
 <script>
+
+  // 입력 받은 값을 sessionStorage에 저장
+  // let inputEmail = document.getElementById("inputEmail");
+  // const addEmail = document.getElementById("addIcon");
+  // let emailList = [];
+  // addEmail.onclick = function(){
+  //   emailList.push(inputEmail.value);
+  //   for(let i = 0; i < emailList.length; i++){
+  //     sessionStorage.setItem(emailList[i], emailList[i]);
+  //   }
+  //   console.log(sessionStorage);
+  // }
+
+
+
+  // let inputEmail = document.getElementById("inputEmail");
+  // const addEmail = document.getElementById("addIcon");
+  // let emailList = [];
+  // addEmail.onclick = function(){
+  //   emailList.push(inputEmail.value);
+  //   console.log(emailList);
+  // }
+  //
+  // $.ajax({
+  //   url : "project/emaillist",
+  //   method : "POST",
+  //   data : {
+  //     emailList : emailList
+  //   },
+  //   success : (result) => {
+  //     console.log(result);
+  //   }
+  // });
+  // function emailSelect(emailList) {
+  //   fetch("/project/emaillist")
+  //           .then(res = res.json())
+  //           .then(data =>{
+  //             console.log(data);
+  //             let inputEmail = document.getElementById("inputEmail");
+  //             inputEmail.value = data.email;
+  //             const addEmail = document.getElementById("addIcon");
+  //             var emailList = [];
+  //             addEmail.onclick = function(){
+  //               emailList.push(inputEmail.value);
+  //               console.log(emailList);
+  //             }
+  //           });
+  // }
 
   // 멤버 초대 모달창 띄우기
   const inviteMemberModal = document.getElementById("inviteMemberModal");
@@ -302,30 +387,46 @@
   const sendEmailCancel = document.getElementById("sendEmailCancel");
   sendEmailCancel.onclick = function(){
     inviteMemberModal.style.display = "none";
+    sessionStorage.clear();
+    console.log(sessionStorage);
   }
 
   const inviteMemberXButton = document.getElementById("inviteMemberXButton");
   inviteMemberXButton.onclick = function(){
     inviteMemberModal.style.display = "none";
+    sessionStorage.clear();
+    console.log(sessionStorage);
   }
 
-  // 이메일 저장 공간에 입력한 이메일 잠시 저장하듯 화면에 보여주기
-  let email = document.querySelector("#inputEmail");
-  document.getElementById("addIcon").addEventListener("click", function(){
-    console.log(email.value);
-    let element = document.createElement("div");
-    let emailText = document.createTextNode(email.value);
+  // let email = document.querySelector("#inputEmail");
+  // document.getElementById("addIcon").addEventListener("click", function () {
+  addEmail.addEventListener("click", function () {
     let storeArea = document.getElementById("storeEmailArea");
-    element.appendChild(emailText);
-    storeArea.appendChild(element);
-    console.log(emailText);
-    element.style.background = "#FFFFFF";
-    element.style.width = "150px";
-    element.style.height = "30px";
-    element.style.display = "flex";
-    element.style.justifyContent = "center";
-    element.style.lineHeight = "30px";
-    element.style.borderRadius = "15px";
+    let storeMail = document.createElement("div");
+    let adressArea = document.createElement("div");
+    let xBtnArea = document.createElement("div");
+    let emailAdress = document.createTextNode(inputEmail.value);
+    let xButton = document.createTextNode("X");
+    storeMail.appendChild(adressArea);
+    storeMail.appendChild(xBtnArea);
+    adressArea.appendChild(emailAdress);
+    xBtnArea.appendChild(xButton);
+    storeArea.appendChild(storeMail);
+    storeMail.style.backgroundColor = "#FFFFFF";
+    storeMail.style.height = "30px";
+    storeMail.style.display = "flex";
+    storeMail.style.alignItems = "center";
+    storeMail.style.justifyContent = "center";
+    storeMail.style.lineHeight = "20px";
+    storeMail.style.borderRadius = "15px";
+    storeMail.style.width = "max-content";
+    storeMail.style.margin = "10px"; // 기본 여백 설정
+    storeMail.style.padding = "5px 10px"; // 공간을 더 줘서 컴팩트하게
+    adressArea.style.marginRight = "10px"; // 오른쪽 여백 추가
+    xBtnArea.style.cursor = "pointer"; // 클릭 가능한 커서로 변경
+    xBtnArea.onclick = function () {
+      storeArea.removeChild(storeMail);
+    }
   })
 </script>
 <!-- ----------------------------------------- 프로젝트 내용 조회 및 수정 모달 ----------------------------------------- -->
