@@ -480,7 +480,8 @@
     position: absolute;
     width: 78px;
     height: 38px;
-    left: 10px;
+    /*left: 10px;*/
+    margin-left: 10px;
     top: 7px;
     border: solid 2px #E7E7E7;
     border-radius: 15px;
@@ -492,6 +493,11 @@
     letter-spacing: 0.03em;
     background: #E7E7E7;
 
+}
+
+.memberArea{
+    display: inline-block;
+    margin-right: 10px;
 }
 
 #bigCancel1{

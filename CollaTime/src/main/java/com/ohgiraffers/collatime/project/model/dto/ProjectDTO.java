@@ -16,6 +16,15 @@ public class ProjectDTO {
 
     public ProjectDTO() {}
 
+    public ProjectDTO(String projectName, String projectSummary, String projectPurpose, String startDate, String endDate, String projectCategoryCode) {
+        this.projectName = projectName;
+        this.projectSummary = projectSummary;
+        this.projectPurpose = projectPurpose;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.projectCategoryCode = projectCategoryCode;
+    }
+
     public ProjectDTO(int projectNo, String projectName, String projectSummary, String projectPurpose, String startDate, String endDate, String projectCategoryCode) {
         this.projectName = projectName;
         this.projectSummary = projectSummary;
