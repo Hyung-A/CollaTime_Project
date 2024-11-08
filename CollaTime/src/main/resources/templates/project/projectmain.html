@@ -198,7 +198,8 @@
   <!-- 내용 부분 -->
 <!--  <form action="/project/projectmain" method="post">-->
     <div id="title">
-      <input type="text" id="inputTitle" placeholder="프로젝트 명을 입력해주세요." name="projectName">
+      <input type="text" style="display: none" id="projectNumber" name="projectNo"/>
+      <input type="text" id="inputTitle" placeholder="프로젝트 명을 입력해주세요." name="projectName"/>
     </div>
     <span id="summaryStar" class="star">*</span>
     <label id="summaryLabel" for="inputSummary">개요</label>
@@ -229,8 +230,8 @@
     <span id="memberStar" class="star">*</span>
     <label for="member" id="memberLabel">인원초대</label>
     <div id="member" style="display: flex; flex-direction: row; flex-wrap: wrap;">
-      <div id="addedMember" name="email" style="display: none"></div>
-      <button type="button" id="inviteMember" name="member">+</button>
+      <button type="button" id="inviteMember" name="member" class="memberArea">+</button>
+      <div id="addedMember" name="email" style="display: flex; flex-wrap: wrap; flex-direction: row;" class="memberArea"></div>
     </div>
     <button type="button" id="bigCancel1">취소</button>
     <button type="button" id="bigConfirm1">생성</button>
@@ -239,34 +240,34 @@
 
 <script>
 
-  // fetch("API 주소", {
-  //   method: "POST",
-  //   body: JSON.stringify({
-  //     email: id,
-  //     password: pw,
-  //   }),
-  // })
-  //         .then((response) => response.json())
-  //         .then((result) => console.log(result));
-
-
+  // 1. (화면) 생성 버튼 클릭 (화면)
+  // 2. (서버) 컨트롤에서 프로젝트 테이블, 참여자 테이블에 데이터 넣기
+  // 3. (서버) 데이터 넣은 이후 참여자 리스트에 메일 보내기
+  // 4. (화면) fetch 호출 이후 프로젝트 메인 화면 호출
   const create = document.getElementById("bigConfirm1");
   create.onclick = function(){
+    // 프로젝트 데이터 넘기기
     fetch("/project/projectmain",
             {
               method: "POST",
+              headers: {
+                'Content-Type': 'application/json',
+              },
               body: JSON.stringify({
+                // projectNo : document.getElementById("projectNumber").value,
                 projectName : document.getElementById("inputTitle").value,
                 projectSummary : document.getElementById("inputSummary").value,
                 projectPurpose : document.getElementById("inputPurpose").value,
                 startDate : document.getElementById("projectStartDate").value,
                 endDate : document.getElementById("projectEndDate").value,
-                projectCategoryCode : document.querySelector("#projectCategoryCode").value.getAttribute('checked', true)
-                // projectCategoryCode : document.querySelector("#updateCategory input[value='"+data.projectCategoryCode+"']").getAttribute('checked' , true)
-              }),
+                projectCategoryCode : document.querySelector("input[type=radio]:checked").value,
+                email : resultEmailList,
+              })
             })
             .then((response) => response.json())
-            .then((result) => console.log(result));
+            .then((result) => console.log(result))
+            .then((error) => console.error("Error Fetching data : " , error));
+
   }
 
 
@@ -369,6 +370,7 @@
   //   console.log(emailList);
   // }
 
+
   // 요소 삭제
   function deleteEmail (){
     var storeArea = document.getElementById("storeEmailArea");
@@ -377,11 +379,11 @@
     }
   }
 
+  // 이메일 입력 후 +를 눌렀을 때 입력한 이메일을 저장 영역(화면)에 띄우기
   const inputEmail = document.getElementById("inputEmail");
   const addEmail = document.getElementById("addIcon");
   let emailList = [];
   let resultEmailList = [];
-
   addEmail.onclick = function(){
     emailList.push(inputEmail.value);
     let storeArea = document.getElementById("storeEmailArea");
@@ -417,12 +419,15 @@
   const inviteMemberModal = document.getElementById("inviteMemberModal");
   inviteMemberModal.style.display = "none";
 
+  // 인원 추가 버튼 클릭 시 기존에 저장한 이메일이 있으면 불러와서 화면에 띄우기
   const addMemberBtn = document.getElementById("inviteMember");
+  const storeArea = document.getElementById("storeEmailArea");
+  storeArea.style.left = "98px";
   addMemberBtn.onclick = function(){
     inviteMemberModal.style.display = "";
     emailList = [...resultEmailList];
+    inputEmail.value = "";
     for(let i = 0; i < emailList.length; i++) {
-      let storeArea = document.getElementById("storeEmailArea");
       let storeMail = document.createElement("div");
       let adressArea = document.createElement("div");
       let xBtnArea = document.createElement("div");
@@ -452,6 +457,7 @@
     }
   }
 
+  // 취소 버튼
   const sendEmailCancel = document.getElementById("sendEmailCancel");
   sendEmailCancel.onclick = function(){
     inviteMemberModal.style.display = "none";
@@ -461,6 +467,7 @@
     input.value = "";
   }
 
+  // X 버튼
   const inviteMemberXButton = document.getElementById("inviteMemberXButton");
   inviteMemberXButton.onclick = function(){
     inviteMemberModal.style.display = "none";
@@ -470,14 +477,35 @@
     input.value = "";
   }
 
+  // 확인 버튼
   const sendEmailConfirm = document.getElementById("sendEmailConfirm");
   sendEmailConfirm.onclick = function(){
     inviteMemberModal.style.display = "none";
+    // 입력한 이메일 리스트 확정하는 배열
     resultEmailList = [...emailList];
+    console.log("resultEmailList : " + resultEmailList);
     deleteEmail();
     const input = document.getElementById("inputEmail");
     input.value = "";
-
+    // 요소 생성
+    const resultEmailArea = document.getElementById("addedMember");
+    for(let i = 0; i < resultEmailList.length; i++) {
+      let resultMail = document.createElement("div");  // 이메일 div
+      let emailAdress = document.createTextNode(resultEmailList[i]);  // 이메일 주소
+      resultEmailArea.appendChild(resultMail);
+      resultMail.appendChild(emailAdress);
+      resultEmailArea.style.left = "100xp"
+      resultMail.style.backgournd = "#DFF7FD";
+      resultMail.style.borderRadius = "15px";
+      resultMail.style.width = "max-content";
+      resultMail.style.height = "30px";
+      resultMail.style.alignItems = "center";
+      resultMail.style.lineHeight = "30px";
+      resultMail.style.borderRadius = "15px";
+      resultMail.style.margin = "5px";
+      resultMail.style.padding = "5px 10px";
+      // emailAdress.style.marginRight = "10px";
+    }
   }
 
 </script>
