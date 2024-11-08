@@ -15,4 +15,6 @@ public interface UserMapper {
     UserDTO findByUsername(String username);
 
     int modifyPwdByEmail(String email, String code);
+
+    int modifyUser(UserDTO userDTO);
 }

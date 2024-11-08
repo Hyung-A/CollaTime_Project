@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/mypage/resultsmallmodal.css">
+</head>
+<body>
+
+<div th:include="mypage/mypagemain"></div>
+
+<div id="smallModalResult" class="modal">
+    <div id="smallBlueHeaderResult">
+        <div id="smallXButtonResult">X</div>
+    </div>
+    <!-- 로그인 유효성 메세지 -->
+    <div class="success_message" id="successMessageResult" th:text="${ message }"></div>
+    <button id="small_modifyOk_btnResult" type="button">확인</button>
+</div>
+<script>
+    let smallModalResult = document.getElementById('smallModalResult');
+    let smallModalMessage = document.getElementById('successMessageResult');
+    let smallXResult = document.getElementById('smallXButtonResult');
+    let smallOkResult = document.getElementById('small_modifyOk_btnResult');
+    const message = `[[${message}]]`;
+    const isPass = `[[${isPass}]]`;
+    smallModalResult.style.display = 'flex'
+    smallModalMessage.innerText = message;
+    if(isPass){
+        smallOkResult.addEventListener('click', ()=>{location.href="/auth/logout"})
+        smallXResult.addEventListener('click', ()=>{location.href="/auth/logout"})
+    }else {
+        smallOkResult.addEventListener('click', ()=>{location.href="/mypage/mypagemain"})
+        smallXResult.addEventListener('click', ()=>{location.href="/mypage/mypagemain"})
+    }
+</script>
+
+</body>
+</html>

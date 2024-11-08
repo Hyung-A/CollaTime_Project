@@ -36,8 +36,8 @@
 
     position: absolute;
     width: 255px;
-    left: 295px;
-    top: 382px;
+    left: 76px;
+    top: 40px;
 
     font-family: 'Inter';
     font-style: normal;
@@ -53,8 +53,8 @@
 #myPage_modifyUser_icon{
 
     position: absolute;
-    left: 397px;
-    top: 430px;
+    left: 178px;
+    top: 88px;
 
 }
 
@@ -64,8 +64,8 @@
     position: absolute;
     width: 360px;
     height: 55px;
-    left: 245px;
-    top: 531px;
+    left: 20px;
+    top: 190px;
 
 
     font-style: normal;
@@ -98,8 +98,8 @@
 
     position: absolute;
     width: 200px;
-    left: 886px;
-    top: 375px;
+    left: 100px;
+    top: 40px;
 
     font-style: normal;
     font-weight: 700;
@@ -118,8 +118,8 @@
     position: absolute;
     width: 48px;
     height: 48px;
-    left: 966px;
-    top: 424px;
+    left: 178px;
+    top: 88px;
 
 }
 
@@ -129,8 +129,8 @@
     position: absolute;
     width: 285px;
     height: 72px;
-    left: 854px;
-    top: 531px;
+    left: 58px;
+    top: 190px;
 
     font-style: normal;
     font-weight: 400;
@@ -147,7 +147,7 @@
     /* ※프로필 아이콘 변경은 프로필 옆 주사위를 눌러주세요!※ */
 
     position: absolute;
-    width: 634px;
+    width: 650px;
     height: 29px;
     left: 405px;
     top: 805px;
@@ -179,16 +179,17 @@
 #myPage_profile_area{
 
     position: absolute;
-    width: 158.85px;
-    height: 154.54px;
-    left: 1535.07px;
-    top: 164.46px;
+    width: 158px;
+    height: 154px;
+    left: 1535px;
+    top: 164px;
 
     border-radius: 999px;
 
     background: #FFFFFF;
 
 }
+
 /*프로필 dice*/
 #myPage_profile_dice{
 
@@ -203,26 +204,27 @@
 #myPage_userNickname{
 
     position: absolute;
-    width: 116px;
+    width: 492px;
     height: 39px;
-    left: 1556px;
+    left: 1368px;
     top: 329px;
 
     font-style: normal;
     font-weight: 400;
     font-size: 30px;
     line-height: 36px;
+    text-align: center;
 
     color: #000000;
-
 
 }
 /*프로필 구분선*/
 #myPage_profile_line{
 
     position: absolute;
-    left: 1705px;
+    left: 1505px;
     top: 368px;
+    width: 220px;
 
 
 }
@@ -230,9 +232,9 @@
 #myPage_userInfo_text{
 
     position: absolute;
-    width: 49px;
+    width: 60px;
     height: 24px;
-    left: 1433px;
+    left: 1428px;
     top: 407px;
 
     font-style: normal;
@@ -250,8 +252,9 @@
 #myPage_userInfo_line{
 
     position: absolute;
-    left: 1795px;
+    left: 1433px;
     top: 442px;
+    width: 360px;
 
 
 }
@@ -279,14 +282,14 @@
     position: absolute;
     width: 332px;
     height: 24px;
-    left: 1430px;
+    left: 1435px;
     top: 512px;
 
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
-    text-align: center;
+
 
     color: #000000;
 
@@ -316,6 +319,7 @@
 
     left: 1433px;
     top: 629px;
+    width: 360px;
 
 }
 /*프로젝트칸 참여 프로젝트*/
@@ -325,15 +329,8 @@
     position: absolute;
 
     height: 0px;
-    width: 360px;
     border: 3.6px solid #FFFFFF;
 
 }
-/*구분선 긴거*/
-.short{
-    width: 180px;
-}
-/*구분선 짧은거*/
-.long{
-    width: 360px;
-}
+
+

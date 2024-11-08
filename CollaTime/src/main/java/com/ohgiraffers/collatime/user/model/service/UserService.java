@@ -67,4 +67,16 @@ public class UserService {
 
         return result;
     }
+
+    public int modifyUser(UserDTO userDTO, boolean isModifyPwd) {
+        if(isModifyPwd){
+            System.out.println("isModify true");
+            String newPwd = passwordEncoder.encode(userDTO.getUserPwd());
+            userDTO.setUserPwd(newPwd);
+        }
+
+        int result = userMapper.modifyUser(userDTO);
+
+        return result;
+    }
 }
