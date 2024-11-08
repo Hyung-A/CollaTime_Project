@@ -113,6 +113,19 @@ public class UserDTO implements java.io.Serializable{
         this.userRole = userRole;
     }
 
-
+    @Override
+    public String toString() {
+        return "UserDTO{" +
+                "userNo=" + userNo +
+                ", userId='" + userId + '\'' +
+                ", password='" + password + '\'' +
+                ", userEmail='" + userEmail + '\'' +
+                ", userName='" + userName + '\'' +
+                ", userNickname='" + userNickname + '\'' +
+                ", userPicture='" + userPicture + '\'' +
+                ", userColor='" + userColor + '\'' +
+                ", userRole=" + userRole +
+                '}';
+    }
 }
 

@@ -68,4 +68,15 @@
         SET PASSWORD = #{ code }
         WHERE CT_USER_EMAIL = #{ email }
     </update>
+
+    <update id="modifyUser">
+        UPDATE CT_USER
+        SET
+            PASSWORD = #{ userPwd }
+        ,   CT_USER_EMAIL = #{userEmail}
+        ,   CT_USER_NAME = #{userName}
+        ,   CT_USER_NICKNAME = #{userNickname}
+        WHERE CT_USER_NO = #{userNo}
+    </update>
+
 </mapper>

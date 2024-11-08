@@ -80,11 +80,16 @@
     <script>
         const idHeader = document.getElementById('find_id_header');
         const pwdHeader = document.getElementById('find_pwd_header');
-
+        const inputClear = document.getElementsByClassName('input')
+        const btnClear = document.getElementsByClassName('btn');
         const find_body_id = document.getElementById('find_action_body_id')
         const find_body_pwd = document.getElementById('find_action_body_pwd')
         const goSignup = document.getElementById('to_signup_btn');
         const goLogin = document.getElementById('to_login_btn');
+        let idMessage = document.getElementById('idMessage');
+        const pwdGuideArea = document.getElementById('guideMessage_pwd_email')
+        const pwdEmailArea = document.getElementById('find_pwd_by_email_area')
+        const pwdEmailCodeArea = document.getElementById('find_pwd_by_emailCode_area')
 
         // id 찾기 헤더
         idHeader.addEventListener('click', ()=>{
@@ -98,6 +103,16 @@
             pwdHeader.style.color = "black";
             find_body_pwd.style.display = 'none'
             find_body_id.style.display = 'flex'
+            pwdGuideArea.style.display = 'none'
+            pwdEmailArea.style.display = 'none'
+            pwdEmailCodeArea.style.display = 'none'
+            for(var i = 0; i<inputClear.length; i++){
+                inputClear[i].value = ''
+            }
+            for(var i = 0; i<btnClear.length; i++){
+                btnClear[i].disabled = false;
+            }
+            idMessage.style.visibility = 'hidden'
         })
         // pwd 찾기 헤더
         pwdHeader.addEventListener('click', ()=>{
@@ -111,6 +126,12 @@
             idHeader.style.color = "black";
             find_body_pwd.style.display = 'flex'
             find_body_id.style.display = 'flex'
+            for(var i = 0; i<inputClear.length; i++){
+                inputClear[i].value = ''
+            }
+            for(var i = 0; i<btnClear.length; i++){
+                btnClear[i].disabled = false;
+            }
         })
 
         const sendCodeId = document.getElementById('send_code_id_email')
@@ -184,16 +205,11 @@
         // 이메일 값을 들고오기 위해서
         let theEmail = "";
 
-        // 클릭 시 디스플레이 바꾸기 위해서
-
-        const pwdGuideArea = document.getElementById('guideMessage_pwd_email')
-        const pwdEmailArea = document.getElementById('find_pwd_by_email_area')
-        const pwdEmailCodeArea = document.getElementById('find_pwd_by_emailCode_area')
 
         // 아이디 조회 눌렀을 때
         document.getElementById("check_id_for_pwd").addEventListener('click', function () {
             let checkId = document.getElementById('find_pwd_by_id_input').value;
-            let idMessage = document.getElementById('idMessage');
+
                 fetch("/user/check")
                     .then(res => res.json())
                     .then(data => {
@@ -206,11 +222,13 @@
                                 pwdEmailArea.style.display = 'flex'
                                 pwdEmailCodeArea.style.display = 'flex'
                                 goSignup.style.visibility = 'hidden';
+                                idMessage.style.visibility = 'visible';
                                 break;
                             } else {
                                 idMessage.style.color = 'red';
                                 idMessage.innerText = '존재하지 않는 아이디입니다.';
                                 goSignup.style.visibility = 'visible';
+                                idMessage.style.visibility = 'visible';
                             }
                         }
                     })
