@@ -8,8 +8,8 @@ import java.util.List;
 @Mapper
 public interface ScheduleMapper {
 
-    // 모든 일정 조회
-    List<ScheduleDTO> getList();
+    // 로그인한 사용자 모든 일정 조회
+    List<ScheduleDTO> getUserSchedules(String username);
 
     // 특정 일정 조회
     // ScheduleDTO getSchedule();

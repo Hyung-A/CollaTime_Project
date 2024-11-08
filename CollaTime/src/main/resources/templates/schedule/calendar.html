@@ -37,9 +37,9 @@
                 <div class="header">
                     <div class="year-month"></div>
                     <div class="nav">
-                        <button class="nav-btn go-prev" onclick="prevMonth()">&lt;</button>
-                        <button class="nav-btn go-today" onclick="goToday()">Today</button>
-                        <button class="nav-btn go-next" onclick="nextMonth()">&gt;</button>
+                        <button class="nav-btn go-prev">&lt;</button>
+                        <button class="nav-btn go-today">Today</button>
+                        <button class="nav-btn go-next">&gt;</button>
                     </div>
                 </div>
                 <div class="main">
@@ -116,7 +116,14 @@
                     }
                 }
             }
-        };
+
+        // 모든 날짜 요소에 클릭 이벤트 추가
+        document.querySelectorAll('.date').forEach(date => {
+            date.addEventListener('click', openModal);
+
+        });
+    };
+
 
         renderCalender();
 
@@ -134,6 +141,11 @@
             date = new Date();
             renderCalender();
         };
+
+        document.querySelector(".go-prev").addEventListener("click", prevMonth);
+        document.querySelector(".go-next").addEventListener("click", nextMonth);
+        document.querySelector(".go-today").addEventListener("click", goToday);
+
 
         // 첫 번째 모달 열기
         function openModal() {
@@ -161,6 +173,10 @@
             const makescheduleModal = document.getElementById("makescheduleModal");
             if (makescheduleModal) {
                 makescheduleModal.style.display = "none";
+
+                makescheduleModal.querySelectorAll("input, textarea").forEach(input => {
+                    input.value = "";
+                });
             }
         }
 
@@ -194,7 +210,6 @@
         }
     });
 </script>
-
 
 </body>
 </html>

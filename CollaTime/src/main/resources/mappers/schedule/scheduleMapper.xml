@@ -17,17 +17,11 @@
     </resultMap>
 
 
-    <!-- 모든 일정 조회 쿼리 -->
-    <select id="getList" resultMap="scheduleResultMap">
-        SELECT CT_SCHEDULE_NO,
-        PROJECT_NO,
-        CT_SCHEDULE_START_DATE,
-        CT_SCHEDULE_END_DATE,
-        CT_SCHEDULE_CONTENT,
-        CT_SCHEDULE_TITLE,
-        CT_SCHEDULE_CREATOR,
-        COLOR_CODE
-        FROM schedule
+    <!-- 사용자 모든 스케줄 조회 쿼리 -->
+    <select id="getUserSchedules" parameterType="string" resultMap="scheduleResultMap">
+        SELECT *
+        FROM ct_schedule
+        WHERE CT_SCHEDULE_CREATOR = #{username}
     </select>
 
     <!-- 특정 일정 조회 쿼리 -->

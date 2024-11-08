@@ -17,10 +17,6 @@ public class ScheduleService {
         this.scheduleMapper = scheduleMapper;
     }
 
-    // 모든 일정 조회 (Read)
-    public List<ScheduleDTO> getAllSchedules(){
-        return scheduleMapper.getList();
-    }
 
     // 특정 일정 조회 (Read by ID)
     public ScheduleDTO getScheduleById(int scheduleNo) {
@@ -42,4 +38,8 @@ public class ScheduleService {
         scheduleMapper.deleteSchedule(scheduleNo);
     }
 
+    public List<ScheduleDTO> getUserSchedules(String username) {
+        return scheduleMapper.getUserSchedules(username);
+
+    }
 }
