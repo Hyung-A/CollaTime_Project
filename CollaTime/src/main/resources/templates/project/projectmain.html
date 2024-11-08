@@ -196,7 +196,7 @@
     <div id="bigXButton">X</div>
   </div>
   <!-- 내용 부분 -->
-  <form action="/project/projectmain" method="post">
+<!--  <form action="/project/projectmain" method="post">-->
     <div id="title">
       <input type="text" id="inputTitle" placeholder="프로젝트 명을 입력해주세요." name="projectName">
     </div>
@@ -215,7 +215,7 @@
     <div id="period">
       <input type="date" id="projectStartDate" min="2023-01-01" max="2077-06-20" name="startDate"></input>
       <div id="wave">~</div>
-      <input type="date" id="projectEndDate"  min="2023-01-01" max="2077-06-20" name="endDate"></input>
+      <input type="date" id="projectEndDate"  min=now( max="2077-06-20" name="endDate"></input>
     </div>
     <label for="category" id="categoryLabel">분류</label>
     <div id="category">
@@ -229,14 +229,47 @@
     <span id="memberStar" class="star">*</span>
     <label for="member" id="memberLabel">인원초대</label>
     <div id="member" style="display: flex; flex-direction: row; flex-wrap: wrap;">
+      <div id="addedMember" name="email" style="display: none"></div>
       <button type="button" id="inviteMember" name="member">+</button>
     </div>
     <button type="button" id="bigCancel1">취소</button>
-    <button type="submit" id="bigConfirm1">생성</button>
-  </form>
+    <button type="button" id="bigConfirm1">생성</button>
+<!--  </form>-->
 </div>
 
 <script>
+
+  // fetch("API 주소", {
+  //   method: "POST",
+  //   body: JSON.stringify({
+  //     email: id,
+  //     password: pw,
+  //   }),
+  // })
+  //         .then((response) => response.json())
+  //         .then((result) => console.log(result));
+
+
+  const create = document.getElementById("bigConfirm1");
+  create.onclick = function(){
+    fetch("/project/projectmain",
+            {
+              method: "POST",
+              body: JSON.stringify({
+                projectName : document.getElementById("inputTitle").value,
+                projectSummary : document.getElementById("inputSummary").value,
+                projectPurpose : document.getElementById("inputPurpose").value,
+                startDate : document.getElementById("projectStartDate").value,
+                endDate : document.getElementById("projectEndDate").value,
+                projectCategoryCode : document.querySelector("#projectCategoryCode").value.getAttribute('checked', true)
+                // projectCategoryCode : document.querySelector("#updateCategory input[value='"+data.projectCategoryCode+"']").getAttribute('checked' , true)
+              }),
+            })
+            .then((response) => response.json())
+            .then((result) => console.log(result));
+  }
+
+
   /* "프로젝트 생성 혹은 참가 모달"에서 생성 버튼 클릭 시 생성 모달 띄우기 */
 
   const createProjectModal = document.getElementById("createProjectModal");
@@ -269,61 +302,31 @@
     })
   }
 
-  // let email = document.querySelector("#inputEmail");
-  // document.getElementById("sendEmailConfirm").addEventListener("click", function () {
-  //   let member = document.getElementById("member");
-  //   let storeMail = document.createElement("div");
-  //   let adressArea = document.createElement("div");
-  //   let xBtnArea = document.createElement("div");
-  //   let emailAdress = document.createTextNode(email.value);
-  //   let xButton = document.createTextNode("X");
-  //   storeMail.appendChild(adressArea);
-  //   storeMail.appendChild(xBtnArea);
-  //   adressArea.appendChild(emailAdress);
-  //   xBtnArea.appendChild(xButton);
-  //   storeArea.appendChild(storeMail);
-  //   storeMail.style.backgroundColor = "#FFFFFF";
-  //   storeMail.style.height = "30px";
-  //   storeMail.style.display = "flex";
-  //   storeMail.style.alignItems = "center";
-  //   storeMail.style.justifyContent = "center";
-  //   storeMail.style.lineHeight = "20px";
-  //   storeMail.style.borderRadius = "15px";
-  //   storeMail.style.width = "max-content";
-  //   storeMail.style.margin = "10px"; // 기본 여백 설정
-  //   storeMail.style.padding = "5px 10px"; // 공간을 더 줘서 컴팩트하게
-  //   adressArea.style.marginRight = "10px"; // 오른쪽 여백 추가
-  //   xBtnArea.style.cursor = "pointer"; // 클릭 가능한 커서로 변경
-  //   xBtnArea.onclick = function () {
-  //     storeArea.removeChild(storeMail);
-  //   }
-  // })
+
 </script>
 <!-- ---------------------------- 멤버 초대 모달 ---------------------------- -->
-<form action="/project/emaillist" method="post">
-  <div id="inviteMemberModal" style="z-index: 4">
-    <div id="inviteMemberBlueHeader">
-      <div id="inviteMemberXButton">X</div>
-    </div>
-    <div id="inviteModalMain">
-      <span id="textMember">팀원관리</span>
-      <div id="emailArea">
-        <span id="textEmail">E-mail</span>
-        <div id="sendEmail">
-          <input type="email" id="inputEmail" name="inputEmail" placeholder="collaTime@gmail.com" value=""/>
-          <input type="email" style="display: none" id="emailList" name="email"/>
-          <button type="button" id="addIcon">+</button>
-        </div>
-      </div>
-      <div id="store">
-        <img src="/css/project/image/memberIcon.png" id="storeEmailIcon" alt="멤버아이콘">
-        <div id="storeEmailArea" style="display: flex; flex-wrap: wrap; align-content: flex-start; gap: 5px"></div>
-      </div>
-      <button type="button" id="sendEmailCancel">취소</button>
-      <button type="submit" id="sendEmailConfirm">확인</button>
-    </div>
+<div id="inviteMemberModal" style="z-index: 4">
+  <div id="inviteMemberBlueHeader">
+    <div id="inviteMemberXButton">X</div>
   </div>
-</form>
+  <div id="inviteModalMain">
+    <span id="textMember">팀원관리</span>
+    <div id="emailArea">
+      <span id="textEmail">E-mail</span>
+      <div id="sendEmail">
+        <input type="email" id="inputEmail" name="inputEmail" placeholder="collaTime@gmail.com" value=""/>
+        <input type="email" style="display: none" id="emailList" name="email"/>
+        <button type="button" id="addIcon">+</button>
+      </div>
+    </div>
+    <div id="store">
+      <img src="/css/project/image/memberIcon.png" id="storeEmailIcon" alt="멤버아이콘">
+      <div id="storeEmailArea" style="display: flex; flex-wrap: wrap; align-content: flex-start; gap: 5px"></div>
+    </div>
+    <button type="button" id="sendEmailCancel">취소</button>
+    <button type="button" id="sendEmailConfirm">확인</button>
+  </div>
+</div>
 
 <script>
 
@@ -333,74 +336,54 @@
   // let emailList = [];
   // addEmail.onclick = function(){
   //   emailList.push(inputEmail.value);
-  //   for(let i = 0; i < emailList.length; i++){
+  //   for(let i = 0; i < emailList.length; i++) {
   //     sessionStorage.setItem(emailList[i], emailList[i]);
+  //     let storeArea = document.getElementById("storeEmailArea");
+  //     let storeMail = document.createElement("div");
+  //     let adressArea = document.createElement("div");
+  //     let xBtnArea = document.createElement("div");
+  //     let emailAdress = document.createTextNode(inputEmail.value);
+  //     let xButton = document.createTextNode("X");
+  //     storeMail.appendChild(adressArea);
+  //     storeMail.appendChild(xBtnArea);
+  //     adressArea.appendChild(emailAdress);
+  //     xBtnArea.appendChild(xButton);
+  //     storeArea.appendChild(storeMail);
+  //     storeMail.style.backgroundColor = "#FFFFFF";
+  //     storeMail.style.height = "30px";
+  //     storeMail.style.display = "flex";
+  //     storeMail.style.alignItems = "center";
+  //     storeMail.style.justifyContent = "center";
+  //     storeMail.style.lineHeight = "20px";
+  //     storeMail.style.borderRadius = "15px";
+  //     storeMail.style.width = "max-content";
+  //     storeMail.style.margin = "10px"; // 기본 여백 설정
+  //     storeMail.style.padding = "5px 10px"; // 공간을 더 줘서 컴팩트하게
+  //     adressArea.style.marginRight = "10px"; // 오른쪽 여백 추가
+  //     xBtnArea.style.cursor = "pointer"; // 클릭 가능한 커서로 변경
+  //     xBtnArea.onclick = function () {
+  //       storeArea.removeChild(storeMail);
+  //     }
   //   }
   //   console.log(sessionStorage);
-  // }
-
-
-
-  // let inputEmail = document.getElementById("inputEmail");
-  // const addEmail = document.getElementById("addIcon");
-  // let emailList = [];
-  // addEmail.onclick = function(){
-  //   emailList.push(inputEmail.value);
   //   console.log(emailList);
   // }
-  //
-  // $.ajax({
-  //   url : "project/emaillist",
-  //   method : "POST",
-  //   data : {
-  //     emailList : emailList
-  //   },
-  //   success : (result) => {
-  //     console.log(result);
-  //   }
-  // });
-  // function emailSelect(emailList) {
-  //   fetch("/project/emaillist")
-  //           .then(res = res.json())
-  //           .then(data =>{
-  //             console.log(data);
-  //             let inputEmail = document.getElementById("inputEmail");
-  //             inputEmail.value = data.email;
-  //             const addEmail = document.getElementById("addIcon");
-  //             var emailList = [];
-  //             addEmail.onclick = function(){
-  //               emailList.push(inputEmail.value);
-  //               console.log(emailList);
-  //             }
-  //           });
-  // }
 
-  // 멤버 초대 모달창 띄우기
-  const inviteMemberModal = document.getElementById("inviteMemberModal");
-  inviteMemberModal.style.display = "none";
-
-  const addMemberBtn = document.getElementById("inviteMember");
-  addMemberBtn.onclick = function(){
-    inviteMemberModal.style.display = "";
+  // 요소 삭제
+  function deleteEmail (){
+    var storeArea = document.getElementById("storeEmailArea");
+    while(storeArea.hasChildNodes()){
+      storeArea.removeChild(storeArea.firstChild);
+    }
   }
 
-  const sendEmailCancel = document.getElementById("sendEmailCancel");
-  sendEmailCancel.onclick = function(){
-    inviteMemberModal.style.display = "none";
-    sessionStorage.clear();
-    console.log(sessionStorage);
-  }
+  const inputEmail = document.getElementById("inputEmail");
+  const addEmail = document.getElementById("addIcon");
+  let emailList = [];
+  let resultEmailList = [];
 
-  const inviteMemberXButton = document.getElementById("inviteMemberXButton");
-  inviteMemberXButton.onclick = function(){
-    inviteMemberModal.style.display = "none";
-    sessionStorage.clear();
-    console.log(sessionStorage);
-  }
-
-  // let email = document.querySelector("#inputEmail");
-  // document.getElementById("addIcon").addEventListener("click", function () {
-  addEmail.addEventListener("click", function () {
+  addEmail.onclick = function(){
+    emailList.push(inputEmail.value);
     let storeArea = document.getElementById("storeEmailArea");
     let storeMail = document.createElement("div");
     let adressArea = document.createElement("div");
@@ -425,9 +408,78 @@
     adressArea.style.marginRight = "10px"; // 오른쪽 여백 추가
     xBtnArea.style.cursor = "pointer"; // 클릭 가능한 커서로 변경
     xBtnArea.onclick = function () {
-      storeArea.removeChild(storeMail);
+      storeArea.removeChild(storeMail);  // 요소 삭제
+      emailList = emailList.filter((obj) => obj !== inputEmail.value);
     }
-  })
+  }
+
+  // 멤버 초대 모달창 띄우기
+  const inviteMemberModal = document.getElementById("inviteMemberModal");
+  inviteMemberModal.style.display = "none";
+
+  const addMemberBtn = document.getElementById("inviteMember");
+  addMemberBtn.onclick = function(){
+    inviteMemberModal.style.display = "";
+    emailList = [...resultEmailList];
+    for(let i = 0; i < emailList.length; i++) {
+      let storeArea = document.getElementById("storeEmailArea");
+      let storeMail = document.createElement("div");
+      let adressArea = document.createElement("div");
+      let xBtnArea = document.createElement("div");
+      let emailAdress = document.createTextNode(emailList[i]);
+      let xButton = document.createTextNode("X");
+      storeMail.appendChild(adressArea);
+      storeMail.appendChild(xBtnArea);
+      adressArea.appendChild(emailAdress);
+      xBtnArea.appendChild(xButton);
+      storeArea.appendChild(storeMail);
+      storeMail.style.backgroundColor = "#FFFFFF";
+      storeMail.style.height = "30px";
+      storeMail.style.display = "flex";
+      storeMail.style.alignItems = "center";
+      storeMail.style.justifyContent = "center";
+      storeMail.style.lineHeight = "20px";
+      storeMail.style.borderRadius = "15px";
+      storeMail.style.width = "max-content";
+      storeMail.style.margin = "10px"; // 기본 여백 설정
+      storeMail.style.padding = "5px 10px"; // 공간을 더 줘서 컴팩트하게
+      adressArea.style.marginRight = "10px"; // 오른쪽 여백 추가
+      xBtnArea.style.cursor = "pointer"; // 클릭 가능한 커서로 변경
+      xBtnArea.onclick = function () {
+        storeArea.removeChild(storeMail);  // 요소 삭제
+        emailList = emailList.filter((obj) => obj !== emailList[i]);
+      }
+    }
+  }
+
+  const sendEmailCancel = document.getElementById("sendEmailCancel");
+  sendEmailCancel.onclick = function(){
+    inviteMemberModal.style.display = "none";
+    emailList = [];
+    deleteEmail();
+    const input = document.getElementById("inputEmail");
+    input.value = "";
+  }
+
+  const inviteMemberXButton = document.getElementById("inviteMemberXButton");
+  inviteMemberXButton.onclick = function(){
+    inviteMemberModal.style.display = "none";
+    emailList = [];
+    deleteEmail();
+    const input = document.getElementById("inputEmail");
+    input.value = "";
+  }
+
+  const sendEmailConfirm = document.getElementById("sendEmailConfirm");
+  sendEmailConfirm.onclick = function(){
+    inviteMemberModal.style.display = "none";
+    resultEmailList = [...emailList];
+    deleteEmail();
+    const input = document.getElementById("inputEmail");
+    input.value = "";
+
+  }
+
 </script>
 <!-- ----------------------------------------- 프로젝트 내용 조회 및 수정 모달 ----------------------------------------- -->
 <form action="/project/updateproject" method="post">
