@@ -147,7 +147,7 @@
     /* ※프로필 아이콘 변경은 프로필 옆 주사위를 눌러주세요!※ */
 
     position: absolute;
-    width: 634px;
+    width: 650px;
     height: 29px;
     left: 405px;
     top: 805px;
@@ -179,16 +179,17 @@
 #myPage_profile_area{
 
     position: absolute;
-    width: 158.85px;
-    height: 154.54px;
-    left: 1535.07px;
-    top: 164.46px;
+    width: 158px;
+    height: 154px;
+    left: 1535px;
+    top: 164px;
 
     border-radius: 999px;
 
     background: #FFFFFF;
 
 }
+
 /*프로필 dice*/
 #myPage_profile_dice{
 
@@ -205,7 +206,7 @@
     position: absolute;
     width: 116px;
     height: 39px;
-    left: 1556px;
+    left: 1569px;
     top: 329px;
 
     font-style: normal;
@@ -221,7 +222,7 @@
 #myPage_profile_line{
 
     position: absolute;
-    left: 1705px;
+    left: 1525px;
     top: 368px;
 
 
@@ -230,9 +231,9 @@
 #myPage_userInfo_text{
 
     position: absolute;
-    width: 49px;
+    width: 60px;
     height: 24px;
-    left: 1433px;
+    left: 1428px;
     top: 407px;
 
     font-style: normal;
@@ -250,7 +251,7 @@
 #myPage_userInfo_line{
 
     position: absolute;
-    left: 1795px;
+    left: 1433px;
     top: 442px;
 
 
@@ -279,7 +280,7 @@
     position: absolute;
     width: 332px;
     height: 24px;
-    left: 1430px;
+    left: 1407px;
     top: 512px;
 
     font-style: normal;
