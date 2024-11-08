@@ -7,7 +7,7 @@
     <title>Title</title>
 </head>
 <body>
-
+`
 <div id="makeScheduleModal" style="z-index: 3">
     <div id="middleBlueHeader">
         <div id="middleXXButton">X</div>
@@ -27,13 +27,13 @@
                 <div class="dropdown-icon">▼</div>
             </div>
             <div class="color-dropdown" id="color-dropdown">
-                <div class="color-option" data-color="#ff0000" style="background-color: #ff0000;"></div>
-                <div class="color-option" data-color="#ff8c00" style="background-color: #ff8c00;"></div>
-                <div class="color-option" data-color="#ffff00" style="background-color: #ffff00;"></div>
-                <div class="color-option" data-color="#008000" style="background-color: #008000;"></div>
-                <div class="color-option" data-color="#0000ff" style="background-color: #0000ff;"></div>
-                <div class="color-option" data-color="#4b0082" style="background-color: #4b0082;"></div>
-                <div class="color-option" data-color="#800080" style="background-color: #800080;"></div>
+                <div class="color-option" data-color="CO1" style="background-color: #ff0000;"></div>
+                <div class="color-option" data-color="CO2" style="background-color: #ff8c00;"></div>
+                <div class="color-option" data-color="CO3" style="background-color: #ffff00;"></div>
+                <div class="color-option" data-color="C04" style="background-color: #008000;"></div>
+                <div class="color-option" data-color="CO5" style="background-color: #0000ff;"></div>
+                <div class="color-option" data-color="CO6" style="background-color: #4b0082;"></div>
+                <div class="color-option" data-color="CO7" style="background-color: #800080;"></div>
             </div>
             <input type="hidden" name="colorCode" id="selectedColor"> <!-- 선택된 색상 값 저장 -->
         </div>
@@ -122,7 +122,7 @@
     function submitSchedule() {
 
         const colorCodeInput = document.getElementById("selectedColor");
-        colorCodeInput.value = "#ff0000"; // 기본값 설정
+        colorCodeInput.value = "CO1"; // 기본값 설정
 
         const scheduleData = {
             projectNo: 1,

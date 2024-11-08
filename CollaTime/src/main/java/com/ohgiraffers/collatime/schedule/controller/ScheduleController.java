@@ -34,10 +34,11 @@ public class ScheduleController {
     }
 
     // 모든 일정 조회 (GET /api/schedules/all)
-    @GetMapping("/api/schedules/all")
+    @GetMapping("/api/schedules/user")
     @ResponseBody // JSON 데이터를 반환
-    public ResponseEntity<List<ScheduleDTO>> getAllSchedules() {
-        List<ScheduleDTO> schedules = scheduleService.getAllSchedules();
+    public ResponseEntity<List<ScheduleDTO>> getUserSchedules(Principal principal) {
+        String username = principal.getName(); // 현재 로그인한 사용자 이름 가져옴
+        List<ScheduleDTO> schedules = scheduleService.getUserSchedules(username);
         return ResponseEntity.ok(schedules);
     }
 
