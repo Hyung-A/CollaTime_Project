@@ -1,0 +1,404 @@
+
+#bigModal_modifyUser {
+
+    position: absolute;
+    width: 1013px;
+    height: 680px;
+    left: 453px;
+    top: 100px;
+
+    background: #FFFFFF;
+    border: 1px solid #595959;
+    border-radius: 25px;
+}
+
+#bigBlueHeader_modifyUser{
+    position: absolute;
+    width: 1013px;
+    height: 51px;
+
+    background: #92E2F8;
+    border-bottom: 1px solid #282828;
+    border-radius: 25px 25px 0px 0px;
+}
+
+#bigXButton_modifyUser{
+    width: 30px;
+    height: 34px;
+    font-size: 30px;
+    position: absolute;
+    left: 965px;
+    top: 5px;
+}
+
+/* 입력창 기본 스타일*/
+.input{
+    height: 30px;
+    box-sizing: border-box;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+
+/* 짧은 입력창 길이*/
+.short{
+    width: 430px;
+}
+/* 긴 입력창 길이*/
+.long{
+    width: 520px;
+}
+
+/* 버튼 스타일 */
+.btn{
+    width: 75px;
+    height: 27px;
+    margin-left: 5px;
+
+    background: #B8B8B8;
+    border-radius: 10px;
+    border: none;
+
+
+    font-size: 14px;
+    font-weight: 600;
+    align-content: center;
+
+}
+
+/*메세지 스타일*/
+.message{
+    font-size: 14px;
+    font-weight: 800;
+}
+
+
+/*수정 페이지 기본 숨기기*/
+#modifyUser_area{
+    display: none;
+}
+
+/*취소버튼*/
+#cancel_modifyUser_btn{
+
+    position: absolute;
+    width: 100px;
+    height: 40px;
+    left: 1215px;
+    top: 717px;
+
+    background: rgba(146, 226, 248, 0.3);
+    border-radius: 15px;
+    border: none;
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    align-items: center;
+    text-align: center;
+
+
+    color: #000000;
+
+}
+
+/*비밀번호 확인버튼*/
+#isPassSubmit{
+    position: absolute;
+    width: 100px;
+    height: 40px;
+    left: 1330px;
+    top: 717px;
+
+    background: #92E2F8;
+    border-radius: 15px;
+    border: none;
+
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    align-items: center;
+    text-align: center;
+
+
+    color: #000000;
+}
+
+/*회원정보 수정 텍스트*/
+#modifyUserText{
+    /* 회원 정보 수정 */
+
+    position: absolute;
+    width: 220px;
+    height: 40px;
+    left: 509px;
+    top: 211px;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 40px;
+
+    color: #000000;
+
+
+}
+
+/*비밀번호 확인 텍스트*/
+#isPassContext_modify{
+    /* 회원 정보 수정을 원하시면 비밀번호를 입력해주세요. */
+
+    position: absolute;
+    width: 880px;
+    height: 36px;
+    left: 608px;
+    top: 400px;
+
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 35px;
+
+    color: #000000;
+
+
+}
+
+/*비밀번호 확인 비밀번호 입력창*/
+#isPassPassword_modifyUser{
+
+    position: absolute;
+    width: 720px;
+    height: 53px;
+    left: 608px;
+    top: 459px;
+
+    font-size: 25px;
+
+}
+
+
+/*비밀번호 입력창*/
+#modify_pwd_area{
+    position: absolute;
+    left: 556px;
+    top: 312px;
+}
+
+/*비밀번호 확인 입력창*/
+#compare_modifyPwd_area{
+    position: absolute;
+    left: 556px;
+    top: 352px;
+}
+
+/*이름 입력창*/
+#modify_name_area{
+    position: absolute;
+    left: 556px;
+    top: 467px;
+}
+/*닉네임 입력창*/
+#modify_nickname_area{
+    position: absolute;
+    left: 556px;
+    top: 507px;
+}
+
+/*이메일 입력창*/
+#modify_email_area{
+    position: absolute;
+    left: 556px;
+    top: 612px;
+}
+
+/*이메일 코드 입력창*/
+#check_modifyEmailCode_area{
+    position: absolute;
+    left: 556px;
+    top: 652px;
+}
+
+
+/*패스워드 유효성 메세지*/
+.pwdCheck{
+    position: absolute;
+    left: 906px;
+    top: 357px;
+}
+/*패스워드 유의사항 메세지*/
+.pwdNote{
+    position: absolute;
+    left: 556px;
+    top: 387px;
+}
+
+/*이름 메세지*/
+#nameMessage{
+    position: absolute;
+    left: 856px;
+    top: 472px;
+}
+
+
+/*닉네임 유효성 메세지*/
+.nickname{
+    position: absolute;
+    left: 556px;
+    top: 540px;
+}
+
+/*이메일 유효성 메세지*/
+.email{
+    position: absolute;
+    left: 556px;
+    top: 685px;
+}
+
+
+/*비밀번호 변경 텍스트*/
+#modify_pwd_text{
+
+    position: absolute;
+    width: 180px;
+    height: 30px;
+    left: 556px;
+    top: 271px;
+
+    font-size: 22px;
+    border-bottom: 1px solid;
+    border-bottom-color: #92E2F8;
+    font-weight: 800;
+    text-align: center;
+}
+
+/*이름/닉네임 변경 텍스트*/
+#modify_name_text{
+    position: absolute;
+    width: 180px;
+    height: 30px;
+    left: 556px;
+    top: 426px;
+
+    font-size: 22px;
+    border-bottom: 1px solid;
+    border-bottom-color: #92E2F8;
+    font-weight: 800;
+    text-align: center;
+}
+/*이메일 변경 텍스트*/
+#modify_email_text{
+    position: absolute;
+    width: 180px;
+    height: 30px;
+    left: 556px;
+    top: 571px;
+
+    font-size: 22px;
+    border-bottom: 1px solid;
+    border-bottom-color: #92E2F8;
+    font-weight: 800;
+    text-align: center;
+}
+
+/*수정 시 주의사항*/
+#modifyUser_guide_header{
+    position: absolute;
+    width: 250px;
+    height: 30px;
+    left: 1150px;
+    top: 391px;
+
+    font-size: 22px;
+    border-bottom: 1px solid;
+    border-bottom-color: #92E2F8;
+    font-weight: 800;
+    text-align: center;
+}
+
+/*수정 시 주의사항 내용*/
+#modifyUser_guide_context{
+    position: absolute;
+    width: 250px;
+    height: 300px;
+    left: 1150px;
+    top: 421px;
+
+    font-size: 15px;
+    border-top: none;
+    font-weight: 800;
+    text-align: center;
+}
+
+/*수정 확인버튼*/
+#modifyUserBtn{
+    position: absolute;
+    width: 100px;
+    height: 40px;
+    left: 1330px;
+    top: 717px;
+
+    background: #92E2F8;
+    border-radius: 15px;
+    border: none;
+
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    align-items: center;
+    text-align: center;
+
+
+    color: #000000;
+}
+
+#small_modifyOk_btn{
+    position: absolute;
+    width: 100px;
+    height: 40px;
+    left: 430px;
+    top: 222px;
+
+    font-weight: 600;
+    font-size: 20px;
+
+    color: #000000;
+    background: #92E2F8;
+    border: none;
+    border-radius: 15px;
+}
+
+#small_go_delete_btn{
+    visibility: hidden;
+
+    position: absolute;
+    width: 100px;
+    height: 40px;
+    left: 1323px;
+    top: 201px;
+
+    font-weight: 600;
+    font-size: 15px;
+
+    text-align: center;
+
+    color: red;
+    background: rgba(146, 226, 250, 0.2);
+    border: none;
+    border-radius: 15px;
+}
+
+/*비밀번호 확인창 메세지*/
+#pwdCheckMessage{
+    position: absolute;
+    width: 720px;
+    height: 53px;
+    left: 608px;
+    top: 529px;
+
+    font-size: 22px;
+}

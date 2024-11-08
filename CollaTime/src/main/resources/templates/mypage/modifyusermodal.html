@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/mypage/modifyuser.css">
+    <link rel="stylesheet" href="/css/common/smallmodal.css">
+    <link rel="stylesheet" href="/css/mypage/resultsmallmodal.css">
+</head>
+<body>
+
+
+<!-- 큰 모달창 -->
+<div id="bigModal_modifyUser">
+    <div id="bigBlueHeader_modifyUser">
+        <div id="bigXButton_modifyUser">X</div>
+    </div>
+</div>
+
+<!--회원정보수정 텍스트-->
+<div id="modifyUserText">회원 정보 수정</div>
+
+
+<!--회원정보 수정 비밀번호 입력-->
+<div id="isPass_modifyUser">
+    <div id="isPassContext_modify">회원 정보 수정을 원하시면 비밀번호를 입력해주세요.</div>
+    <input class="input" type="password" id="isPassPassword_modifyUser" placeholder=" 비밀번호">
+    <button type="button" id="isPassSubmit">확인</button>
+    <div class="message pwdCheck" id="pwdCheckMessage"></div>
+</div>
+
+<!--수정 페이지-->
+<form th:action="@{/mypage/modifyuser}" method="post">
+<div id="modifyUser_area">
+    <!--  비밀번호 입력창 -->
+    <div id="modify_pwd_text">비밀번호 변경</div>
+    <div id="modify_pwd_area">
+        <input class="input long" type="password" id="modify_pwd_input" placeholder=" 비밀번호" name="userPwd">
+    </div>
+
+    <!--  비밀번호 확인 입력창 -->
+    <div id="compare_modifyPwd_area">
+        <input class="input long" type="password" id="compare_modifyPwd_input" placeholder=" 비밀번호 확인">
+    </div>
+
+    <!--  비밀번호 확인 메세지 -->
+    <div class="message pwdCheck" id="pwdMessage"></div>
+
+    <!-- 패스워드 유의사항 메세지 -->
+    <div class="message pwdNote">※비밀번호는 영문자, 숫자, 특수기호 3가지를 사용해 8자리 이상 작성해주세요.</div>
+
+    <div id="modify_name_text">이름/닉네임 변경</div>
+    <!--  이름 입력창 -->
+    <div id="modify_name_area">
+        <input class="input long" type="text" id="modify_name_input" placeholder=" 이름" name="userName">
+    </div>
+    <div class="message nickname" id="nameMessage"></div>
+
+    <!--  닉네임 입력창 -->
+    <div id="modify_nickname_area">
+        <input class="input short" type="text" id="modify_nickname_input" placeholder=" 닉네임" name="userNickname">
+        <button id="check_duplicate_nickname" class="btn" type="button">확인</button>
+    </div>
+
+    <!--  닉네임 유효성 메세지 -->
+    <div class="message nickname" id="nicknameMessage"></div>
+
+    <div id="modify_email_text">이메일 변경</div>
+    <!--  이메일 입력창 -->
+    <div id="modify_email_area">
+        <input class="input short" type="email" id="modify_email_input" placeholder=" 이메일" name="userEmail">
+        <button id="send_code_email" class="btn" type="button">코드전송</button>
+    </div>
+
+    <!--  이메일 코드 입력창 -->
+    <div id="check_modifyEmailCode_area">
+        <input class="input short" type="text" id="randomModifyCode_input" placeholder=" 이메일 코드">
+        <button id="compare_modifyCode_email" class="btn" type="button">확인</button>
+    </div>
+
+    <!--  이메일 유효성 메세지 -->
+    <div class="message email" id="emailMessage">이메일을 보냈습니다.</div>
+
+    <div id="modifyUser_guide_header">수정 시 주의사항</div>
+    <div id="modifyUser_guide_context">
+        <br>
+        값을 입력하고 확인을 누르면
+        <br>
+        작성한 정보만 수정이 됩니다.
+        <br><br>
+        정보를 수정하면 로그인 화면으로
+        <br>
+        돌아가 다시 로그인 후에
+        <br>
+        사용하실 수 있습니다.
+    </div>
+    <!--  수정 확인 버튼  -->
+    <button type="button" id="modifyUserBtn">확인</button>
+</div>
+</form>
+
+<!--취소버튼-->
+<button type="button" id="cancel_modifyUser_btn">취소</button>
+
+<!--<div th:include="/mypage/resultsmallmodal.html"></div>-->
+
+<div id="smallModal" class="modal">
+    <div id="smallBlueHeader">
+        <div id="smallXButton">X</div>
+    </div>
+    <!-- 로그인 유효성 메세지 -->
+    <div class="success_message" id="successMessage"></div>
+    <button id="small_modifyOk_btn" type="button">확인</button>
+</div>
+
+<button type="button" id="small_go_delete_btn">회원탈퇴</button>
+
+</body>
+
+<script>
+    let isModify = ['false', 'false', 'false', 'false', 'false']
+
+    const isPass_area = document.getElementById('isPass_modifyUser')
+    const isPassPwd = document.getElementById('isPassPassword_modifyUser')
+    const isPassBtn = document.getElementById('isPassSubmit')
+    const modify_area = document.getElementById('modifyUser_area')
+    let allInput = document.getElementsByClassName('input');
+    const isPassMessage = document.getElementById('pwdCheckMessage')
+    const goDeleteBtn = document.getElementById('small_go_delete_btn')
+    // 비밀번호 확인
+    isPassBtn.addEventListener('click', ()=> {
+
+        let checkPwd = isPassPwd.value
+        fetch("/mypage/pwdcheck", {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(checkPwd)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if(data){
+                    modify_area.style.display = 'flex'
+                    goDeleteBtn.style.visibility = 'visible'
+                    isPass_area.style.display = 'none'
+                    isPassMessage.innerText = ''
+                }else{
+                    isPassMessage.style.display = 'flex'
+                    isPassMessage.style.color = 'red'
+                    isPassMessage.innerText = "비밀번호가 틀렸습니다."
+                }
+            })
+    })
+
+//     비밀번호 체크
+    document.getElementById('compare_modifyPwd_input').addEventListener('keyup', pwdCheck);
+    document.getElementById('compare_modifyPwd_input').addEventListener('focusout', pwdCheck);
+    function pwdCheck() {
+        let pwdMessage = document.getElementById('pwdMessage');
+        let inputPwd = document.getElementById('modify_pwd_input');
+        let comparePwd = document.getElementById('compare_modifyPwd_input');
+        function strongPassword(str){
+            return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(str);
+        }
+
+        if(inputPwd.value == ''){
+            pwdMessage.style.color = 'red';
+            pwdMessage.innerText = '비밀번호가 공백입니다.';
+            isModify[0] = "false";
+        }else if(strongPassword(inputPwd.value)){
+            if (comparePwd.value == inputPwd.value) {
+                pwdMessage.style.color = 'green';
+                pwdMessage.innerText = '비밀번호가 일치합니다.';
+                isModify[0] = 'true';
+            } else {
+                pwdMessage.style.color = 'red';
+                pwdMessage.innerText = '비밀번호가 다릅니다.';
+                isModify[0] = "false";
+            }
+        } else {
+            pwdMessage.style.color = 'red';
+            pwdMessage.innerText = '유의사항을 확인해주세요.';
+            isModify[0] = "false";
+        }
+    }
+
+//     이름 체크
+    document.getElementById('modify_name_input').addEventListener('keyup', nameCheck);
+    document.getElementById('modify_name_input').addEventListener('focusout', nameCheck);
+    function nameCheck(){
+        let nameMessage = document.getElementById('nameMessage');
+        if (document.getElementById('modify_name_input').value == ''){
+            nameMessage.style.color = 'red';
+            nameMessage.innerText = '이름이 공백입니다.';
+            isModify[1] = "false";
+        }else {
+            nameMessage.style.display = 'none';
+            isModify[1] = "true";
+        }
+    }
+
+    //     닉네임 비교
+    document.getElementById("check_duplicate_nickname").addEventListener('click', function () {
+
+        let checkNickname = document.getElementById('modify_nickname_input').value;
+        let nicknameMessage = document.getElementById('nicknameMessage');
+        if (checkNickname == '' || checkNickname.length == 0) {
+            nicknameMessage.style.color = 'red';
+            nicknameMessage.innerText = '닉네임은 공백이 될 수 없습니다.';
+            isModify[4] = "false";
+        } else {
+            fetch("/user/check")
+                .then(res => res.json())
+                .then(data => {
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i][1] == checkNickname) {
+                            nicknameMessage.style.color = 'red';
+                            nicknameMessage.innerText = '중복된 닉네임입니다.';
+                            isModify[4] = "false";
+                            break;
+                        } else {
+                            nicknameMessage.style.color = 'green';
+                            nicknameMessage.innerText = '사용가능한 닉네임입니다.';
+                            isModify[4] = "true";
+                        }
+                    }
+                })
+        }
+    })
+
+
+
+
+    //     이메일 비교
+    let emailMessage = document.getElementById('emailMessage');
+    document.getElementById("send_code_email").addEventListener('click', function () {
+        let checkEmail = document.getElementById('modify_email_input').value;
+        console.log(checkEmail)
+        if (checkEmail == '' || checkEmail.length == 0) {
+            emailMessage.style.color = 'red';
+            emailMessage.innerText = '이메일은 공백이 될 수 없습니다.';
+            isModify[3] = "false";
+        }
+        else {
+            fetch("/user/check")
+                .then(res => res.json())
+                .then(data => {
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i][2] == checkEmail) {
+                            emailMessage.style.color = 'red';
+                            emailMessage.innerText = '중복된 이메일입니다.';
+                            isModify[3] = "false";
+                            break;
+                        } else {
+                            emailMessage.style.color = 'black';
+                            emailMessage.innerText = '해당 이메일로 코드를 보냈습니다.';
+                            document.getElementById('compare_modifyCode_email').disabled = null;
+                            isModify[3] = "true";
+                            console.log("여기까지 옴")
+                        }
+                    }
+                    if(isModify[3]=='true') {
+                        document.getElementById("send_code_email").disabled = true;
+                    }
+                })
+
+        }
+    })
+    //     이메일 코드 비교
+    console.log("그다음에 넘어옴")
+    let inputCode = document.getElementById('randomModifyCode_input');
+    let compareCodeBtn = document.getElementById('compare_modifyCode_email');
+    document.getElementById("send_code_email").addEventListener('mouseup',function (){
+
+        const mail = document.getElementById('modify_email_input').value;
+        fetch('/mail/sendnewmail', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(mail)
+        })
+            .then(res => res.json())
+            .then( data => {
+                console.log(data);
+                console.log(data.code);
+                compareCodeBtn.addEventListener('click', ()=>{
+                    if(inputCode.value==data.code){
+                        emailMessage.style.color = 'green';
+                        emailMessage.innerText = '이메일이 확인되었습니다.'
+                        isModify[2] = 'true';
+                    }else {
+                        emailMessage.style.color = 'red';
+                        emailMessage.innerText = '코드가 틀렸습니다.'
+                        document.getElementById("send_code_email").disabled = false;
+                        isModify[2] = 'false'
+                    }
+                })
+            })
+    })
+
+
+    let smallModalmod = document.getElementById('smallModal');
+    let smallModalMODMessage = document.getElementById('successMessage');
+    let smallX = document.getElementById('smallXButton');
+    let smallOk = document.getElementById('small_modifyOk_btn');
+
+    smallModal.style.display = 'none'
+
+
+    // 수정 확인 버튼
+    const modify_btn = document.getElementById('modifyUserBtn')
+
+    modify_btn.addEventListener('click', ()=>{
+        if(isModify.includes('true')){
+            modify_btn.type='submit';
+
+        }else{
+            smallModal.style.display = 'flex'
+            smallModalMODMessage.innerText = '내용을 다시 확인해주세요.';
+            smallOk.addEventListener('click', ()=>{smallModalmod.style.display = 'none';})
+            smallX.addEventListener('click', ()=>{smallModalmod.style.display = 'none';})
+        }
+    })
+</script>
+
+</html>
