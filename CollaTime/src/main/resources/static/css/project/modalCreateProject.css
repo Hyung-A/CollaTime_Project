@@ -477,11 +477,11 @@
 
 #inviteMember{
 
-    position: absolute;
+    /*position: absolute;*/
     width: 78px;
     height: 38px;
     /*left: 10px;*/
-    margin-left: 10px;
+    /*margin-left: 10px;*/
     top: 7px;
     border: solid 2px #E7E7E7;
     border-radius: 15px;
@@ -498,6 +498,11 @@
 .memberArea{
     display: inline-block;
     margin-right: 10px;
+    order : 1;
+}
+
+#addedMember > div {
+    order : 0;
 }
 
 #bigCancel1{

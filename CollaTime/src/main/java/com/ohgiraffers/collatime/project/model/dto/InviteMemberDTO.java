@@ -4,28 +4,23 @@ import java.util.List;
 
 public class InviteMemberDTO {
 
-    private int projectNo;
+    private String projectNo;
     private String joinCode;
-    private List<String> emailList;
+    private String email;
 
     public InviteMemberDTO(){}
 
-    public InviteMemberDTO(int projectNo, String joinCode, List<String> emailList) {
+    public InviteMemberDTO(String projectNo, String joinCode, String email) {
         this.projectNo = projectNo;
         this.joinCode = joinCode;
-        this.emailList = emailList;
+        this.email = email;
     }
 
-    public InviteMemberDTO(String joinCode, List<String> emailList) {
-        this.joinCode = joinCode;
-        this.emailList = emailList;
-    }
-
-    public int getProjectNo() {
+    public String getProjectNo() {
         return projectNo;
     }
 
-    public void setProjectNo(int projectNo) {
+    public void setProjectNo(String projectNo) {
         this.projectNo = projectNo;
     }
 
@@ -37,12 +32,12 @@ public class InviteMemberDTO {
         this.joinCode = joinCode;
     }
 
-    public List<String> getEmailList() {
-        return emailList;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEmailList(List<String> emailList) {
-        this.emailList = emailList;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
@@ -50,7 +45,7 @@ public class InviteMemberDTO {
         return "InviteMemberDTO{" +
                 "projectNo=" + projectNo +
                 ", joinCode='" + joinCode + '\'' +
-                ", emailList=" + emailList +
+                ", email='" + email + '\'' +
                 '}';
     }
 }
