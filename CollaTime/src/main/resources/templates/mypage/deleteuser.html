@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/mypage/deleteuser.css">
+    <link rel="stylesheet" href="/css/mypage/modifyuser.css">
+</head>
+<body>
+<div id="delete_area">
+<div id="delete_guide">탈퇴를 하시게 되면 회원 정보와 함께 CollaTime에서<br> 참여중인 프로젝트와 저장된 데이터가
+    모두 사라집니다.</div>
+<div id="delete_check_guide">탈퇴를 원하시면 ByeCollaTime을 입력해주세요.</div>
+<input class="input" type="text" id="byeCollaTime_input" placeholder=" ByeCollaTime">
+    <div id="byeCollaTime_message"></div>
+<div id="delete_check_context">정말로 탈퇴하시겠습니까?</div>
+<button type="button" id="cancel_deleteUser_btn">취소</button>
+<button type="button" id="deleteUserBtn">확인</button>
+</div>
+</body>
+<script>
+    const delete_page = document.getElementById('delete_area')
+    const cancel_deleteUser_btn = document.getElementById('cancel_deleteUser_btn')
+    const byeCollaTimeMsg = document.getElementById('byeCollaTime_message')
+    const byeCollaTimeInput = document.getElementById('byeCollaTime_input')
+    const deleteUserBtn = document.getElementById('deleteUserBtn')
+
+    let isDelete = 'false'
+
+    byeCollaTimeInput.addEventListener('keyup', deleteCheck);
+    byeCollaTimeInput.addEventListener('focusout', deleteCheck);
+    function deleteCheck(){
+        if (byeCollaTimeInput.value == 'ByeCollaTime'){
+            byeCollaTimeMsg.innerText = ''
+            isDelete = 'true';
+        }else {
+            byeCollaTimeMsg.innerText = '다시 확인해주세요.'
+            isDelete = 'false';
+        }
+    }
+    deleteUserBtn.addEventListener('click', ()=>{
+        if (isDelete == 'true'){
+            location.href="/mypage/deleteuser"
+        }
+    })
+
+</script>
+</html>
