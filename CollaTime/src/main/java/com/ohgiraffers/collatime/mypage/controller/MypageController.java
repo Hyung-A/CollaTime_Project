@@ -74,12 +74,38 @@ public class MypageController {
             System.out.println("yes");
 
         } else {
-            message = "내용을 다시 확인해주세요.";
+            message = "수정에 실패했습니다.";
             System.out.println("no");
             isPass = false;
         }
 
         System.out.println(isPass);
+        mv.addObject("message", message);
+        mv.addObject("isPass", isPass);
+
+        mv.setViewName("/mypage/resultsmallmodal");
+
+        return mv;
+    }
+
+    @GetMapping("/deleteuser")
+    public ModelAndView signup(ModelAndView mv, @AuthenticationPrincipal AuthDetails authDetails) {
+        int userNo = authDetails.getUserNo();
+
+        int result = userService.deleteUser(userNo);
+
+        boolean isPass = true;
+        String message = "";
+
+        if (result > 0) {
+            message = "그동안 CollaTime을 사용해주셔서 감사합니다.";
+            System.out.println("yes");
+        } else {
+            message = "삭제에 실패했습니다.";
+            System.out.println("no");
+            isPass = false;
+        }
+
         mv.addObject("message", message);
         mv.addObject("isPass", isPass);
 
