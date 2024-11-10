@@ -170,6 +170,8 @@
 
   newProject.addEventListener("click", function(){
     modalCreateOrJoin.style.display = "";
+    let popupType = document.getElementById("popupType");
+    popupType.value = "create";
   });
 
   /* X버튼, 취소 버튼 클릭 시 모달 없애기 */
@@ -258,18 +260,23 @@
 
     if (document.getElementById("inputTitle").value === "") {
       alert("필수 입력 사항을 기입해주세요.")
+      return;
     } else if (document.getElementById("inputSummary").value === "") {
       alert("필수 입력 사항을 기입해주세요.")
+      return;
     } else if (document.getElementById("inputPurpose").value === "") {
       alert("필수 입력 사항을 기입해주세요.")
+      return;
     } else if (document.getElementById("projectStartDate").value === "") {
       alert("필수 입력 사항을 기입해주세요.")
+      return;
     } else if (document.getElementById("projectEndDate").value === "") {
       alert("필수 입력 사항을 기입해주세요.")
+      return;
     } else if (document.getElementById("addedMember").value === "") {
       alert("필수 입력 사항을 기입해주세요.")
-    } else {
-
+      return;
+    }
       let fetchEmailList = [];
 
       // 이렇게도 사용 가능, 대신 projectNo가 서버로 가기 전에 생성되어 있는경우만 사용
@@ -281,6 +288,8 @@
           }
         ]
       }
+      let projectCategoryCode = document.querySelector("input[type=radio]:checked");
+      projectCategoryCode = projectCategoryCode ? projectCategoryCode.value : null;
       // 프로젝트 데이터 넘기기
       fetch("/project/projectmain",
               {
@@ -295,7 +304,8 @@
                   projectPurpose: document.getElementById("inputPurpose").value,
                   startDate: document.getElementById("projectStartDate").value,
                   endDate: document.getElementById("projectEndDate").value,
-                  projectCategoryCode: document.querySelector("input[type=radio]:checked").value,
+                  // projectCategoryCode: document.querySelector("input[type=radio]:checked").value,
+                  projectCategoryCode: projectCategoryCode,
                   emailList: resultEmailList,
                   inviteMemberList: fetchEmailList,
                   productorNo: `[[|${#authentication.principal.userNo}|]]`
@@ -314,7 +324,7 @@
               .catch((error) => console.log(error));
 
     }
-  }
+
 
 
   /* "프로젝트 생성 혹은 참가 모달"에서 생성 버튼 클릭 시 생성 모달 띄우기 */
@@ -407,6 +417,7 @@
     <button type="button" id="sendEmailConfirm">확인</button>
   </div>
 </div>
+<input type="text" style="display:none;" id="popupType"/>
 
 <script>
 
@@ -518,9 +529,9 @@
 
   // 확인 버튼
   const sendEmailConfirm = document.getElementById("sendEmailConfirm");
-  sendEmailConfirm.onclick = function(){
+  sendEmailConfirm.onclick = function() {
     inviteMemberModal.style.display = "none";
-    addMemberBtn.style.display = "none";
+    // addMemberBtn.style.display = "none";
     // 입력한 이메일 리스트 확정하는 배열
     resultEmailList = [...emailList];
     console.log("resultEmailList : " + resultEmailList);
@@ -528,53 +539,58 @@
     const input = document.getElementById("inputEmail");
     input.value = "";
     // 요소 생성 - 프로젝트 생성 시
-    const resultEmailArea = document.getElementById("addedMember");
-    resultEmailArea.innerHTML = "";
-    for(let i = 0; i < resultEmailList.length; i++) {
-      // 이메일 div 생성
-      let resultMail = document.createElement("div");  // 이메일 div
-      let emailAdress = document.createTextNode(resultEmailList[i]);  // 이메일 주소
-      resultMail.appendChild(emailAdress);
-      resultEmailArea.appendChild(resultMail);
-      // 스타일 설정
-      resultMail.style.backgournd = "#DFF7FD";
-      resultMail.style.borderRadius = "15px";
-      resultMail.style.width = "max-content";
-      resultMail.style.height = "30px";
-      resultMail.style.display = "flex";
-      resultMail.style.alignItems = "center";
-      resultMail.style.lineHeight = "30px";
-      resultMail.style.margin = "5px";
-      resultMail.style.padding = "5px 10px";
+    let popupType = document.getElementById("popupType");
+    if (popupType.value === "create") {
+      const resultEmailArea = document.getElementById("addedMember");
+      resultEmailArea.innerHTML = "";
+      for (let i = 0; i < resultEmailList.length; i++) {
+        // 이메일 div 생성
+        let resultMail = document.createElement("div");  // 이메일 div
+        let emailAdress = document.createTextNode(resultEmailList[i]);  // 이메일 주소
+        resultMail.appendChild(emailAdress);
+        resultEmailArea.appendChild(resultMail);
+        // 스타일 설정
+        resultMail.style.backgournd = "#DFF7FD";
+        resultMail.style.borderRadius = "15px";
+        resultMail.style.width = "max-content";
+        resultMail.style.height = "30px";
+        resultMail.style.display = "flex";
+        resultMail.style.alignItems = "center";
+        resultMail.style.lineHeight = "30px";
+        resultMail.style.margin = "5px";
+        resultMail.style.padding = "5px 10px";
 
-      // 멤버 추가 버튼 위치 조정
-      const inviteMemberButton = document.getElementById("inviteMember");
-      inviteMemberButton.style.order = 1;
-    }
+        // 멤버 추가 버튼 위치 조정
+        const inviteMemberButton = document.getElementById("inviteMember");
+        inviteMemberButton.style.order = 1;
+      }
+    } else {
 
-    // 요소 생성 - 프로젝트 수정 시
-    const updateEmailList = document.getElementById("memberList");
-    updateEmailList.innerHTML = "";
-    for(let i = 0; i < resultEmailList.length; i++) {
-      // 이메일 div 생성
-      let resultMail = document.createElement("div");  // 이메일 div
-      let emailAdress = document.createTextNode(resultEmailList[i]);  // 이메일 주소
-      resultMail.appendChild(emailAdress);
-      updateEmailList.appendChild(resultMail);
-      // 스타일 설정
-      resultMail.style.backgournd = "#DFF7FD";
-      resultMail.style.borderRadius = "15px";
-      resultMail.style.width = "max-content";
-      resultMail.style.height = "30px";
-      resultMail.style.display = "flex";
-      resultMail.style.alignItems = "center";
-      resultMail.style.lineHeight = "30px";
-      resultMail.style.margin = "5px";
-      resultMail.style.padding = "5px 10px";
+      // 요소 생성 - 프로젝트 수정 시
+      const updateEmailList = document.getElementById("memberList");
+      updateEmailList.innerHTML = "";
 
-      // 멤버 추가 버튼 위치 조정
-      const updateInviteMember = document.getElementById("updateInviteMember");
-      updateInviteMember.style.order = 1;
+      for (let i = 0; i < resultMemberInviteList.length; i++) {
+        // 이메일 div 생성
+        let resultMail = document.createElement("div");  // 이메일 div
+        let emailAdress = document.createTextNode(resultMemberInviteList[i].email);  // 이메일 주소
+        resultMail.appendChild(emailAdress);
+        updateEmailList.appendChild(resultMail);
+        // 스타일 설정
+        resultMail.style.backgournd = "#DFF7FD";
+        resultMail.style.borderRadius = "15px";
+        resultMail.style.width = "max-content";
+        resultMail.style.height = "30px";
+        resultMail.style.display = "flex";
+        resultMail.style.alignItems = "center";
+        resultMail.style.lineHeight = "30px";
+        resultMail.style.margin = "5px";
+        resultMail.style.padding = "5px 10px";
+
+        // 멤버 추가 버튼 위치 조정
+        const updateInviteMember = document.getElementById("updateInviteMember");
+        updateInviteMember.style.order = 1;
+      }
     }
   }
 </script>
@@ -627,7 +643,7 @@
   </div>
 </form>
 <script>
-
+  let resultMemberInviteList = null;
   /* 정보 비동기로 가져오기 */
   // DB에서 데이터를 가져오는 함수 작성
   function select(projectNo){
@@ -649,6 +665,35 @@
               $updateProjectNo.value = data.projectNo;
               // let memberList = document.getElementById("memberList");
               // memberList.value = data.inviteMemberList;
+
+              const memberListArea = document.getElementById("memberList");
+              memberListArea.innerHTML = "";
+              const invitedMemberList = data.inviteMemberList;
+              resultMemberInviteList = invitedMemberList;
+              for(let i = 0; i < invitedMemberList.length; i++) {
+
+                resultEmailList
+                 = [...resultEmailList, invitedMemberList[i].email]
+                // 이메일 div 생성
+                let resultMail = document.createElement("div");  // 이메일 div
+                let emailAdress = document.createTextNode(invitedMemberList[i].email);  // 이메일 주소
+                resultMail.appendChild(emailAdress);
+                memberListArea.appendChild(resultMail);
+                // 스타일 설정
+                resultMail.style.backgournd = "#DFF7FD";
+                resultMail.style.borderRadius = "15px";
+                resultMail.style.width = "max-content";
+                resultMail.style.height = "30px";
+                resultMail.style.display = "flex";
+                resultMail.style.alignItems = "center";
+                resultMail.style.lineHeight = "30px";
+                resultMail.style.margin = "5px";
+                resultMail.style.padding = "5px 10px";
+
+                // 멤버 추가 버튼 위치 조정
+                const inviteMemberButton = document.getElementById("inviteMember");
+                inviteMemberButton.style.order = 1;
+              }
 
 
               let categoryList = document.querySelectorAll("updateCategory input");
@@ -685,6 +730,8 @@
       select(projectNo[i].value);
       console.log(projectNo[i].value);
       updateProjectModal.style.display = "";
+      let popupType = document.getElementById("popupType");
+      popupType.value = "update";
     })
   }
 
@@ -702,6 +749,37 @@
   const updateMember = document.getElementById("updateInviteMember");
   updateMember.addEventListener("click", function(){
     inviteMemberModal.style.display = "";
+    for(let i = 0; i < resultMemberInviteList.length; i++){
+      let storeArea = document.getElementById("storeEmailArea");
+      let storeMail = document.createElement("div");
+      let adressArea = document.createElement("div");
+      let xBtnArea = document.createElement("div");
+      let emailAdress = document.createTextNode(resultMemberInviteList[i].email);
+      let xButton = document.createTextNode("X");
+      storeMail.appendChild(adressArea);
+      storeMail.appendChild(xBtnArea);
+      adressArea.appendChild(emailAdress);
+      xBtnArea.appendChild(xButton);
+      storeArea.appendChild(storeMail);
+      storeMail.style.backgroundColor = "#FFFFFF";
+      storeMail.style.height = "30px";
+      storeMail.style.display = "flex";
+      storeMail.style.alignItems = "center";
+      storeMail.style.justifyContent = "center";
+      storeMail.style.lineHeight = "20px";
+      storeMail.style.borderRadius = "15px";
+      storeMail.style.width = "max-content";
+      storeMail.style.margin = "10px"; // 기본 여백 설정
+      storeMail.style.padding = "5px 10px"; // 공간을 더 줘서 컴팩트하게
+      adressArea.style.marginRight = "10px"; // 오른쪽 여백 추가
+      xBtnArea.style.cursor = "pointer"; // 클릭 가능한 커서로 변경
+      xBtnArea.onclick = function () {
+        storeArea.removeChild(storeMail);  // 요소 삭제
+        emailList = emailList.filter((obj) => obj !== inputEmail.value);
+      }
+    }
+
+
   })
 
 </script>

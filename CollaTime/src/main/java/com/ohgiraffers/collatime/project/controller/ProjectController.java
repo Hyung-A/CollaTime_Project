@@ -1,11 +1,16 @@
 package com.ohgiraffers.collatime.project.controller;
 
 
+import com.ohgiraffers.collatime.auth.model.AuthDetails;
 import com.ohgiraffers.collatime.mail.model.dto.MailDTO;
 import com.ohgiraffers.collatime.mail.model.service.MailService;
 import com.ohgiraffers.collatime.project.model.dto.InviteMemberDTO;
 import com.ohgiraffers.collatime.project.model.dto.ProjectDTO;
 import com.ohgiraffers.collatime.project.model.service.ProjectService;
+import jakarta.mail.MessagingException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,16 +33,29 @@ public class ProjectController {
 
     }
     @GetMapping(value="/projectmain")
-    public ModelAndView projectmain(ModelAndView mv){
-        projectService.getList().forEach(System.out::println);
-        mv.addObject("projectList", projectService.getList());
+    public ModelAndView projectmain(HttpServletRequest req, ModelAndView mv, @AuthenticationPrincipal AuthDetails authDetails){
+        HttpSession session = req.getSession();
+        Enumeration<String> attrNames = session.getAttributeNames();
+        while (attrNames.hasMoreElements()){
+            String attr = attrNames.nextElement();
+            System.out.println(attr + " : " + session.getAttribute(attr));
+
+        }
+
+        int userNo = 0;
+        if(authDetails != null){
+            userNo = authDetails.getUserNo();
+        }
+        System.out.println("userNo : " + userNo);
+        projectService.getList(userNo).forEach(System.out::println);
+        mv.addObject("projectList", projectService.getList(userNo));
         mv.setViewName("/project/projectmain");
         return mv;
     }
 
     @PostMapping(value = "/projectmain", produces = "application/json; charset=UTF-8")
     @ResponseBody
-    public List<ProjectDTO> insertProject(ModelAndView mv, @RequestBody ProjectDTO projectDTO){
+    public List<ProjectDTO> insertProject(@RequestBody ProjectDTO projectDTO, @AuthenticationPrincipal AuthDetails authDetails) throws MessagingException {
 
         System.out.println("포스트 매핑 연결 완료" + projectDTO);  // 데이터 잘 넘어옴
 
@@ -46,20 +64,34 @@ public class ProjectController {
 
 //        System.out.println("projectDTO.getProjectNo() : " + projectDTO.getProjectNo());
 
+        int userNo = 0;
+        if(authDetails != null){
+            userNo = authDetails.getUserNo();
+        }
+
         // inviteMemberDTO 신규 프로젝트No를 입력
         // 참가 랜덤 코드 inviteMemberDTO에 참가코드 입력
         // insert inviteMember
-        InviteMemberDTO inviteMemberDTO = new InviteMemberDTO();
         List<InviteMemberDTO> inviteMemberList = projectDTO.getInviteMemberList();
         for(int i = 0; i < inviteMemberList.size(); i++){
+            // DB 저장
+            String createJoinCode = createJoinCode();
             InviteMemberDTO inviteList = inviteMemberList.get(i);
             inviteList.setProjectNo(projectDTO.getProjectNo());
-            inviteList.setJoinCode(createJoinCode());
+            inviteList.setJoinCode(createJoinCode);
             projectService.insertJoinProject(inviteList);
             System.out.println(inviteList);
+
+
+            // 메일 보내기
+            String email = inviteList.getEmail();
+
+//            MailDTO mailDTO = new MailDTO();
+            mailService.sendJoinCodeMail(email, createJoinCode);
+
         }
 
-        return projectService.getList();
+        return projectService.getList(userNo);
     }
 
     // 프로젝트 참가 코드 발생 함수 -> 팀장님이 작성하신 코드 참조(코드 길이만 변형)
@@ -91,6 +123,8 @@ public class ProjectController {
     @ResponseBody
     public ProjectDTO selectSpecificProject(ModelAndView mv, @ModelAttribute ProjectDTO projectDTO){
         projectDTO = projectService.getProject(projectDTO);
+        List<InviteMemberDTO> inviteMemberList = projectService.getInviteMemberList(projectDTO);
+        projectDTO.setInviteMemberList(inviteMemberList);
         mv.addObject("select", projectService.getProject(projectDTO));
         System.out.println("select/update = " + projectDTO);
         mv.setViewName("/project/projectmain");
@@ -100,11 +134,17 @@ public class ProjectController {
 
     // 프로젝트 내용 수정
     @PostMapping("/updateproject")
-    public ModelAndView updateProject(ModelAndView mv, @ModelAttribute ProjectDTO projectDTO){
+    public ModelAndView updateProject(ModelAndView mv, @ModelAttribute ProjectDTO projectDTO, @AuthenticationPrincipal AuthDetails authDetails){
         projectService.updateProject(projectDTO);
         InviteMemberDTO inviteMemberDTO = new InviteMemberDTO();
 //        projectService.updateMember(inviteMemberDTO);
-        mv.addObject("projectList", projectService.getList());
+
+        int userNo = 0;
+        if(authDetails != null){
+            userNo = authDetails.getUserNo();
+        }
+
+        mv.addObject("projectList", projectService.getList(userNo));
         System.out.println("update" + projectDTO);
         mv.setViewName("redirect:/project/projectmain");
         return mv;
@@ -112,11 +152,17 @@ public class ProjectController {
 
     // 프로젝트 삭제
     @PostMapping("/deleteproject")
-    public ModelAndView deleteProject(ModelAndView mv, @ModelAttribute ProjectDTO projectDTO){
+    public ModelAndView deleteProject(ModelAndView mv, @ModelAttribute ProjectDTO projectDTO, @AuthenticationPrincipal AuthDetails authDetails){
         projectService.deleteProject(projectDTO);
         InviteMemberDTO inviteMemberDTO = new InviteMemberDTO();
 //        projectService.deleteMember(inviteMemberDTO);
-        mv.addObject("projectList", projectService.getList());
+
+        int userNo = 0;
+        if(authDetails != null){
+            userNo = authDetails.getUserNo();
+        }
+
+        mv.addObject("projectList", projectService.getList(userNo));
         System.out.println("delete" + projectDTO);
         mv.setViewName("redirect:/project/projectmain");
         return mv;

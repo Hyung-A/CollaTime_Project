@@ -11,7 +11,7 @@ public interface ProjectMapper {
     /* ProjectMapper */
 
     // 프로젝트 리스트 전체 조회
-    List<ProjectDTO> getList();
+    List<ProjectDTO> getList(int userNo);
 
     // 프로젝트 데이터 조회
     ProjectDTO getProject(ProjectDTO projectDTO);
@@ -35,4 +35,6 @@ public interface ProjectMapper {
     void deleteMember(InviteMemberDTO inviteMemberDTO);
 
     void updateMember(InviteMemberDTO inviteMemberDTO);
+
+    List<InviteMemberDTO> getInviteMemberList(ProjectDTO projectDTO);
 }

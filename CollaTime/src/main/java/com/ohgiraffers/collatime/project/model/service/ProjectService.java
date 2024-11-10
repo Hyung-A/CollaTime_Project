@@ -18,8 +18,8 @@ public class ProjectService {
     }
 
     // 프로젝트 리스트 전체 조회
-    public List<ProjectDTO> getList() {
-        return projectMapper.getList();
+    public List<ProjectDTO> getList(int userNo) {
+        return projectMapper.getList(userNo);
     }
 
     // 프로젝트 데이터 조회
@@ -63,5 +63,10 @@ public class ProjectService {
 
     public void updateMember(InviteMemberDTO inviteMemberDTO) {
         projectMapper.updateMember(inviteMemberDTO);
+    }
+
+    public List<InviteMemberDTO> getInviteMemberList(ProjectDTO projectDTO) {
+        System.out.println("서비스" + projectMapper.getInviteMemberList(projectDTO));
+        return projectMapper.getInviteMemberList(projectDTO);
     }
 }

@@ -1,6 +1,7 @@
 package com.ohgiraffers.collatime.mail.model.service;
 
 import com.ohgiraffers.collatime.mail.model.dto.MailDTO;
+import com.ohgiraffers.collatime.project.controller.ProjectController;
 import com.ohgiraffers.collatime.project.model.service.ProjectService;
 import com.ohgiraffers.collatime.user.model.service.UserService;
 import jakarta.mail.MessagingException;
@@ -17,6 +18,9 @@ public class MailService {
     private JavaMailSender mailSender;
 
     private UserService userService;
+
+    private ProjectController projectController;
+
 
     @Autowired
     public MailService(JavaMailSender mailSender, UserService userService) {
@@ -109,4 +113,28 @@ public class MailService {
         }
         return mailDTO;
     }
+
+    /* ------------------ 프로젝트 ------------------ */
+    // joinCodeMailForm만들기
+    private MimeMessage createJoinCodeMessage(String email, String joinCode) throws MessagingException{
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        mimeMessage.addRecipients(MimeMessage.RecipientType.TO, email);
+        mimeMessage.setSubject("안녕하세요! 회원님의 CollaTime 프로젝트 참가 코드 번호 입니다.");
+        mimeMessage.setFrom("gudjtr097@gmail.com");
+        mimeMessage.setText(joinCode);
+
+        return mimeMessage;
+    }
+
+    // 프로젝트 조인 코드 보내기
+    public MailDTO sendJoinCodeMail(String email, String joinCode) throws MessagingException{
+        MailDTO mailDTO = new MailDTO();
+        mailDTO.setMail(email);
+        mailDTO.setCode(joinCode);
+        MimeMessage joinCodeMailForm = createJoinCodeMessage(email, joinCode);
+        mailSender.send(joinCodeMailForm);
+
+        return mailDTO;
+    }
+
 }

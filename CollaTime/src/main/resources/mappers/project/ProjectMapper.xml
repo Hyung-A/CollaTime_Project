@@ -16,15 +16,15 @@
         <result property="productorNo" column="PRODUCTOR_NO"/>
     </resultMap>
 
-    <!-- InviteMemberDTO -->
-<!--    <resultMap id="JoinProjectResultMap" type="com.ohgiraffers.collatime.project.model.dto.InviteMemberDTO">-->
-<!--        <id property="projectNo" column="PROJECT_NO"/>-->
-<!--        <result property="joinCode" column="RANDOM_JOIN_CODE"/>-->
-<!--        <result property="email" column="EMAIL"/>-->
-<!--    </resultMap>-->
+     <!--InviteMemberDTO-->
+    <resultMap id="JoinProjectResultMap" type="com.ohgiraffers.collatime.project.model.dto.InviteMemberDTO">
+        <id property="projectNo" column="PROJECT_NO"/>
+        <result property="joinCode" column="RANDOM_JOIN_CODE"/>
+        <result property="email" column="EMAIL"/>
+    </resultMap>
 
     <!-- 프로젝트 전체 조회 -->
-    <select id="getList" resultMap="projectResultMap">
+    <select id="getList" resultMap="projectResultMap" parameterType="int">
         SELECT
                 A. PROJECT_NO
               , A. PROJECT_NAME
@@ -35,7 +35,15 @@
               , A. PROJECT_CATEGORY_CODE
               , A. PRODUCTOR_NO
            FROM PROJECT A
-          ORDER BY PROJECT_NO
+        WHERE PRODUCTOR_NO = #{ userNo }
+              OR
+              EXISTS (
+                       SELECT 1
+                         FROM JOIN_PROJECT A_2
+                        WHERE A.PROJECT_NO = A_2.PROJECT_NO
+                          AND A_2.CT_USER_NO = #{ userNo }
+                     )
+        ORDER BY PROJECT_NO
     </select>
 
     <!-- 프로젝트 번호로 프로젝트 조회 -->
@@ -50,6 +58,15 @@
              , PROJECT_CATEGORY_CODE
           FROM PROJECT
          WHERE PROJECT_NO = #{ projectNo }
+    </select>
+
+    <!-- 프로젝트 멤버 리스트 가져오기 -->
+    <select id="getInviteMemberList" resultMap="JoinProjectResultMap" parameterType="com.ohgiraffers.collatime.project.model.dto.ProjectDTO">
+        SELECT
+                RANDOM_JOIN_CODE
+              , EMAIL
+          FROM  JOIN_PROJECT
+         WHERE  PROJECT_NO = #{ projectNo }
     </select>
 
     <!-- 프로젝트 생성 - Project DB에 저장 -->
@@ -94,13 +111,6 @@
         )
     </insert>
 
-    <!-- 마지막 프로젝트 번호 가져오기 -->
-    <select id="getLastProjectNo" resultType="int">
-        SELECT
-               MAX(PROJECT_NO)
-          FROM PROJECT
-    </select>
-
     <!-- 프로젝트 수정 - 프로젝트 내용 수정 -->
     <update id="updateProject" parameterType="com.ohgiraffers.collatime.project.model.dto.ProjectDTO">
         UPDATE PROJECT
@@ -131,11 +141,14 @@
         WHERE PROJECT_NO = #{ projectNo }
     </delete>
 
+    <!-- 프로젝트 삭제 - join_project 테이블 -->
     <delete id="deleteMember" parameterType="com.ohgiraffers.collatime.project.model.dto.InviteMemberDTO">
         DELETE FROM JOIN_PROJECT
         WHERE PROJECT_NO = #{ projectNo }
     </delete>
 
 </mapper>
+
+
 
 
