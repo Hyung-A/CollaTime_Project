@@ -1,0 +1,685 @@
+/*프로필 원 위치*/
+.profile_circle{
+    position: absolute;
+    width: 158px;
+    height: 154px;
+    left: 1535px;
+    top: 164px;
+
+
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 99px;
+}
+
+/* 병아리 프로필 원 */
+#profile_chick {
+    display: none;
+}
+
+
+/* 병아리 머리 */
+
+#chick_head {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 130px;
+    height: 75px;
+    left: 13px;
+    top: 45px;
+
+    background: #EBB609;
+    border: 1px solid #000000;
+    border-radius: 10px;
+}
+
+
+    /* 병아리 왼쪽 머리카락 */
+
+#chick_hearLeft {
+    position: absolute;
+    width: 17px;
+    height: 0px;
+    left: 57px;
+    top: 38px;
+
+    border: 1px solid #000000;
+    transform: matrix(0.66, 0.75, -0.89, 0.45, 0, 0);
+}
+
+    /* 병아리 오른쪽 머리카락 */
+
+#chick_hearRight {
+    position: absolute;
+    width: 29px;
+    height: 0px;
+    left: 68px;
+    top: 32px;
+
+    border: 1px solid #000000;
+    transform: matrix(0.6, -0.8, 0.92, 0.4, 0, 0);
+}
+
+    /* 병아리 왼쪽 눈 */
+
+#chick_eyeLeft {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    left: 43px;
+    top: 67px;
+
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 99px;
+}
+
+    /* 병아리 오른쪽 눈 */
+#chick_eyeRight {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    left: 101px;
+    top: 67px;
+
+    background: #FFFFFF;
+    border: 1px solid #000000;
+
+    border-radius: 99px;
+}
+
+    /* 병아리 입 */
+#chick_nose {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    left: 55px;
+    top: 96px;
+
+
+    border-style: solid;
+    border-width: 35px 25px 25px 25px;
+    border-color: #FFEFCC transparent transparent transparent;
+
+}
+
+/*병아리 입 테두리*/
+#chick_noseBorder {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    left: 54px;
+    top: 95px;
+
+
+    border-style: solid;
+    border-width: 38px 27px 27px 27px;
+    border-color: #000000 transparent transparent transparent;
+
+}
+
+
+    /* 병아리 왼쪽 콧구멍 */
+#chick_noseHoleLeft {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    left: 74px;
+    top: 108px;
+
+    background: #FFFFFF;
+    border: 1px solid #000000;
+}
+
+    /* 병아리 오른쪽 콧구멍 */
+#chick_noseHoleRight{
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    left: 83px;
+    top: 108px;
+
+    background: #FFFFFF;
+    border: 1px solid #000000;
+}
+
+/* 곰 프로필 원 */
+#profile_bear {
+    display: none;
+}
+
+    /* 곰 왼쪽귀 */
+#bear_earLeft {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 44px;
+    height: 41px;
+    left: 7px;
+    top: 30px;
+
+    background: #E78F81;
+    border: 1px solid #000000;
+    border-radius: 99px;
+}
+
+    /* 곰 오른쪽 귀 */
+#bear_earRight{
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 44px;
+    height: 41px;
+    left: 107px;
+    top: 30px;
+
+    background: #E78F81;
+    border: 1px solid #000000;
+    border-radius: 99px;
+    }
+
+    /* 곰 머리 */
+#bear_head {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 106px;
+    height: 80px;
+    left: 26px;
+    top: 53px;
+
+    background: #E78F81;
+    border: 1px solid #000000;
+}
+
+    /* 곰 왼쪽눈 */
+#bear_eyeLeft {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 13px;
+    height: 15px;
+    left: 47px;
+    top: 71px;
+
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 5px;
+}
+
+    /* 곰 오른쪽눈 */
+#bear_eyeRight {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 13px;
+    height: 15px;
+    left: 101px;
+    top: 71px;
+
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 5px;
+}
+
+    /* 곰 큰입 */
+#bear_bigMouse {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 53px;
+    height: 35px;
+    left: 54px;
+    top: 97px;
+
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 50px 50px 0px 0px;
+}
+
+    /* 곰 코 */
+#bear_nose {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 18px;
+    height: 17px;
+    left: 71px;
+    top: 102px;
+
+    background: #000000;
+    border: 1px solid #000000;
+    border-radius: 99px;
+}
+
+    /* 곰 입 */
+#bear_mouse {
+    position: absolute;
+    width: 14px;
+    height: 0px;
+    left: 72px;
+    top: 124px;
+
+    border: 1px solid #000000;
+    transform: rotate(90deg);
+}
+
+/* 쥐 프로필 원 */
+#profile_rat {
+    display: none;
+}
+
+/* 쥐 왼쪽 귀 */
+#rat_earLeft {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 48px;
+    height: 40px;
+    left: 14px;
+    top: 35px;
+
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+/* 쥐 오른쪽 귀 */
+#rat_earRight {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 48px;
+    height: 40px;
+    left: 97px;
+    top: 35px;
+
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+/* 쥐 머리 */
+#rat_head {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 93px;
+    height: 76px;
+    left: 33px;
+    top: 62px;
+
+
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+/* 쥐 코 */
+#rat_nose {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 18px;
+    height: 17px;
+    left: 70px;
+    top: 112px;
+
+    background: #000000;
+    border: 1px solid #000000;
+}
+
+/* 쥐 입 */
+#rat_mouse {
+    position: absolute;
+    width: 10px;
+    height: 0px;
+    left: 73px;
+    top: 130px;
+
+    border: 1px solid #000000;
+    transform: rotate(90deg);
+}
+
+/* 쥐 눈 왼쪽 */
+#rat_eyeLeft {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 8px;
+    height: 15px;
+    left: 52px;
+    top: 81px;
+
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 5px;
+}
+
+/* 쥐 눈 오른쪽 */
+#rat_eyeRight {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 8px;
+    height: 15px;
+    left: 101px;
+    top: 81px;
+
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 5px;
+}
+
+/* 고양이 프로필 원 */
+#profile_cat {
+    display: none;
+}
+
+
+
+/* 고양이 머리 */
+#profile_cat_head {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 121px;
+    height: 79px;
+    left: 18px;
+    top: 50px;
+
+    background: #19A800;
+    border: 1px solid #000000;
+    border-radius: 0px 0px 15px 15px;
+}
+
+/* 고양이 왼쪽 귀 */
+#profile_cat_earLeft {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 32px;
+    height: 37px;
+    left: 18px;
+    top: 4px;
+
+    /*background: #19A800;*/
+    border-style: solid;
+    border-width: 25px 25px 25px 25px;
+    border-color: transparent transparent #19A800 transparent;
+}
+
+/* 고양이 오른쪽 귀 */
+#profile_cat_earRight {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 32px;
+    height: 37px;
+    left: 88px;
+    top: 4px;
+
+    border-style: solid;
+    border-width: 25px 25px 25px 25px;
+    border-color: transparent transparent #19A800 transparent;
+}
+
+/* 고양이 왼쪽 눈 */
+#cat_eyeLeft {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 18px;
+    height: 11px;
+    left: 42px;
+    top: 69px;
+
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 10px;
+}
+
+/* 고양이 오른쪽 눈 */
+#cat_eyeRight {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 18px;
+    height: 11px;
+    left: 101px;
+    top: 69px;
+
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 10px;
+}
+
+/* 고양이 코 */
+#cat_nose {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 18px;
+    height: 17px;
+    left: 70px;
+    top: 100px;
+
+    background: #000000;
+    border: 1px solid #000000;
+    border-radius: 99px;
+}
+
+/* 고양이 입 */
+#cat_mouse {
+    position: absolute;
+    width: 14px;
+    height: 0px;
+    left: 71px;
+    top: 120px;
+
+    border: 1px solid #000000;
+    transform: rotate(90deg);
+}
+
+/* 고양이 수염 1 */
+#cat_hear_1 {
+    position: absolute;
+    width: 19.42px;
+    height: 0px;
+    left: 106px;
+    top: 97px;
+
+    border: 1px solid #FFFFFF;
+    transform: rotate(-11.89deg);
+}
+
+/* 고양이 수염 4 */
+#cat_hear_4 {
+    position: absolute;
+    width: 19.42px;
+    height: 0px;
+    left: 35px;
+    top: 98px;
+
+    border: 1px solid #FFFFFF;
+    transform: matrix(-0.98, -0.21, -0.21, 0.98, 0, 0);
+}
+
+/* 고양이 수염 2 */
+#cat_hear_2 {
+    position: absolute;
+    width: 22.09px;
+    height: 0px;
+    left: 106px;
+    top: 106px;
+
+    border: 1px solid #FFFFFF;
+    transform: rotate(5.19deg);
+}
+
+/* 고양이 수염 5 */
+#cat_hear_5 {
+    position: absolute;
+    width: 22.09px;
+    height: 0px;
+    left: 32px;
+    top: 107px;
+
+    border: 1px solid #FFFFFF;
+    transform: matrix(-1, 0.09, 0.09, 1, 0, 0);
+}
+
+/* 고양이 수염 3 */
+#cat_hear_3 {
+    position: absolute;
+    width: 21.54px;
+    height: 0px;
+    left: 104px;
+    top: 118px;
+
+    border: 1px solid #FFFFFF;
+    transform: rotate(21.8deg);
+}
+
+/* 고양이 수염 6 */
+#cat_hear_6 {
+    position: absolute;
+    width: 21.54px;
+    height: 0px;
+    left: 35px;
+    top: 118px;
+
+    border: 1px solid #FFFFFF;
+    transform: matrix(-0.93, 0.37, 0.37, 0.93, 0, 0);
+}
+
+/* 늑대 프로필 원 */
+#profile_wolf {
+    display: none;
+}
+
+
+/* 늑대 머리 */
+#profile_wolf_head {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 121px;
+    height: 79px;
+    left: 18px;
+    top: 47px;
+
+    background: #FF0000;
+    border: 1px solid #000000;
+}
+
+/* 늑대 왼쪽 귀 */
+#profile_wolf_earLeft {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 20px;
+    height: 40px;
+    left: 18px;
+    top: 8px;
+
+
+
+    border-bottom: 40px solid #ff0000;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+
+}
+
+/* 늑대 오른쪽 귀 */
+#profile_wolf_earRight {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 20px;
+    height: 40px;
+    left: 99px;
+    top: 8px;
+
+
+    border-bottom: 40px solid #ff0000;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+}
+
+/* 늑대 왼쪽 눈 */
+#wolf_eyeLeft {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 24px;
+    height: 11px;
+    left: 35px;
+    top: 66px;
+
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 15px;
+}
+
+/* 늑대 오른쪽 눈 */
+#wolf_eyeRight {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 24px;
+    height: 11px;
+    left: 101px;
+    top: 66px;
+    border-radius: 15px;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+}
+
+/* 늑대 큰입 */
+#wolf_bigMouse {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 52px;
+    height: 48px;
+    left: 53px;
+    top: 90px;
+
+    background: #F5F5F5;
+    border: 1px solid #000000;
+}
+
+/* 늑대 코 */
+#wolf_nose {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 18px;
+    height: 17px;
+    left: 71px;
+    top: 108px;
+
+    background: #000000;
+    border: 1px solid #000000;
+    border-radius: 99px;
+}
+
+/* 늑대 입 */
+#wolf_mouse {
+    position: absolute;
+    width: 14px;
+    height: 0px;
+    left: 72px;
+    top: 128px;
+
+    border: 1px solid #000000;
+    transform: rotate(90deg);
+}

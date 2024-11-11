@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/common/profile.css">
+</head>
+<body>
+
+    <div id="profile_rat" class="profile_circle">
+        <div id="profile_rat_color">
+        <div id="rat_earLeft"></div>
+        <div id="rat_earRight"></div>
+        <div id="rat_head"></div>
+        </div>
+        <div id="rat_mouse"></div>
+        <div id="rat_eyeLeft"></div>
+        <div id="rat_eyeRight"></div>
+        <div id="rat_nose"></div>
+    </div>
+    <div id="profile_wolf" class="profile_circle">
+        <div id="profile_wolf_color">
+        <div id="profile_wolf_earLeft"></div>
+        <div id="profile_wolf_earRight"></div>
+        <div id="profile_wolf_head"></div>
+        </div>
+        <div id="wolf_bigMouse"></div>
+        <div id="wolf_mouse"></div>
+        <div id="wolf_nose"></div>
+        <div id="wolf_eyeLeft"></div>
+        <div id="wolf_eyeRight"></div>
+    </div>
+    <div id="profile_bear" class="profile_circle">
+        <div id="profile_bear_color">
+        <div id="bear_earLeft"></div>
+        <div id="bear_earRight"></div>
+        <div id="bear_head"></div>
+        </div>
+        <div id="bear_eyeLeft"></div>
+        <div id="bear_eyeRight"></div>
+        <div id="bear_bigMouse"></div>
+        <div id="bear_nose"></div>
+        <div id="bear_mouse"></div>
+    </div>
+    <div id="profile_cat" class="profile_circle">
+        <div id="profile_cat_color">
+        <div id="profile_cat_earRight"></div>
+        <div id="profile_cat_earLeft"></div>
+        <div id="profile_cat_head"></div>
+        </div>
+        <div id="cat_nose"></div>
+        <div id="cat_mouse"></div>
+        <div id="cat_hear_1"></div>
+        <div id="cat_hear_2"></div>
+        <div id="cat_hear_3"></div>
+        <div id="cat_hear_4"></div>
+        <div id="cat_hear_5"></div>
+        <div id="cat_hear_6"></div>
+        <div id="cat_eyeLeft"></div>
+        <div id="cat_eyeRight"></div>
+    </div>
+    <div id="profile_chick" class="profile_circle">
+        <div id="profile_chick_color">
+        <div id="chick_head"></div>
+        </div>
+        <div id="chick_eyeLeft"></div>
+        <div id="chick_eyeRight"></div>
+        <div id="chick_hearRight"></div>
+        <div id="chick_hearLeft"></div>
+        <div id="chick_noseBorder"></div>
+        <div id="chick_nose"></div>
+        <div id="chick_noseHoleLeft"></div>
+        <div id="chick_noseHoleRight"></div>
+    </div>
+
+<script>
+    let myPicture = "";
+    let myColor = "";
+
+    fetch("/common/profile")
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data)
+            myPicture = data[0];
+            myColor = data[1];
+
+            const profilePicture = document.getElementById(myPicture)
+            profilePicture.style.display = 'flex';
+            const profileColor = document.getElementById(myPicture+'_color').children
+            if(myPicture=='profile_wolf'){
+                document.getElementById(myPicture+'_head').style.backgroundColor = myColor;
+                document.getElementById(myPicture+'_earLeft').style.borderBottomColor = myColor;
+                document.getElementById(myPicture+'_earRight').style.borderBottomColor = myColor;
+            }else if(myPicture=='profile_cat'){
+                document.getElementById(myPicture+'_head').style.backgroundColor = myColor;
+                document.getElementById(myPicture+'_earLeft').style.borderBottomColor = myColor;
+                document.getElementById(myPicture+'_earRight').style.borderBottomColor = myColor;
+            }else {
+                for (var i = 0; i < profileColor.length; i++) {
+                    profileColor[i].style.backgroundColor = myColor
+                }
+            }
+        })
+
+    // let myPicture = `[[${userPicture}]]`;
+    // const profilePicture = document.getElementById(myPicture)
+    // profilePicture.style.display = 'flex';
+    // const profileColor = document.getElementById(myPicture+'_color').children
+    // if(myPicture=='profile_wolf'){
+    //     document.getElementById(myPicture+'_head').style.backgroundColor = `[[${userColor}]]`;
+    //     document.getElementById(myPicture+'_earLeft').style.borderBottomColor = `[[${userColor}]]`;
+    //     document.getElementById(myPicture+'_earRight').style.borderBottomColor =`[[${userColor}]]`;
+    // }else if(myPicture=='profile_cat'){
+    //     document.getElementById(myPicture+'_head').style.backgroundColor = `[[${userColor}]]`;
+    //     document.getElementById(myPicture+'_earLeft').style.borderBottomColor = `[[${userColor}]]`;
+    //     document.getElementById(myPicture+'_earRight').style.borderBottomColor =`[[${userColor}]]`;
+    // }else {
+    //     for (var i = 0; i < profileColor.length; i++) {
+    //         profileColor[i].style.backgroundColor = `[[${userColor}]]`;
+    //     }
+    // }
+</script>
+</body>
+</html>

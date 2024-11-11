@@ -19,4 +19,6 @@ public interface UserMapper {
     int modifyUser(UserDTO userDTO);
 
     int deleteUser(int userNo);
+
+    void modifyProfile(int userNo, String userPicture, String userColor);
 }

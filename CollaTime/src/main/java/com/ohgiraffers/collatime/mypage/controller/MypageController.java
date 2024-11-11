@@ -12,6 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 @RequestMapping("/mypage")
 public class MypageController {
@@ -24,8 +27,16 @@ public class MypageController {
 
 
     @GetMapping("/mypagemain")
-    public void mypagemain(@AuthenticationPrincipal AuthDetails authDetails) {
-        System.out.println("hi");
+    public ModelAndView mypagemain(ModelAndView mv,@AuthenticationPrincipal AuthDetails authDetails) {
+//        String username = authDetails.getUsername();
+//        UserDTO userDTO = userService.findByUsername(username);
+//        String userPicture = userDTO.getUserPicture();
+//        String userColor = userDTO.getUserColor();
+//        mv.addObject("userPicture", userPicture);
+//        mv.addObject("userColor", userColor);
+        mv.setViewName("mypage/mypagemain");
+
+        return mv;
     }
 
     @PostMapping("/pwdcheck")
@@ -113,4 +124,41 @@ public class MypageController {
 
         return mv;
     }
+
+    @GetMapping(value = "/modifyprofile", produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public int modifyprofile(@AuthenticationPrincipal AuthDetails authDetails){
+        int userNo = authDetails.getUserNo();
+        int randomPicture = (int) (Math.random() * 5) + 1;
+        int randomColor = (int) (Math.random() * 5) + 1;
+        String userPicture = "";
+        String userColor = "";
+        switch (randomPicture){
+            case 1 : userPicture = "profile_rat"; break;
+            case 2 : userPicture = "profile_cat"; break;
+            case 3 : userPicture = "profile_bear"; break;
+            case 4 : userPicture = "profile_wolf"; break;
+            case 5 : userPicture = "profile_chick"; break;
+        }
+        switch (randomColor){
+            case 1 : userColor = "red"; break;
+            case 2 : userColor = "brown"; break;
+            case 3 : userColor = "blue"; break;
+            case 4 : userColor = "green"; break;
+            case 5 : userColor = "yellow"; break;
+        }
+
+        System.out.println("userNo = " + userNo);
+        System.out.println("userPicture = " + userPicture);
+        System.out.println("userColor = " + userColor);
+
+        userService.modifyProfile(userNo, userPicture, userColor);
+//        mv.addObject("userPicture", userPicture);
+//        mv.addObject("userColor", userColor);
+//        mv.setViewName("mypage/mypagemain");
+//
+//        return mv;
+        return 1;
+    }
+
 }

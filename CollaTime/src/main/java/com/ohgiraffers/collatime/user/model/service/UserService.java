@@ -84,4 +84,10 @@ public class UserService {
 
         return userMapper.deleteUser(userNo);
     }
+
+    public void modifyProfile(int userNo, String userPicture, String userColor) {
+
+        userMapper.modifyProfile(userNo, userPicture, userColor);
+
+    }
 }
