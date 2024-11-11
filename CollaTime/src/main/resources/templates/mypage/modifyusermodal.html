@@ -116,6 +116,8 @@
 
 <button type="button" id="small_go_delete_btn">회원탈퇴</button>
 
+<div th:replace="mypage/deleteuser.html" id="delete_page"></div>
+
 </body>
 
 <script>
@@ -128,6 +130,7 @@
     let allInput = document.getElementsByClassName('input');
     const isPassMessage = document.getElementById('pwdCheckMessage')
     const goDeleteBtn = document.getElementById('small_go_delete_btn')
+    const modifyText = document.getElementById('modifyUserText')
     // 비밀번호 확인
     isPassBtn.addEventListener('click', ()=> {
 
@@ -323,6 +326,22 @@
             smallOk.addEventListener('click', ()=>{smallModalmod.style.display = 'none';})
             smallX.addEventListener('click', ()=>{smallModalmod.style.display = 'none';})
         }
+    })
+
+    const go_delete = document.getElementById('small_go_delete_btn')
+    delete_page.style.display = 'none';
+    go_delete.addEventListener('click', ()=>{
+        delete_page.style.display = 'flex';
+        modify_area.style.display = 'none'
+        goDeleteBtn.style.visibility = 'hidden'
+        modifyText.style.display = 'none'
+        byeCollaTimeMsg.innerText = ''
+    })
+    cancel_deleteUser_btn.addEventListener('click', ()=>{
+        delete_page.style.display = 'none';
+        modify_area.style.display = 'flex'
+        goDeleteBtn.style.visibility = 'visible'
+        modifyText.style.display = 'flex'
     })
 </script>
 

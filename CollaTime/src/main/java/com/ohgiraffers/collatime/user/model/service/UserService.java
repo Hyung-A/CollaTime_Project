@@ -79,4 +79,9 @@ public class UserService {
 
         return result;
     }
+
+    public int deleteUser(int userNo) {
+
+        return userMapper.deleteUser(userNo);
+    }
 }

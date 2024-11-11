@@ -79,4 +79,8 @@
         WHERE CT_USER_NO = #{userNo}
     </update>
 
+    <delete id="deleteUser">
+        DELETE FROM CT_USER
+        WHERE CT_USER_NO = #{userNo}
+    </delete>
 </mapper>

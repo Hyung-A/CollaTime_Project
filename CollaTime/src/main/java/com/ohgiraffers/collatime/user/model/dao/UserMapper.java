@@ -17,4 +17,6 @@ public interface UserMapper {
     int modifyPwdByEmail(String email, String code);
 
     int modifyUser(UserDTO userDTO);
+
+    int deleteUser(int userNo);
 }

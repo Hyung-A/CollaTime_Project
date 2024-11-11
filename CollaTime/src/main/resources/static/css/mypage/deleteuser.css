@@ -1,0 +1,149 @@
+/*취소버튼*/
+#cancel_deleteUser_btn{
+
+    position: absolute;
+    width: 100px;
+    height: 40px;
+    left: 1215px;
+    top: 717px;
+
+    background: rgba(146, 226, 248, 0.3);
+    border-radius: 15px;
+    border: none;
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    align-items: center;
+    text-align: center;
+
+
+    color: #000000;
+
+}
+
+/*회원삭제 확인버튼*/
+#deleteUserBtn{
+    position: absolute;
+    width: 100px;
+    height: 40px;
+    left: 1330px;
+    top: 717px;
+
+    background: #92E2F8;
+    border-radius: 15px;
+    border: none;
+
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    align-items: center;
+    text-align: center;
+
+
+    color: #000000;
+}
+
+/*비밀번호 확인버튼*/
+/*#isPassSubmit{*/
+/*    position: absolute;*/
+/*    width: 100px;*/
+/*    height: 40px;*/
+/*    left: 1330px;*/
+/*    top: 717px;*/
+
+/*    background: #92E2F8;*/
+/*    border-radius: 15px;*/
+/*    border: none;*/
+
+
+/*    font-style: normal;*/
+/*    font-weight: 600;*/
+/*    font-size: 20px;*/
+/*    align-items: center;*/
+/*    text-align: center;*/
+
+
+/*    color: #000000;*/
+/*}*/
+
+
+/*탈퇴 확인 문구 텍스트*/
+#delete_check_guide{
+
+
+    position: absolute;
+    width: 880px;
+    height: 36px;
+    left: 608px;
+    top: 400px;
+
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 35px;
+
+    color: #000000;
+
+}
+
+/*탈퇴 확인 텍스트*/
+#delete_check_context{
+
+    position: absolute;
+    width: 880px;
+    height: 36px;
+    left: 608px;
+    top: 550px;
+
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 35px;
+
+    color: red;
+
+}
+
+/*탈퇴 문구 입력창*/
+#byeCollaTime_input{
+
+    position: absolute;
+    width: 720px;
+    height: 53px;
+    left: 608px;
+    top: 459px;
+
+    font-size: 25px;
+
+}
+
+/*탈퇴 내용 안내*/
+#delete_guide{
+
+    position: absolute;
+    width: 631px;
+    height: 155px;
+    left: 638px;
+    top: 304px;
+
+    font-weight: 500;
+    font-size: 25px;
+    align-items: center;
+    text-align: center;
+
+    color: #000000;
+
+
+}
+
+#byeCollaTime_message{
+    position: absolute;
+    left: 1100px;
+    top: 469px;
+
+    font-size: 25px;
+
+    color: red;
+}
