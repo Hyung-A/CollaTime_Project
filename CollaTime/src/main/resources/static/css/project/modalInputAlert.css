@@ -1,0 +1,80 @@
+@charset "UTF-8";
+
+#modalInputAlert{
+
+    position: absolute;
+    width: 554px;
+    height: 284px;
+    left: 683px;
+    top: 260px;
+    background: #FFFFFF;
+    border:1px solid #595959;
+    border-radius: 25px;
+}
+
+#inputAlertHeader{
+
+    position: absolute;
+    width: 554px;
+    height: 51px;
+    background: #92E2F8;
+    border-bottom: 1px solid #282828;
+    border-radius: 25px 25px 0px 0px;
+
+}
+
+#inputAlertXButton {
+
+    width: 30px;
+    height: 34px;
+    font-size: 30px;
+    position: absolute;
+    left: 506px;
+    top: 5px;
+}
+
+#inputAlertBody{
+
+    position: absolute;
+    width: 554px;
+    height: 170px;
+    top: 52px;
+    display: flex;
+    align-items: center;
+
+}
+
+#textInputAlert{
+
+    position: absolute;
+    width: 360px;
+    left: 130px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 33px;
+    color: #282828;
+
+}
+
+
+#inputAlertConfirm{
+
+    position: absolute;
+    width: 112px;
+    height: 35px;
+    left: 414px;
+    top: 226px;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 24px;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.03em;
+    border-radius: 25px;
+    background: #92E2F8;
+    border: #92E2F8;
+
+    color: #282828;
+
+}

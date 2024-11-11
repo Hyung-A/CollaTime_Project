@@ -1,16 +1,23 @@
 package com.ohgiraffers.collatime.project.controller;
 
 
+import com.ohgiraffers.collatime.auth.model.AuthDetails;
 import com.ohgiraffers.collatime.mail.model.dto.MailDTO;
 import com.ohgiraffers.collatime.mail.model.service.MailService;
 import com.ohgiraffers.collatime.project.model.dto.InviteMemberDTO;
 import com.ohgiraffers.collatime.project.model.dto.ProjectDTO;
 import com.ohgiraffers.collatime.project.model.service.ProjectService;
+import jakarta.mail.MessagingException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 @Controller
@@ -26,74 +33,65 @@ public class ProjectController {
 
     }
     @GetMapping(value="/projectmain")
-    public ModelAndView projectmain(ModelAndView mv){
-        projectService.getList().forEach(System.out::println);
-        mv.addObject("projectList", projectService.getList());
+    public ModelAndView projectmain(HttpServletRequest req, ModelAndView mv, @AuthenticationPrincipal AuthDetails authDetails){
+        HttpSession session = req.getSession();
+        Enumeration<String> attrNames = session.getAttributeNames();
+        while (attrNames.hasMoreElements()){
+            String attr = attrNames.nextElement();
+            System.out.println(attr + " : " + session.getAttribute(attr));
+
+        }
+
+        int userNo = 0;
+        if(authDetails != null){
+            userNo = authDetails.getUserNo();
+        }
+        System.out.println("userNo : " + userNo);
+        projectService.getList(userNo).forEach(System.out::println);
+        mv.addObject("projectList", projectService.getList(userNo));
         mv.setViewName("/project/projectmain");
         return mv;
     }
 
-//    @PostMapping(value = "/projectmain", produces = "application/json; charset=UTF-8")
-//    @ResponseBody
-//    public ModelAndView insertProject(ModelAndView mv, @RequestBody ProjectDTO projectDTO, @RequestBody InviteMemberDTO inviteMemberDTO){
-//        System.out.println("포스트 매핑 왔다.");
-//        System.out.println(projectDTO);
-//
-//        projectService.insertProject(projectDTO);
-//        mv.addObject("projectList", projectService.getList());
-//        mv.setViewName("redirect:/project/projectmain");
-//        return mv;
-//    }
-
     @PostMapping(value = "/projectmain", produces = "application/json; charset=UTF-8")
     @ResponseBody
-    public ModelAndView insertProject(ModelAndView mv, @RequestBody HashMap<String, Object> data){
-        /* body에서 프로젝트 데이터를 뽑아서 프로젝트 DTO에 넣은 후 프로젝트 테이블에 DB 저장 */
-        // 각각의 데이터들을 object에서 string으로 형변환
-        System.out.println("포스트 매핑 연결 완료" + data);  // 데이터 잘 넘어옴
-//        String projectName = (String) data.get("projectName");
-//        String projectSummary = (String) data.get("projectSummary");
-//        String projectPurpose = (String) data.get("projectPurpose");
-//        String startDate = (String) data.get("startDate");
-//        String endDate = (String) data.get("endDate");
-//        String projectCategoryCode = (String) data.get("projectCategoryCode");
-//        // 프로젝트 DTO에 데이터 값 초기화
-//        ProjectDTO projectDTO = new ProjectDTO(projectName, projectSummary, projectPurpose, startDate, endDate, projectCategoryCode);
-//
-//        projectService.insertProject(projectDTO);
-//        mv.addObject("projectList", projectService.getList());
-//        mv.setViewName("redirect:/project/projectmain");
+    public List<ProjectDTO> insertProject(@RequestBody ProjectDTO projectDTO, @AuthenticationPrincipal AuthDetails authDetails) throws MessagingException {
 
-        /* -------------------------------------------------------------------------------------------------------- */
-        /* body에서 메일 데이터를 받아와서 메일 DTO에 넣고 메일 DB에 저장 */
-        // object로 받아온 값 String/int로 형변환
+        System.out.println("포스트 매핑 연결 완료" + projectDTO);  // 데이터 잘 넘어옴
 
-        // 난수 발생 함수 호출
-        // createJoinCode();
+        // insert project
+        projectService.insertProject(projectDTO);
 
-        // 각각의 emailList[i]의 값을 inviteMemberDTO에 넣기
-//        InviteMemberDTO inviteMemberDTO = new InviteMemberDTO();
-//        inviteMemberDTO.setJoinCode(createJoinCode());
+//        System.out.println("projectDTO.getProjectNo() : " + projectDTO.getProjectNo());
 
-//        System.out.println("데이터 타입" + data.get("email").getClass().getName());
-//        System.out.println(data.get("email"));
-//        List<String> emailList = (List<String>) data.get("email");
+        int userNo = 0;
+        if(authDetails != null){
+            userNo = authDetails.getUserNo();
+        }
 
-//        ArrayList<String> emailList = data.get("email")
-//
-//
-//
-////        String emailList = data.get("email").toString();
-//        System.out.println("이메일리스트" + emailList.getClass().getName());
-//        System.out.println(emailList);
-//
-//
-//        for(int i = 0; i < emailList.toArray().length; i++){
-//            inviteMemberDTO.setEmailList(emailList);
-//        }
-//        System.out.println(inviteMemberDTO.getEmailList());
-//
-        return mv;
+        // inviteMemberDTO 신규 프로젝트No를 입력
+        // 참가 랜덤 코드 inviteMemberDTO에 참가코드 입력
+        // insert inviteMember
+        List<InviteMemberDTO> inviteMemberList = projectDTO.getInviteMemberList();
+        for(int i = 0; i < inviteMemberList.size(); i++){
+            // DB 저장
+            String createJoinCode = createJoinCode();
+            InviteMemberDTO inviteList = inviteMemberList.get(i);
+            inviteList.setProjectNo(projectDTO.getProjectNo());
+            inviteList.setJoinCode(createJoinCode);
+            projectService.insertJoinProject(inviteList);
+            System.out.println(inviteList);
+
+
+            // 메일 보내기
+            String email = inviteList.getEmail();
+
+//            MailDTO mailDTO = new MailDTO();
+            mailService.sendJoinCodeMail(email, createJoinCode);
+
+        }
+
+        return projectService.getList(userNo);
     }
 
     // 프로젝트 참가 코드 발생 함수 -> 팀장님이 작성하신 코드 참조(코드 길이만 변형)
@@ -103,8 +101,7 @@ public class ProjectController {
         // 65 ~ 90 : 영문자 대문자
         // 97 ~ 122 : 영문자 소문자
         int min = 33;
-//        int min = 48;
-        int max = 122; //
+        int max = 122;
         int codeLength = 8;
         Random random = new Random();
 
@@ -118,10 +115,16 @@ public class ProjectController {
         return randomJoinCode;
     }
 
+    // 메일 발송
+
+
+    // 프로젝트 내용 조회
     @GetMapping(value="selectproject", produces = "application/json; charset=UTF-8")
     @ResponseBody
     public ProjectDTO selectSpecificProject(ModelAndView mv, @ModelAttribute ProjectDTO projectDTO){
         projectDTO = projectService.getProject(projectDTO);
+        List<InviteMemberDTO> inviteMemberList = projectService.getInviteMemberList(projectDTO);
+        projectDTO.setInviteMemberList(inviteMemberList);
         mv.addObject("select", projectService.getProject(projectDTO));
         System.out.println("select/update = " + projectDTO);
         mv.setViewName("/project/projectmain");
@@ -129,19 +132,37 @@ public class ProjectController {
 
     }
 
+    // 프로젝트 내용 수정
     @PostMapping("/updateproject")
-    public ModelAndView updateProject(ModelAndView mv, @ModelAttribute ProjectDTO projectDTO){
+    public ModelAndView updateProject(ModelAndView mv, @ModelAttribute ProjectDTO projectDTO, @AuthenticationPrincipal AuthDetails authDetails){
         projectService.updateProject(projectDTO);
-        mv.addObject("projectList", projectService.getList());
+        InviteMemberDTO inviteMemberDTO = new InviteMemberDTO();
+//        projectService.updateMember(inviteMemberDTO);
+
+        int userNo = 0;
+        if(authDetails != null){
+            userNo = authDetails.getUserNo();
+        }
+
+        mv.addObject("projectList", projectService.getList(userNo));
         System.out.println("update" + projectDTO);
         mv.setViewName("redirect:/project/projectmain");
         return mv;
     }
 
+    // 프로젝트 삭제
     @PostMapping("/deleteproject")
-    public ModelAndView deleteProject(ModelAndView mv, @ModelAttribute ProjectDTO projectDTO){
+    public ModelAndView deleteProject(ModelAndView mv, @ModelAttribute ProjectDTO projectDTO, @AuthenticationPrincipal AuthDetails authDetails){
         projectService.deleteProject(projectDTO);
-        mv.addObject("projectList", projectService.getList());
+        InviteMemberDTO inviteMemberDTO = new InviteMemberDTO();
+//        projectService.deleteMember(inviteMemberDTO);
+
+        int userNo = 0;
+        if(authDetails != null){
+            userNo = authDetails.getUserNo();
+        }
+
+        mv.addObject("projectList", projectService.getList(userNo));
         System.out.println("delete" + projectDTO);
         mv.setViewName("redirect:/project/projectmain");
         return mv;

@@ -17,6 +17,14 @@
   <!-- Header 구역 -->
   <div th:replace="common/programHeader"></div>
   <div th:replace="common/leftBar.html"></div>
+
+  <script>
+    const nicknameArea = document.getElementById("nickname");
+    let message = `[[|${#authentication.principal.userNickname}님|]]`;
+    nicknameArea.innerText = message;
+    nicknameArea.style.height = "30px";
+    nicknameArea.style.textAlign = "center";
+  </script>
   <!-- 메인 구역 -->
   <div>
     <span id="mainTitle">Project</span>
@@ -49,91 +57,94 @@
 </div>
 <script>
   // ------------------------------ Left Bar ------------------------------
-  /* My Project List */
-  const projectList = document.querySelectorAll("#projectMenu");
-  for(let i = 0; i < projectList.length; i++){
-    projectList[i].style.top = (275 + (25 * ((i+1)-1))) + "px";
-  }
+  window.onload = function(){
 
-  // ------------------------------ 메인 구역 ------------------------------
-  /* 프로젝트 색상 배열 */
-  let colorArray = ["#FEC4C4", "#D9F0FB", "#FFEFCC", "#FFA990", "#B7E58E", "#FFDAFA", "#F3DAFF", "#DADFFF", "#EDD5C0", "#D6EADF"];
+    /* My Project List */
+    const projectList = document.querySelectorAll("#projectMenu");
+    for (let i = 0; i < projectList.length; i++) {
+      projectList[i].style.top = (275 + (25 * ((i + 1) - 1))) + "px";
+    }
 
-  /* 생성된 프로젝트 폴더 영역 */
-  // 폴더 전체 영역
-  let createdProjectFolder = document.querySelectorAll("#createdProjectFolder");
-  for(let i = 0; i < createdProjectFolder.length; i++) {
-    if(i < 3){
-      createdProjectFolder[i].style.left = (148 + (363 * ((i+1) - 1))) + "px";
-      createdProjectFolder[i].style.top = "200px";
+    // ------------------------------ 메인 구역 ------------------------------
+    /* 프로젝트 색상 배열 */
+    let colorArray = ["#FEC4C4", "#D9F0FB", "#FFEFCC", "#FFA990", "#B7E58E", "#FFDAFA", "#F3DAFF", "#DADFFF", "#EDD5C0", "#D6EADF"];
+
+    /* 생성된 프로젝트 폴더 영역 */
+    // 폴더 전체 영역
+    let createdProjectFolder = document.querySelectorAll("#createdProjectFolder");
+    for (let i = 0; i < createdProjectFolder.length; i++) {
+      if (i <= 3) {
+        createdProjectFolder[i].style.left = (148 + (363 * ((i + 1) - 1))) + "px";
+        createdProjectFolder[i].style.top = "200px";
+      }
+      if (i > 3 && i <= 7) {
+        createdProjectFolder[i].style.left = (148 + (363 * ((i + 1) - 1))) + "px";
+        createdProjectFolder[i].style.top = "502px";
+      }
     }
-    if(i > 3 && i < 5){
-      createdProjectFolder[i].style.left = (148 + (363 * ((i+1) - 1))) + "px";
-      createdProjectFolder[i].style.top = "502px";
+    // 폴더 헤더
+    let folderHead = document.querySelectorAll("#folderHead");
+    for (let i = 0; i < folderHead.length; i++) {
+      folderHead[i].style.backgroundColor = colorArray[i];
     }
-  }
-  // 폴더 헤더
-  let folderHead = document.querySelectorAll("#folderHead");
-  for(let i = 0; i < folderHead.length; i++){
-    folderHead[i].style.backgroundColor = colorArray[i];
-  }
-  // 폴더바디
-  let folderBody = document.querySelectorAll("#folderBody");
-  for(let i = 0; i < folderBody.length; i++){
-    folderBody[i].style.backgroundColor = colorArray[i];
-  }
-  // 메뉴 텍스트
-  let crudText = document.querySelectorAll(".crudText");
-  for(let i = 0; i < crudText.length; i++){
-    crudText[i].style.backgroundColor = "#F5F5F5";
-    crudText[i].style.width = "90px";
-    crudText[i].style.left = "10px";
-    crudText[i].addEventListener("mouseover", function(){
-      crudText[i].style.backgroundColor = "#E2E2E2";
-      crudText[i].style.width = "110px";
-      crudText[i].style.left = "0px";
-    });
-    crudText[i].addEventListener("mouseout", function(){
+    // 폴더바디
+    let folderBody = document.querySelectorAll("#folderBody");
+    for (let i = 0; i < folderBody.length; i++) {
+      folderBody[i].style.backgroundColor = colorArray[i];
+    }
+    // 메뉴 텍스트
+    let crudText = document.querySelectorAll(".crudText");
+    for (let i = 0; i < crudText.length; i++) {
       crudText[i].style.backgroundColor = "#F5F5F5";
       crudText[i].style.width = "90px";
       crudText[i].style.left = "10px";
-    });
-  }
-  // 메뉴 아이콘 ...
-  let folderMenu = document.querySelectorAll("#folderMenu");
-  let crudMenu = document.querySelectorAll("#crudMenu");
-  for(let i = 0; i < folderMenu.length; i++){
-    crudMenu[i].style.display = "none";
-    folderMenu[i].onclick = function() {
-      if (crudMenu[i].style.display === 'block') {
-        crudMenu[i].style.display = 'none';
-      } else {
-        crudMenu[i].style.display = 'block';
+      crudText[i].addEventListener("mouseover", function () {
+        crudText[i].style.backgroundColor = "#E2E2E2";
+        crudText[i].style.width = "110px";
+        crudText[i].style.left = "0px";
+      });
+      crudText[i].addEventListener("mouseout", function () {
+        crudText[i].style.backgroundColor = "#F5F5F5";
+        crudText[i].style.width = "90px";
+        crudText[i].style.left = "10px";
+      });
+    }
+    // 메뉴 아이콘 ...
+    let folderMenu = document.querySelectorAll("#folderMenu");
+    let crudMenu = document.querySelectorAll("#crudMenu");
+    for (let i = 0; i < folderMenu.length; i++) {
+      crudMenu[i].style.display = "none";
+      folderMenu[i].onclick = function () {
+        if (crudMenu[i].style.display === 'block') {
+          crudMenu[i].style.display = 'none';
+        } else {
+          crudMenu[i].style.display = 'block';
+        }
       }
     }
-  }
 
 
-  /* New 프로젝트 폴더 영역 */
-  let maxNum = createdProjectFolder.length;
-  const newProject = document.getElementById("newProject");
-  let lastProjectLeft = Number(createdProjectFolder[maxNum-1].style.left.replace("px", ""));
-  if(maxNum > 0) {
-    for (let i = 0; i < createdProjectFolder.length; i++) {
-      if (i < 3) {
-        newProject.style.left = (lastProjectLeft + 363) + "px";
-        newProject.style.top = "200px";
-      } else if (i === 3) {
-        newProject.style.left = "148px";
-        newProject.style.top = "507px";
-      } else if (i > 3 && i < 5) {
-        newProject.style.left = (lastProjectLeft + 363) + "px";
-        newProject.style.top = "507px";
+    /* New 프로젝트 폴더 영역 */
+    let maxNum = createdProjectFolder.length;
+    const newProject = document.getElementById("newProject");
+    if (maxNum > 0) {
+      let lastProjectLeft = Number(createdProjectFolder[maxNum - 1].style.left.replace("px", ""));
+      for (let i = 0; i < createdProjectFolder.length; i++) {
+        if (i < 3) {
+          newProject.style.left = (lastProjectLeft + 363) + "px";
+          newProject.style.top = "200px";
+        } else if (i === 3) {
+          newProject.style.left = "148px";
+          newProject.style.top = "507px";
+        } else if (i > 3 && i < 5) {
+          newProject.style.left = (lastProjectLeft + 363) + "px";
+          newProject.style.top = "507px";
+        }
       }
+    } else {
+      newProject.style.left = "363px";
+      newProject.style.top = "200px";
     }
-  } else if(maxNum === 0){
-    newProject.style.left = "363px";
-    newProject.style.top = "200px";
   }
 </script>
 
@@ -162,6 +173,8 @@
 
   newProject.addEventListener("click", function(){
     modalCreateOrJoin.style.display = "";
+    let popupType = document.getElementById("popupType");
+    popupType.value = "create";
   });
 
   /* X버튼, 취소 버튼 클릭 시 모달 없애기 */
@@ -196,79 +209,130 @@
     <div id="bigXButton">X</div>
   </div>
   <!-- 내용 부분 -->
-<!--  <form action="/project/projectmain" method="post">-->
-    <div id="title">
-      <input type="text" style="display: none" id="projectNumber" name="projectNo"/>
-      <input type="text" id="inputTitle" placeholder="프로젝트 명을 입력해주세요." name="projectName"/>
-    </div>
-    <span id="summaryStar" class="star">*</span>
-    <label id="summaryLabel" for="inputSummary">개요</label>
-    <div id="summary">
-      <textarea id="inputSummary" maxlength="150" placeholder="프로젝트 개요를 적어주세요(최대 150자)." name="projectSummary"></textarea>
-    </div>
-    <span id="purposeStar" class="star">*</span>
-    <label id="purposeLabel" for="inputPurpose">목적</label>
-    <div id="purpose">
-      <textarea id="inputPurpose" maxlength="150" placeholder="프로젝트 목표 및 목적을 적어주세요(최대 150자)." name="projectPurpose"></textarea>
-    </div>
-    <span id="startDateStar" class="star">*</span>
-    <label for="period" id="periodLabel">기간</label>
-    <div id="period">
-      <input type="date" id="projectStartDate" min="2023-01-01" max="2077-06-20" name="startDate"></input>
-      <div id="wave">~</div>
-      <input type="date" id="projectEndDate"  min=now( max="2077-06-20" name="endDate"></input>
-    </div>
-    <label for="category" id="categoryLabel">분류</label>
-    <div id="category">
-      <input type="radio" id="bank" class="category" name="projectCategoryCode" value="CT1"/><label id="bankLabel" class="categoryLabel" for="bank">은행</label>
-      <input type="radio" id="insurance" class="category" name="projectCategoryCode" value="CT2"/><label id="insuranceLabel" class="categoryLabel" for="insurance">보험사</label>
-      <input type="radio" id="publicSector" class="category" name="projectCategoryCode" value="CT3"/><label id="publicSectorLabel" class="categoryLabel" for="publicSector">공공부문</label>
-      <input type="radio" id="web" class="category" name="projectCategoryCode" value="CT4"/><label id="webLabel" class="categoryLabel" for="web">웹포털</label>
-      <input type="radio" id="application" class="category" name="projectCategoryCode" value="CT5"/><label id="applicationLabel" class="categoryLabel" for="application">앱개발</label>
-      <input type="radio" id="etc" class="category" name="projectCategoryCode" value="CT6"/><label id="etcLabel" class="categoryLabel" for="etc">기타</label>
-    </div>
-    <span id="memberStar" class="star">*</span>
-    <label for="member" id="memberLabel">인원초대</label>
-    <div id="member" style="display: flex; flex-direction: row; flex-wrap: wrap;">
-      <button type="button" id="inviteMember" name="member" class="memberArea">+</button>
-      <div id="addedMember" name="email" style="display: flex; flex-wrap: wrap; flex-direction: row;" class="memberArea"></div>
-    </div>
-    <button type="button" id="bigCancel1">취소</button>
-    <button type="button" id="bigConfirm1">생성</button>
-<!--  </form>-->
+  <div id="title">
+    <input type="text" style="display: none" id="projectNumber" name="projectNo"/>
+    <input type="text" id="inputTitle" placeholder="프로젝트 명을 입력해주세요." name="projectName"/>
+  </div>
+  <span id="summaryStar" class="star">*</span>
+  <label id="summaryLabel" for="inputSummary">개요</label>
+  <div id="summary">
+    <textarea id="inputSummary" maxlength="150" placeholder="프로젝트 개요를 적어주세요(최대 150자)." name="projectSummary"></textarea>
+  </div>
+  <span id="purposeStar" class="star">*</span>
+  <label id="purposeLabel" for="inputPurpose">목적</label>
+  <div id="purpose">
+    <textarea id="inputPurpose" maxlength="150" placeholder="프로젝트 목표 및 목적을 적어주세요(최대 150자)." name="projectPurpose"></textarea>
+  </div>
+  <span id="startDateStar" class="star">*</span>
+  <label for="period" id="periodLabel">기간</label>
+  <div id="period">
+    <input type="date" id="projectStartDate" min="2023-01-01" max="2077-06-20" name="startDate"></input>
+    <div id="wave">~</div>
+    <input type="date" id="projectEndDate"  min=now( max="2077-06-20" name="endDate"></input>
+  </div>
+  <label for="category" id="categoryLabel">분류</label>
+  <div id="category">
+    <input type="radio" id="bank" class="category" name="projectCategoryCode" value="CT1"/><label id="bankLabel" class="categoryLabel" for="bank">은행</label>
+    <input type="radio" id="insurance" class="category" name="projectCategoryCode" value="CT2"/><label id="insuranceLabel" class="categoryLabel" for="insurance">보험사</label>
+    <input type="radio" id="publicSector" class="category" name="projectCategoryCode" value="CT3"/><label id="publicSectorLabel" class="categoryLabel" for="publicSector">공공부문</label>
+    <input type="radio" id="web" class="category" name="projectCategoryCode" value="CT4"/><label id="webLabel" class="categoryLabel" for="web">웹포털</label>
+    <input type="radio" id="application" class="category" name="projectCategoryCode" value="CT5"/><label id="applicationLabel" class="categoryLabel" for="application">앱개발</label>
+    <input type="radio" id="etc" class="category" name="projectCategoryCode" value="CT6"/><label id="etcLabel" class="categoryLabel" for="etc">기타</label>
+  </div>
+  <span id="memberStar" class="star">*</span>
+  <label for="member" id="memberLabel">인원초대</label>
+  <div id="member" style="display: flex; flex-wrap: wrap; align-items: center;">
+    <button type="button" id="inviteMember" name="member" class="memberArea">+</button>
+    <div id="addedMember" name="email" style="display: flex; flex-wrap: wrap; flex-direction: row;" class="memberArea"></div>
+  </div>
+  <button type="button" id="bigCancel1">취소</button>
+  <button type="button" id="bigConfirm1">생성</button>
 </div>
+<!--<div th:replace="project/modalInputAlert" style="display: none" id="modalInputAlert"></div>-->
 
 <script>
-
-  // 1. (화면) 생성 버튼 클릭 (화면)
-  // 2. (서버) 컨트롤에서 프로젝트 테이블, 참여자 테이블에 데이터 넣기
-  // 3. (서버) 데이터 넣은 이후 참여자 리스트에 메일 보내기
-  // 4. (화면) fetch 호출 이후 프로젝트 메인 화면 호출
+  $inputAlert = document.getElementById("modalInputAlert");
+  /* 1. (화면) 생성 버튼 클릭 (화면)
+     2. (서버) 컨트롤에서 프로젝트 테이블, 참여자 테이블에 데이터 넣기
+     3. (서버) 데이터 넣은 이후 참여자 리스트에 메일 보내기
+     4. (화면) fetch 호출 이후 프로젝트 메인 화면 호출 */
   const create = document.getElementById("bigConfirm1");
-  create.onclick = function(){
-    // 프로젝트 데이터 넘기기
-    fetch("/project/projectmain",
-            {
-              method: "POST",
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                // projectNo : document.getElementById("projectNumber").value,
-                projectName : document.getElementById("inputTitle").value,
-                projectSummary : document.getElementById("inputSummary").value,
-                projectPurpose : document.getElementById("inputPurpose").value,
-                startDate : document.getElementById("projectStartDate").value,
-                endDate : document.getElementById("projectEndDate").value,
-                projectCategoryCode : document.querySelector("input[type=radio]:checked").value,
-                email : resultEmailList,
-              })
-            })
-            .then((response) => response.json())
-            .then((result) => console.log(result))
-            .then((error) => console.error("Error Fetching data : " , error));
 
-  }
+  create.onclick = function() {
+
+    if (document.getElementById("inputTitle").value === "") {
+      // $inputAlert.style.display = "";
+      alert("필수 기입 사항을 입력해주세요.")
+      return;
+    } else if (document.getElementById("inputSummary").value === "") {
+      // $inputAlert.style.display = "";
+      alert("필수 기입 사항을 입력해주세요.")
+      return;
+    } else if (document.getElementById("inputPurpose").value === "") {
+      // $inputAlert.style.display = "";
+      alert("필수 기입 사항을 입력해주세요.")
+      return;
+    } else if (document.getElementById("projectStartDate").value === "") {
+      // $inputAlert.style.display = "";
+      alert("필수 기입 사항을 입력해주세요.")
+      return;
+    } else if (document.getElementById("projectEndDate").value === "") {
+      // $inputAlert.style.display = "";
+      alert("필수 기입 사항을 입력해주세요.")
+      return;
+    } else if (document.getElementById("addedMember").value === "") {
+      // $inputAlert.style.display = "";
+      alert("필수 기입 사항을 입력해주세요.")
+      return;
+    }
+      let fetchEmailList = [];
+
+      // 이렇게도 사용 가능, 대신 projectNo가 서버로 가기 전에 생성되어 있는경우만 사용
+      for (let i = 0; i < resultEmailList.length; i++) {
+        fetchEmailList = [
+          ...fetchEmailList,
+          {
+            email: resultEmailList[i]
+          }
+        ]
+      }
+      let projectCategoryCode = document.querySelector("input[type=radio]:checked");
+      projectCategoryCode = projectCategoryCode ? projectCategoryCode.value : null;
+      // 프로젝트 데이터 넘기기
+      fetch("/project/projectmain",
+              {
+                method: "POST",
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  // projectNo : document.getElementById("projectNumber").value,
+                  projectName: document.getElementById("inputTitle").value,
+                  projectSummary: document.getElementById("inputSummary").value,
+                  projectPurpose: document.getElementById("inputPurpose").value,
+                  startDate: document.getElementById("projectStartDate").value,
+                  endDate: document.getElementById("projectEndDate").value,
+                  // projectCategoryCode: document.querySelector("input[type=radio]:checked").value,
+                  projectCategoryCode: projectCategoryCode,
+                  emailList: resultEmailList,
+                  inviteMemberList: fetchEmailList,
+                  productorNo: `[[|${#authentication.principal.userNo}|]]`
+                })
+              })
+              .then(res => {
+                if (res.redirected) {
+                  window.location.href = res.url;
+                } else {
+                  window.location.href = "/project/projectmain";
+                }
+                // return res.json()
+              })
+              // .then((response) => response.json())
+              .then((result) => console.log(result))
+              .catch((error) => console.log(error));
+
+    }
+
 
 
   /* "프로젝트 생성 혹은 참가 모달"에서 생성 버튼 클릭 시 생성 모달 띄우기 */
@@ -284,10 +348,42 @@
   const bigXButton = document.getElementById("bigXButton");
   bigXButton.onclick = function(){
     createProjectModal.style.display = "none";
+    // 내용 초기화
+    document.getElementById("inputTitle").value = "";
+    document.getElementById("inputSummary").value = "";
+    document.getElementById("inputPurpose").value = "";
+    document.getElementById("projectStartDate").value = "";
+    document.getElementById("projectEndDate").value = "";
+
+    const categoryRadio = document.querySelectorAll("input[type=radio]:checked");
+    for(let i = 0; i < categoryRadio.length; i++){
+      categoryRadio[i].checked = false;
+      categoryLabelList[i].style.background = "#FFFFFF";
+    }
+
+    const resultEamilArea = document.getElementById("addedMember");
+    resultEamilArea.innerHTML = "";
+    resultEamilList = [];
   };
+
   const bigCancel1 = document.getElementById("bigCancel1");
   bigCancel1.onclick = function(){
     createProjectModal.style.display = "none";
+    document.getElementById("inputTitle").value = "";
+    document.getElementById("inputSummary").value = "";
+    document.getElementById("inputPurpose").value = "";
+    document.getElementById("projectStartDate").value = "";
+    document.getElementById("projectEndDate").value = "";
+
+    const categoryRadio = document.querySelectorAll("input[type=radio]:checked");
+    for(let i = 0; i < categoryRadio.length; i++){
+      categoryRadio[i].checked = false;
+      categoryLabelList[i].style.background = "#FFFFFF";
+    }
+
+    const resultEamilArea = document.getElementById("addedMember");
+    resultEamilArea.innerHTML = "";
+    resultEamilList = [];
   };
 
   /* 카테고리 부분 선택 시 버튼 색상 변경 */
@@ -296,11 +392,12 @@
 
   for(let i = 0; i < categoryList.length; i++){
     categoryList[i].addEventListener("click", function(){
+
+      for(let j = 0; j < categoryLabelList.length; j++){
+        categoryLabelList[j].style.background = "#FFFFFF";
+      }
       categoryLabelList[i].style.background = "#92E2F8";
     });
-    categoryList[i].addEventListener("blur", function(){
-      categoryLabelList[i].style.background = "#FFFFFF";
-    })
   }
 
 
@@ -328,48 +425,9 @@
     <button type="button" id="sendEmailConfirm">확인</button>
   </div>
 </div>
+<input type="text" style="display:none;" id="popupType"/>
 
 <script>
-
-  // 입력 받은 값을 sessionStorage에 저장
-  // let inputEmail = document.getElementById("inputEmail");
-  // const addEmail = document.getElementById("addIcon");
-  // let emailList = [];
-  // addEmail.onclick = function(){
-  //   emailList.push(inputEmail.value);
-  //   for(let i = 0; i < emailList.length; i++) {
-  //     sessionStorage.setItem(emailList[i], emailList[i]);
-  //     let storeArea = document.getElementById("storeEmailArea");
-  //     let storeMail = document.createElement("div");
-  //     let adressArea = document.createElement("div");
-  //     let xBtnArea = document.createElement("div");
-  //     let emailAdress = document.createTextNode(inputEmail.value);
-  //     let xButton = document.createTextNode("X");
-  //     storeMail.appendChild(adressArea);
-  //     storeMail.appendChild(xBtnArea);
-  //     adressArea.appendChild(emailAdress);
-  //     xBtnArea.appendChild(xButton);
-  //     storeArea.appendChild(storeMail);
-  //     storeMail.style.backgroundColor = "#FFFFFF";
-  //     storeMail.style.height = "30px";
-  //     storeMail.style.display = "flex";
-  //     storeMail.style.alignItems = "center";
-  //     storeMail.style.justifyContent = "center";
-  //     storeMail.style.lineHeight = "20px";
-  //     storeMail.style.borderRadius = "15px";
-  //     storeMail.style.width = "max-content";
-  //     storeMail.style.margin = "10px"; // 기본 여백 설정
-  //     storeMail.style.padding = "5px 10px"; // 공간을 더 줘서 컴팩트하게
-  //     adressArea.style.marginRight = "10px"; // 오른쪽 여백 추가
-  //     xBtnArea.style.cursor = "pointer"; // 클릭 가능한 커서로 변경
-  //     xBtnArea.onclick = function () {
-  //       storeArea.removeChild(storeMail);
-  //     }
-  //   }
-  //   console.log(sessionStorage);
-  //   console.log(emailList);
-  // }
-
 
   // 요소 삭제
   function deleteEmail (){
@@ -479,35 +537,70 @@
 
   // 확인 버튼
   const sendEmailConfirm = document.getElementById("sendEmailConfirm");
-  sendEmailConfirm.onclick = function(){
+  sendEmailConfirm.onclick = function() {
     inviteMemberModal.style.display = "none";
+    // addMemberBtn.style.display = "none";
     // 입력한 이메일 리스트 확정하는 배열
     resultEmailList = [...emailList];
     console.log("resultEmailList : " + resultEmailList);
     deleteEmail();
     const input = document.getElementById("inputEmail");
     input.value = "";
-    // 요소 생성
-    const resultEmailArea = document.getElementById("addedMember");
-    for(let i = 0; i < resultEmailList.length; i++) {
-      let resultMail = document.createElement("div");  // 이메일 div
-      let emailAdress = document.createTextNode(resultEmailList[i]);  // 이메일 주소
-      resultEmailArea.appendChild(resultMail);
-      resultMail.appendChild(emailAdress);
-      resultEmailArea.style.left = "100xp"
-      resultMail.style.backgournd = "#DFF7FD";
-      resultMail.style.borderRadius = "15px";
-      resultMail.style.width = "max-content";
-      resultMail.style.height = "30px";
-      resultMail.style.alignItems = "center";
-      resultMail.style.lineHeight = "30px";
-      resultMail.style.borderRadius = "15px";
-      resultMail.style.margin = "5px";
-      resultMail.style.padding = "5px 10px";
-      // emailAdress.style.marginRight = "10px";
+    // 요소 생성 - 프로젝트 생성 시
+    let popupType = document.getElementById("popupType");
+    if (popupType.value === "create") {
+      const resultEmailArea = document.getElementById("addedMember");
+      resultEmailArea.innerHTML = "";
+      for (let i = 0; i < resultEmailList.length; i++) {
+        // 이메일 div 생성
+        let resultMail = document.createElement("div");  // 이메일 div
+        let emailAdress = document.createTextNode(resultEmailList[i]);  // 이메일 주소
+        resultMail.appendChild(emailAdress);
+        resultEmailArea.appendChild(resultMail);
+        // 스타일 설정
+        resultMail.style.backgournd = "#DFF7FD";
+        resultMail.style.borderRadius = "15px";
+        resultMail.style.width = "max-content";
+        resultMail.style.height = "30px";
+        resultMail.style.display = "flex";
+        resultMail.style.alignItems = "center";
+        resultMail.style.lineHeight = "30px";
+        resultMail.style.margin = "5px";
+        resultMail.style.padding = "5px 10px";
+
+        // 멤버 추가 버튼 위치 조정
+        const inviteMemberButton = document.getElementById("inviteMember");
+        inviteMemberButton.style.order = 1;
+      }
+    } else {
+
+      // 요소 생성 - 프로젝트 수정 시
+      const updateEmailList = document.getElementById("memberList");
+      updateEmailList.innerHTML = "";
+
+      for (let i = 0; i < resultMemberInviteList.length; i++) {
+        // 이메일 div 생성
+        let resultMail = document.createElement("div");  // 이메일 div
+        let emailAdress = document.createTextNode(resultMemberInviteList[i].email);  // 이메일 주소
+        resultMail.appendChild(emailAdress);
+        updateEmailList.appendChild(resultMail);
+        // 스타일 설정
+        resultMail.style.backgournd = "#DFF7FD";
+        resultMail.style.borderRadius = "15px";
+        resultMail.style.width = "max-content";
+        resultMail.style.height = "30px";
+        resultMail.style.display = "flex";
+        resultMail.style.alignItems = "center";
+        resultMail.style.lineHeight = "30px";
+        resultMail.style.margin = "5px";
+        resultMail.style.padding = "5px 10px";
+
+        // 멤버 추가 버튼 위치 조정
+        const updateInviteMember = document.getElementById("updateInviteMember");
+        updateInviteMember.style.order = 1;
+      }
     }
   }
-
 </script>
 <!-- ----------------------------------------- 프로젝트 내용 조회 및 수정 모달 ----------------------------------------- -->
 <form action="/project/updateproject" method="post">
@@ -550,13 +643,15 @@
     <label for="updateMember" id="updateMemberLabel">인원초대</label>
     <div id="updateMember">
       <button type="button" id="updateInviteMember" name="updateMember">+</button>
+      <div id="memberList" name="email" style="display: flex; flex-wrap: wrap; flex-direction: row;"></div>
+
     </div>
     <button type="button" id="updateCancel">취소</button>
     <button type="submit" id="updateConfirm">수정</button>
   </div>
 </form>
 <script>
-
+  let resultMemberInviteList = null;
   /* 정보 비동기로 가져오기 */
   // DB에서 데이터를 가져오는 함수 작성
   function select(projectNo){
@@ -576,6 +671,38 @@
               $endDate.value = data.endDate;
               let $updateProjectNo = document.getElementById("updateProjectNo");
               $updateProjectNo.value = data.projectNo;
+              // let memberList = document.getElementById("memberList");
+              // memberList.value = data.inviteMemberList;
+
+              const memberListArea = document.getElementById("memberList");
+              memberListArea.innerHTML = "";
+              const invitedMemberList = data.inviteMemberList;
+              resultMemberInviteList = invitedMemberList;
+              for(let i = 0; i < invitedMemberList.length; i++) {
+
+                resultEmailList
+                 = [...resultEmailList, invitedMemberList[i].email]
+                // 이메일 div 생성
+                let resultMail = document.createElement("div");  // 이메일 div
+                let emailAdress = document.createTextNode(invitedMemberList[i].email);  // 이메일 주소
+                resultMail.appendChild(emailAdress);
+                memberListArea.appendChild(resultMail);
+                // 스타일 설정
+                resultMail.style.backgournd = "#DFF7FD";
+                resultMail.style.borderRadius = "15px";
+                resultMail.style.width = "max-content";
+                resultMail.style.height = "30px";
+                resultMail.style.display = "flex";
+                resultMail.style.alignItems = "center";
+                resultMail.style.lineHeight = "30px";
+                resultMail.style.margin = "5px";
+                resultMail.style.padding = "5px 10px";
+
+                // 멤버 추가 버튼 위치 조정
+                const inviteMemberButton = document.getElementById("inviteMember");
+                inviteMemberButton.style.order = 1;
+              }
+
 
               let categoryList = document.querySelectorAll("updateCategory input");
               for(let i = 0; i < categoryList.length; i++){
@@ -611,6 +738,8 @@
       select(projectNo[i].value);
       console.log(projectNo[i].value);
       updateProjectModal.style.display = "";
+      let popupType = document.getElementById("popupType");
+      popupType.value = "update";
     })
   }
 
@@ -628,6 +757,37 @@
   const updateMember = document.getElementById("updateInviteMember");
   updateMember.addEventListener("click", function(){
     inviteMemberModal.style.display = "";
+    for(let i = 0; i < resultMemberInviteList.length; i++){
+      let storeArea = document.getElementById("storeEmailArea");
+      let storeMail = document.createElement("div");
+      let adressArea = document.createElement("div");
+      let xBtnArea = document.createElement("div");
+      let emailAdress = document.createTextNode(resultMemberInviteList[i].email);
+      let xButton = document.createTextNode("X");
+      storeMail.appendChild(adressArea);
+      storeMail.appendChild(xBtnArea);
+      adressArea.appendChild(emailAdress);
+      xBtnArea.appendChild(xButton);
+      storeArea.appendChild(storeMail);
+      storeMail.style.backgroundColor = "#FFFFFF";
+      storeMail.style.height = "30px";
+      storeMail.style.display = "flex";
+      storeMail.style.alignItems = "center";
+      storeMail.style.justifyContent = "center";
+      storeMail.style.lineHeight = "20px";
+      storeMail.style.borderRadius = "15px";
+      storeMail.style.width = "max-content";
+      storeMail.style.margin = "10px"; // 기본 여백 설정
+      storeMail.style.padding = "5px 10px"; // 공간을 더 줘서 컴팩트하게
+      adressArea.style.marginRight = "10px"; // 오른쪽 여백 추가
+      xBtnArea.style.cursor = "pointer"; // 클릭 가능한 커서로 변경
+      xBtnArea.onclick = function () {
+        storeArea.removeChild(storeMail);  // 요소 삭제
+        emailList = emailList.filter((obj) => obj !== inputEmail.value);
+      }
+    }
+
+
   })
 
 </script>
