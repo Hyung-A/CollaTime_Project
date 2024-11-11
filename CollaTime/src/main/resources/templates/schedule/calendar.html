@@ -60,17 +60,246 @@
 </div>
 
 <!-- 모달 창 -->
-<div th:include="schedule/empty.html" id="modalContent" style="display: none"></div> <!-- 날짜 클릭 시 스케줄 없을 때-->
-<div th:include="schedule/list.html" id="exist-schedule-list" style="display: none"></div><!-- 날짜 클릭 시 스케줄 있을 때-->
-
+<div th:include="schedule/empty.html" id="emptyModal" style="display: none"></div> <!-- 날짜 클릭 시 스케줄 없을 때-->
+<div th:include="schedule/list.html" id="listModal" style="display: none"></div><!-- 날짜 클릭 시 스케줄 있을 때-->
+<div th:include="schedule/createsuccess.html" id="createsuccessModal" style="display: none"></div> <!-- 생성 성공 시-->
 <div th:include="schedule/makeschedule.html" id="makescheduleModal"
      style="display: none; position:absolute; z-index: 10"></div>
 
+
+<!--<script>-->
+<!--    console.log("JavaScript is loaded");-->
+<!--    document.addEventListener("DOMContentLoaded", function () {-->
+<!--        let date = new Date();-->
+
+<!--        const renderCalender = () => {-->
+<!--            const viewYear = date.getFullYear();-->
+<!--            const viewMonth = date.getMonth();-->
+
+<!--            document.querySelector('.year-month').textContent = `${viewYear}년 ${viewMonth + 1}월`;-->
+
+<!--            const prevLast = new Date(viewYear, viewMonth, 0);-->
+<!--            const thisLast = new Date(viewYear, viewMonth + 1, 0);-->
+
+<!--            const PLDate = prevLast.getDate();-->
+<!--            const PLDay = prevLast.getDay();-->
+
+<!--            const TLDate = thisLast.getDate();-->
+<!--            const TLDay = thisLast.getDay();-->
+
+<!--            const prevDates = [];-->
+<!--            const thisDates = [...Array(TLDate + 1).keys()].slice(1);-->
+<!--            const nextDates = [];-->
+
+<!--            if (PLDay !== 6) {-->
+<!--                for (let i = 0; i < PLDay + 1; i++) {-->
+<!--                    prevDates.unshift(PLDate - i);-->
+<!--                }-->
+<!--            }-->
+
+<!--            for (let i = 1; i < 7 - TLDay; i++) {-->
+<!--                nextDates.push(i);-->
+<!--            }-->
+
+<!--            const dates = prevDates.concat(thisDates, nextDates);-->
+<!--            const firstDateIndex = dates.indexOf(1);-->
+<!--            const lastDateIndex = dates.lastIndexOf(TLDate);-->
+
+<!--            dates.forEach((date, i) => {-->
+<!--                const condition = i >= firstDateIndex && i < lastDateIndex + 1 ? 'this' : 'other';-->
+<!--                dates[i] = `<div class="date"><span class=${condition}>${date}</span></div>`;-->
+<!--            });-->
+
+<!--            document.querySelector('.dates').innerHTML = dates.join('');-->
+
+<!--            const today = new Date();-->
+<!--            if (viewMonth === today.getMonth() && viewYear === today.getFullYear()) {-->
+<!--                for (let date of document.querySelectorAll('.this')) {-->
+<!--                    if (+date.innerText === today.getDate()) {-->
+<!--                        date.classList.add('today');-->
+<!--                        break;-->
+<!--                    }-->
+<!--                }-->
+<!--            }-->
+
+<!--            // 모든 날짜 요소에 클릭 이벤트 추가-->
+<!--            document.querySelectorAll('.date').forEach(date => {-->
+<!--                date.addEventListener('click', openModal);-->
+
+<!--            });-->
+<!--        };-->
+
+
+<!--        renderCalender();-->
+
+<!--        const prevMonth = () => {-->
+<!--            date.setMonth(date.getMonth() - 1);-->
+<!--            renderCalender();-->
+<!--        };-->
+
+<!--        const nextMonth = () => {-->
+<!--            date.setMonth(date.getMonth() + 1);-->
+<!--            renderCalender();-->
+<!--        };-->
+
+<!--        const goToday = () => {-->
+<!--            date = new Date();-->
+<!--            renderCalender();-->
+<!--        };-->
+
+<!--        document.querySelector(".go-prev").addEventListener("click", prevMonth);-->
+<!--        document.querySelector(".go-next").addEventListener("click", nextMonth);-->
+<!--        document.querySelector(".go-today").addEventListener("click", goToday);-->
+
+
+<!--        // 첫 번째 모달 열기-->
+<!--        function openModal() {-->
+<!--            document.getElementById("emptyModal").style.display = "flex";-->
+<!--        }-->
+
+<!--        // 첫 번째 모달 닫기-->
+<!--        function closeModal() {-->
+<!--            document.getElementById("emptyModal").style.display = "none";-->
+<!--        }-->
+
+<!--        // 두 번째 모달 열기-->
+<!--        function openSecondModal() {-->
+<!--            const makescheduleModal = document.getElementById("makescheduleModal");-->
+<!--            if (makescheduleModal) {-->
+<!--                makescheduleModal.style.display = "flex";-->
+<!--                makescheduleModal.style.zIndex = "20";-->
+<!--                makescheduleModal.style.position = "absolute";-->
+<!--                makescheduleModal.style.visibility = "visible";-->
+<!--            }-->
+<!--        }-->
+
+<!--        // 두 번째 모달 닫기-->
+<!--        function closeSecondModal() {-->
+<!--            const makescheduleModal = document.getElementById("makescheduleModal");-->
+<!--            if (makescheduleModal) {-->
+<!--                makescheduleModal.style.display = "none";-->
+
+<!--                makescheduleModal.querySelectorAll("input, textarea").forEach(input => {-->
+<!--                    input.value = "";-->
+<!--                });-->
+<!--            }-->
+<!--        }-->
+
+<!--        // 첫 번째 모달의 plusList 버튼 클릭 시 두 번째 모달 열기-->
+<!--        const plusListButton = document.getElementById("plusList");-->
+<!--        if (plusListButton) {-->
+<!--            plusListButton.addEventListener("click", openSecondModal);-->
+<!--        }-->
+
+<!--        // 두 번째 모달의 X 버튼 클릭 시 두 번째 모달 닫기-->
+<!--        const middleXXButton = document.getElementById("middleXXButton");-->
+<!--        if (middleXXButton) {-->
+<!--            middleXXButton.addEventListener("click", closeSecondModal);-->
+<!--        }-->
+
+<!--        // 두 번째 모달의 "취소" 버튼 클릭 시 두 번째 모달 닫기-->
+<!--        const cancelButton = document.getElementById("cancelButton");-->
+<!--        if (cancelButton) {-->
+<!--            cancelButton.addEventListener("click", closeSecondModal);-->
+<!--        }-->
+
+<!--        // 모든 날짜 요소에 첫 번째 모달 열기 이벤트 추가-->
+<!--        document.querySelectorAll('.date').forEach(date => {-->
+<!--            date.addEventListener('click', openModal);-->
+<!--        });-->
+
+<!--        // 첫 번째 모달의 X 버튼 설정-->
+<!--        const middleXButton = document.getElementById("middleXButton");-->
+<!--        if (middleXButton) {-->
+<!--            middleXButton.addEventListener("click", closeModal);-->
+<!--        }-->
+
+<!--        // createSuccess 모달 x 버튼-->
+<!--        document.getElementById("createXButton").addEventListener("click", function () {-->
+<!--            document.getElementById("createsuccessModal").style.display = "none";-->
+<!--        });-->
+<!--    });-->
+
+<!--    document.addEventListener("scheduleCreated", () => {-->
+<!--        // createsuccessModal 모달을 표시-->
+<!--        const successModal = document.getElementById("createsuccessModal");-->
+<!--        const otherModals = ["listModal", "emptyModal", "makescheduleModal"];-->
+
+<!--        document.getElementById("listModal").style.display = "none";-->
+<!--        document.getElementById("emptyModal").style.display = "none";-->
+<!--        document.getElementById("makescheduleModal").style.display = "none";-->
+
+<!--        if (successModal) {-->
+<!--            successModal.style.display = "flex"; // createsuccessModal 표시-->
+<!--         }-->
+<!--            // else {-->
+<!--        //     console.error("createsuccessModal 요소를 찾을 수 없습니다.");-->
+<!--        // }-->
+
+<!--    });-->
+
+<!--    function closeSuccessModal() {-->
+<!--        const createsuccessModal = document.getElementById("createsuccessModal");-->
+<!--        if (createsuccessModal) {-->
+<!--            createsuccessModal.style.display = "none";-->
+
+<!--            // makescheduleModal의 모든 입력 필드 초기화-->
+<!--            const makescheduleModal = document.getElementById("makescheduleModal");-->
+<!--            if (makescheduleModal) {-->
+<!--                makescheduleModal.querySelectorAll("input, textarea").forEach(input => {-->
+<!--                    input.value = "";-->
+<!--                });-->
+<!--            }-->
+<!--        }-->
+<!--    }-->
+
+<!--    document.getElementById("createXButton").addEventListener("click", closeSuccessModal);-->
+
+<!--    document.addEventListener("DOMContentLoaded", function() {-->
+<!--        console.log("DOMContentLoaded event fired"); // DOM이 로드되었을 때 확인용 로그-->
+
+<!--        // 달력 날짜 요소들에 클릭 이벤트를 연결-->
+<!--        document.querySelectorAll(".date").forEach(dateElement => {-->
+<!--            console.log("Date element found:", dateElement); // 달력 날짜 요소가 선택되는지 확인-->
+<!--            dateElement.addEventListener("click", handleDateClick);-->
+<!--        });-->
+<!--    });-->
+<!--    function handleDateClick() {-->
+<!--        console.log("Date clicked"); // 클릭 여부 확인-->
+<!--        fetch("/api/schedules/user", { cache: "no-store" })-->
+<!--            .then(response => response.json())-->
+<!--            .then(schedules => {-->
+<!--                if (schedules.length === 0) {-->
+<!--                    // 스케줄이 없는 경우 empty.html 모달 표시-->
+<!--                    document.getElementById("emptyModal").style.display = "flex";-->
+<!--                } else {-->
+<!--                    // 스케줄이 있는 경우 list.html 모달 표시-->
+<!--                    document.getElementById("listModal").style.display = "flex";-->
+<!--                    displaySchedules(schedules); // 스케줄 내용을 listModal에 표시-->
+<!--                }-->
+<!--            })-->
+<!--            .catch(error => console.error("Error fetching schedules:", error));-->
+<!--    }-->
+
+<!--    function displaySchedules(schedules) {-->
+<!--        const scheduleList = document.getElementById("scheduleList"); // list.html 내에 표시할 영역-->
+<!--        scheduleList.innerHTML = ""; // 기존 내용 초기화-->
+<!--        schedules.forEach(schedule => {-->
+<!--            const item = document.createElement("div");-->
+<!--            item.textContent = `${schedule.scheduleTitle} (${schedule.scheduleStartDate} ~ ${schedule.scheduleEndDate})`; // 제목과 기간 표시-->
+<!--            // list 모달 안에 내용 변경하기-->
+<!--            scheduleList.appendChild(item);-->
+<!--        });-->
+<!--    }-->
+<!--</script>-->
+
 <script>
+    console.log("JavaScript is loaded");
+
     document.addEventListener("DOMContentLoaded", function () {
         let date = new Date();
 
-        const renderCalender = () => {
+        const renderCalendar = () => {
             const viewYear = date.getFullYear();
             const viewMonth = date.getMonth();
 
@@ -121,28 +350,26 @@
             }
 
             // 모든 날짜 요소에 클릭 이벤트 추가
-            document.querySelectorAll('.date').forEach(date => {
-                date.addEventListener('click', openModal);
-
+            document.querySelectorAll('.date').forEach(dateElement => {
+                dateElement.addEventListener('click', handleDateClick);
             });
         };
 
-
-        renderCalender();
+        renderCalendar();
 
         const prevMonth = () => {
             date.setMonth(date.getMonth() - 1);
-            renderCalender();
+            renderCalendar();
         };
 
         const nextMonth = () => {
             date.setMonth(date.getMonth() + 1);
-            renderCalender();
+            renderCalendar();
         };
 
         const goToday = () => {
             date = new Date();
-            renderCalender();
+            renderCalendar();
         };
 
         document.querySelector(".go-prev").addEventListener("click", prevMonth);
@@ -150,66 +377,29 @@
         document.querySelector(".go-today").addEventListener("click", goToday);
 
 
-        // 첫 번째 모달 열기
-        function openModal() {
-            document.getElementById("modalContent").style.display = "flex";
+        function handleDateClick() {
+            console.log("Date clicked"); // 클릭 여부 확인
+            fetch("/api/schedules/user", { cache: "no-store" })
+                .then(response => response.json())
+                .then(schedules => {
+                    if (schedules.length === 0) {
+                        document.getElementById("emptyModal").style.display = "flex";
+                    } else {
+                        document.getElementById("listModal").style.display = "flex";
+                        displaySchedules(schedules);
+                    }
+                })
+                .catch(error => console.error("Error fetching schedules:", error));
         }
 
-        // 첫 번째 모달 닫기
-        function closeModal() {
-            document.getElementById("modalContent").style.display = "none";
-        }
-
-        // 두 번째 모달 열기
-        function openSecondModal() {
-            const makescheduleModal = document.getElementById("makescheduleModal");
-            if (makescheduleModal) {
-                makescheduleModal.style.display = "flex";
-                makescheduleModal.style.zIndex = "20";
-                makescheduleModal.style.position = "absolute";
-                makescheduleModal.style.visibility = "visible";
-            }
-        }
-
-        // 두 번째 모달 닫기
-        function closeSecondModal() {
-            const makescheduleModal = document.getElementById("makescheduleModal");
-            if (makescheduleModal) {
-                makescheduleModal.style.display = "none";
-
-                makescheduleModal.querySelectorAll("input, textarea").forEach(input => {
-                    input.value = "";
-                });
-            }
-        }
-
-        // 첫 번째 모달의 plusList 버튼 클릭 시 두 번째 모달 열기
-        const plusListButton = document.getElementById("plusList");
-        if (plusListButton) {
-            plusListButton.addEventListener("click", openSecondModal);
-        }
-
-        // 두 번째 모달의 X 버튼 클릭 시 두 번째 모달 닫기
-        const middleXXButton = document.getElementById("middleXXButton");
-        if (middleXXButton) {
-            middleXXButton.addEventListener("click", closeSecondModal);
-        }
-
-        // 두 번째 모달의 "취소" 버튼 클릭 시 두 번째 모달 닫기
-        const cancelButton = document.getElementById("cancelButton");
-        if (cancelButton) {
-            cancelButton.addEventListener("click", closeSecondModal);
-        }
-
-        // 모든 날짜 요소에 첫 번째 모달 열기 이벤트 추가
-        document.querySelectorAll('.date').forEach(date => {
-            date.addEventListener('click', openModal);
-        });
-
-        // 첫 번째 모달의 X 버튼 설정
-        const middleXButton = document.getElementById("middleXButton");
-        if (middleXButton) {
-            middleXButton.addEventListener("click", closeModal);
+        function displaySchedules(schedules) {
+            const scheduleList = document.getElementById("scheduleList");
+            scheduleList.innerHTML = ""; // 기존 내용 초기화
+            schedules.forEach(schedule => {
+                const item = document.createElement("div");
+                item.textContent = `${schedule.scheduleTitle} (${schedule.scheduleStartDate} ~ ${schedule.scheduleEndDate})`;
+                scheduleList.appendChild(item);
+            });
         }
     });
 </script>
