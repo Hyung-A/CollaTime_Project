@@ -1,0 +1,79 @@
+@charset "UTF-8";
+
+#smallModal{
+
+    position: absolute;
+    width: 554px;
+    height: 284px;
+    left: 683px;
+    top: 260px;
+    background: #FFFFFF;
+    border:1px solid #595959;
+    border-radius: 25px;
+}
+
+#smallBlueHeader{
+
+    position: absolute;
+    width: 554px;
+    height: 51px;
+    background: #92E2F8;
+    border-bottom: 1px solid #282828;
+    border-radius: 25px 25px 0px 0px;
+
+}
+
+#createXButton{
+
+    width: 30px;
+    height: 34px;
+    font-size: 30px;
+    position: absolute;
+    left: 506px;
+    top: 5px;
+
+}
+
+#confirmCreate{
+
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    font-size: 25px;
+    font-weight: bold;
+
+}
+
+#bottomButtons {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+}
+
+.bottomButton {
+    width: 130px;
+    height: 40px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    text-align: center;
+    align-content: center;
+}
+
+
+#confirmButton {
+    background-color: #92E2F8;
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+
+}
