@@ -57,91 +57,94 @@
 </div>
 <script>
   // ------------------------------ Left Bar ------------------------------
-  /* My Project List */
-  const projectList = document.querySelectorAll("#projectMenu");
-  for(let i = 0; i < projectList.length; i++){
-    projectList[i].style.top = (275 + (25 * ((i+1)-1))) + "px";
-  }
+  window.onload = function(){
 
-  // ------------------------------ 메인 구역 ------------------------------
-  /* 프로젝트 색상 배열 */
-  let colorArray = ["#FEC4C4", "#D9F0FB", "#FFEFCC", "#FFA990", "#B7E58E", "#FFDAFA", "#F3DAFF", "#DADFFF", "#EDD5C0", "#D6EADF"];
+    /* My Project List */
+    const projectList = document.querySelectorAll("#projectMenu");
+    for (let i = 0; i < projectList.length; i++) {
+      projectList[i].style.top = (275 + (25 * ((i + 1) - 1))) + "px";
+    }
 
-  /* 생성된 프로젝트 폴더 영역 */
-  // 폴더 전체 영역
-  let createdProjectFolder = document.querySelectorAll("#createdProjectFolder");
-  for(let i = 0; i < createdProjectFolder.length; i++) {
-    if(i < 3){
-      createdProjectFolder[i].style.left = (148 + (363 * ((i+1) - 1))) + "px";
-      createdProjectFolder[i].style.top = "200px";
+    // ------------------------------ 메인 구역 ------------------------------
+    /* 프로젝트 색상 배열 */
+    let colorArray = ["#FEC4C4", "#D9F0FB", "#FFEFCC", "#FFA990", "#B7E58E", "#FFDAFA", "#F3DAFF", "#DADFFF", "#EDD5C0", "#D6EADF"];
+
+    /* 생성된 프로젝트 폴더 영역 */
+    // 폴더 전체 영역
+    let createdProjectFolder = document.querySelectorAll("#createdProjectFolder");
+    for (let i = 0; i < createdProjectFolder.length; i++) {
+      if (i <= 3) {
+        createdProjectFolder[i].style.left = (148 + (363 * ((i + 1) - 1))) + "px";
+        createdProjectFolder[i].style.top = "200px";
+      }
+      if (i > 3 && i <= 7) {
+        createdProjectFolder[i].style.left = (148 + (363 * ((i + 1) - 1))) + "px";
+        createdProjectFolder[i].style.top = "502px";
+      }
     }
-    if(i > 3 && i < 5){
-      createdProjectFolder[i].style.left = (148 + (363 * ((i+1) - 1))) + "px";
-      createdProjectFolder[i].style.top = "502px";
+    // 폴더 헤더
+    let folderHead = document.querySelectorAll("#folderHead");
+    for (let i = 0; i < folderHead.length; i++) {
+      folderHead[i].style.backgroundColor = colorArray[i];
     }
-  }
-  // 폴더 헤더
-  let folderHead = document.querySelectorAll("#folderHead");
-  for(let i = 0; i < folderHead.length; i++){
-    folderHead[i].style.backgroundColor = colorArray[i];
-  }
-  // 폴더바디
-  let folderBody = document.querySelectorAll("#folderBody");
-  for(let i = 0; i < folderBody.length; i++){
-    folderBody[i].style.backgroundColor = colorArray[i];
-  }
-  // 메뉴 텍스트
-  let crudText = document.querySelectorAll(".crudText");
-  for(let i = 0; i < crudText.length; i++){
-    crudText[i].style.backgroundColor = "#F5F5F5";
-    crudText[i].style.width = "90px";
-    crudText[i].style.left = "10px";
-    crudText[i].addEventListener("mouseover", function(){
-      crudText[i].style.backgroundColor = "#E2E2E2";
-      crudText[i].style.width = "110px";
-      crudText[i].style.left = "0px";
-    });
-    crudText[i].addEventListener("mouseout", function(){
+    // 폴더바디
+    let folderBody = document.querySelectorAll("#folderBody");
+    for (let i = 0; i < folderBody.length; i++) {
+      folderBody[i].style.backgroundColor = colorArray[i];
+    }
+    // 메뉴 텍스트
+    let crudText = document.querySelectorAll(".crudText");
+    for (let i = 0; i < crudText.length; i++) {
       crudText[i].style.backgroundColor = "#F5F5F5";
       crudText[i].style.width = "90px";
       crudText[i].style.left = "10px";
-    });
-  }
-  // 메뉴 아이콘 ...
-  let folderMenu = document.querySelectorAll("#folderMenu");
-  let crudMenu = document.querySelectorAll("#crudMenu");
-  for(let i = 0; i < folderMenu.length; i++){
-    crudMenu[i].style.display = "none";
-    folderMenu[i].onclick = function() {
-      if (crudMenu[i].style.display === 'block') {
-        crudMenu[i].style.display = 'none';
-      } else {
-        crudMenu[i].style.display = 'block';
+      crudText[i].addEventListener("mouseover", function () {
+        crudText[i].style.backgroundColor = "#E2E2E2";
+        crudText[i].style.width = "110px";
+        crudText[i].style.left = "0px";
+      });
+      crudText[i].addEventListener("mouseout", function () {
+        crudText[i].style.backgroundColor = "#F5F5F5";
+        crudText[i].style.width = "90px";
+        crudText[i].style.left = "10px";
+      });
+    }
+    // 메뉴 아이콘 ...
+    let folderMenu = document.querySelectorAll("#folderMenu");
+    let crudMenu = document.querySelectorAll("#crudMenu");
+    for (let i = 0; i < folderMenu.length; i++) {
+      crudMenu[i].style.display = "none";
+      folderMenu[i].onclick = function () {
+        if (crudMenu[i].style.display === 'block') {
+          crudMenu[i].style.display = 'none';
+        } else {
+          crudMenu[i].style.display = 'block';
+        }
       }
     }
-  }
 
 
-  /* New 프로젝트 폴더 영역 */
-  let maxNum = createdProjectFolder.length;
-  const newProject = document.getElementById("newProject");
-  let lastProjectLeft = Number(createdProjectFolder[maxNum-1].style.left.replace("px", ""));
-  if(maxNum > 0) {
-    for (let i = 0; i < createdProjectFolder.length; i++) {
-      if (i < 3) {
-        newProject.style.left = (lastProjectLeft + 363) + "px";
-        newProject.style.top = "200px";
-      } else if (i === 3) {
-        newProject.style.left = "148px";
-        newProject.style.top = "507px";
-      } else if (i > 3 && i < 5) {
-        newProject.style.left = (lastProjectLeft + 363) + "px";
-        newProject.style.top = "507px";
+    /* New 프로젝트 폴더 영역 */
+    let maxNum = createdProjectFolder.length;
+    const newProject = document.getElementById("newProject");
+    if (maxNum > 0) {
+      let lastProjectLeft = Number(createdProjectFolder[maxNum - 1].style.left.replace("px", ""));
+      for (let i = 0; i < createdProjectFolder.length; i++) {
+        if (i < 3) {
+          newProject.style.left = (lastProjectLeft + 363) + "px";
+          newProject.style.top = "200px";
+        } else if (i === 3) {
+          newProject.style.left = "148px";
+          newProject.style.top = "507px";
+        } else if (i > 3 && i < 5) {
+          newProject.style.left = (lastProjectLeft + 363) + "px";
+          newProject.style.top = "507px";
+        }
       }
+    } else {
+      newProject.style.left = "363px";
+      newProject.style.top = "200px";
     }
-  } else if(maxNum === 0){
-    newProject.style.left = "363px";
-    newProject.style.top = "200px";
   }
 </script>
 
@@ -206,50 +209,49 @@
     <div id="bigXButton">X</div>
   </div>
   <!-- 내용 부분 -->
-<!--  <form action="/project/projectmain" method="post">-->
-    <div id="title">
-      <input type="text" style="display: none" id="projectNumber" name="projectNo"/>
-      <input type="text" id="inputTitle" placeholder="프로젝트 명을 입력해주세요." name="projectName"/>
-    </div>
-    <span id="summaryStar" class="star">*</span>
-    <label id="summaryLabel" for="inputSummary">개요</label>
-    <div id="summary">
-      <textarea id="inputSummary" maxlength="150" placeholder="프로젝트 개요를 적어주세요(최대 150자)." name="projectSummary"></textarea>
-    </div>
-    <span id="purposeStar" class="star">*</span>
-    <label id="purposeLabel" for="inputPurpose">목적</label>
-    <div id="purpose">
-      <textarea id="inputPurpose" maxlength="150" placeholder="프로젝트 목표 및 목적을 적어주세요(최대 150자)." name="projectPurpose"></textarea>
-    </div>
-    <span id="startDateStar" class="star">*</span>
-    <label for="period" id="periodLabel">기간</label>
-    <div id="period">
-      <input type="date" id="projectStartDate" min="2023-01-01" max="2077-06-20" name="startDate"></input>
-      <div id="wave">~</div>
-      <input type="date" id="projectEndDate"  min=now( max="2077-06-20" name="endDate"></input>
-    </div>
-    <label for="category" id="categoryLabel">분류</label>
-    <div id="category">
-      <input type="radio" id="bank" class="category" name="projectCategoryCode" value="CT1"/><label id="bankLabel" class="categoryLabel" for="bank">은행</label>
-      <input type="radio" id="insurance" class="category" name="projectCategoryCode" value="CT2"/><label id="insuranceLabel" class="categoryLabel" for="insurance">보험사</label>
-      <input type="radio" id="publicSector" class="category" name="projectCategoryCode" value="CT3"/><label id="publicSectorLabel" class="categoryLabel" for="publicSector">공공부문</label>
-      <input type="radio" id="web" class="category" name="projectCategoryCode" value="CT4"/><label id="webLabel" class="categoryLabel" for="web">웹포털</label>
-      <input type="radio" id="application" class="category" name="projectCategoryCode" value="CT5"/><label id="applicationLabel" class="categoryLabel" for="application">앱개발</label>
-      <input type="radio" id="etc" class="category" name="projectCategoryCode" value="CT6"/><label id="etcLabel" class="categoryLabel" for="etc">기타</label>
-    </div>
-    <span id="memberStar" class="star">*</span>
-    <label for="member" id="memberLabel">인원초대</label>
-    <div id="member" style="display: flex; flex-wrap: wrap; align-items: center;">
-      <button type="button" id="inviteMember" name="member" class="memberArea">+</button>
-      <div id="addedMember" name="email" style="display: flex; flex-wrap: wrap; flex-direction: row;" class="memberArea"></div>
-    </div>
-    <button type="button" id="bigCancel1">취소</button>
-    <button type="button" id="bigConfirm1">생성</button>
-<!--  </form>-->
+  <div id="title">
+    <input type="text" style="display: none" id="projectNumber" name="projectNo"/>
+    <input type="text" id="inputTitle" placeholder="프로젝트 명을 입력해주세요." name="projectName"/>
+  </div>
+  <span id="summaryStar" class="star">*</span>
+  <label id="summaryLabel" for="inputSummary">개요</label>
+  <div id="summary">
+    <textarea id="inputSummary" maxlength="150" placeholder="프로젝트 개요를 적어주세요(최대 150자)." name="projectSummary"></textarea>
+  </div>
+  <span id="purposeStar" class="star">*</span>
+  <label id="purposeLabel" for="inputPurpose">목적</label>
+  <div id="purpose">
+    <textarea id="inputPurpose" maxlength="150" placeholder="프로젝트 목표 및 목적을 적어주세요(최대 150자)." name="projectPurpose"></textarea>
+  </div>
+  <span id="startDateStar" class="star">*</span>
+  <label for="period" id="periodLabel">기간</label>
+  <div id="period">
+    <input type="date" id="projectStartDate" min="2023-01-01" max="2077-06-20" name="startDate"></input>
+    <div id="wave">~</div>
+    <input type="date" id="projectEndDate"  min=now( max="2077-06-20" name="endDate"></input>
+  </div>
+  <label for="category" id="categoryLabel">분류</label>
+  <div id="category">
+    <input type="radio" id="bank" class="category" name="projectCategoryCode" value="CT1"/><label id="bankLabel" class="categoryLabel" for="bank">은행</label>
+    <input type="radio" id="insurance" class="category" name="projectCategoryCode" value="CT2"/><label id="insuranceLabel" class="categoryLabel" for="insurance">보험사</label>
+    <input type="radio" id="publicSector" class="category" name="projectCategoryCode" value="CT3"/><label id="publicSectorLabel" class="categoryLabel" for="publicSector">공공부문</label>
+    <input type="radio" id="web" class="category" name="projectCategoryCode" value="CT4"/><label id="webLabel" class="categoryLabel" for="web">웹포털</label>
+    <input type="radio" id="application" class="category" name="projectCategoryCode" value="CT5"/><label id="applicationLabel" class="categoryLabel" for="application">앱개발</label>
+    <input type="radio" id="etc" class="category" name="projectCategoryCode" value="CT6"/><label id="etcLabel" class="categoryLabel" for="etc">기타</label>
+  </div>
+  <span id="memberStar" class="star">*</span>
+  <label for="member" id="memberLabel">인원초대</label>
+  <div id="member" style="display: flex; flex-wrap: wrap; align-items: center;">
+    <button type="button" id="inviteMember" name="member" class="memberArea">+</button>
+    <div id="addedMember" name="email" style="display: flex; flex-wrap: wrap; flex-direction: row;" class="memberArea"></div>
+  </div>
+  <button type="button" id="bigCancel1">취소</button>
+  <button type="button" id="bigConfirm1">생성</button>
 </div>
+<!--<div th:replace="project/modalInputAlert" style="display: none" id="modalInputAlert"></div>-->
 
 <script>
-
+  $inputAlert = document.getElementById("modalInputAlert");
   /* 1. (화면) 생성 버튼 클릭 (화면)
      2. (서버) 컨트롤에서 프로젝트 테이블, 참여자 테이블에 데이터 넣기
      3. (서버) 데이터 넣은 이후 참여자 리스트에 메일 보내기
@@ -259,22 +261,28 @@
   create.onclick = function() {
 
     if (document.getElementById("inputTitle").value === "") {
-      alert("필수 입력 사항을 기입해주세요.")
+      // $inputAlert.style.display = "";
+      alert("필수 기입 사항을 입력해주세요.")
       return;
     } else if (document.getElementById("inputSummary").value === "") {
-      alert("필수 입력 사항을 기입해주세요.")
+      // $inputAlert.style.display = "";
+      alert("필수 기입 사항을 입력해주세요.")
       return;
     } else if (document.getElementById("inputPurpose").value === "") {
-      alert("필수 입력 사항을 기입해주세요.")
+      // $inputAlert.style.display = "";
+      alert("필수 기입 사항을 입력해주세요.")
       return;
     } else if (document.getElementById("projectStartDate").value === "") {
-      alert("필수 입력 사항을 기입해주세요.")
+      // $inputAlert.style.display = "";
+      alert("필수 기입 사항을 입력해주세요.")
       return;
     } else if (document.getElementById("projectEndDate").value === "") {
-      alert("필수 입력 사항을 기입해주세요.")
+      // $inputAlert.style.display = "";
+      alert("필수 기입 사항을 입력해주세요.")
       return;
     } else if (document.getElementById("addedMember").value === "") {
-      alert("필수 입력 사항을 기입해주세요.")
+      // $inputAlert.style.display = "";
+      alert("필수 기입 사항을 입력해주세요.")
       return;
     }
       let fetchEmailList = [];
