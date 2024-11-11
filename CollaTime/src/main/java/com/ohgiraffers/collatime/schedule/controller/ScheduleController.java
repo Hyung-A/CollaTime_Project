@@ -75,7 +75,7 @@ public class ScheduleController {
     @ResponseBody // JSON 데이터를 반환
     public ResponseEntity<Void> deleteSchedule(@PathVariable("id") int scheduleNo) {
         scheduleService.deleteSchedule(scheduleNo);
-        return ResponseEntity.noContent().build(); // sadfasdf
+        return ResponseEntity.noContent().build();
     }
 }
 
