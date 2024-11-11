@@ -32,7 +32,7 @@
         </div>
 
         <!--  아이디 유효성 메세지 -->
-        <div class="message id" id="idMessage"></div>
+        <div class="message id" id="idMessage">아이디는 특수문자 없이 4~12자 사이로 작성해야합니다.</div>
 
 
         <!--  비밀번호 입력창 -->
@@ -64,7 +64,7 @@
         </div>
 
         <!--  닉네임 유효성 메세지 -->
-        <div class="message nickname" id="nicknameMessage"></div>
+        <div class="message nickname" id="nicknameMessage">닉네임은 특수문자 없이 2~10자 사이로 작성해야합니다.</div>
 
         <!--  이메일 입력창 -->
         <div id="regist_email_area">
@@ -214,13 +214,16 @@
     var isInput = ['false' ,'false' ,'false' ,'false' ,'false' ,'false' ,'false'];
     document.getElementById('compare_code_email').disabled = true;
 
+    function checkIdPass(value){
+        return /^[0-9a-zA-Z]{4,12}$/.test(value)
+    }
         // 아이디 조회
     document.getElementById("check_duplicate_id").addEventListener('click', function () {
         let checkId = document.getElementById('regist_id_input').value;
         let idMessage = document.getElementById('idMessage');
-        if (checkId == '' || checkId.length == 0) {
+        if (!checkIdPass(checkId)) {
             idMessage.style.color = 'red';
-            idMessage.innerText = '아이디는 공백이 될 수 없습니다.';
+            idMessage.innerText = '아이디 형식을 다시 확인해주세요.';
             isInput[0] = "false";
         } else {
             fetch("/user/check")
@@ -292,13 +295,15 @@
 
 
     //     닉네임 비교
+    function checkNicknamePass(value){
+        return /^[0-9a-zA-Z]{2,8}$/.test(value);
+    }
     document.getElementById("check_duplicate_nickname").addEventListener('click', function () {
-
         let checkNickname = document.getElementById('regist_nickname_input').value;
         let nicknameMessage = document.getElementById('nicknameMessage');
-        if (checkNickname == '' || checkNickname.length == 0) {
+        if (!checkNicknamePass(checkNickname)) {
             nicknameMessage.style.color = 'red';
-            nicknameMessage.innerText = '닉네임은 공백이 될 수 없습니다.';
+            nicknameMessage.innerText = '닉네임 형식을 다시 확인해주세요.';
             isInput[3] = "false";
         } else {
             fetch("/user/check")
@@ -323,20 +328,13 @@
     //     이메일 비교
     let mailCode = "";
     let emailMessage = document.getElementById('emailMessage');
-    let emailCheck = false;
+    function emailCheck(value){
+        return /^[a-zA-Z0-9]([-_.]?[0-9a-zA-Z])*@[a-zA-Z0-9]([-_.]?[0-9a-zA-Z])+\.[a-zA-Z]{2,3}$/.test(value);
+    }
     document.getElementById("send_code_email").addEventListener('click', function () {
         let checkEmail = document.getElementById('regist_email_input').value;
-        if (checkEmail == '' || checkEmail.length == 0) {
-            emailMessage.style.color = 'red';
-            emailMessage.innerText = '이메일은 공백이 될 수 없습니다.';
-            isInput[4] = "false";
-        }
-        // else if(checkEmail.indexOf('@')!=0 &&checkEmail.indexOf('.')!=0){
-        //     emailMessage.style.color = 'red';
-        //     emailMessage.innerText = '이메일 형식을 다시 확인해주세요.';
-        //     isInput[4] = "false";
-        // }
-        else {
+        console.log(emailCheck(checkEmail))
+        if(emailCheck(checkEmail)) {
             fetch("/user/check")
                 .then(res => res.json())
                 .then(data => {
@@ -358,7 +356,10 @@
                         document.getElementById("send_code_email").disabled = true;
                     }
                 })
-
+        } else {
+            emailMessage.style.color = 'red';
+            emailMessage.innerText = '이메일 형식을 다시 확인해주세요.';
+            isInput[4] = "false";
         }
     })
     //     이메일 코드 비교
@@ -367,31 +368,33 @@
     let compareCodeBtn = document.getElementById('compare_code_email');
     document.getElementById("send_code_email").addEventListener('mouseup',function (){
 
-        const mail = document.getElementById('regist_email_input').value;
-        fetch('/mail/sendnewmail', {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(mail)
-        })
-            .then(res => res.json())
-            .then( data => {
-                console.log(data);
-                console.log(data.code);
-                compareCodeBtn.addEventListener('click', ()=>{
-                    if(inputCode.value==data.code){
-                        emailMessage.style.color = 'green';
-                        emailMessage.innerText = '이메일이 확인되었습니다.'
-                        isInput[5] = 'true';
-                    }else {
-                        emailMessage.style.color = 'red';
-                        emailMessage.innerText = '코드가 틀렸습니다.'
-                        document.getElementById("send_code_email").disabled = false;
-                        isInput[5] = 'false'
-                    }
-                })
+            const mail = document.getElementById('regist_email_input').value;
+        if(emailCheck(mail)) {
+            fetch('/mail/sendnewmail', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(mail)
             })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    console.log(data.code);
+                    compareCodeBtn.addEventListener('click', () => {
+                        if (inputCode.value == data.code) {
+                            emailMessage.style.color = 'green';
+                            emailMessage.innerText = '이메일이 확인되었습니다.'
+                            isInput[5] = 'true';
+                        } else {
+                            emailMessage.style.color = 'red';
+                            emailMessage.innerText = '코드가 틀렸습니다.'
+                            document.getElementById("send_code_email").disabled = false;
+                            isInput[5] = 'false'
+                        }
+                    })
+                })
+        }
     })
 
     //     이용약관 확인
@@ -445,8 +448,7 @@
             smallModalMessage.innerText = '내용을 다시 확인해주세요.';
             smallOk.addEventListener('click', ()=>{smallModal.style.display = 'none';})
             smallX.addEventListener('click', ()=>{smallModal.style.display = 'none';})
-        }else{
-            signup_btn.type='submit';
+        }else{signup_btn.type='submit';
         }
     })
 

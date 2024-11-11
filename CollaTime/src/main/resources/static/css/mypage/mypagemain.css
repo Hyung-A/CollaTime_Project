@@ -323,7 +323,14 @@
 
 }
 /*프로젝트칸 참여 프로젝트*/
-/*#myPage_participation_project_list*/
+#myPage_participation_project_list{
+
+    position: absolute;
+    left: 1433px;
+    top: 635px;
+    width: 360px;
+
+}
 /*구분선*/
 .underBar{
     position: absolute;
@@ -333,4 +340,22 @@
 
 }
 
+.profile_circle{
+    position: absolute;
+    width: 158px;
+    height: 154px;
+    left: 1535px;
+    top: 164px;
+
+
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 99px;
+}
+
+.projectIcon{
+
+    margin-top: 10px;
+
+}
 
