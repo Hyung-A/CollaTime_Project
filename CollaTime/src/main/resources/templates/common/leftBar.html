@@ -14,9 +14,7 @@
         <div id="myPage">마이페이지</div>
         <div id="whiteBar1"></div>
         <span id="textMyProject">My Project</span>
-        <div id="projectMenu" th:each="project : ${ projectList }">
-            <img src="/css/project/image/folderIcon.png" id="projectIcon">
-            <span id="menuProjectName" th:text="${ project.projectName }" th:title="${ project.projectName }"></span>
+        <div id="projectMenu">
         </div>
         <div id="whiteBar2"></div>
         <div id="doInquiry">
@@ -29,5 +27,27 @@
         </div>
     </div>
 </div>
+<div th:replace="/common/profile.html"></div>
+<script>
+    const leftBarProjectMenu = document.getElementById('projectMenu')
+    fetch("/common/leftbar")
+    .then(res=>res.json())
+    .then(data=>{
+        console.log(data)
+        if(data.length>0){
+            for (var i = 0; i<data.length; i++) {
+                const myProjectList = document.createElement("div")
+                myProjectList.innerHTML =
+                    `<div class="projectList">
+                    <img src="/css/project/image/folderIcon.png" class="projectIcon">
+                    <span class="menuProjectName">${data[i].projectName}</span>`
+                leftBarProjectMenu.append(myProjectList);
+            }
+        }
+    })
+
+    // let leftBarProfile = document.querySelector('.profile_circle');
+    // leftBarProfile.setAttribute("style", "position: absolute; top: 250px; left: 250px;  background: #FFFFFF; border: 1px solid #000000;border-radius: 99px;")
+</script>
 </body>
 </html>
