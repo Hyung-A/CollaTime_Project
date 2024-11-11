@@ -1,6 +1,8 @@
 package com.ohgiraffers.collatime.common;
 
 import com.ohgiraffers.collatime.auth.model.AuthDetails;
+import com.ohgiraffers.collatime.project.model.dto.ProjectDTO;
+import com.ohgiraffers.collatime.project.model.service.ProjectService;
 import com.ohgiraffers.collatime.user.model.dto.UserDTO;
 import com.ohgiraffers.collatime.user.model.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +19,15 @@ import java.util.List;
 @RequestMapping(value= {"/", "/main"})
 public class MainController {
 
+    private final UserService userService;
+
+    private final ProjectService projectService;
+
     @Autowired
-    private UserService userService;
+    public MainController(UserService userService, ProjectService projectService){
+        this.userService = userService;
+        this.projectService = projectService;
+    }
 
     @GetMapping
     public String main(){
@@ -43,6 +52,15 @@ public class MainController {
         System.out.println("profileData = " + profileData);
 
         return profileData;
+    }
+
+    @GetMapping(value = "/common/leftbar", produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public List<ProjectDTO> leftbar(@AuthenticationPrincipal AuthDetails authDetails){
+        System.out.println("커몬 레프트바 왔다.");
+        List<ProjectDTO> projectList = projectService.getList(authDetails.getUserNo());
+
+        return projectList;
     }
 
 }

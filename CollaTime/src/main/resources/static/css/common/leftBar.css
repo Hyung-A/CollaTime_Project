@@ -113,11 +113,9 @@
 
 }
 
-#projectIcon{
+.projectIcon{
 
-    position: absolute;
-    left: 5px;
-    top: 5px;
+    margin-top: 10px;
 
 }
 
