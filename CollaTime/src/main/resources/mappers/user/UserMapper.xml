@@ -83,4 +83,12 @@
         DELETE FROM CT_USER
         WHERE CT_USER_NO = #{userNo}
     </delete>
+
+    <update id="modifyProfile">
+        UPDATE CT_USER
+        SET
+            CT_USER_PICTURE = #{userPicture}
+        ,   CT_USER_COLOR = #{userColor}
+        WHERE CT_USER_NO = #{userNo}
+    </update>
 </mapper>
