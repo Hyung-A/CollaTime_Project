@@ -40,6 +40,6 @@ public class ScheduleService {
 
     public List<ScheduleDTO> getUserSchedules(String username) {
         return scheduleMapper.getUserSchedules(username);
-
     }
+
 }

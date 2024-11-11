@@ -83,4 +83,9 @@
         WHERE CT_SCHEDULE_NO = #{scheduleNo}
     </delete>
 
+    <!-- 특정 사용자의 스케줄 개수 조회 (스케줄 존재 여부 확인용) -->
+    <select id="countUserSchedules" parameterType="String" resultType="int">
+        SELECT COUNT(*) FROM schedules WHERE schedule_creator = #{username}
+    </select>
+
 </mapper>
