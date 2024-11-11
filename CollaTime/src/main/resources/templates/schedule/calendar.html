@@ -60,11 +60,14 @@
 </div>
 
 <!-- 모달 창 -->
-<div th:include="schedule/empty.html" id="modalContent" style="display: none"></div>
-<div th:include="schedule/makeschedule.html" id="makescheduleModal" style="display: none; position:absolute; z-index: 10"></div>
+<div th:include="schedule/empty.html" id="modalContent" style="display: none"></div> <!-- 날짜 클릭 시 스케줄 없을 때-->
+<div th:include="schedule/list.html" id="exist-schedule-list" style="display: none"></div><!-- 날짜 클릭 시 스케줄 있을 때-->
+
+<div th:include="schedule/makeschedule.html" id="makescheduleModal"
+     style="display: none; position:absolute; z-index: 10"></div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
         let date = new Date();
 
         const renderCalender = () => {
@@ -117,12 +120,12 @@
                 }
             }
 
-        // 모든 날짜 요소에 클릭 이벤트 추가
-        document.querySelectorAll('.date').forEach(date => {
-            date.addEventListener('click', openModal);
+            // 모든 날짜 요소에 클릭 이벤트 추가
+            document.querySelectorAll('.date').forEach(date => {
+                date.addEventListener('click', openModal);
 
-        });
-    };
+            });
+        };
 
 
         renderCalender();

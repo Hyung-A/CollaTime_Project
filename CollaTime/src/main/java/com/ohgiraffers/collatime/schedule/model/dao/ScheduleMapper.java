@@ -25,4 +25,7 @@ public interface ScheduleMapper {
 
     // 일정 삭제
     void deleteSchedule(int scheduleNo); // ID를 통해 삭제
+
+
+
 }
