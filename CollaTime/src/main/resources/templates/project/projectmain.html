@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="/css/project/modalInviteMember.css">
   <link rel="stylesheet" href="/css/project/modalUpdateProject.css">
   <link rel="stylesheet" href="/css/project/modalDeleteProject.css">
+  <link rel="stylesheet" href="/css/project/modalInputAlert.css">
+  <link rel="stylesheet" href="/css/project/modalWrongJoinCode.css">
 </head>
 <body>
 <!-- 프로젝트 메인 화면 -->
@@ -78,7 +80,7 @@
         createdProjectFolder[i].style.top = "200px";
       }
       if (i > 3 && i <= 7) {
-        createdProjectFolder[i].style.left = (148 + (363 * ((i + 1) - 1))) + "px";
+        createdProjectFolder[i].style.left = (148 + (363 * ((i + 1) - 5))) + "px";
         createdProjectFolder[i].style.top = "502px";
       }
     }
@@ -136,13 +138,13 @@
         } else if (i === 3) {
           newProject.style.left = "148px";
           newProject.style.top = "507px";
-        } else if (i > 3 && i < 5) {
+        } else if (i > 3 && i < 7) {
           newProject.style.left = (lastProjectLeft + 363) + "px";
           newProject.style.top = "507px";
         }
       }
     } else {
-      newProject.style.left = "363px";
+      newProject.style.left = "148px";
       newProject.style.top = "200px";
     }
   }
@@ -159,11 +161,23 @@
     <span id="joinProject">프로젝트 참가하기</span>
     <div>
       <input type="text" id="inputCode" placeholder="전달받은 코드를 입력해주세요." name="code">
-      <button type="submit" id="joinButton">참가하기</button>
+      <button type="button" id="joinButton">참가하기</button>
+      <input type="text" id="inputUserNo" style="display: none" name="userNo" />
     </div>
     <button type="button" id="smallCancel">취소</button>
-    <button type="submit" id="smallConfirm">확인</button>
+    <button type="button" id="smallConfirm">확인</button>
   </div>
+</div>
+<!-- 잘못된 참가코드 입력 시 띄우는 모달 -->
+<div id="wrongJoinCode" style="z-index: 3">
+  <div id="wrongJoinCodeHeader">
+    <div id="wrongJoinCodeXButton">X</div>
+  </div>
+  <div id="wrongJoinCodeBody">
+    <p id="wrongJoinCodeText">잘못된 프로젝트 참가 코드입니다. <br>
+      다시 입력하세요.</p>
+  </div>
+  <button type="button" id="wrongJoinCodeBodyConfirm">확인</button>
 </div>
 
 <script>
@@ -200,6 +214,61 @@
   });
 
   /* ++) 알맞은 참가 코드를 입력하면 프로젝트 생성하기 */
+  $joinButton = document.getElementById("joinButton");
+  $joinButton.onclick = function() {
+      fetch("/project/selectJoinCode")
+              .then((res) => res.json())
+              .then((data) => {
+                console.log(data);
+                for(let i = 0; i < data.length; i++) {
+                  if ($inputCode.value === data[i].joinCode) {
+                    console.log(data[i]);
+                    inputUserNo = document.getElementById("inputUserNo");
+
+                    fetch("/project/updateUserNo",
+                            {
+                              method: "POST",
+                              headers:
+                                      {
+                                        'Content-Type' : 'application/json',
+                                      },
+                              body: JSON.stringify({
+                                joinCode : data[i].joinCode,
+                                email : data[i].email,
+                                userNo : `[[|${#authentication.principal.userNo}|]]`
+                              })
+                            })
+                            .then(res => {
+                              if(res.redirected){
+                                window.location.href = res.url;
+                              } else {
+                                window.location.href = "/project/projectmain"
+                              }
+                            })
+                            .then((result) => console.log(result))
+                            .then((error) => console.log(error));
+                  } else {
+                    /* 다시 입력하라는 모달 띄우기 */
+                    $wrongJoinCode = document.getElementById("wrongJoinCode");
+                    $wrongJoinCode.style.display = "";
+                  }
+                }
+              });
+  }
+
+  // 다시 입력하라는 모달 기본 속성으로 안보이게 하기
+  $wrongJoinCode = document.getElementById("wrongJoinCode");
+  $wrongJoinCode.style.display = "none";
+
+  $wrongJoinCodeXButton = document.getElementById("wrongJoinCodeXButton");
+  $wrongJoinCodeXButton.onclick = function(){
+    $wrongJoinCode.style.display = "none";
+  }
+
+  $wrongJoinCodeBodyConfirm = document.getElementById("wrongJoinCodeBodyConfirm");
+  $wrongJoinCodeBodyConfirm.onclick = function(){
+    $wrongJoinCode.style.display = "none";
+  }
 
 </script>
 
@@ -226,9 +295,9 @@
   <span id="startDateStar" class="star">*</span>
   <label for="period" id="periodLabel">기간</label>
   <div id="period">
-    <input type="date" id="projectStartDate" min="2023-01-01" max="2077-06-20" name="startDate"></input>
+    <input type="date" id="projectStartDate" class="date" name="startDate"></input>
     <div id="wave">~</div>
-    <input type="date" id="projectEndDate"  min=now( max="2077-06-20" name="endDate"></input>
+    <input type="date" id="projectEndDate" class="date" name="endDate"></input>
   </div>
   <label for="category" id="categoryLabel">분류</label>
   <div id="category">
@@ -248,43 +317,59 @@
   <button type="button" id="bigCancel1">취소</button>
   <button type="button" id="bigConfirm1">생성</button>
 </div>
-<!--<div th:replace="project/modalInputAlert" style="display: none" id="modalInputAlert"></div>-->
+
+<div id="modalInputAlert" style="z-index: 4">
+  <div id="inputAlertHeader">
+    <div id="inputAlertXButton">X</div>
+  </div>
+  <div id="inputAlertBody">
+    <p id="textInputAlert">필수 입력 사항을 기입해주세요.</p>
+  </div>
+  <button type="button" id="inputAlertConfirm">확인</button>
+</div>
 
 <script>
-  $inputAlert = document.getElementById("modalInputAlert");
   /* 1. (화면) 생성 버튼 클릭 (화면)
      2. (서버) 컨트롤에서 프로젝트 테이블, 참여자 테이블에 데이터 넣기
      3. (서버) 데이터 넣은 이후 참여자 리스트에 메일 보내기
      4. (화면) fetch 호출 이후 프로젝트 메인 화면 호출 */
   const create = document.getElementById("bigConfirm1");
 
-  create.onclick = function() {
+  // 필수 입력란 미기입 시 alert모달 띄우기
+  $modalInputAlert = document.getElementById("modalInputAlert");
+  $modalInputAlert.style.display = "none";
 
+  $inputAlertXButton = document.getElementById("inputAlertXButton");
+  $inputAlertXButton.onclick = function(){
+    $modalInputAlert.style.display = "none";
+  }
+  $inputAlertConfirm = document.getElementById("inputAlertConfirm");
+  $inputAlertConfirm.onclick = function(){
+    $modalInputAlert.style.display = "none";
+  }
+
+  create.onclick = function() {
     if (document.getElementById("inputTitle").value === "") {
-      // $inputAlert.style.display = "";
-      alert("필수 기입 사항을 입력해주세요.")
+      $modalInputAlert.style.display = "";
+      // alert("필수 기입 사항을 입력해주세요.");
       return;
     } else if (document.getElementById("inputSummary").value === "") {
-      // $inputAlert.style.display = "";
-      alert("필수 기입 사항을 입력해주세요.")
+      $modalInputAlert.style.display = "";
       return;
     } else if (document.getElementById("inputPurpose").value === "") {
-      // $inputAlert.style.display = "";
-      alert("필수 기입 사항을 입력해주세요.")
+      $modalInputAlert.style.display = "";
       return;
     } else if (document.getElementById("projectStartDate").value === "") {
-      // $inputAlert.style.display = "";
-      alert("필수 기입 사항을 입력해주세요.")
+      $modalInputAlert.style.display = "";
       return;
     } else if (document.getElementById("projectEndDate").value === "") {
-      // $inputAlert.style.display = "";
-      alert("필수 기입 사항을 입력해주세요.")
+      $modalInputAlert.style.display = "";
       return;
-    } else if (document.getElementById("addedMember").value === "") {
-      // $inputAlert.style.display = "";
-      alert("필수 기입 사항을 입력해주세요.")
+    } else if (!document.getElementById("addedMember").hasChildNodes()) {
+      $modalInputAlert.style.display = "";
       return;
-    }
+    } else {
+      create.disabled = true;
       let fetchEmailList = [];
 
       // 이렇게도 사용 가능, 대신 projectNo가 서버로 가기 전에 생성되어 있는경우만 사용
@@ -325,13 +410,11 @@
                 } else {
                   window.location.href = "/project/projectmain";
                 }
-                // return res.json()
               })
-              // .then((response) => response.json())
               .then((result) => console.log(result))
               .catch((error) => console.log(error));
-
     }
+  }
 
 
 
@@ -348,6 +431,7 @@
   const bigXButton = document.getElementById("bigXButton");
   bigXButton.onclick = function(){
     createProjectModal.style.display = "none";
+    $modalInputAlert.style.display = "none";
     // 내용 초기화
     document.getElementById("inputTitle").value = "";
     document.getElementById("inputSummary").value = "";
@@ -369,6 +453,7 @@
   const bigCancel1 = document.getElementById("bigCancel1");
   bigCancel1.onclick = function(){
     createProjectModal.style.display = "none";
+    $modalInputAlert.style.display = "none";
     document.getElementById("inputTitle").value = "";
     document.getElementById("inputSummary").value = "";
     document.getElementById("inputPurpose").value = "";
@@ -400,6 +485,20 @@
     });
   }
 
+// 시작 날짜 끝나는 날짜 제약조건 -> 시작 날짜 : 오늘 이전 선택 불가 / 종료 날짜 : 시작 날짜 이전 선택 불가
+  var now_date = Date.now();
+  var timeOff = new Date().getTimezoneOffset()*60000;
+  var today = new Date(now_date-timeOff).toISOString().split("T")[0];
+  let dateClass = document.querySelectorAll(".date");
+  // for(let i = 0; i < dateClass.length; i++){
+  //   dateClass[i].setAttribute("min", today);
+  // }
+  let startDate = document.getElementById("projectStartDate");
+  startDate.setAttribute("min", today);
+  startDate.onchange = function(){
+    let endDate = document.getElementById("projectEndDate");
+    endDate.setAttribute("min", this.value);
+  }
 
 </script>
 <!-- ---------------------------- 멤버 초대 모달 ---------------------------- -->
@@ -603,7 +702,7 @@
   }
 </script>
 <!-- ----------------------------------------- 프로젝트 내용 조회 및 수정 모달 ----------------------------------------- -->
-<form action="/project/updateproject" method="post">
+<form action="/project/updateproject" method="post" style="z-index: 2">
   <div id="modalUpdateProject">
     <div id="updateProjectHead">
       <div id="updateProjectXButton">X</div>
@@ -649,7 +748,7 @@
     <button type="button" id="updateCancel">취소</button>
     <button type="submit" id="updateConfirm">수정</button>
   </div>
-</form>
+</form  >
 <script>
   let resultMemberInviteList = null;
   /* 정보 비동기로 가져오기 */
@@ -733,7 +832,7 @@
   const updateProjectModal = document.getElementById("modalUpdateProject");
   const projectNo = document.querySelectorAll("#projectNo");
   updateProjectModal.style.display = "none";
-  for(let i = 0; i < createdProjectFolder.length; i++) {
+  for(let i = 0; i < update.length; i++) {
     update[i].addEventListener("click", function () {
       select(projectNo[i].value);
       console.log(projectNo[i].value);
@@ -794,7 +893,7 @@
 
 <!-- ---------------------------------- 프로젝트 삭제 알림 모달 ---------------------------------- -->
 <!-- 레이아웃 및 헤더 -->
-<form action="/project/deleteproject" method="post">
+<form action="/project/deleteproject" method="post" style="z-index: 2">
   <div id="deleteModal">
     <div id="deleteHeader">
       <div id="deleteXButton">X</div>
@@ -829,11 +928,10 @@
 
 
   /* 삭제하기 클릭 시 모달 띄우기 */
-  const $delete = document.querySelectorAll("#projectDelete");
+    const $delete = document.querySelectorAll("#projectDelete");
   const $deleteModal = document.getElementById("deleteModal");
-  // const projectNo = document.querySelectorAll("#projectNo");
   $deleteModal.style.display = "none";
-  for(let i = 0; i < createdProjectFolder.length; i++) {
+  for(let i = 0; i < $delete.length; i++) {
     $delete[i].addEventListener("click", function () {
       deleteProject(projectNo[i].value);
       console.log(projectNo[i].value);

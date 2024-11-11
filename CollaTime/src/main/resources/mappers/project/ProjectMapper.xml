@@ -147,6 +147,24 @@
         WHERE PROJECT_NO = #{ projectNo }
     </delete>
 
+    <!-- 프로젝트 참가 코드 전체 조회 -->
+    <select id="getJoinCodeList" resultMap="JoinProjectResultMap">
+        SELECT
+                PROJECT_NO
+              , RANDOM_JOIN_CODE
+              , EMAIL
+          FROM JOIN_PROJECT
+    </select>
+
+    <!-- 프로젝트 참가 코드 입력 후 유저 번호 수정 -->
+    <update id="updateUserNo" parameterType="com.ohgiraffers.collatime.project.model.dto.InviteMemberDTO">
+        UPDATE JOIN_PROJECT
+        SET
+              CT_USER_NO = #{ userNo }
+            , EMAIL = #{ email }
+        WHERE RANDOM_JOIN_CODE = #{ joinCode }
+    </update>
+
 </mapper>
 
 

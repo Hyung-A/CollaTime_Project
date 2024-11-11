@@ -57,10 +57,13 @@ public class ProjectService {
     }
 
     // join_project 내용도 삭제
+    @Transactional
     public void deleteMember(InviteMemberDTO inviteMemberDTO) {
         projectMapper.deleteMember(inviteMemberDTO);
     }
 
+    // 프로젝트 수정 - join_project 내용 수정
+    @Transactional
     public void updateMember(InviteMemberDTO inviteMemberDTO) {
         projectMapper.updateMember(inviteMemberDTO);
     }
@@ -68,5 +71,16 @@ public class ProjectService {
     public List<InviteMemberDTO> getInviteMemberList(ProjectDTO projectDTO) {
         System.out.println("서비스" + projectMapper.getInviteMemberList(projectDTO));
         return projectMapper.getInviteMemberList(projectDTO);
+    }
+
+    // joinCode 전체 조회
+    public List<InviteMemberDTO> getJoinCodeList() {
+
+        System.out.println("서비스다아아");
+        return projectMapper.getJoinCodeList();
+    }
+
+    public void updateUserNo(InviteMemberDTO inviteMemberDTO) {
+        projectMapper.updateUserNo(inviteMemberDTO);
     }
 }

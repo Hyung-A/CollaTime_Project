@@ -134,14 +134,14 @@ INSERT INTO PROJECT VALUES (null,"계산기 프로그램 개발", "CT5", "2023-1
 INSERT INTO PROJECT VALUES (null, "엽서 판매 웹사이트 제작", "CT4", "2024-02-01", "2024-04-20", "엽서 판매 웹 사이트 제작하기", "사진 취미러들의 사진을 받아 엽서로 제작하여 사진 입문자들의 사진도 대중들에게 사랑받을 수 있는 기회를 제공한다.", "2" );
 
 -- 프로젝트 참가자 테이블 데이터 삽입
-INSERT INTO JOIN_PROJECT VALUES(1, "1", "ADF182WE", 'user1@gmail.com'),
-							   (1, "2", "GEF864SD", 'user2@gmail.com'),
-							   (1, "3", "WDS648HD", 'user3@gmail.com'),
-							   (1, "4", "HDW234GH", 'user4@gmail.com'),
-							   (2, "1", "GSE846DS", 'user5@gmail.com'),
-							   (2, "2", "KFG697GK", 'user6@gmail.com'),
-							   (2, "3", "LWO465DJ", 'user7@gmail.com'),
-							   (2, "4", "NKJ357DL", 'user8@gmail.com');
+INSERT INTO JOIN_PROJECT VALUES(1, "-1", "ADF182WE", 'user1@gmail.com'),
+							   (1, "-1", "GEF864SD", 'user2@gmail.com'),
+							   (1, "-1", "WDS648HD", 'user3@gmail.com'),
+							   (1, "-1", "HDW234GH", 'user4@gmail.com'),
+							   (2, "-1", "GSE846DS", 'user5@gmail.com'),
+							   (2, "-1", "KFG697GK", 'user6@gmail.com'),
+							   (2, "-1", "LWO465DJ", 'user7@gmail.com'),
+							   (2, "-1", "NKJ357DL", 'user8@gmail.com');
 
 -- 색상 테이블 데이터 삽입
 INSERT INTO COLOR VALUES('CO1','빨간색');
