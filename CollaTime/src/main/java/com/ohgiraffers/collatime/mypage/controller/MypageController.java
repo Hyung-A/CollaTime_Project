@@ -161,23 +161,4 @@ public class MypageController {
         return 1;
     }
 
-    @GetMapping(value = "/profile", produces = "application/json; charset=UTF-8")
-    @ResponseBody
-    public List<String> profile(@AuthenticationPrincipal AuthDetails authDetails){
-        String username = authDetails.getUsername();
-        UserDTO userDTO = userService.findByUsername(username);
-        String userPicture = userDTO.getUserPicture();
-        String userColor = userDTO.getUserColor();
-
-        System.out.println("userPicture = " + userPicture);
-        System.out.println("userColor = " + userColor);
-
-        List<String> profileData = new ArrayList<>();
-
-        profileData.add(userPicture);
-        profileData.add(userColor);
-        System.out.println("profileData = " + profileData);
-
-        return profileData;
-    }
 }
