@@ -5,13 +5,15 @@ import java.util.List;
 public class InviteMemberDTO {
 
     private String projectNo;
+    private int userNo;
     private String joinCode;
     private String email;
 
     public InviteMemberDTO(){}
 
-    public InviteMemberDTO(String projectNo, String joinCode, String email) {
+    public InviteMemberDTO(String projectNo, int userNo, String joinCode, String email) {
         this.projectNo = projectNo;
+        this.userNo = userNo;
         this.joinCode = joinCode;
         this.email = email;
     }
@@ -22,6 +24,14 @@ public class InviteMemberDTO {
 
     public void setProjectNo(String projectNo) {
         this.projectNo = projectNo;
+    }
+
+    public int getUserNo() {
+        return userNo;
+    }
+
+    public void setUserNo(int userNo) {
+        this.userNo = userNo;
     }
 
     public String getJoinCode() {
@@ -43,7 +53,8 @@ public class InviteMemberDTO {
     @Override
     public String toString() {
         return "InviteMemberDTO{" +
-                "projectNo=" + projectNo +
+                "projectNo='" + projectNo + '\'' +
+                ", userNo=" + userNo +
                 ", joinCode='" + joinCode + '\'' +
                 ", email='" + email + '\'' +
                 '}';

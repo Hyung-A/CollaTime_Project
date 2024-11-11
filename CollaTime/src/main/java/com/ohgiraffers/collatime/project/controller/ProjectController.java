@@ -32,6 +32,8 @@ public class ProjectController {
         this.mailService = mailService;
 
     }
+
+    // 메인 화면에서 내가 참여하는 프로젝트 전체 조회
     @GetMapping(value="/projectmain")
     public ModelAndView projectmain(HttpServletRequest req, ModelAndView mv, @AuthenticationPrincipal AuthDetails authDetails){
         HttpSession session = req.getSession();
@@ -53,9 +55,10 @@ public class ProjectController {
         return mv;
     }
 
+    // 프로젝트 생성
     @PostMapping(value = "/projectmain", produces = "application/json; charset=UTF-8")
     @ResponseBody
-    public List<ProjectDTO> insertProject(@RequestBody ProjectDTO projectDTO, @AuthenticationPrincipal AuthDetails authDetails) throws MessagingException {
+    public List<ProjectDTO> insertProject(ModelAndView mv, @RequestBody ProjectDTO projectDTO, @AuthenticationPrincipal AuthDetails authDetails) throws MessagingException {
 
         System.out.println("포스트 매핑 연결 완료" + projectDTO);  // 데이터 잘 넘어옴
 
@@ -90,6 +93,7 @@ public class ProjectController {
             mailService.sendJoinCodeMail(email, createJoinCode);
 
         }
+        mv.setViewName("redirect:/project/projectmain");
 
         return projectService.getList(userNo);
     }
@@ -115,9 +119,6 @@ public class ProjectController {
         return randomJoinCode;
     }
 
-    // 메일 발송
-
-
     // 프로젝트 내용 조회
     @GetMapping(value="selectproject", produces = "application/json; charset=UTF-8")
     @ResponseBody
@@ -137,6 +138,8 @@ public class ProjectController {
     public ModelAndView updateProject(ModelAndView mv, @ModelAttribute ProjectDTO projectDTO, @AuthenticationPrincipal AuthDetails authDetails){
         projectService.updateProject(projectDTO);
         InviteMemberDTO inviteMemberDTO = new InviteMemberDTO();
+        inviteMemberDTO.setProjectNo(projectDTO.getProjectNo());
+        System.out.println("수정할 프로젝트 번호다" + inviteMemberDTO.getProjectNo());
 //        projectService.updateMember(inviteMemberDTO);
 
         int userNo = 0;
@@ -155,7 +158,9 @@ public class ProjectController {
     public ModelAndView deleteProject(ModelAndView mv, @ModelAttribute ProjectDTO projectDTO, @AuthenticationPrincipal AuthDetails authDetails){
         projectService.deleteProject(projectDTO);
         InviteMemberDTO inviteMemberDTO = new InviteMemberDTO();
-//        projectService.deleteMember(inviteMemberDTO);
+        inviteMemberDTO.setProjectNo(projectDTO.getProjectNo());
+        System.out.println("삭제할 프로젝트 번호다" + inviteMemberDTO.getProjectNo());
+        projectService.deleteMember(inviteMemberDTO);
 
         int userNo = 0;
         if(authDetails != null){
@@ -165,6 +170,31 @@ public class ProjectController {
         mv.addObject("projectList", projectService.getList(userNo));
         System.out.println("delete" + projectDTO);
         mv.setViewName("redirect:/project/projectmain");
+        return mv;
+    }
+
+    // joinCode 전체 조회하기
+    @GetMapping(value = "selectJoinCode", produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public List<InviteMemberDTO> selectJoinCode(ModelAndView mv, @ModelAttribute InviteMemberDTO inviteMemberDTO){
+        System.out.println("컨트롤러다아아아");
+
+        List<InviteMemberDTO> inviteMemberList = projectService.getJoinCodeList();
+
+        System.out.println("조회 후 inviteMemberList" + inviteMemberList);
+
+        return inviteMemberList;
+    }
+
+//        projectService.getJoinCodeList();
+    @PostMapping(value="updateUserNo")
+    public ModelAndView updateUserNo (ModelAndView mv, @RequestBody InviteMemberDTO inviteMemberDTO){
+        System.out.println("updateUserNo 포스트 매핑 성공" + inviteMemberDTO);
+
+        projectService.updateUserNo(inviteMemberDTO);
+
+        mv.setViewName("redirect:/project/projectmain");
+
         return mv;
     }
 

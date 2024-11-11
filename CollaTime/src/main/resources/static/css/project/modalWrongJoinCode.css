@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-#modalInputAlert{
+#wrongJoinCode{
 
     position: absolute;
     width: 554px;
@@ -12,7 +12,7 @@
     border-radius: 25px;
 }
 
-#inputAlertHeader{
+#wrongJoinCodeHeader{
 
     position: absolute;
     width: 554px;
@@ -23,7 +23,7 @@
 
 }
 
-#inputAlertXButton {
+#wrongJoinCodeXButton {
 
     width: 30px;
     height: 34px;
@@ -33,31 +33,34 @@
     top: 5px;
 }
 
-#inputAlertBody{
+#wrongJoinCodeBody{
 
     position: absolute;
     width: 554px;
-    height: 170px;
-    top: 130px;
+    height: 233px;
+    top: 52px;
     display: flex;
     justify-content: center;
-    /*line-height: 204px;*/
-
+    line-height: 233px;
 }
 
-#textInputAlert{
+#wrongJoinCodeText{
 
     position: absolute;
-    width: 430px;
+    width: 500px;
+    top: 65px;
     font-style: normal;
     font-weight: 600;
-    font-size: 30px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
     line-height: 33px;
+    text-align: center;
     color: #282828;
 
 }
 
-#inputAlertConfirm{
+#wrongJoinCodeBodyConfirm{
 
     position: absolute;
     width: 112px;
