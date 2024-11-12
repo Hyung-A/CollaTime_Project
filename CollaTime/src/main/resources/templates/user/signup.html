@@ -296,7 +296,7 @@
 
     //     닉네임 비교
     function checkNicknamePass(value){
-        return /^[0-9a-zA-Z]{2,8}$/.test(value);
+        return /^[0-9a-zA-Z가-힣]{2,8}$/.test(value);
     }
     document.getElementById("check_duplicate_nickname").addEventListener('click', function () {
         let checkNickname = document.getElementById('regist_nickname_input').value;

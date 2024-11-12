@@ -82,6 +82,7 @@ CREATE TABLE IF NOT EXISTS INQUIRY
 (
     INQUIRY_NO    INT AUTO_INCREMENT PRIMARY KEY COMMENT '문의번호',
     INQUIRY_STATUS    VARCHAR(5) NOT NULL COMMENT '문의상태',
+    INQUIRY_TITLE    VARCHAR(255) NOT NULL COMMENT '문의제목',
     INQUIRY_CONTENT    VARCHAR(255) NOT NULL COMMENT '문의내용',
     CT_USER_NO    INT NOT NULL COMMENT '회원번호',
     ANSWER_CONTENT    VARCHAR(255) COMMENT '답변내용',
@@ -113,8 +114,8 @@ INSERT INTO CT_USER VALUES
 
 -- 문의 테이블 데이터 삽입
 INSERT INTO INQUIRY VALUES
-                        (1, '처리완료', '마이페이지가 보고싶어요', 2, '아직 개발중입니다.'),
-                        (2, '처리중', '스케줄 색상 좀 늘려주세요', 3, null);
+                        (1, '처리완료','마이페이지', '마이페이지가 보고싶어요', 2, '아직 개발중입니다.'),
+                        (2, '처리중','스케줄 색상', '스케줄 색상 좀 늘려주세요', 3, null);
 
 -- 방문 테이블 데이터 삽입
 INSERT INTO VISIT VALUES

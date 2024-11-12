@@ -59,6 +59,7 @@
         const modifyUser_area = document.getElementById('myPage_modifyUser_area');
         const myInquiry_area = document.getElementById('myPage_search_inquiry_area');
         const modifyCancel = document.getElementById('cancel_modifyUser_btn')
+        const myInquiryCancel = document.getElementById('cancel_myInquiry_btn')
         modifyUser.style.display = 'none'
         myInquiry.style.display = 'none'
         modifyUser_area.addEventListener('click', ()=>{modifyUser.style.display = 'flex'})
@@ -86,6 +87,7 @@
             modifyText.style.display = 'flex'
         })
         myInquiryX.addEventListener('click', ()=>{myInquiry.style.display = 'none'})
+        // myInquiryCancel.addEventListener('click', ()=>{myInquiry.style.display = 'none'})
 
         const profileDicing = document.getElementById('myPage_profile_dice')
         // profileDicing.addEventListener('mousedown', ()=>{

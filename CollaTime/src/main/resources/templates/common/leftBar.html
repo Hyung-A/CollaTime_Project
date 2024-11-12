@@ -27,6 +27,8 @@
     </div>
 </div>
 <div th:replace="/common/profile.html"></div>
+<div th:replace="/common/doinquiry.html"></div>
+<div th:include="/common/passauthority.html" id="passAuthority_link"></div>
 <script>
     const leftBarProjectMenu = document.getElementById('projectMenu')
     fetch("/common/leftbar")
@@ -34,18 +36,28 @@
     .then(data=>{
         console.log(data)
         if(data.length>0){
+            // 프로젝트와 스케줄 연결하면 onclick으로 해당 프로젝트 아이디 가지고 넘어갈 수 있게 만들자.
             for (var i = 0; i<data.length; i++) {
                 const myProjectList = document.createElement("div")
                 myProjectList.innerHTML =
                     `<div class="projectList">
                     <img src="/css/project/image/folderIcon.png" class="projectIcon">
-                    <span class="menuProjectName">${data[i].projectName}</span>`
+                    <span class="menuProjectName">${data[i].projectName}</span>
+                    </div>`
                 leftBarProjectMenu.append(myProjectList);
             }
         }
     })
+    const doInquiryModal = document.getElementById('control_doInquiry');
+    const clickDoInquiry = document.getElementById('doInquiry');
+    const clickPassAuthority = document.getElementById('authority');
+    const passAuthorityModal = document.getElementById('passAuthority_link');
 
-    document.getElementById('leftBarNickname').addEventListener('click', ()=>{location.href="/mypage/mypagemain"})
+    passAuthorityModal.style.display = 'none'
+
+    document.getElementById('leftBarNickname').addEventListener('click', ()=>{location.href="/mypage"})
+    clickDoInquiry.addEventListener('click', ()=>{doInquiryModal.style.display = 'flex'})
+    clickPassAuthority.addEventListener('click', ()=>{passAuthorityModal.style.display = 'flex'})
 
     // let leftBarProfile = document.querySelector('.profile_circle');
     // leftBarProfile.setAttribute("style", "position: absolute; top: 250px; left: 250px;  background: #FFFFFF; border: 1px solid #000000;border-radius: 99px;")

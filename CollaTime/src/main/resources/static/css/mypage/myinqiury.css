@@ -30,3 +30,162 @@
     left: 965px;
     top: 5px;
 }
+
+
+/*문의내역 텍스트*/
+#myInquiry_text{
+    position: absolute;
+    width: 140px;
+    height: 40px;
+    left: 509px;
+    top: 211px;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 40px;
+    letter-spacing: 0.03em;
+
+    color: #000000;
+}
+/*문의상태 텍스트*/
+#myInquiry_status_text{
+    position: absolute;
+    width: 100px;
+    height: 27px;
+    left: 587px;
+    top: 303px;
+
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+
+    color: #000000;
+
+}
+/*문의상태 언더바*/
+#myInquiry_status_underBar{
+    position: absolute;
+    width: 100px;
+    height: 0px;
+    left: 575px;
+    top: 341px;
+
+    border: 3px solid #92E2F8;
+
+}
+/*문의제목 텍스트*/
+#myInquiry_title_text{
+
+    position: absolute;
+    width: 100px;
+    height: 27px;
+    left: 782px;
+    top: 303px;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+
+    color: #000000;
+
+
+}
+/*문의제목 언더바*/
+#myInquiry_title_underBar{
+    position: absolute;
+    width: 250px;
+    height: 0px;
+    left: 702px;
+    top: 341px;
+
+    border: 3px solid #92E2F8;
+
+}
+/*문의내용 텍스트*/
+#myInquiry_content_text{
+
+    position: absolute;
+    width: 100px;
+    height: 27px;
+    left: 1150px;
+    top: 303px;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+
+    color: #000000;
+
+
+}
+/*문의내용 언더바*/
+#myInquiry_content_underBar{
+
+    position: absolute;
+    width: 430px;
+    height: 0px;
+    left: 980px;
+    top: 341px;
+
+    border: 3px solid #92E2F8;
+
+}
+/*문의리스트 위치*/
+#myInquiry_list{
+    position: absolute;
+
+    left: 590px;
+    top: 371px;
+
+}
+
+/*문의 상세 사이 위치*/
+.myInquiryInfo{
+    margin-top: 15px;
+}
+/*문의 텍스트 기본값*/
+.myInquiryInfoText{
+
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 13px;
+
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+/*문의리스트 구분선 기본값*/
+.myInquiryInfoLine{
+
+    margin-left: 10px;
+
+    width: 20px;
+
+    border: 3px solid #92E2F8;
+    transform: rotate(-90deg);
+
+
+}
+/*문의 상태 길이*/
+.status{
+
+    width: 75px;
+
+}
+/*문의 제목 길이*/
+.title{
+
+    width: 245px;
+
+}
+/*문의 내용 길이*/
+.content{
+
+    width: 425px;
+
+}

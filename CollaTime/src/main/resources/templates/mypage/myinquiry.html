@@ -13,9 +13,47 @@
     <div id="bigBlueHeader_myInquiry">
         <div id="bigXButton_myInquiry">X</div>
     </div>
-
-
 </div>
+<div id="myInquiry_text">문의 내역</div>
+<div id="myInquiry_status_text">문의 상태</div>
+<div id="myInquiry_status_underBar"></div>
+<div id="myInquiry_title_text">문의 제목</div>
+<div id="myInquiry_title_underBar"></div>
+<div id="myInquiry_content_text">문의 내용</div>
+<div id="myInquiry_content_underBar"></div>
+<div id="myInquiry_list"></div>
+
+    <script>
+        const myInquiryList = document.getElementById('myInquiry_list');
+
+        fetch("/inquiry/myinquirylist")
+            .then(res=>res.json())
+            .then(data=>{
+                if(data.length>0){
+                    for (var i = 0; i<data.length; i++) {
+                        const myInquiry = document.createElement("div")
+                        let inquiryLink = "/inquiry/myinquiryinfo/"+data[i].inquiryNo;
+                        myInquiry.innerHTML =
+                            `<div class="myInquiryInfo" onclick="location.href='${inquiryLink}'">
+                             <div class="myInquiryInfoText status">${data[i].inquiryStatus}</div>
+                             <span class="myInquiryInfoLine"></span>
+                             <div class="myInquiryInfoText title">${data[i].inquiryTitle}</div>
+                             <span class="myInquiryInfoLine"></span>
+                             <div class="myInquiryInfoText content">${data[i].inquiryContent}</div>
+                             <span class="myInquiryInfoLine"></span>
+                             </div>`
+                        myInquiryList.append(myInquiry);
+                            }
+
+                }else {
+                    const myInquiryNone = document.createElement("div")
+                    myInquiryNone.innerHTML=
+                        '<div style="margin-left: 180px; margin-top: 100px; font-size: 40px; text-decoration: underline wavy #92E2F8;">문의 내역이 없습니다!</div> '
+                    myInquiryList.append(myInquiryNone)
+                }
+            })
+
+    </script>
 
 </body>
 </html>

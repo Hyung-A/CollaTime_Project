@@ -1,9 +1,7 @@
 package com.ohgiraffers.collatime.mypage.controller;
 
 import com.ohgiraffers.collatime.auth.model.AuthDetails;
-import com.ohgiraffers.collatime.common.UserRole;
 import com.ohgiraffers.collatime.mypage.model.service.MypageService;
-import com.ohgiraffers.collatime.user.model.dto.SignupDTO;
 import com.ohgiraffers.collatime.user.model.dto.UserDTO;
 import com.ohgiraffers.collatime.user.model.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +9,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @RequestMapping("/mypage")
@@ -26,17 +21,9 @@ public class MypageController {
     private UserService userService;
 
 
-    @GetMapping("/mypagemain")
-    public ModelAndView mypagemain(ModelAndView mv,@AuthenticationPrincipal AuthDetails authDetails) {
-//        String username = authDetails.getUsername();
-//        UserDTO userDTO = userService.findByUsername(username);
-//        String userPicture = userDTO.getUserPicture();
-//        String userColor = userDTO.getUserColor();
-//        mv.addObject("userPicture", userPicture);
-//        mv.addObject("userColor", userColor);
-        mv.setViewName("mypage/mypagemain");
-
-        return mv;
+    @GetMapping
+    public String mypagemain() {
+        return "/mypage/mypagemain";
     }
 
     @PostMapping("/pwdcheck")
@@ -52,7 +39,7 @@ public class MypageController {
     }
 
     @PostMapping("/modifyuser")
-    public ModelAndView signup(ModelAndView mv, @ModelAttribute UserDTO userDTO, @AuthenticationPrincipal AuthDetails authDetails) {
+    public ModelAndView modifyuser(ModelAndView mv, @ModelAttribute UserDTO userDTO, @AuthenticationPrincipal AuthDetails authDetails) {
         userDTO.setUserNo(authDetails.getUserNo());
 
         boolean isModifyPwd = true;
@@ -94,7 +81,7 @@ public class MypageController {
         mv.addObject("message", message);
         mv.addObject("isPass", isPass);
 
-        mv.setViewName("/mypage/resultsmallmodal");
+        mv.setViewName("/mypage/resultmypagemodal");
 
         return mv;
     }
@@ -120,7 +107,7 @@ public class MypageController {
         mv.addObject("message", message);
         mv.addObject("isPass", isPass);
 
-        mv.setViewName("/mypage/resultsmallmodal");
+        mv.setViewName("resultmypagemodal");
 
         return mv;
     }

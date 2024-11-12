@@ -1,0 +1,201 @@
+#control_doInquiry{
+    z-index: 10000;
+    display: none;
+}
+
+
+#bigModal_doInquiry {
+
+    z-index: 10001;
+
+    position: absolute;
+    width: 1013px;
+    height: 680px;
+    left: 453px;
+    top: 100px;
+
+    background: #FFFFFF;
+    border: 1px solid #595959;
+    border-radius: 25px;
+}
+
+#bigBlueHeader_doInquiry{
+    z-index: 10002;
+    position: absolute;
+    width: 1013px;
+    height: 51px;
+
+    background: #92E2F8;
+    border-bottom: 1px solid #282828;
+    border-radius: 25px 25px 0px 0px;
+}
+
+#bigXButton_doInquiry{
+    z-index: 10003;
+    width: 30px;
+    height: 34px;
+    font-size: 30px;
+    position: absolute;
+    left: 965px;
+    top: 5px;
+}
+
+
+/*문의하기 텍스트*/
+#doInquiry_text{
+    z-index: 10004;
+    position: absolute;
+    width: 220px;
+    height: 40px;
+    left: 509px;
+    top: 211px;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 40px;
+
+    color: #000000;
+}
+/*문의하기 제목 텍스트*/
+#doInquiry_title_text{
+    z-index: 10005;
+
+    position: absolute;
+    width: 113px;
+    height: 29px;
+    left: 495px;
+    top: 304px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 30px;
+    letter-spacing: 0.03em;
+
+    color: #000000;
+
+
+}
+/*문의하기 제목 입력 박스*/
+#doInquiry_title_box{
+    z-index: 10006;
+
+    box-sizing: border-box;
+    padding-left: 5px;
+
+    position: absolute;
+    width: 744px;
+    height: 56px;
+    left: 621px;
+    top: 295px;
+
+    font-size: 20px;
+    background: #FFFFFF;
+    border: 2px solid #92E2F8;
+
+}
+/*문의하기 내용 텍스트*/
+#doInquiry_content_text{
+    z-index: 10007;
+
+    position: absolute;
+    width: 113px;
+    height: 27px;
+    left: 495px;
+    top: 398px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 30px;
+    letter-spacing: 0.03em;
+
+    color: #000000;
+
+
+}
+/*문의하기 내용 입력박스*/
+#doInquiry_content_box{
+    z-index: 10008;
+
+    padding-left: 5px;
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 744px;
+    height: 296px;
+    left: 621px;
+    top: 396px;
+
+    font-size: 20px;
+
+    background: #FFFFFF;
+    border: 2px solid #92E2F8;
+
+
+}
+
+/*문의하기 취소버튼*/
+#doInquiry_cancel_btn{
+    z-index: 10009;
+
+    position: absolute;
+    width: 100px;
+    height: 40px;
+    left: 1215px;
+    top: 717px;
+
+    background: rgba(146, 226, 248, 0.3);
+    border-radius: 15px;
+    border: none;
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    align-items: center;
+    text-align: center;
+
+
+    color: #000000;
+}
+/*문의하기 확인버튼*/
+#doInquiry_send_btn{
+    z-index: 10010;
+
+    position: absolute;
+    width: 100px;
+    height: 40px;
+    left: 1330px;
+    top: 717px;
+
+    background: #92E2F8;
+    border-radius: 15px;
+    border: none;
+
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    align-items: center;
+    text-align: center;
+
+
+    color: #000000;
+}
+
+#doInquiry_title_message{
+    z-index: 10100;
+
+
+    position: absolute;
+    width: 500px;
+    height: 30px;
+    left: 621px;
+    top: 356px;
+
+
+    font-size: 15px;
+}
