@@ -41,7 +41,7 @@
     <div id="myPage_userEmail" th:text="|이메일 : ${#authentication.principal.userEmail}|"></div>
     <div id="myPage_participation_project_text">참여프로젝트</div>
     <div class="underBar" id="myPage_participation_project_line"></div>
-<!--    <div id="myPage_participation_project_list">hi</div>-->
+    <div id="myPage_participation_project_list"></div>
     <div th:include="mypage/modifyusermodal.html" id="modifyUser_link"></div>
     <div th:include="mypage/myinquiry.html" id="myInquiry_link"></div>
     <div th:replace="common/profile.html" id="myProfile_image"></div>
@@ -102,6 +102,23 @@
                     location.reload()
                 })
         })
+
+        const myPageProjectMenu = document.getElementById('myPage_participation_project_list')
+        fetch("/common/leftbar")
+            .then(res=>res.json())
+            .then(data=>{
+                console.log(data)
+                if(data.length>0){
+                    for (var i = 0; i<data.length; i++) {
+                        const myProjectList = document.createElement("div")
+                        myProjectList.innerHTML =
+                            `<div class="projectList">
+                    <img src="/css/project/image/folderIcon.png" class="projectIcon">
+                    <span class="menuProjectName">${data[i].projectName}</span></div>`
+                        myPageProjectMenu.append(myProjectList);
+                    }
+                }
+            })
 
     </script>
 
