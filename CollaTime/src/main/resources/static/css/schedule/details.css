@@ -1,16 +1,14 @@
 @charset "UTF-8";
 
-#middleModal {
+#detailsModal {
 
     position: absolute;
     width: 554px;
     height: 592px;
     left: 683px;
     top: 130px;
-
     background: #FFFFFF;
     border: 1px solid #595959;
-    /*box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);*/
     border-radius: 25px;
 
 }
@@ -27,7 +25,7 @@
 
 }
 
-#middleXButton {
+#detailsXButton {
 
     width: 30px;
     height: 34px;
@@ -70,160 +68,186 @@
     border: none;
 }
 
-#assignmentName {
+/* 일정 제목 */
+#scheduleTitle {
 
     position: absolute;
-    margin-top: 110px;
-    width: 430px;
-    height: 45px;
-    font-size: 30px;
-    margin-left: 30px;
-    border-bottom: 4px solid #92E2F8;
-
-}
-
-#assignmentColor {
-
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: #e78f81;
-    margin-left: 380px;
-    margin-top: -33px;
-
-}
-
-#watch {
-    margin-top: 15px;
-
-}
-
-#assignmentPeriod {
-
-    position: absolute;
-    margin-top: 140px;
-    justify-content: space-between;
-    margin-left: 30px;
-    width: 430px;
+    width: 350px;
     height: 60px;
+    left: 40px;
+    top: 75px;
+    border-bottom: solid 3px #92E2F8;
     display: flex;
-    border-bottom: 4px solid #92E2F8;
+    justify-content: center;
+    align-items: center;
 }
 
-#startDate {
+.colorOptions {
+    position: absolute;
+    margin-left: 10px;
+    padding: 5px; /* 버튼 주변 여백 */
+    background-color: #f5f5f5; /* 배경색 추가 */
+    border-radius: 8px; /* 모서리를 둥글게 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 약간의 그림자 효과 */
+}
 
-    font-size: 15px;
-    font-weight: bold;
-    text-align: center;
-    align-content: center;
-    width: 150px;
-    height: 50px;
-    margin-top: 10px;
+.color-button {
+
+    position: absolute;
+    top: 100px;
+    left: 400px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #FF0000; /* 기본 빨간색 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 약간의 그림자 */
+    border: 1px solid #ccc;
 }
 
 
-#finalDate {
+
+#schedulePeriod {
+    position: absolute;
+    width: 350px;
+    height: 62px;
+    left: 40px;
+    top: 150px;
+    border-bottom: solid 3px #92E2F8;
+}
+
+#scheduleStartDate {
+
+    position: absolute;
     width: 150px;
-    height: 50px;
-    margin-top: 10px;
-    margin-right: 20px;
-    font-size: 15px;
-    font-weight: bold;
-    text-align: center;
-    align-content: center;
+    height: 40px;
+    left: 20px;
+    top: 15px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    letter-spacing: 0.03em;
+    display: flex;
+    justify-content: center;
+    line-height: 20px;
+    border: none;
+    color: #000000;
+    outline: none;
+}
+
+#scheduleEndDate {
+    position: absolute;
+    width: 150px;
+    height: 40px;
+    left: 215px;
+    top: 15px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    letter-spacing: 0.03em;
+    display: flex;
+    justify-content: center;
+    line-height: 20px;
+    border: none;
+    color: #282828;
+    outline: none;
 }
 
 #slash {
-    font-size: 22px;
-    font-weight: bold;
-    margin-top: 18px;
-}
-
-#participant {
-
     position: absolute;
+    left: 185px;
+    top: 1px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 40px;
+    letter-spacing: 0.03em;
     display: flex;
-    width: 500px;
-    height: 35px;
-    margin-top: 200px;
-    border-bottom: 4px solid #92E2F8;
-    margin-left: 30px;
-}
-
-#people {
-    margin-bottom: 15px;
-}
-
-#teammate {
-    font-size: 15px;
-    font-weight: bold;
-    margin-left: 40px;
-}
-
-#assignmentSubject {
-
-    position: absolute;
-    margin-top: 240px;
-    display: flex;
-    width: 500px;
-    height: 35px;
-    border-bottom: 4px solid #92E2F8;
-    margin-left: 30px;
-}
-
-#assignment {
-    margin-bottom: 20px;
-
-}
-
-#assignmentDetail {
-    font-size: 15px;
-    font-weight: bold;
-    margin-left: 30px;
-}
-
-#create {
-
-    position: relative;
-    display: flex;
-    margin-top: 470px;
-    margin-left: 30px;
-    font-size: 15px;
-    font-weight: bold;
-}
-
-#bottomButtons {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-
-}
-
-.bottomButton {
-    width: 130px;
-    height: 40px;
+    justify-content: center;
+    line-height: 20px;
     border: none;
-    border-radius: 15px;
+    color: #282828;
+}
+
+#watch {
+    position: absolute;
+    width: 20px;
+}
+
+#participant-container {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    width: 450px;
+    height: 60px;
+    left: 40px;
+    top: 230px;
+    border-bottom: solid 3px #92E2F8;
+}
+
+#invite-icon {
     cursor: pointer;
-    text-align: center;
-    align-content: center;
+
 }
 
-#cancelButton {
-    background-color: rgba(146, 226, 248, 0.3);
-    color: black;
-    font-size: 15px;
-    font-weight: bold;
-    margin-right: 10px;
+#participant-list {
+    font-size: 18px;
+    color: #666;
+    margin-left: 10px;
 }
 
-#confirmButton {
-    background-color: #92E2F8;
-    color: black;
-    font-size: 15px;
+#memoIcon {
+    position: absolute;
+    top: 310px;
+    left: 40px;
+}
+
+#memo {
+    position: absolute;
+    top: 310px;
+    left: 80px;
+    width: 370px;
+    height: 200px;
+    border: none;
+    resize: none; /* 크기 조절 비활성화 */
+    outline: none;
+    background-color: #e0f7fa; /* 연한 파란색 배경 */
+    font-size: 14px;
+    color: #333;
+    padding: 5px;
+    border-radius: 10px; /* 모서리를 둥글게 */
+}
+
+#creator-info {
+
+    position: absolute;
+    bottom: 60px; /* 버튼 위에 위치할 수 있도록 설정 */
+    left: 40px; /* 왼쪽 여백 */
+    font-size: 14px;
+    color: #666; /* 텍스트 색상 */
     font-weight: bold;
 }
+
+
+
+#details-confirmButton {
+    position: absolute;
+    width: 99px;
+    height: 31px;
+    left: 440px;
+    top: 545px;
+    background: #92E2F8;
+    border: #92E2F8;
+    border-radius: 10px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    line-height: 36px;
+    letter-spacing: 0.03em;
+    color: #282828;
+}
+
 

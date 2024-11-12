@@ -2,53 +2,80 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/static/css/schedule/details.css">
+    <link rel="stylesheet" href="/css/schedule/details.css">
     <title>Title</title>
 </head>
+
 <body>
-<div id="middleModal">
+
+<div id="detailsModal">
     <div id="middleBlueHeader">
-        <div id="middleXButton">X</div>
+        <div id="detailsXButton">X</div>
+    </div>
+
+    <form id="scheduleForm">
 
         <div id="modifyList">
-            <img src="/static/css/schedule/image/연필.png" id="modifySchedule">
+            <img src="/css/schedule/image/연필.png" id="modifySchedule">
         </div>
         <div id="deleteList">
-            <img src="/static/css/schedule/image/휴지통.png" id="deleteSchedule">
+            <img src="/css/schedule/image/휴지통.png" id="deleteSchedule">
         </div>
 
-        <div id="assignmentName">Java 실습 문제 풀어오기
-            <div id="assignmentColor"></div>
-        </div>
-        <br>
-        <div id="assignmentPeriod">
-            <img src="/static/css/schedule/image/시계.png" id="watch">
-            <div id="startDate">10월 22일 (화요일)</div>
-            <div id="slash">ㅡ</div>
-            <div id="finalDate">10월 22일 (화요일)</div>
-        </div>
-        <br>
-        <div id="participant">
-            <img src="/static/css/schedule/image/인원.png" id="people">
-            <div id="teammate">김주혜 이하은 조형석 박수완</div>
-        </div>
-        <br>
 
-        <div id="assignmentSubject">
-            <img src="/static/css/schedule/image/과제내용.png" id="assignment">
-            <div id="assignmentDetail">내일까지 실습 문제 풀어오기</div>
+        <!-- 일정 제목 -->
+        <div id="scheduleTitle"></div>
+
+        <!-- 색상 선택 옵션 -->
+        <div id="colorOptions">
+            <div class="color-button" id="color-button"></div>
+            <input type="hidden" name="colorCode" id="selectedColor">
         </div>
 
-        <div id="create">
-            <div id="creator">생성자 | </div>
-            <div id="creatorName">김주혜</div>
+        <!-- 스케줄 기간-->
+        <div id="schedulePeriod">
+            <img src="/css/schedule/image/시계.png" id="watch">
+            <input type="date" id="scheduleStartDate" min="2024-01-01" max="2099-12-31" name="scheduleStart" required></input>
+            <div id="slash">-</div>
+            <input type="date" id="scheduleEndDate" min="2024-01-01" max="2099-12-31" name="scheduleEnd" required></input>
         </div>
-    </div>
 
-    <div id="bottomButtons">
-        <div class="bottomButton" id="cancelButton">취소</div>
-        <div class="bottomButton" id="confirmButton">확인</div>
-    </div>
+        <!-- 참여자 -->
+        <div id="participant-container">
+            <div id="invite-icon">
+                <img src="/css/schedule/image/인원.png" id="people">
+            </div>
+            <div id="participant-list">
+                <span id="placeholder-text">참여자(닉네임)</span>
+            </div>
+        </div>
+
+        <!-- 메모 -->
+        <span><img src="/css/schedule/image/과제내용.png" id="memoIcon"></span>
+        <textarea id="memo" class="memo-input" name="scheduleContent"></textarea>
+
+
+        <div id="creator-info">
+            생성자 | <span th:text="${creatorName}"></span>
+        </div>
+        <button type="button" id="details-confirmButton">확인</button>
+    </form>
 </div>
+
 </body>
+
+<script>
+
+    document.getElementById("details-confirmButton").addEventListener("click", function() {
+        document.getElementById("detailsModal").style.display = "none";
+    });
+
+    document.getElementById("detailsXButton").addEventListener("click", function() {
+        document.getElementById("detailsModal").style.display = "none";
+    });
+
+
+
+
+</script>
 </html>
