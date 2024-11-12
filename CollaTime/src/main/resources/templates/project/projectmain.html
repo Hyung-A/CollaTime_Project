@@ -59,7 +59,7 @@
 </div>
 <script>
   // ------------------------------ Left Bar ------------------------------
-  window.onload = function(){
+  window.onload = function() {
 
     /* My Project List */
     const projectList = document.querySelectorAll("#projectMenu");
@@ -85,69 +85,69 @@
       }
     }
     // 폴더 헤더
-    let folderHead = document.querySelectorAll("#folderHead");
-    for (let i = 0; i < folderHead.length; i++) {
-      folderHead[i].style.backgroundColor = colorArray[i];
-    }
-    // 폴더바디
-    let folderBody = document.querySelectorAll("#folderBody");
-    for (let i = 0; i < folderBody.length; i++) {
-      folderBody[i].style.backgroundColor = colorArray[i];
-    }
-    // 메뉴 텍스트
-    let crudText = document.querySelectorAll(".crudText");
-    for (let i = 0; i < crudText.length; i++) {
-      crudText[i].style.backgroundColor = "#F5F5F5";
-      crudText[i].style.width = "90px";
-      crudText[i].style.left = "10px";
-      crudText[i].addEventListener("mouseover", function () {
-        crudText[i].style.backgroundColor = "#E2E2E2";
-        crudText[i].style.width = "110px";
-        crudText[i].style.left = "0px";
-      });
-      crudText[i].addEventListener("mouseout", function () {
+      let folderHead = document.querySelectorAll("#folderHead");
+      for (let i = 0; i < folderHead.length; i++) {
+        folderHead[i].style.backgroundColor = colorArray[i];
+      }
+      // 폴더바디
+      let folderBody = document.querySelectorAll("#folderBody");
+      for (let i = 0; i < folderBody.length; i++) {
+        folderBody[i].style.backgroundColor = colorArray[i];
+      }
+      // 메뉴 텍스트
+      let crudText = document.querySelectorAll(".crudText");
+      for (let i = 0; i < crudText.length; i++) {
         crudText[i].style.backgroundColor = "#F5F5F5";
         crudText[i].style.width = "90px";
         crudText[i].style.left = "10px";
-      });
-    }
-    // 메뉴 아이콘 ...
-    let folderMenu = document.querySelectorAll("#folderMenu");
-    let crudMenu = document.querySelectorAll("#crudMenu");
-    for (let i = 0; i < folderMenu.length; i++) {
-      crudMenu[i].style.display = "none";
-      folderMenu[i].onclick = function () {
-        if (crudMenu[i].style.display === 'block') {
-          crudMenu[i].style.display = 'none';
-        } else {
-          crudMenu[i].style.display = 'block';
+        crudText[i].addEventListener("mouseover", function () {
+          crudText[i].style.backgroundColor = "#E2E2E2";
+          crudText[i].style.width = "110px";
+          crudText[i].style.left = "0px";
+        });
+        crudText[i].addEventListener("mouseout", function () {
+          crudText[i].style.backgroundColor = "#F5F5F5";
+          crudText[i].style.width = "90px";
+          crudText[i].style.left = "10px";
+        });
+      }
+        // 메뉴 아이콘 ...
+        let folderMenu = document.querySelectorAll("#folderMenu");
+        let crudMenu = document.querySelectorAll("#crudMenu");
+        for (let i = 0; i < folderMenu.length; i++) {
+          crudMenu[i].style.display = "none";
+          folderMenu[i].onclick = function () {
+            if (crudMenu[i].style.display === 'block') {
+              crudMenu[i].style.display = 'none';
+            } else {
+              crudMenu[i].style.display = 'block';
+            }
+          }
         }
+
+      /* New 프로젝트 폴더 영역 */
+      let maxNum = createdProjectFolder.length;
+      const newProject = document.getElementById("newProject");
+      if (maxNum > 0) {
+        let lastProjectLeft = Number(createdProjectFolder[maxNum - 1].style.left.replace("px", ""));
+        for (let i = 0; i < createdProjectFolder.length; i++) {
+          if (i < 3) {
+            newProject.style.left = (lastProjectLeft + 363) + "px";
+            newProject.style.top = "200px";
+          } else if (i === 3) {
+            newProject.style.left = "148px";
+            newProject.style.top = "507px";
+          } else if (i > 3 && i < 7) {
+            newProject.style.left = (lastProjectLeft + 363) + "px";
+            newProject.style.top = "507px";
+          }
+        }
+      } else {
+        newProject.style.left = "148px";
+        newProject.style.top = "200px";
       }
     }
 
-
-    /* New 프로젝트 폴더 영역 */
-    let maxNum = createdProjectFolder.length;
-    const newProject = document.getElementById("newProject");
-    if (maxNum > 0) {
-      let lastProjectLeft = Number(createdProjectFolder[maxNum - 1].style.left.replace("px", ""));
-      for (let i = 0; i < createdProjectFolder.length; i++) {
-        if (i < 3) {
-          newProject.style.left = (lastProjectLeft + 363) + "px";
-          newProject.style.top = "200px";
-        } else if (i === 3) {
-          newProject.style.left = "148px";
-          newProject.style.top = "507px";
-        } else if (i > 3 && i < 7) {
-          newProject.style.left = (lastProjectLeft + 363) + "px";
-          newProject.style.top = "507px";
-        }
-      }
-    } else {
-      newProject.style.left = "148px";
-      newProject.style.top = "200px";
-    }
-  }
 </script>
 
 <!-- ----------------------------------------------- 프로젝트 참여 혹은 생성 모달창 ----------------------------------------------- -->
@@ -489,16 +489,16 @@
   var now_date = Date.now();
   var timeOff = new Date().getTimezoneOffset()*60000;
   var today = new Date(now_date-timeOff).toISOString().split("T")[0];
-  let dateClass = document.querySelectorAll(".date");
-  // for(let i = 0; i < dateClass.length; i++){
-  //   dateClass[i].setAttribute("min", today);
-  // }
   let startDate = document.getElementById("projectStartDate");
   startDate.setAttribute("min", today);
   startDate.onchange = function(){
     let endDate = document.getElementById("projectEndDate");
     endDate.setAttribute("min", this.value);
   }
+  // let dateClass = document.querySelectorAll(".date");
+  // for(let i = 0; i < dateClass.length; i++){
+  //   dateClass[i].setAttribute("min", today);
+  // }
 
 </script>
 <!-- ---------------------------- 멤버 초대 모달 ---------------------------- -->
