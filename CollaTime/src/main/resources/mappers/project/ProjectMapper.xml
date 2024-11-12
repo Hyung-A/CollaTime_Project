@@ -19,8 +19,34 @@
      <!--InviteMemberDTO-->
     <resultMap id="JoinProjectResultMap" type="com.ohgiraffers.collatime.project.model.dto.InviteMemberDTO">
         <id property="projectNo" column="PROJECT_NO"/>
+        <result property="userNo" column="CT_USER_NO"/>
         <result property="joinCode" column="RANDOM_JOIN_CODE"/>
         <result property="email" column="EMAIL"/>
+    </resultMap>
+
+<!--    <resultMap id="manageMember" type="com.ohgiraffers.collatime.project.model.dto.ManageMemberDTO">-->
+<!--        <id property="projectNo" column="PROJECT_NO"/>-->
+<!--        <result property="productorNo" column="PRODUCTOR_NO"/>-->
+<!--        <result property="productorNickname" column="CT_USER_NICKNAME"/>-->
+<!--        <result property="productorEmail" column="CT_USER_EMAIL"/>-->
+<!--    </resultMap>-->
+
+    <resultMap id="memberList" type="com.ohgiraffers.collatime.project.model.dto.MemberListDTO">
+        <id property="memberNo" column="CT_USER_NO"/>
+        <result property="memberNickname" column="CT_USER_NICKNAME"/>
+        <result property="memberEmail" column="CT_USER_EMAIL"/>
+    </resultMap>
+
+    <resultMap id="manageMemberAssociationMemberList" type="com.ohgiraffers.collatime.project.model.dto.ManageMemberDTO">
+        <id property="projectNo" column="PROJECT_NO"/>
+        <result property="productorNo" column="PRODUCTOR_NO"/>
+        <result property="productorNickname" column="CT_USER_NICKNAME"/>
+        <result property="productorEmail" column="CT_USER_EMAIL"/>
+        <association property="memberList" javaType="com.ohgiraffers.collatime.project.model.dto.MemberListDTO">
+            <id property="memberNo" column="CT_USER_NO"/>
+            <result property="memberNickname" column="CT_USER_NICKNAME"/>
+            <result property="memberEmail" column="CT_USER_EMAIL"/>
+        </association>
     </resultMap>
 
     <!-- 프로젝트 전체 조회 -->
@@ -56,6 +82,7 @@
              , PROJECT_START_DATE
              , PROJECT_END_DATE
              , PROJECT_CATEGORY_CODE
+             , PRODUCTOR_NO
           FROM PROJECT
          WHERE PROJECT_NO = #{ projectNo }
     </select>
@@ -63,7 +90,9 @@
     <!-- 프로젝트 멤버 리스트 가져오기 -->
     <select id="getInviteMemberList" resultMap="JoinProjectResultMap" parameterType="com.ohgiraffers.collatime.project.model.dto.ProjectDTO">
         SELECT
-                RANDOM_JOIN_CODE
+                PROJECT_NO
+              , CT_USER_NO
+              , RANDOM_JOIN_CODE
               , EMAIL
           FROM  JOIN_PROJECT
          WHERE  PROJECT_NO = #{ projectNo }
@@ -164,6 +193,17 @@
             , EMAIL = #{ email }
         WHERE RANDOM_JOIN_CODE = #{ joinCode }
     </update>
+
+    <select id="getMemberManager" resultMap="memberList" parameterType="com.ohgiraffers.collatime.project.model.dto.ProjectDTO">
+        SELECT
+               CT_USER_NO
+              ,CT_USER_NICKNAME
+              ,CT_USER_EMAIL
+          FROM CT_USER
+         WHERE CT_USER_NO = (SELECT PRODUCTOR_NO FROM PROJECT WHERE PROJECT_NO = 11)
+               OR
+               CT_USER_NO IN(SELECT CT_USER_NO FROM JOIN_PROJECT WHERE PROJECT_NO = 11);
+    </select>
 
 </mapper>
 

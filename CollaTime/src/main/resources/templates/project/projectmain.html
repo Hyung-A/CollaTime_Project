@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="/css/project/modalDeleteProject.css">
   <link rel="stylesheet" href="/css/project/modalInputAlert.css">
   <link rel="stylesheet" href="/css/project/modalWrongJoinCode.css">
+  <link rel="stylesheet" href="/css/project/modalManageMember.css">
 </head>
 <body>
 <!-- 프로젝트 메인 화면 -->
@@ -20,13 +21,13 @@
   <div th:replace="common/programHeader"></div>
   <div th:replace="common/leftBar.html"></div>
 
-  <script>
-    const nicknameArea = document.getElementById("nickname");
-    let message = `[[|${#authentication.principal.userNickname}님|]]`;
-    nicknameArea.innerText = message;
-    nicknameArea.style.height = "30px";
-    nicknameArea.style.textAlign = "center";
-  </script>
+<!--  <script>-->
+<!--    const nicknameArea = document.getElementById("nickname");-->
+<!--    let message = `[[|${#authentication.principal.userNickname}님|]]`;-->
+<!--    nicknameArea.innerText = message;-->
+<!--    nicknameArea.style.height = "30px";-->
+<!--    nicknameArea.style.textAlign = "center";-->
+<!--  </script>-->
   <!-- 메인 구역 -->
   <div>
     <span id="mainTitle">Project</span>
@@ -950,6 +951,69 @@
   });
 
 
+
+</script>
+
+<!-- ---------------------------------- 팀원 관리 모달 ---------------------------------- -->
+<div id="modalManageMember" style="z-index: 2">
+  <div id="manageMemberHeader">
+    <div id="manageMemberXButton">X</div>
+  </div>
+  <div id="manageMemberBody">
+    <p id="manageMemberText">팀원 관리</p>
+    <div id="manageMemberList">
+      <div id="manageMemberListHead">
+        <input type="text" id="projectNum" name="projectNo" style="display: none"/>
+        <p id="titleNickname" class="listHead nickname">닉네임</p>
+        <p id="titleEmail" class="listHead email">이메일</p>
+        <p id="titleNote" class="listHead note">비고</p>
+      </div>
+      <div id="nthMemberArea" th:each="member : ${ memberManagement }">
+        <p id="nthNickname" class="nthMember nickname" name="nickname" th:value="${ member.memberNickname }"></p>
+        <p id="nthEmail" class="nthMember email" name="email" th:value="${ member.memberEmail }"></p>
+        <p id="nthNote" class="nthMember note" name="note"></p>
+        <img src="/css/project/image/trashcanIcon.png" id="trashcanIcon" class="nthMember trashcanIcon" alt="삭제 아이콘"/>
+      </div>
+    </div>
+    <button type="button" id="forInviteMember">팀원 초대</button>
+    <button type="button" id="manageMemberConfirm">확인</button>
+  </div>
+</div>
+<script>
+  function selectMember(projectNo) {
+    fetch("/project/selectMember?projectNo=" + projectNo + "")
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+
+            })
+
+  }
+
+  const modalManageMember = document.getElementById("modalManageMember");
+  modalManageMember.style.display = "none";
+  const manageMember = document.querySelectorAll("#manageMember");
+  for(let i = 0; i < manageMember.length; i++) {
+    manageMember[i].onclick = function () {
+      modalManageMember.style.display = "";
+      selectMember(projectNo[i].value);
+      console.log(projectNo[i].value);
+    }
+  }
+  const manageMemberXButton = document.getElementById("manageMemberXButton");
+  manageMemberXButton.onclick = function(){
+    modalManageMember.style.display = "none";
+  }
+
+  let manageMemberConfirm = document.getElementById("manageMemberConfirm");
+  manageMemberConfirm.onclick = function(){
+    modalManageMember.style.display = "none";
+  }
+
+  let forInviteMember = document.getElementById("forInviteMember");
+  forInviteMember.onclick = function(){
+    inviteMemberModal.style.display = "";
+  }
 
 </script>
 </body>

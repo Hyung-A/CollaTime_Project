@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="/static/css/project/modalManageMember.css">
 </head>
 <body>
-<!-- 큰 모달창 -->
+<!-- 팀원 관리 모달 -->
 <div id="modalManageMember">
   <div id="manageMemberHeader">
     <div id="manageMemberXButton">X</div>
@@ -16,13 +16,17 @@
     <p id="manageMemberText">팀원 관리</p>
     <div id="manageMemberList">
       <div id="manageMemberListHead">
-        <p id="titleNickname" class = listHead>닉네임</p>
-        <p id="titleEmail" class = listHead>이메일</p>
-        <p id="titleNote" class = listHead>비고</p>
+        <p id="titleNickname" class="listHead nickname">닉네임</p>
+        <p id="titleEmail" class="listHead email">이메일</p>
+        <p id="titleNote" class="listHead note">비고</p>
       </div>
-      <div id="firstMember"></div>
+      <div id="nthMemberArea">
+        <p id="nthNickname" class="nthMember nickname" name="nickname"></p>
+        <p id="nthEmail" class="nthMember email" name="email"></p>
+        <p id="nthNote" class="nthMember note" name="note"></p>
+        <img src="/static/css/project/image/trashcanIcon.png" id="trashcanIcon" class="nthMember trashcanIcon" alt="삭제 아이콘"/>
+      </div>
     </div>
-
   </div>
 </div>
 </body>

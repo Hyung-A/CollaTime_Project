@@ -2,6 +2,8 @@ package com.ohgiraffers.collatime.project.model.service;
 
 import com.ohgiraffers.collatime.project.model.dao.ProjectMapper;
 import com.ohgiraffers.collatime.project.model.dto.InviteMemberDTO;
+import com.ohgiraffers.collatime.project.model.dto.ManageMemberDTO;
+import com.ohgiraffers.collatime.project.model.dto.MemberListDTO;
 import com.ohgiraffers.collatime.project.model.dto.ProjectDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -69,18 +71,22 @@ public class ProjectService {
     }
 
     public List<InviteMemberDTO> getInviteMemberList(ProjectDTO projectDTO) {
-        System.out.println("서비스" + projectMapper.getInviteMemberList(projectDTO));
         return projectMapper.getInviteMemberList(projectDTO);
     }
 
     // joinCode 전체 조회
     public List<InviteMemberDTO> getJoinCodeList() {
-
-        System.out.println("서비스다아아");
         return projectMapper.getJoinCodeList();
     }
 
+    @Transactional
     public void updateUserNo(InviteMemberDTO inviteMemberDTO) {
         projectMapper.updateUserNo(inviteMemberDTO);
+    }
+
+
+    public List<MemberListDTO> getMemberManager(ProjectDTO projectDTO) {
+
+        return projectMapper.getMemberManager(projectDTO);
     }
 }
