@@ -11,7 +11,7 @@
 `
 <div id="makeScheduleModal" style="z-index: 3">
     <div id="middleBlueHeader">
-        <div id="middleXXButton">X</div>
+        <div id="makeScheduleXButton">X</div>
     </div>
 
     <!-- 내용, 일정 저장 폼  -->
@@ -62,11 +62,11 @@
         <textarea id="memo" class="memo-input" placeholder="여기에 메모를 입력하세요..." name="scheduleContent"></textarea>
 
 
-        <button type="button" id="cancelButton">취소</button>
+        <button type="button" id="makeSchedule-CancelButton">취소</button>
         <div id="creator-info">
             생성자 | <span th:text="${creatorName}"></span>
         </div>
-        <button type="button" id="confirmButton" onclick="submitSchedule()">확인</button>
+        <button type="button" id="makeschedule-confirmButton" onclick="submitSchedule()">확인</button>
     </form>
 </div>
 
@@ -77,7 +77,7 @@
     const colorOptions = document.querySelectorAll('.color-option');
 
 
-    document.getElementById("middleXXButton").addEventListener("click", function() {
+    document.getElementById("makeScheduleXButton").addEventListener("click", function() {
         document.getElementById("makeScheduleModal").style.display = "none";
     });
 
@@ -95,6 +95,16 @@
             colorCodeInput.value = selectedColor; // hidden input의 값 업데이트
         });
     });
+
+    var now_date = Date.now();
+    var timeOff = new Date().getTimezoneOffset()*60000;
+    var today = new Date(now_date-timeOff).toISOString().split("T")[0];
+    let startDate = document.getElementById("scheduleStartDate");
+    startDate.setAttribute("min", today);
+    startDate.onchange = function(){
+        let endDate = document.getElementById("scheduleEndDate");
+        endDate.setAttribute("min", this.value);
+    }
 
     // 드롭다운 외부 클릭 시 닫힘
     document.addEventListener('click', (event) => {
