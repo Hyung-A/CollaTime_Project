@@ -84,7 +84,7 @@ public class ProjectService {
         projectMapper.updateUserNo(inviteMemberDTO);
     }
 
-
+    // 멤버 관리 모달에서 쓸 팀원 정보 조회
     public List<MemberListDTO> getMemberManager(ProjectDTO projectDTO) {
         return projectMapper.getMemberManager(projectDTO);
     }

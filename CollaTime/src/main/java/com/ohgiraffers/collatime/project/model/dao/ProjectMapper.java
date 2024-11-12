@@ -46,5 +46,6 @@ public interface ProjectMapper {
     // 참가코드 입력 시 joinPoject의 ct_user_no랑 email 수정
     void updateUserNo(InviteMemberDTO inviteMemberDTO);
 
+    // 멤버 관리 모달에서 쓸 팀원 정보 조회
     List<MemberListDTO> getMemberManager(ProjectDTO projectDTO);
 }

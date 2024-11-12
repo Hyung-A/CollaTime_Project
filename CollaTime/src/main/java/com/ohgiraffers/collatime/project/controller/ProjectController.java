@@ -2,7 +2,6 @@ package com.ohgiraffers.collatime.project.controller;
 
 
 import com.ohgiraffers.collatime.auth.model.AuthDetails;
-import com.ohgiraffers.collatime.mail.model.dto.MailDTO;
 import com.ohgiraffers.collatime.mail.model.service.MailService;
 import com.ohgiraffers.collatime.project.model.dto.InviteMemberDTO;
 import com.ohgiraffers.collatime.project.model.dto.MemberListDTO;
@@ -210,6 +209,30 @@ public class ProjectController {
 
         return memberList;
 
+    }
+
+    // 팀원 관리 모달에서 멤버 추가 했을 때 이메일 전송 및 DB에 넣기
+    @PostMapping(value = "/sendUpdatedEmail", produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public void sendUpdatedEmail(@RequestBody ProjectDTO projectDTO) throws MessagingException{
+
+        System.out.println("야야야 프로젝트 디티오다" + projectDTO);
+        System.out.println("sendUpdateEmail 포스트 매핑 성공");
+        List<InviteMemberDTO> moreInviteMemberList = projectDTO.getInviteMemberList();
+        for(int i = 0; i < moreInviteMemberList.size(); i++){
+            String createJoinCode = createJoinCode();
+            InviteMemberDTO moreInviteList = moreInviteMemberList.get(i);
+            moreInviteList.setProjectNo(projectDTO.getProjectNo());
+            moreInviteList.setProjectNo(projectDTO.getProjectNo());
+            moreInviteList.setJoinCode(createJoinCode);
+            projectService.insertJoinProject(moreInviteList);
+            System.out.println(moreInviteList);
+
+            String email = moreInviteList.getEmail();
+
+//            MailDTO mailDTO = new MailDTO();
+            mailService.sendJoinCodeMail(email, createJoinCode);
+        }
     }
 
 
