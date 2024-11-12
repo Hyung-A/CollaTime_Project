@@ -43,9 +43,9 @@ public class ScheduleController {
     }
 
     // 특정 일정 조회 (GET /api/schedules/{id})
-    @GetMapping("/api/schedules/{id}")
+    @GetMapping("/api/schedules/{scheduleNo}")
     @ResponseBody // JSON 데이터를 반환
-    public ResponseEntity<ScheduleDTO> getSchedule(@PathVariable("id") int scheduleNo) {
+    public ResponseEntity<ScheduleDTO> getSchedule(@PathVariable("scheduleNo") int scheduleNo) {
         ScheduleDTO schedule = scheduleService.getScheduleById(scheduleNo);
         return ResponseEntity.ok(schedule);
     }

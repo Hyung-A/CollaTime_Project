@@ -7,8 +7,8 @@ public class ScheduleDTO {
     private int projectNo;
     private String scheduleStartDate;
     private String scheduleEndDate;
-    private String scheduleContent;
-    private String scheduleTitle;
+    private String scheduleContent; // 메모
+    private String scheduleTitle; // 제목
     private String scheduleCreator;
     private String colorCode;
 
