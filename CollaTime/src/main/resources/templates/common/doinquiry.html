@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/common/doinquiry.css">
+</head>
+<body>
+<div id="control_doInquiry">
+<!-- 큰 모달창 -->
+<div id="bigModal_doInquiry">
+    <div id="bigBlueHeader_doInquiry">
+        <div id="bigXButton_doInquiry">X</div>
+    </div>
+</div>
+    <form th:action="@{/inquiry/registinquiry}" method="post">
+    <div id="doInquiry_text">문의하기</div>
+    <div id="doInquiry_title_text">문의 제목</div>
+    <input type="text" id="doInquiry_title_box" name="inquiryTitle" required>
+        <div id="doInquiry_title_message">제목은 40자이하로 적어주세요.</div>
+    <div id="doInquiry_content_text">문의 내용</div>
+    <textarea id="doInquiry_content_box" name="inquiryContent" required></textarea>
+    <button type="button" id="doInquiry_cancel_btn">취소</button>
+    <button type="submit" id="doInquiry_send_btn">확인</button>
+    </form>
+</div>
+<script>
+    const titleLength = document.getElementById('doInquiry_title_box')
+    const titleMessage = document.getElementById('doInquiry_title_message')
+    titleLength.addEventListener('change', ()=>{
+        if(titleLength.value.length>40){
+            titleMessage.style.color = 'red'
+            titleMessage.innerText = "제목이 40자를 초과했습니다!"
+        }else {
+            titleMessage.style.color = 'black'
+            titleMessage.innerText = '제목은 40자 이하로 적어주세요.'
+        }
+    })
+
+    const doInquiryXBtn = document.getElementById('bigXButton_doInquiry')
+    const cancelDoInquiry = document.getElementById('doInquiry_cancel_btn')
+    doInquiryXBtn.addEventListener('click', ()=>{document.getElementById('control_doInquiry').style.display = 'none';})
+    cancelDoInquiry.addEventListener('click', ()=>{document.getElementById('control_doInquiry').style.display = 'none';})
+
+
+</script>
+
+</body>
+</html>

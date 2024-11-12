@@ -37,8 +37,8 @@
         ,   #{userEmail}
         ,   #{userName}
         ,   #{userNickname}
-        ,   'a1'
-        ,   'red'
+        ,   'profile_rat'
+        ,   'blue'
         ,   'USER'
         )
     </insert>

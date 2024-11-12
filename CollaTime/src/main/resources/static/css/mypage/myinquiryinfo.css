@@ -1,0 +1,221 @@
+
+#bigModal_myInquiryInfo {
+
+    position: absolute;
+    width: 1013px;
+    height: 680px;
+    left: 453px;
+    top: 100px;
+
+    background: #FFFFFF;
+    border: 1px solid #595959;
+    border-radius: 25px;
+}
+
+#bigBlueHeader_myInquiryInfo{
+    position: absolute;
+    width: 1013px;
+    height: 51px;
+
+    background: #92E2F8;
+    border-bottom: 1px solid #282828;
+    border-radius: 25px 25px 0px 0px;
+}
+
+#bigXButton_myInquiryInfo{
+    width: 30px;
+    height: 34px;
+    font-size: 30px;
+    position: absolute;
+    left: 965px;
+    top: 5px;
+}
+
+/*문의내역 텍스트*/
+#myInquiryInfo_text{
+
+    position: absolute;
+    width: 150px;
+    height: 40px;
+    left: 509px;
+    top: 211px;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 40px;
+    letter-spacing: 0.03em;
+
+    color: #000000;
+
+
+}
+/*문의 제목 텍스트*/
+#myInquiryInfo_title_text{
+
+    position: absolute;
+    width: 100px;
+    height: 27px;
+    left: 544px;
+    top: 291px;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 27px;
+
+    color: #000000;
+
+
+}
+/*문의 제목 구분선*/
+#myInquiryInfo_title_line{
+
+    position: absolute;
+    width: 20px;
+    height: 0px;
+    left: 635px;
+    top: 302px;
+
+    border: 3px solid #92E2F8;
+    transform: rotate(-90deg);
+
+}
+/*문의 제목 내용*/
+#myInquiryInfo_title_context{
+
+    position: absolute;
+    width: 550px;
+    height: 27px;
+    left: 665px;
+    top: 290px;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 27px;
+
+    color: #000000;
+
+
+}
+/*문의 내용 텍스트*/
+#myInquiryInfo_content_text{
+    position: absolute;
+    width: 100px;
+    height: 27px;
+    left: 657px;
+    top: 372px;
+
+    font-family: 'Abril Fatface';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 27px;
+
+    color: #000000;
+
+
+}
+/*문의 내용 구분선*/
+#myInquiryInfo_content_line{
+    position: absolute;
+    width: 430px;
+    height: 0px;
+    left: 501px;
+    top: 410px;
+
+    border: 3px solid #92E2F8;
+
+}
+/*문의 내용 내용*/
+#myInquiryInfo_content_context{
+
+    position: absolute;
+    width: 415px;
+    height: 60px;
+    left: 515px;
+    top: 438px;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    letter-spacing: 0.03em;
+
+    color: #000000;
+
+
+}
+/*문의 답변 텍스트*/
+#myInquiryInfo_answer_text{
+
+    position: absolute;
+    width: 100px;
+    height: 27px;
+    left: 1164px;
+    top: 372px;
+
+    font-family: 'Abril Fatface';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 27px;
+
+    color: #000000;
+
+
+}
+/*문의 답변 구분선*/
+#myInquiryInfo_answer_line{
+
+    position: absolute;
+    width: 430px;
+    height: 0px;
+    left: 989px;
+    top: 410px;
+
+    border: 3px solid #92E2F8;
+
+}
+/*문의 답변 내용*/
+#myInquiryInfo_answer_context{
+
+    position: absolute;
+    width: 415px;
+    height: 20px;
+    left: 997px;
+    top: 438px;
+
+    font-family: 'Abril Fatface';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+
+    color: #000000;
+
+
+}
+
+#myInquiryInfo_ok_btn{
+    position: absolute;
+    width: 100px;
+    height: 40px;
+    left: 1330px;
+    top: 717px;
+
+    background: #92E2F8;
+    border-radius: 15px;
+    border: none;
+
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    align-items: center;
+    text-align: center;
+
+
+    color: #000000;
+}
