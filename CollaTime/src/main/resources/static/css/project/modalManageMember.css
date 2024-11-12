@@ -1,0 +1,52 @@
+@charset "utf-8";
+
+#modalManageMember {
+
+    position: absolute;
+    width: 1013px;
+    height: 680px;
+    left: 453px;
+    top: 100px;
+
+    background: #FFFFFF;
+    border: 1px solid #595959;
+    border-radius: 25px;
+}
+
+#manageMemberHeader{
+    position: absolute;
+    width: 1013px;
+    height: 51px;
+
+    background: #92E2F8;
+    border-bottom: 1px solid #282828;
+    border-radius: 25px 25px 0px 0px;
+}
+
+#manageMemberXButton{
+    width: 30px;
+    height: 34px;
+    font-size: 30px;
+    position: absolute;
+    left: 965px;
+    top: 5px;
+}
+
+#manageMemberText{
+
+    position: absolute;
+    width: max-content;
+    height: 32px;
+    left: 83px;
+    top: 107px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    letter-spacing: 0.03em;
+    color: #282828;
+
+}
+
+#manageMemberList{
+
+}
