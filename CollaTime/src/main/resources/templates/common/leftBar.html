@@ -52,15 +52,18 @@
     const clickDoInquiry = document.getElementById('doInquiry');
     const clickPassAuthority = document.getElementById('authority');
     const passAuthorityModal = document.getElementById('passAuthority_link');
+    const passAuthorityXBtn = document.getElementById('middleXButton_passAuthority')
+    const passAuthorityCancelBtn = document.getElementById('passAuthority_cancel_btn')
 
     passAuthorityModal.style.display = 'none'
 
     document.getElementById('leftBarNickname').addEventListener('click', ()=>{location.href="/mypage"})
     clickDoInquiry.addEventListener('click', ()=>{doInquiryModal.style.display = 'flex'})
     clickPassAuthority.addEventListener('click', ()=>{passAuthorityModal.style.display = 'flex'})
+    passAuthorityXBtn.addEventListener('click', ()=>{passAuthorityModal.style.display = 'none'})
+    passAuthorityCancelBtn.addEventListener('click', ()=>{passAuthorityModal.style.display = 'none'})
 
-    // let leftBarProfile = document.querySelector('.profile_circle');
-    // leftBarProfile.setAttribute("style", "position: absolute; top: 250px; left: 250px;  background: #FFFFFF; border: 1px solid #000000;border-radius: 99px;")
+
 </script>
 </body>
 </html>

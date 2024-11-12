@@ -57,7 +57,6 @@ public class MainController {
     @GetMapping(value = "/common/leftbar", produces = "application/json; charset=UTF-8")
     @ResponseBody
     public List<ProjectDTO> leftbar(@AuthenticationPrincipal AuthDetails authDetails){
-        System.out.println("커몬 레프트바 왔다.");
         List<ProjectDTO> projectList = projectService.getList(authDetails.getUserNo());
 
         return projectList;
