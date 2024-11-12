@@ -5,6 +5,8 @@ import com.ohgiraffers.collatime.auth.model.AuthDetails;
 import com.ohgiraffers.collatime.mail.model.dto.MailDTO;
 import com.ohgiraffers.collatime.mail.model.service.MailService;
 import com.ohgiraffers.collatime.project.model.dto.InviteMemberDTO;
+import com.ohgiraffers.collatime.project.model.dto.ManageMemberDTO;
+import com.ohgiraffers.collatime.project.model.dto.MemberListDTO;
 import com.ohgiraffers.collatime.project.model.dto.ProjectDTO;
 import com.ohgiraffers.collatime.project.model.service.ProjectService;
 import jakarta.mail.MessagingException;
@@ -196,6 +198,20 @@ public class ProjectController {
         mv.setViewName("redirect:/project/projectmain");
 
         return mv;
+    }
+
+    // 팀원 관리 모달  - 팀원 정보 조회
+    @GetMapping(value="selectMember", produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public List<MemberListDTO> getManageMember(ModelAndView mv, @ModelAttribute MemberListDTO memberListDTO, @ModelAttribute ProjectDTO projectDTO){
+
+        List<MemberListDTO> memberList = projectService.getMemberManager(projectDTO);
+        System.out.println(memberList);
+        mv.addObject("memberManagement", memberList);
+        mv.setViewName("redierect:/project/projectmain");
+
+        return memberList;
+
     }
 
 

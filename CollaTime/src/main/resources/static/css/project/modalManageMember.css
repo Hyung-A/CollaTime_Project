@@ -47,6 +47,75 @@
 
 }
 
-#manageMemberList{
+#titleNickname{
+    position: absolute;
+    left: 182px;
+}
+
+#titleEmail{
+    position: absolute;
+    left: 380px;
+}
+
+#titleNote{
+    position: absolute;
+    left: 668px;
+}
+
+.listHead{
+    position: absolute;
+    width: max-content;
+    height: 23px;
+    top: 189px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 29px;
+    letter-spacing: 0.03em;
+    color: #282828;
+}
+
+#forInviteMember{
+
+    position: absolute;
+    left: 730px;
+    top: 620px;
+    background: #DEF6FD;
+    border: #DEF6FD;
+    width: 114px;
+    height: 36px;
+
+    border-radius: 10px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    line-height: 36px;
+    letter-spacing: 0.03em;
+    color: #282828;
 
 }
+
+#manageMemberConfirm{
+
+    position: absolute;
+    width: 114px;
+    height: 36px;
+    left: 860px;
+    top: 620px;
+    background: #92E2F8;
+    border: #92E2F8;
+    border-radius: 10px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    line-height: 36px;
+    letter-spacing: 0.03em;
+
+    color: #282828;
+
+}
+

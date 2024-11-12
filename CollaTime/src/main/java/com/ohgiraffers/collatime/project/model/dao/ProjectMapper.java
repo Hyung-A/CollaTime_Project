@@ -1,6 +1,8 @@
 package com.ohgiraffers.collatime.project.model.dao;
 
 import com.ohgiraffers.collatime.project.model.dto.InviteMemberDTO;
+import com.ohgiraffers.collatime.project.model.dto.ManageMemberDTO;
+import com.ohgiraffers.collatime.project.model.dto.MemberListDTO;
 import com.ohgiraffers.collatime.project.model.dto.ProjectDTO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -43,4 +45,6 @@ public interface ProjectMapper {
     List<InviteMemberDTO> getJoinCodeList();
 
     void updateUserNo(InviteMemberDTO inviteMemberDTO);
+
+    List<MemberListDTO> getMemberManager(ProjectDTO projectDTO);
 }
