@@ -5,7 +5,6 @@ import com.ohgiraffers.collatime.auth.model.AuthDetails;
 import com.ohgiraffers.collatime.mail.model.dto.MailDTO;
 import com.ohgiraffers.collatime.mail.model.service.MailService;
 import com.ohgiraffers.collatime.project.model.dto.InviteMemberDTO;
-import com.ohgiraffers.collatime.project.model.dto.ManageMemberDTO;
 import com.ohgiraffers.collatime.project.model.dto.MemberListDTO;
 import com.ohgiraffers.collatime.project.model.dto.ProjectDTO;
 import com.ohgiraffers.collatime.project.model.service.ProjectService;
@@ -188,7 +187,6 @@ public class ProjectController {
         return inviteMemberList;
     }
 
-//        projectService.getJoinCodeList();
     @PostMapping(value="updateUserNo")
     public ModelAndView updateUserNo (ModelAndView mv, @RequestBody InviteMemberDTO inviteMemberDTO){
         System.out.println("updateUserNo 포스트 매핑 성공" + inviteMemberDTO);

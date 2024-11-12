@@ -59,7 +59,7 @@
 
 #titleNote{
     position: absolute;
-    left: 668px;
+    left: 690px;
 }
 
 .listHead{
@@ -96,6 +96,36 @@
     color: #282828;
 
 }
+
+.member-row {
+    display: flex;
+    position: relative; /* 상위 요소를 기준으로 절대 위치 설정 */
+    /*margin-bottom: 10px; !* 각 멤버 간의 간격 *!*/
+    font-size: 23px;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.nickname {
+    position: absolute;
+    left: 162px;
+}
+
+.email {
+    position: absolute;
+    left: 360px;
+}
+
+.note {
+    position: absolute;
+    left: 690px;
+}
+
+.trashcanIcon {
+    position: absolute;
+    left: 831px;
+}
+
 
 #manageMemberConfirm{
 

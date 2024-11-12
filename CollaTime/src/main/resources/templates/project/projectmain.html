@@ -20,14 +20,6 @@
   <!-- Header 구역 -->
   <div th:replace="common/programHeader"></div>
   <div th:replace="common/leftBar.html"></div>
-
-<!--  <script>-->
-<!--    const nicknameArea = document.getElementById("nickname");-->
-<!--    let message = `[[|${#authentication.principal.userNickname}님|]]`;-->
-<!--    nicknameArea.innerText = message;-->
-<!--    nicknameArea.style.height = "30px";-->
-<!--    nicknameArea.style.textAlign = "center";-->
-<!--  </script>-->
   <!-- 메인 구역 -->
   <div>
     <span id="mainTitle">Project</span>
@@ -224,6 +216,7 @@
                 for(let i = 0; i < data.length; i++) {
                   if ($inputCode.value === data[i].joinCode) {
                     console.log(data[i]);
+                    $wrongJoinCode.style.display = "none";
                     inputUserNo = document.getElementById("inputUserNo");
 
                     fetch("/project/updateUserNo",
@@ -235,7 +228,7 @@
                                       },
                               body: JSON.stringify({
                                 joinCode : data[i].joinCode,
-                                email : data[i].email,
+                                email : `[[|${#authentication.principal.userEmail}|]]`,
                                 userNo : `[[|${#authentication.principal.userNo}|]]`
                               })
                             })
@@ -248,7 +241,7 @@
                             })
                             .then((result) => console.log(result))
                             .then((error) => console.log(error));
-                  } else {
+                  } else if($inputCode.value !== data[i].joinCode) {
                     /* 다시 입력하라는 모달 띄우기 */
                     $wrongJoinCode = document.getElementById("wrongJoinCode");
                     $wrongJoinCode.style.display = "";
@@ -968,11 +961,14 @@
         <p id="titleEmail" class="listHead email">이메일</p>
         <p id="titleNote" class="listHead note">비고</p>
       </div>
-      <div id="nthMemberArea" th:each="member : ${ memberManagement }">
-        <p id="nthNickname" class="nthMember nickname" name="nickname" th:value="${ member.memberNickname }"></p>
-        <p id="nthEmail" class="nthMember email" name="email" th:value="${ member.memberEmail }"></p>
-        <p id="nthNote" class="nthMember note" name="note"></p>
-        <img src="/css/project/image/trashcanIcon.png" id="trashcanIcon" class="nthMember trashcanIcon" alt="삭제 아이콘"/>
+      <!-- JavaScript를 통해 동적으로 멤버 리스트가 생성될 부분 -->
+      <div id="nthMemberArea" class="member-row" th:each="member : ${ memberManagement }">
+        <div id="nthList">
+          <p id="nthNickname" class="nthMember nickname" name="nickname" th:value="${ member.memberNickname }"></p>
+          <p id="nthEmail" class="nthMember email" name="email" th:value="${ member.memberNickname }"></p>
+          <p id="nthNote" class="nthMember note" name="note"></p>
+          <img src="/css/project/image/trashcanIcon.png" id="trashcanIcon" class="nthMember trashcanIcon" alt="삭제 아이콘"/>
+        </div>
       </div>
     </div>
     <button type="button" id="forInviteMember">팀원 초대</button>
@@ -980,15 +976,84 @@
   </div>
 </div>
 <script>
+  // fetch로 데이터를 가져와서 동적으로 HTML을 생성하는 코드
   function selectMember(projectNo) {
-    fetch("/project/selectMember?projectNo=" + projectNo + "")
+    fetch("/project/selectMember?projectNo=" + projectNo)
             .then((res) => res.json())
             .then((data) => {
-              console.log(data);
+              console.log("멤버 정보 : " + data);
 
+              // `manageMemberList` div를 비웁니다.
+              const manageMemberList = document.getElementById("manageMemberList");
+              const manageMemberListHead = document.getElementById("manageMemberListHead");
+              manageMemberList.innerHTML = "";
+              manageMemberList.appendChild(manageMemberListHead);
+              manageMemberListHead.style.borderBottom = "solid 3px #92E2F8";
+
+              // 데이터를 기반으로 멤버 리스트를 생성합니다.
+              let topPosition = 270;  // 첫 번쨰 요소의 top 위치 설정
+              const gap = 40; // 각 요소 간의 간격 설정
+
+              data.forEach((member,index) => {
+                const memberDiv = document.createElement("div");
+                const nthList = document.createElement("div");
+                memberDiv.className = "member-row";
+                memberDiv.style.top = topPosition + "px";  // 동적으로 top 위치 설정
+                memberDiv.style.left = "150px";
+                nthList.style.width = "730px";
+                nthList.style.height = "40px";
+                nthList.style.borderBottom = "solid 3px #92E2F8"
+
+
+                const nicknameP = document.createElement("p");
+                nicknameP.className = "nthMember nickname";
+                nicknameP.textContent = member.memberNickname;
+                nicknameP.style.left = "32px";
+
+
+                const emailP = document.createElement("p");
+                emailP.className = "nthMember email";
+                emailP.textContent = member.memberEmail;
+                emailP.style.left = "230px";
+
+                const noteP = document.createElement("p");
+                noteP.className = "nthMember note";
+                noteP.style.left = "540px";
+                if (index === 0) {
+                  noteP.textContent = "팀장";
+                } else {
+                  noteP.textContent = "";
+                }
+
+
+                const trashcanImg = document.createElement("img");
+                trashcanImg.src = "/css/project/image/trashcanIcon.png";
+                trashcanImg.className = "nthMember trashcanIcon";
+                trashcanImg.alt = "삭제 아이콘";
+                trashcanImg.style.left = "670px";
+                if(index === 0){
+                  trashcanImg.style.display = "none";
+                } else {
+                  trashcanImg.style.display = "";
+                }
+                trashcanImg.addEventListener("click", function() {
+                  // 멤버 삭제 코드 추가
+                });
+
+                memberDiv.appendChild(nthList);
+                nthList.appendChild(nicknameP);
+                nthList.appendChild(emailP);
+                nthList.appendChild(noteP);
+                nthList.appendChild(trashcanImg);
+
+                manageMemberList.appendChild(memberDiv);
+
+                topPosition += gap; // 다음 요소의 top 위치를 50px씩 증가
+              });
             })
-
+            .catch(error => console.log("Error fetching members:", error));
   }
+
 
   const modalManageMember = document.getElementById("modalManageMember");
   modalManageMember.style.display = "none";

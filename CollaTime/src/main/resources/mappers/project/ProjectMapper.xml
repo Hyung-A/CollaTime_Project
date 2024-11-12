@@ -24,29 +24,11 @@
         <result property="email" column="EMAIL"/>
     </resultMap>
 
-<!--    <resultMap id="manageMember" type="com.ohgiraffers.collatime.project.model.dto.ManageMemberDTO">-->
-<!--        <id property="projectNo" column="PROJECT_NO"/>-->
-<!--        <result property="productorNo" column="PRODUCTOR_NO"/>-->
-<!--        <result property="productorNickname" column="CT_USER_NICKNAME"/>-->
-<!--        <result property="productorEmail" column="CT_USER_EMAIL"/>-->
-<!--    </resultMap>-->
-
+    <!-- MemberListDTO -->
     <resultMap id="memberList" type="com.ohgiraffers.collatime.project.model.dto.MemberListDTO">
         <id property="memberNo" column="CT_USER_NO"/>
         <result property="memberNickname" column="CT_USER_NICKNAME"/>
         <result property="memberEmail" column="CT_USER_EMAIL"/>
-    </resultMap>
-
-    <resultMap id="manageMemberAssociationMemberList" type="com.ohgiraffers.collatime.project.model.dto.ManageMemberDTO">
-        <id property="projectNo" column="PROJECT_NO"/>
-        <result property="productorNo" column="PRODUCTOR_NO"/>
-        <result property="productorNickname" column="CT_USER_NICKNAME"/>
-        <result property="productorEmail" column="CT_USER_EMAIL"/>
-        <association property="memberList" javaType="com.ohgiraffers.collatime.project.model.dto.MemberListDTO">
-            <id property="memberNo" column="CT_USER_NO"/>
-            <result property="memberNickname" column="CT_USER_NICKNAME"/>
-            <result property="memberEmail" column="CT_USER_EMAIL"/>
-        </association>
     </resultMap>
 
     <!-- 프로젝트 전체 조회 -->
@@ -200,9 +182,9 @@
               ,CT_USER_NICKNAME
               ,CT_USER_EMAIL
           FROM CT_USER
-         WHERE CT_USER_NO = (SELECT PRODUCTOR_NO FROM PROJECT WHERE PROJECT_NO = 11)
+         WHERE CT_USER_NO = (SELECT PRODUCTOR_NO FROM PROJECT WHERE PROJECT_NO = #{ projectNo })
                OR
-               CT_USER_NO IN(SELECT CT_USER_NO FROM JOIN_PROJECT WHERE PROJECT_NO = 11);
+               CT_USER_NO IN(SELECT CT_USER_NO FROM JOIN_PROJECT WHERE PROJECT_NO = #{ projectNo });
     </select>
 
 </mapper>

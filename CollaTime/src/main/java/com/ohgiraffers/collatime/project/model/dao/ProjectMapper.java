@@ -1,7 +1,6 @@
 package com.ohgiraffers.collatime.project.model.dao;
 
 import com.ohgiraffers.collatime.project.model.dto.InviteMemberDTO;
-import com.ohgiraffers.collatime.project.model.dto.ManageMemberDTO;
 import com.ohgiraffers.collatime.project.model.dto.MemberListDTO;
 import com.ohgiraffers.collatime.project.model.dto.ProjectDTO;
 import org.apache.ibatis.annotations.Mapper;
@@ -44,6 +43,7 @@ public interface ProjectMapper {
     // 프로젝트 참가 코드 전체 조회
     List<InviteMemberDTO> getJoinCodeList();
 
+    // 참가코드 입력 시 joinPoject의 ct_user_no랑 email 수정
     void updateUserNo(InviteMemberDTO inviteMemberDTO);
 
     List<MemberListDTO> getMemberManager(ProjectDTO projectDTO);
