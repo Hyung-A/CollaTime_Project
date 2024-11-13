@@ -24,20 +24,20 @@
 
 
         <!-- 일정 제목 -->
-        <div id="scheduleTitle"></div>
+        <div id="scheduleTitle" th:text="${schedule.scheduleTitle}"></div>
 
         <!-- 색상 선택 옵션 -->
         <div id="colorOptions">
-            <div class="color-button" id="color-button"></div>
-            <input type="hidden" name="colorCode" id="selectedColor">
+            <div class="color-button" id="color-button" th:style="'background-color: ' + ${schedule.colorCode}"></div> <!-- 색상 출력 -->
+            <input type="hidden" name="colorCode" id="selectedColor" th:value="${schedule.colorCode}">
         </div>
 
         <!-- 스케줄 기간-->
         <div id="schedulePeriod">
             <img src="/css/schedule/image/시계.png" id="watch">
-            <input type="date" id="scheduleStartDate" min="2024-01-01" max="2099-12-31" name="scheduleStart" required></input>
+            <input type="date" id="scheduleStartDate" th:value="${schedule.scheduleStartDate}" readonly>
             <div id="slash">-</div>
-            <input type="date" id="scheduleEndDate" min="2024-01-01" max="2099-12-31" name="scheduleEnd" required></input>
+            <input type="date" id="scheduleEndDate" th:value="${schedule.scheduleEndDate}" readonly>
         </div>
 
         <!-- 참여자 -->
@@ -52,7 +52,8 @@
 
         <!-- 메모 -->
         <span><img src="/css/schedule/image/과제내용.png" id="memoIcon"></span>
-        <textarea id="memo" class="memo-input" name="scheduleContent"></textarea>
+        <textarea id="memo" class="memo-input" readonly th:text="${schedule.scheduleContent}"></textarea>
+
 
 
         <div id="creator-info">
@@ -73,8 +74,6 @@
     document.getElementById("detailsXButton").addEventListener("click", function() {
         document.getElementById("detailsModal").style.display = "none";
     });
-
-
 
 
 </script>
