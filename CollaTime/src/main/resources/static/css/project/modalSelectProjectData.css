@@ -414,7 +414,7 @@
     position: absolute;
     width: 50px;
     left: 70px;
-    top: 586px;
+    top: 596px;
 
     font-style: normal;
     font-weight: 600;
@@ -429,6 +429,7 @@
 #selectMember{
 
     position: absolute;
+    overflow-x: auto;
     width: 780px;
     height: 50px;
     left: 130px;
