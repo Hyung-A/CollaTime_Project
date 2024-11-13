@@ -3,6 +3,7 @@ package com.ohgiraffers.collatime.inquiry.controller;
 import com.ohgiraffers.collatime.auth.model.AuthDetails;
 import com.ohgiraffers.collatime.inquiry.model.dto.InquiryDTO;
 import com.ohgiraffers.collatime.inquiry.model.service.InquiryService;
+import com.ohgiraffers.collatime.project.model.dto.ProjectDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -69,4 +70,16 @@ public class InquiryController {
         mv.setViewName("/mypage/myinquiryinfo");
         return mv;
     }
+
+//    @GetMapping(value = "/havingproject", produces = "application/json; charset=UTF-8")
+//    @ResponseBody
+//    public List<ProjectDTO> havingproject(@AuthenticationPrincipal AuthDetails authDetails){
+//
+//        System.out.println(authDetails.getUserNo());
+//        List<ProjectDTO> projectDTOList = projectService.;
+//
+//
+//
+//        return projectDTOList;
+//    }
 }
