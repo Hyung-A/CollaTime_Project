@@ -235,5 +235,12 @@ public class ProjectController {
         }
     }
 
+    @PostMapping(value = "/deleteMemberInfo", produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public void deleteMemberInfo(@RequestBody InviteMemberDTO inviteMemberDTO){
+
+        System.out.println("deleteMemberInfo 매핑 완료" + inviteMemberDTO);
+    }
+
 
 }

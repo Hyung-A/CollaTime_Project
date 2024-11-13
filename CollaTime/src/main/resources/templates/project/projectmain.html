@@ -1046,9 +1046,13 @@
                             },
                             body: JSON.stringify({
                               projectNo : projectNumber.value,
-                              // emailList:
+                              userNo : member.userNo,
+                              email : emailP.textContent
                             })
                           })
+                          .then((res) => res.json())
+                          .then((result) => console.log(result))
+                          .catch((error) => console.log(error));
                 });
 
                 memberDiv.appendChild(nthList);
