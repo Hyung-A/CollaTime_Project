@@ -149,7 +149,7 @@
     <!-- 프로젝트 삭제 - project 테이블 -->
     <delete id="deleteProject" parameterType="com.ohgiraffers.collatime.project.model.dto.ProjectDTO">
         DELETE FROM PROJECT
-        WHERE PROJECT_NO = #{ projectNo }
+         WHERE PROJECT_NO = #{ projectNo }
     </delete>
 
     <!-- 프로젝트 삭제 - join_project 테이블 -->
@@ -186,6 +186,13 @@
                OR
                CT_USER_NO IN(SELECT CT_USER_NO FROM JOIN_PROJECT WHERE PROJECT_NO = #{ projectNo });
     </select>
+
+    <delete id="deleteMemberInfo" parameterType="com.ohgiraffers.collatime.project.model.dto.InviteMemberDTO">
+        DELETE
+          FROM JOIN_PROJECT
+         WHERE PROJECT_NO = #{ projectNo } AND
+               CT_USER_NO = #{ userNo }
+    </delete>
 
 </mapper>
 

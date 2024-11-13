@@ -344,7 +344,7 @@
 
     position: absolute;
     width: 110px;
-    height: 118px;
+    height: 150px;
     left: 187px;
     top: 29px;
     background: #F5F5F5;
@@ -369,20 +369,26 @@
     text-align: center;
 
 }
-#projectUpdate{
+#projectSelect{
     position: absolute;
     top: 10px;
 }
 
-#projectDelete{
+#projectUpdate{
     position: absolute;
     top: 45px;
 }
 
-#manageMember{
+#projectDelete{
     position: absolute;
     top: 80px;
 }
+
+#manageMember{
+    position: absolute;
+    top: 115px;
+}
+
 
 #projectFullName{
 

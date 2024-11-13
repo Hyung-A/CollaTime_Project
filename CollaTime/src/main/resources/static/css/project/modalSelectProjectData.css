@@ -1,0 +1,462 @@
+@charset "utf-8";
+
+/* 모달 레이아웃 */
+#modalSelectProjectData{
+
+    cursor: default;
+    position: absolute;
+    width: 1013px;
+    height: 680px;
+    left: 453px;
+    top: 100px;
+
+    background: #FFFFFF;
+    border: 1px solid #595959;
+    border-radius: 25px;
+}
+
+#modalSelectProjectHead{
+    position: absolute;
+    width: 1013px;
+    height: 51px;
+
+    background: #92E2F8;
+    border-bottom: 1px solid #282828;
+    border-radius: 25px 25px 0px 0px;
+}
+
+#selectProjectXButton{
+    width: 30px;
+    height: 34px;
+    font-size: 30px;
+    position: absolute;
+    left: 965px;
+    top: 5px;
+
+}
+
+/* --내용-- */
+
+/* 제목 */
+#selectTitle{
+
+    position: absolute;
+    width: 850px;
+    height: 60px;
+    left: 56px;
+    top: 91px;
+    border-bottom: solid 3px #92E2F8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#selectInputTitle{
+
+    width: 800px;
+    height: 50px;
+    border: none;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 25px;
+    letter-spacing: 0.03em;
+    color: #282828;
+    outline: none;
+
+}
+
+/* 개요 */
+#selectSummaryLabel{
+
+    position: absolute;
+    left: 70px;
+    top: 210px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 23px;
+    letter-spacing: 0.03em;
+
+    color: #282828;
+
+}
+
+#selectSummary{
+
+    position: absolute;
+    width: 780px;
+    height: 70px;
+    left: 130px;
+    top: 190px;
+
+    border-left: solid 3px #92E2F8;
+
+}
+
+#selectInputSummary{
+
+    position: absolute;
+    width: 760px;
+    height: 60px;
+    left: 10px;
+    top: 3px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 15px;
+    letter-spacing: 0.03em;
+    text-align: start;
+    border: none;
+    color: #000000;
+    outline: none;
+
+    /* https://11001.tistory.com/149#google_vignette */
+}
+
+/* 목표 및 목적 */
+#selectPurposeLabel{
+
+    position: absolute;
+    left: 70px;
+    top: 320px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 23px;
+    letter-spacing: 0.03em;
+
+    color: #282828;
+
+}
+
+#selectPurpose{
+
+    position: absolute;
+    width: 780px;
+    height: 70px;
+    left: 130px;
+    top: 299px;
+
+    border-left: solid 3px #92E2F8;
+
+}
+
+#selectInputPurpose{
+
+    position: absolute;
+    width: 760px;
+    height: 60px;
+    left: 10px;
+    top: 3px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 15px;
+    letter-spacing: 0.03em;
+    text-align: start;
+    border: none;
+    color: #000000;
+    outline: none;
+
+}
+
+/* 기간 */
+#selectPeriodLabel{
+
+    position: absolute;
+    left: 70px;
+    top: 420px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 23px;
+    letter-spacing: 0.03em;
+
+    color: #282828;
+
+}
+
+#selectPeriod{
+
+    position: absolute;
+    width: 780px;
+    height: 50px;
+    left: 130px;
+    top: 408px;
+
+    border-left: solid 3px #92E2F8;
+
+
+}
+
+#selectStartDate{
+
+    position: absolute;
+    width: 150px;
+    height: 40px;
+    left: 10px;
+    top: 5px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 15px;
+    letter-spacing: 0.03em;
+    display: flex;
+    justify-content: center;
+    line-height: 20px;
+    border: none;
+    color: #000000;
+    outline: none;
+
+}
+
+#selectEndDate{
+
+    position: absolute;
+    width: 150px;
+    height: 40px;
+    left: 205px;
+    top: 5px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 15px;
+    letter-spacing: 0.03em;
+    display: flex;
+    justify-content: center;
+    line-height: 20px;
+    border: none;
+    color: #282828;
+    outline: none;
+
+}
+
+#selectWave{
+
+    position: absolute;
+    left: 175px;
+    top: 12px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 25px;
+    letter-spacing: 0.03em;
+    display: flex;
+    justify-content: center;
+    line-height: 20px;
+    border: none;
+
+    color: #282828;
+
+}
+
+/* 카테고리 */
+#selectCategoryLabel{
+
+    position: absolute;
+    left: 70px;
+    top: 510px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 23px;
+    letter-spacing: 0.03em;
+    color: #282828;
+
+}
+
+#selectCategory{
+
+    position: absolute;
+    width: 780px;
+    height: 50px;
+    left: 130px;
+    top: 497px;
+
+    border-left: solid 3px #92E2F8;
+
+}
+
+.selectCategory{
+
+    position: absolute;
+    top: 7px;
+    border: solid 2px #92E2F8;
+    border-radius: 15px;
+    background: #FFFFFF;
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 23px;
+    letter-spacing: 0.03em;
+    opacity: 0;
+    top: 15px;
+
+}
+
+#selectBank{
+
+    position: absolute;
+    left: 10px;
+
+}
+
+#selectInsurance{
+
+    position: absolute;
+    left: 100px;
+
+}
+
+#selectPublicSector{
+
+    position: absolute;
+    left: 190px;
+
+}
+
+#selectWeb{
+
+    position: absolute;
+    left: 280px;
+
+}
+
+#selectApplication{
+
+    position: absolute;
+    left: 370px;
+
+}
+
+#selectEtc{
+
+    position: absolute;
+    left: 460px;
+
+}
+
+.selectCategoryLabel{
+
+    position: absolute;
+    top: 12px;
+    border: solid 3px #92E2F8;
+    border-radius: 10px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    line-height: 28px;
+
+}
+
+#selectBankLabel{
+
+    position: absolute;
+    left: 35px;
+    width: 50px;
+
+}
+
+#selectInsuranceLabel{
+
+    position: absolute;
+    left: 110px;
+    width: 65px;
+
+}
+
+#selectPublicSectorLabel{
+
+    position: absolute;
+    left: 200px;
+    width: 80px;
+
+}
+
+#selectWebLabel{
+
+    position: absolute;
+    left: 305px;
+    width: 65px;
+
+
+}
+
+#selectApplicationLabel{
+
+    position: absolute;
+    left: 395px;
+    width: 65px;
+
+}
+
+#selectEtcLabel{
+
+    position: absolute;
+    left: 485px;
+    width: 50px;
+
+
+}
+
+#selectMemberLabel{
+
+    position: absolute;
+    width: 50px;
+    left: 70px;
+    top: 596px;
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 23px;
+    letter-spacing: 0.03em;
+
+    color: #282828;
+
+}
+
+#selectMember{
+
+    position: absolute;
+    overflow-x: auto;
+    width: 780px;
+    height: 50px;
+    left: 130px;
+    top: 586px;
+
+    border-left: solid 3px #92E2F8;
+
+}
+
+#selectConfirm{
+
+    position: absolute;
+    width: 114px;
+    height: 36px;
+    left: 860px;
+    top: 620px;
+    background: #92E2F8;
+    border: #92E2F8;
+    border-radius: 10px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    line-height: 36px;
+    letter-spacing: 0.03em;
+
+    color: #282828;
+
+}

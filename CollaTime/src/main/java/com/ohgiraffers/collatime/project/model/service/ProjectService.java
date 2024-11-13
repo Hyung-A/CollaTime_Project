@@ -88,4 +88,8 @@ public class ProjectService {
     public List<MemberListDTO> getMemberManager(ProjectDTO projectDTO) {
         return projectMapper.getMemberManager(projectDTO);
     }
+
+    public void deleteMemberInfo(InviteMemberDTO inviteMemberDTO) {
+        projectMapper.deleteMemberInfo(inviteMemberDTO);
+    }
 }

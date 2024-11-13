@@ -109,7 +109,7 @@
     position: relative; /* 상위 요소를 기준으로 절대 위치 설정 */
     /*margin-bottom: 10px; !* 각 멤버 간의 간격 *!*/
     width: 100%;
-    font-size: 23px;
+    font-size: 18px;
     font-weight: 400;
     font-style: normal;
 }
@@ -117,13 +117,13 @@
 .nickname {
     position: absolute;
     left: 162px;
-    width: 100px;
+    width: max-content;
 }
 
 .email {
     position: absolute;
     left: 360px;
-    width: 200px;
+    width: max-content;
 }
 
 .note {

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/css/project/reset.css">
+    <link rel="stylesheet" href="/static/css/project/modalSelectProjectData.css">
+</head>
+<body>
+<!-- ----------------------------------------- 프로젝트 내용 조회 모달(조회용) ----------------------------------------- -->
+<!--<div class="modal fade" id="modalUpdateProject" aria-labelledby="modalUpdateProject" aria-hidden="true" style="z-index: 2">-->
+<!--    <div class="modal-dialog">-->
+<!--        <div class="modal-content">-->
+<div id="modalSelectProjectData">
+    <!-- 모달 헤더 -->
+    <div id="modalSelectProjectHead">
+        <div id="selectProjectXButton">X</div>
+    </div>
+    <!-- 내용 바디 -->
+    <div id="modalSelectProjectBody">
+        <div id="selectTitle">
+            <input type="text" id="selectInputTitle" placeholder="프로젝트 명을 입력해주세요." name="projectName" th:text:="${ project.projectName }">
+        </div>
+        <label id="selectSummaryLabel" for="selectInputSummary">개요</label>
+        <div id="selectSummary">
+            <textarea id="selectInputSummary" maxlength="150" placeholder="프로젝트 개요를 적어주세요(최대 150자)." name="projectSummary" th:text="${ project.projectSummary }"></textarea>
+        </div>
+        <label id="selectPurposeLabel" for="selectInputPurpose">목적</label>
+        <div id="selectPurpose">
+            <textarea id="selectInputPurpose" maxlength="150" placeholder="프로젝트 목표 및 목적을 적어주세요(최대 150자)." name="projectPurpose" th:text="${ project.projectPurpose }"></textarea>
+        </div>
+        <label for="selectPeriod" id="selectPeriodLabel">기간</label>
+        <div id="selectPeriod">
+            <input type="date" id="selectStartDate" min="2023-01-01" max="2077-06-20" name="startDate" th:text="${ project.startDate }"/>
+            <div id="selectWave">~</div>
+            <input type="date" id="selectEndDate"  min="2023-01-01" max="2077-06-20" name="endDate" th:text="${ project.endDate }"/>
+        </div>
+        <label for="selectCategory" id="selectCategoryLabel">분류</label>
+        <div id="selectCategory" th:text="${ project.projectCategoryCode }">
+            <input type="radio" id="selectBank" class="selectCategory" name="projectCategoryCode" value="CT1"/><label id="selectBankLabel" class="selectCategoryLabel" for="selectBank">은행</label>
+            <input type="radio" id="selectInsurance" class="selectCategory" name="projectCategoryCode" value="CT2"/><label id="selectInsuranceLabel" class="selectCategoryLabel" for="selectInsurance">보험사</label>
+            <input type="radio" id="selectPublicSector" class="selectCategory" name="projectCategoryCode" value="CT3"/><label id="selectPublicSectorLabel" class="selectCategoryLabel" for="selectPublicSector">공공부문</label>
+            <input type="radio" id="selectWeb" class="selectCategory" name="projectCategoryCode" value="CT4"/><label id="selectWebLabel" class="selectCategoryLabel" for="selectWeb">웹포털</label>
+            <input type="radio" id="selectApplication" class="selectCategory" name="projectCategoryCode" value="CT5"/><label id="selectApplicationLabel" class="selectCategoryLabel" for="selectApplication">앱개발</label>
+            <input type="radio" id="selectEtc" class="selectCategory" name="projectCategoryCode" value="CT6"/><label id="selectEtcLabel" class="selectCategoryLabel" for="selectEtc">기타</label>
+        </div>
+        <label for="selectMember" id="selectMemberLabel">인원초대</label>
+        <div id="selectMember"></div>
+        <button type="submit" id="selectConfirm">확인</button>
+    </div>
+</div>
+</body>
+</html>

@@ -48,4 +48,6 @@ public interface ProjectMapper {
 
     // 멤버 관리 모달에서 쓸 팀원 정보 조회
     List<MemberListDTO> getMemberManager(ProjectDTO projectDTO);
+
+    void deleteMemberInfo(InviteMemberDTO inviteMemberDTO);
 }

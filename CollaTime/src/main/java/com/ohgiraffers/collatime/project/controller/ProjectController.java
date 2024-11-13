@@ -235,11 +235,14 @@ public class ProjectController {
         }
     }
 
+    // 팀원 관리 페이지에서 팀원 삭제하기
     @PostMapping(value = "/deleteMemberInfo", produces = "application/json; charset=UTF-8")
     @ResponseBody
     public void deleteMemberInfo(@RequestBody InviteMemberDTO inviteMemberDTO){
 
         System.out.println("deleteMemberInfo 매핑 완료" + inviteMemberDTO);
+
+        projectService.deleteMemberInfo(inviteMemberDTO);
     }
 
 

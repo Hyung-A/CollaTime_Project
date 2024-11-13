@@ -14,6 +14,8 @@
   <link rel="stylesheet" href="/css/project/modalWrongJoinCode.css">
   <link rel="stylesheet" href="/css/project/modalManageMember.css">
   <link rel="stylesheet" href="/css/project/modalMoreInviteMember.css">
+  <link rel="stylesheet" href="/css/project/modalIsRealDeleteMember.css">
+  <link rel="stylesheet" href="/css/project/modalSelectProjectData.css">
 </head>
 <body>
 <!-- 프로젝트 메인 화면 -->
@@ -28,14 +30,16 @@
       <!-- 프로젝트 폴더 -->
       <div id="createdProjectFolder" th:each="project : ${ projectList }">
         <input type="text" id="projectNo" style="display: none" th:value="${ project.projectNo }"/>
+        <input type="text" id="productorNo" style="display: none" th:value="${ project.productorNo }"/>
         <div id="folderHead"></div>
         <div id="folderBody">
           <div id="projectTitle" th:text="${ project.projectName }"></div>
           <div id="folderMenu">...</div>
           <div id="crudMenu">
-            <span id="projectUpdate" class="crudText">수정하기</span>
-            <span id="projectDelete" class="crudText">삭제하기</span>
-            <span id="manageMember" class="crudText">멤버관리</span>
+            <span id="projectSelect" class="crudText Member">조회하기</span>  <!-- 프로덕터 넘버가 유저 넘버랑 일치하지 않을 때 얘만 열리기 -->
+            <span id="projectUpdate" class="crudText Productor">수정하기</span>
+            <span id="projectDelete" class="crudText Productor">삭제하기</span>
+            <span id="manageMember" class="crudText Productor">멤버관리</span>
           </div>
         </div>
         <span id="projectFullName" th:text="${ project.projectName }" th:title="${ project.projectName }"></span>
@@ -90,6 +94,7 @@
       }
       // 메뉴 텍스트
       let crudText = document.querySelectorAll(".crudText");
+      // crudText.style.display = "none";
       for (let i = 0; i < crudText.length; i++) {
         crudText[i].style.backgroundColor = "#F5F5F5";
         crudText[i].style.width = "90px";
@@ -108,13 +113,35 @@
         // 메뉴 아이콘 ...
         let folderMenu = document.querySelectorAll("#folderMenu");
         let crudMenu = document.querySelectorAll("#crudMenu");
+        let productorNumbers = document.querySelectorAll("#productorNo");
         for (let i = 0; i < folderMenu.length; i++) {
           crudMenu[i].style.display = "none";
           folderMenu[i].onclick = function () {
-            if (crudMenu[i].style.display === 'block') {
-              crudMenu[i].style.display = 'none';
+            if(productorNumbers[i].value === `[[|${#authentication.principal.userNo}|]]`) {
+              console.log("프로덕터 넘버 : " + productorNumbers[i].value + "유저 넘버 : " + `[[|${#authentication.principal.userNo}|]]`);
+              if (crudMenu[i].style.display === 'block') {
+                crudMenu[i].style.display = 'none';
+              } else {
+                crudMenu[i].style.display = 'block';
+              }
             } else {
-              crudMenu[i].style.display = 'block';
+              console.log("프로덕터 넘버 : " + productorNumbers[i].value + "유저 넘버 : " + `[[|${#authentication.principal.userNo}|]]`);
+              if (crudMenu[i].style.display === 'block') {
+                crudMenu[i].style.display = 'none';
+              } else {
+                crudMenu[i].style.display = 'block';
+                // projectSelect 요소는 클릭 가능하게 유지
+                let projectSelect = crudMenu[i].querySelector("#projectSelect");
+                projectSelect.style.pointerEvents = 'auto';
+                projectSelect.style.color = "#282828";  // 기본 색상 유지
+                // .Productor 요소들은 클릭 불가하게 설정
+                let productorMenu = crudMenu[i].querySelectorAll((".Productor"));
+                productorMenu.forEach(function(menu){
+                  menu.onclick = null;  // 이벤트 클릭 제거
+                  menu.style.pointerEvents = "none"; // 클릭 막기
+                  menu.style.color = "#ccc"; // 시각적 효과 추가
+                });
+              }
             }
           }
         }
@@ -414,7 +441,6 @@
 
 
   /* "프로젝트 생성 혹은 참가 모달"에서 생성 버튼 클릭 시 생성 모달 띄우기 */
-
   const createProjectModal = document.getElementById("createProjectModal");
   createProjectModal.style.display = "none";
   const areaCreateProject = document.getElementById("areaCreateProject");
@@ -422,7 +448,7 @@
     createProjectModal.style.display = "";
   };
 
-  /* x버튼 취소 버튼 클릭 시 모달 없애기 */
+  /* x버튼 클릭 시 모달 없애기 */
   const bigXButton = document.getElementById("bigXButton");
   bigXButton.onclick = function(){
     createProjectModal.style.display = "none";
@@ -433,34 +459,32 @@
     document.getElementById("inputPurpose").value = "";
     document.getElementById("projectStartDate").value = "";
     document.getElementById("projectEndDate").value = "";
-
     const categoryRadio = document.querySelectorAll("input[type=radio]:checked");
     for(let i = 0; i < categoryRadio.length; i++){
       categoryRadio[i].checked = false;
       categoryLabelList[i].style.background = "#FFFFFF";
     }
-
     const resultEamilArea = document.getElementById("addedMember");
     resultEamilArea.innerHTML = "";
     resultEamilList = [];
   };
 
+  /* 취소 버튼 클릭 시 모달 없애기 */
   const bigCancel1 = document.getElementById("bigCancel1");
   bigCancel1.onclick = function(){
     createProjectModal.style.display = "none";
     $modalInputAlert.style.display = "none";
+    // 내용 초기화
     document.getElementById("inputTitle").value = "";
     document.getElementById("inputSummary").value = "";
     document.getElementById("inputPurpose").value = "";
     document.getElementById("projectStartDate").value = "";
     document.getElementById("projectEndDate").value = "";
-
     const categoryRadio = document.querySelectorAll("input[type=radio]:checked");
     for(let i = 0; i < categoryRadio.length; i++){
       categoryRadio[i].checked = false;
       categoryLabelList[i].style.background = "#FFFFFF";
     }
-
     const resultEamilArea = document.getElementById("addedMember");
     resultEamilArea.innerHTML = "";
     resultEamilList = [];
@@ -490,10 +514,6 @@
     let endDate = document.getElementById("projectEndDate");
     endDate.setAttribute("min", this.value);
   }
-  // let dateClass = document.querySelectorAll(".date");
-  // for(let i = 0; i < dateClass.length; i++){
-  //   dateClass[i].setAttribute("min", today);
-  // }
 
 </script>
 <!-- ---------------------------- 멤버 초대 모달 ---------------------------- -->
@@ -520,7 +540,6 @@
   </div>
 </div>
 <input type="text" style="display:none;" id="popupType"/>
-
 <script>
 
   // 요소 삭제
@@ -537,6 +556,7 @@
   let emailList = [];
   let resultEmailList = [];
   addEmail.onclick = function(){
+    // 요소 생성 및 스타일 적용
     emailList.push(inputEmail.value);
     let storeArea = document.getElementById("storeEmailArea");
     let storeMail = document.createElement("div");
@@ -720,9 +740,9 @@
     <span id="updateStartDateStar" class="updateStar">*</span>
     <label for="updatePeriod" id="updatePeriodLabel">기간</label>
     <div id="updatePeriod">
-      <input type="date" id="updateStartDate" min="2023-01-01" max="2077-06-20" name="startDate" ></input>
+      <input type="date" id="updateStartDate" max="2077-06-20" name="startDate"/>
       <div id="updateWave">~</div>
-      <input type="date" id="updateEndDate"  min="2023-01-01" max="2077-06-20" name="endDate"></input>
+      <input type="date" id="updateEndDate"  max="2077-06-20" name="endDate"/>
     </div>
     <label for="updateCategory" id="updateCategoryLabel">분류</label>
     <div id="updateCategory">
@@ -733,17 +753,17 @@
       <input type="radio" id="updateApplication" class="updateCategory" name="projectCategoryCode" value="CT5"/><label id="updateApplicationLabel" class="updateCategoryLabel" for="updateApplication">앱개발</label>
       <input type="radio" id="updateEtc" class="updateCategory" name="projectCategoryCode" value="CT6"/><label id="updateEtcLabel" class="updateCategoryLabel" for="updateEtc">기타</label>
     </div>
-    <span id="updateMemberStar" class="updateStar">*</span>
-    <label for="updateMember" id="updateMemberLabel">인원초대</label>
-    <div id="updateMember">
-      <button type="button" id="updateInviteMember" name="updateMember">+</button>
-      <div id="memberList" name="email" style="display: flex; flex-wrap: wrap; flex-direction: row;"></div>
+<!--    <span id="updateMemberStar" class="updateStar">*</span>-->
+<!--    <label for="updateMember" id="updateMemberLabel">인원초대</label>-->
+<!--    <div id="updateMember">-->
+<!--      <button type="button" id="updateInviteMember" name="updateMember">+</button>-->
+<!--      <div id="memberList" name="email" style="display: flex; flex-wrap: wrap; flex-direction: row;"></div>-->
 
-    </div>
+<!--    </div>-->
     <button type="button" id="updateCancel">취소</button>
     <button type="submit" id="updateConfirm">수정</button>
   </div>
-</form  >
+</form >
 <script>
   let resultMemberInviteList = null;
   /* 정보 비동기로 가져오기 */
@@ -765,53 +785,38 @@
               $endDate.value = data.endDate;
               let $updateProjectNo = document.getElementById("updateProjectNo");
               $updateProjectNo.value = data.projectNo;
-              // let memberList = document.getElementById("memberList");
-              // memberList.value = data.inviteMemberList;
-
-              const memberListArea = document.getElementById("memberList");
-              memberListArea.innerHTML = "";
-              const invitedMemberList = data.inviteMemberList;
-              resultMemberInviteList = invitedMemberList;
-              for(let i = 0; i < invitedMemberList.length; i++) {
-
-                resultEmailList
-                 = [...resultEmailList, invitedMemberList[i].email]
-                // 이메일 div 생성
-                let resultMail = document.createElement("div");  // 이메일 div
-                let emailAdress = document.createTextNode(invitedMemberList[i].email);  // 이메일 주소
-                resultMail.appendChild(emailAdress);
-                memberListArea.appendChild(resultMail);
-                // 스타일 설정
-                resultMail.style.backgournd = "#DFF7FD";
-                resultMail.style.borderRadius = "15px";
-                resultMail.style.width = "max-content";
-                resultMail.style.height = "30px";
-                resultMail.style.display = "flex";
-                resultMail.style.alignItems = "center";
-                resultMail.style.lineHeight = "30px";
-                resultMail.style.margin = "5px";
-                resultMail.style.padding = "5px 10px";
-
-                // 멤버 추가 버튼 위치 조정
-                const inviteMemberButton = document.getElementById("inviteMember");
-                inviteMemberButton.style.order = 1;
-              }
 
 
               let categoryList = document.querySelectorAll("updateCategory input");
               for(let i = 0; i < categoryList.length; i++){
                 categoryList[i].setAttribute('checked', false);
               }
+
+              /* 카테고리 부분 선택 시 버튼 색상 변경 */
+              // let updateCategoryList = document.querySelectorAll(".updateCategory");
+              // let updateCategoryLabelList = document.querySelectorAll(".updateCategoryLabel");
+              //
+              // for(let i = 0; i < updateCategoryList.length; i++){
+              //   updateCategoryList[i].addEventListener("click", function(){
+              //
+              //     for(let j = 0; j < updateCategoryLabelList.length; j++){
+              //       updateCategoryLabelList[j].style.background = "#FFFFFF";
+              //     }
+              //     updateCategoryLabelList[i].style.background = "#92E2F8";
+              //   });
+              // }
+
+
               document.querySelector("#updateCategory input[value='"+data.projectCategoryCode+"']").setAttribute('checked' , true);
               let updateCategoryList = document.querySelectorAll(".updateCategory");
               let updateCategoryLabelList = document.querySelectorAll(".updateCategoryLabel");
               for(let i = 0; i < updateCategoryList.length; i++){
-                updateCategoryList[i].addEventListener("click", function(){
-                  updateCategoryLabelList[i].style.background = "#92E2F8";
-                });
-                updateCategoryList[i].addEventListener("blur", function(){
-                  updateCategoryLabelList[i].style.background = "#FFFFFF";
-                });
+                  updateCategoryList[i].addEventListener("click", function(){
+                    for(let j = 0; j < updateCategoryLabelList.length; j++){
+                      updateCategoryLabelList[j].style.background = "#FFFFFF";
+                    }
+                    updateCategoryLabelList[i].style.background = "#92E2F8";
+                  });
                 if(updateCategoryList[i].checked === true){
                   updateCategoryLabelList[i].style.background = "#92E2F8";
                 } else{
@@ -820,6 +825,38 @@
               }
             })
             .catch(error => console.log(error));
+
+
+
+              // const memberListArea = document.getElementById("memberList");
+              // memberListArea.innerHTML = "";
+              // const invitedMemberList = data.inviteMemberList;
+              // resultMemberInviteList = invitedMemberList;
+              // for(let i = 0; i < invitedMemberList.length; i++) {
+              //
+              //   resultEmailList
+              //    = [...resultEmailList, invitedMemberList[i].email]
+              //   // 이메일 div 생성
+              //   let resultMail = document.createElement("div");  // 이메일 div
+              //   let emailAdress = document.createTextNode(invitedMemberList[i].email);  // 이메일 주소
+              //   resultMail.appendChild(emailAdress);
+              //   memberListArea.appendChild(resultMail);
+              //   // 스타일 설정
+              //   resultMail.style.backgournd = "#DFF7FD";
+              //   resultMail.style.borderRadius = "15px";
+              //   resultMail.style.width = "max-content";
+              //   resultMail.style.height = "30px";
+              //   resultMail.style.display = "flex";
+              //   resultMail.style.alignItems = "center";
+              //   resultMail.style.lineHeight = "30px";
+              //   resultMail.style.margin = "5px";
+              //   resultMail.style.padding = "5px 10px";
+              //
+              //   // 멤버 추가 버튼 위치 조정
+              //   const inviteMemberButton = document.getElementById("inviteMember");
+              //   inviteMemberButton.style.order = 1;
+              // }
+
   }
 
   /* 프로젝트 정보 수정 모달 띄우기 + DB에서 데이터 가져오는 함수 호출 */
@@ -832,8 +869,8 @@
       select(projectNo[i].value);
       console.log(projectNo[i].value);
       updateProjectModal.style.display = "";
-      let popupType = document.getElementById("popupType");
-      popupType.value = "update";
+      // let popupType = document.getElementById("popupType");
+      // popupType.value = "update";
     })
   }
 
@@ -847,45 +884,54 @@
     updateProjectModal.style.display = "none";
   });
 
+  let update_now_date = Date.now();
+  let update_timeOff = new Date().getTimezoneOffset()*60000;
+  let update_today = new Date(update_now_date-update_timeOff).toISOString().split("T")[0];
+  let updateStartDate = document.getElementById("updateStartDate");
+  updateStartDate.setAttribute("min", update_today);
+  updateStartDate.onchange = function(){
+    let updateEndDate = document.getElementById("updateEndDate");
+    updateEndDate.setAttribute("min", this.value);
+  }
+
   /* 멤버 수정 창 띄우기 */
-  const updateMember = document.getElementById("updateInviteMember");
-  updateMember.addEventListener("click", function(){
-    inviteMemberModal.style.display = "";
-    for(let i = 0; i < resultMemberInviteList.length; i++){
-      let storeArea = document.getElementById("storeEmailArea");
-      let storeMail = document.createElement("div");
-      let adressArea = document.createElement("div");
-      let xBtnArea = document.createElement("div");
-      let emailAdress = document.createTextNode(resultMemberInviteList[i].email);
-      let xButton = document.createTextNode("X");
-      storeMail.appendChild(adressArea);
-      storeMail.appendChild(xBtnArea);
-      adressArea.appendChild(emailAdress);
-      xBtnArea.appendChild(xButton);
-      storeArea.appendChild(storeMail);
-      storeMail.style.backgroundColor = "#FFFFFF";
-      storeMail.style.height = "30px";
-      storeMail.style.display = "flex";
-      storeMail.style.alignItems = "center";
-      storeMail.style.justifyContent = "center";
-      storeMail.style.lineHeight = "20px";
-      storeMail.style.borderRadius = "15px";
-      storeMail.style.width = "max-content";
-      storeMail.style.margin = "10px"; // 기본 여백 설정
-      storeMail.style.padding = "5px 10px"; // 공간을 더 줘서 컴팩트하게
-      adressArea.style.marginRight = "10px"; // 오른쪽 여백 추가
-      xBtnArea.style.cursor = "pointer"; // 클릭 가능한 커서로 변경
-      xBtnArea.onclick = function () {
-        storeArea.removeChild(storeMail);  // 요소 삭제
-        emailList = emailList.filter((obj) => obj !== inputEmail.value);
-      }
-    }
-
-
-  })
+  // const updateMember = document.getElementById("updateInviteMember");
+  // updateMember.addEventListener("click", function(){
+  //   inviteMemberModal.style.display = "";
+  //   for(let i = 0; i < resultMemberInviteList.length; i++){
+  //     let storeArea = document.getElementById("storeEmailArea");
+  //     let storeMail = document.createElement("div");
+  //     let adressArea = document.createElement("div");
+  //     let xBtnArea = document.createElement("div");
+  //     let emailAdress = document.createTextNode(resultMemberInviteList[i].email);
+  //     let xButton = document.createTextNode("X");
+  //     storeMail.appendChild(adressArea);
+  //     storeMail.appendChild(xBtnArea);
+  //     adressArea.appendChild(emailAdress);
+  //     xBtnArea.appendChild(xButton);
+  //     storeArea.appendChild(storeMail);
+  //     storeMail.style.backgroundColor = "#FFFFFF";
+  //     storeMail.style.height = "30px";
+  //     storeMail.style.display = "flex";
+  //     storeMail.style.alignItems = "center";
+  //     storeMail.style.justifyContent = "center";
+  //     storeMail.style.lineHeight = "20px";
+  //     storeMail.style.borderRadius = "15px";
+  //     storeMail.style.width = "max-content";
+  //     storeMail.style.margin = "10px"; // 기본 여백 설정
+  //     storeMail.style.padding = "5px 10px"; // 공간을 더 줘서 컴팩트하게
+  //     adressArea.style.marginRight = "10px"; // 오른쪽 여백 추가
+  //     xBtnArea.style.cursor = "pointer"; // 클릭 가능한 커서로 변경
+  //     xBtnArea.onclick = function () {
+  //       storeArea.removeChild(storeMail);  // 요소 삭제
+  //       emailList = emailList.filter((obj) => obj !== inputEmail.value);
+  //     }
+  //   }
+  //
+  //
+  // })
 
 </script>
-
 <!-- ---------------------------------- 프로젝트 삭제 알림 모달 ---------------------------------- -->
 <!-- 레이아웃 및 헤더 -->
 <form action="/project/deleteproject" method="post" style="z-index: 2">
@@ -912,9 +958,7 @@
             .then(data =>{
               console.log(data);
               let projectName = document.querySelector("#deleteProjectName");
-              projectName.textContent = '"' + data.projectName + '"' + " 을(를) 삭제하시겠습니까?";
-              console.log(data.projectName);
-              console.log(projectName);
+              projectName.innerHTML = `&quot;${data.projectName}&quot;을(를) <br> 삭제하시겠습니까?`;
               let deleteProjectNo = document.getElementById("deleteProjectNo");
               deleteProjectNo.value = data.projectNo;
             })
@@ -947,7 +991,6 @@
 
 
 </script>
-
 <!-- ---------------------------------- 팀원 관리 모달 ---------------------------------- -->
 <div id="modalManageMember" style="z-index: 2">
   <div id="manageMemberHeader">
@@ -992,8 +1035,8 @@
               manageMemberList.innerHTML = "";
               manageMemberList.appendChild(manageMemberListHead);
 
-              // 데이터를 기반으로 멤버 리스트를 생성합니다.
-              let topPosition = 260;  // 첫 번쨰 요소의 top 위치 설정
+              // 데이터를 기반으로 멤버 리스트를 생성
+              let topPosition = 260;  // 첫 번째 요소의 top 위치 설정
               const gap = 40; // 각 요소 간의 간격 설정
 
               data.forEach((member,index) => {
@@ -1038,22 +1081,53 @@
                   trashcanImg.style.display = "";
                 }
                 trashcanImg.addEventListener("click", function() {
-                  fetch("/project/deleteMemberInfo",
-                          {
-                            method: "POST",
-                            headers: {
-                              'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({
-                              projectNo : projectNumber.value,
-                              userNo : member.userNo,
-                              email : emailP.textContent
+                  // 모달 끄기
+                  modalIsRealDeleteMember.style.display = "";
+                  //누구 지우는지 확인
+                  let isRealDeleteMemberText = document.getElementById("isRealDeleteMemberText");
+                  if (isRealDeleteMemberText) {
+                    isRealDeleteMemberText.innerHTML = `&quot;${nicknameP.textContent}&quot;님을 <br> 본 프로젝트에서 삭제하시겠습니까?`;
+                  }
+                  isRealDeleteMemberText.style.position = "absolute";
+                  isRealDeleteMemberText.style.width = "max-content";
+                  isRealDeleteMemberText.style.height = "20px";
+                  isRealDeleteMemberText.style.top = "75px";
+                  isRealDeleteMemberText.style.fontStyle = "normal";
+                  isRealDeleteMemberText.style.fontWeight = "800";
+                  isRealDeleteMemberText.style.fontSize = "25px";
+                  isRealDeleteMemberText.style.display = "flex";
+                  isRealDeleteMemberText.style.justifyContent = "center";
+                  isRealDeleteMemberText.style.textAlign = "left";
+                  isRealDeleteMemberText.style.color = "#282828";
+
+                  const isRealDeleteMemberConfirm = document.getElementById("isRealDeleteMemberConfirm");
+                  isRealDeleteMemberConfirm.onclick = function() {
+                    modalIsRealDeleteMember.style.display = "none";
+                    // 해당 멤버의 정보를 join_project에서 삭제
+                    fetch("/project/deleteMemberInfo",
+                            {
+                              method: "POST",
+                              headers: {
+                                'Content-Type': 'application/json',
+                              },
+                              body: JSON.stringify({
+                                projectNo: projectNumber.value,
+                                userNo: member.memberNo,
+                                email: emailP.textContent
+                              })
                             })
-                          })
-                          .then((res) => res.json())
-                          .then((result) => console.log(result))
-                          .catch((error) => console.log(error));
+                            .then((res) => {
+                              if(res.ok){
+                                window.location.reload();
+                              } else {
+                                console.error("POST 매핑 실패");
+                              }
+                            })
+                            .then((result) => console.log(result))
+                            .catch((error) => console.log(error));
+                  }
                 });
+
 
                 memberDiv.appendChild(nthList);
                 nthList.appendChild(nicknameP);
@@ -1095,12 +1169,8 @@
   forInviteMember.onclick = function(){
     moreInviteMemberModal.style.display = "";
   }
-
-
-
 </script>
-
-<!-- ----------------------------- 팀원 관리 모달 - 팀원 추가 ------------------------ -->
+<!-- ----------------------------- 팀원 관리 모달 - 팀원 추가 ----------------------------- -->
 <div id="moreInviteMemberModal" style="z-index: 4">
   <div id="moreInviteMemberBlueHeader">
     <div id="moreInviteMemberXButton">X</div>
@@ -1229,6 +1299,181 @@
   }
 
 
+</script>
+<!-- --------------- 멤버 관리 페이지에서 멤버 삭제 시 진짜 삭제 여부 묻는 모달 --------------- -->
+<div id="modalIsRealDeleteMember" style="z-index: 3">
+  <div id="isRealDeleteMemberHeader">
+    <div id="isRealDeleteMemberXButton">X</div>
+  </div>
+  <div id="isRealDeleteMemberBody">
+    <p id="isRealDeleteMemberText" value=""></p>
+  </div>
+  <button type="button" id="isRealDeleteMemberCancel">취소</button>
+  <button type="button" id="isRealDeleteMemberConfirm">확인</button>
+</div>
+<script>
+
+  // display:none 기본 설정
+  const modalIsRealDeleteMember = document.getElementById("modalIsRealDeleteMember");
+  modalIsRealDeleteMember.style.display = "none";
+  // x 누르면 display:none
+  const isRealDeleteMemberXButton = document.getElementById("isRealDeleteMemberXButton");
+  isRealDeleteMemberXButton.onclick = function(){
+    modalIsRealDeleteMember.style.display = "none";
+  }
+  // 취소 누르면 display:none
+  const isRealDeleteMemberCancel = document.getElementById("isRealDeleteMemberCancel");
+  isRealDeleteMemberCancel.onclick = function(){
+    modalIsRealDeleteMember.style.display = "none";
+  }
+</script>
+<!-- ----------------------------------------- 프로젝트 내용 조회 모달(조회용) ----------------------------------------- -->
+<div id="modalSelectProjectData">
+  <div id="modalSelectProjectHead">
+    <div id="selectProjectXButton">X</div>
+  </div>
+  <!-- 바디 부분 -->
+  <input type="text" id="selectProjectNo" style="display: none" name="projectNo"/>
+  <div id="selectTitle">
+    <input type="text" id="selectInputTitle" placeholder="프로젝트 명을 입력해주세요." name="projectName">
+  </div>
+  <label id="selectSummaryLabel" for="selectInputSummary">개요</label>
+  <div id="selectSummary">
+    <textarea id="selectInputSummary" maxlength="150" placeholder="프로젝트 개요를 적어주세요(최대 150자)." name="projectSummary"></textarea>
+  </div>
+  <label id="selectPurposeLabel" for="selectInputPurpose">목적</label>
+  <div id="selectPurpose">
+    <textarea id="selectInputPurpose" maxlength="150" placeholder="프로젝트 목표 및 목적을 적어주세요(최대 150자)." name="projectPurpose"></textarea>
+  </div>
+  <label for="selectPeriod" id="selectPeriodLabel">기간</label>
+  <div id="selectPeriod">
+    <input type="date" id="selectStartDate" name="startDate"/>
+    <div id="selectWave">~</div>
+    <input type="date" id="selectEndDate" name="endDate"/>
+  </div>
+  <label for="selectCategory" id="selectCategoryLabel">분류</label>
+  <div id="selectCategory">
+    <input type="radio" id="selectBank" class="selectCategory" name="projectCategoryCode" value="CT1"/><label id="selectBankLabel" class="selectCategoryLabel" for="selectBank">은행</label>
+    <input type="radio" id="selectInsurance" class="selectCategory" name="projectCategoryCode" value="CT2"/><label id="selectInsuranceLabel" class="selectCategoryLabel" for="selectInsurance">보험사</label>
+    <input type="radio" id="selectPublicSector" class="selectCategory" name="projectCategoryCode" value="CT3"/><label id="selectPublicSectorLabel" class="selectCategoryLabel" for="selectPublicSector">공공부문</label>
+    <input type="radio" id="selectWeb" class="selectCategory" name="projectCategoryCode" value="CT4"/><label id="selectWebLabel" class="selectCategoryLabel" for="selectWeb">웹포털</label>
+    <input type="radio" id="selectApplication" class="selectCategory" name="projectCategoryCode" value="CT5"/><label id="selectApplicationLabel" class="selectCategoryLabel" for="selectApplication">앱개발</label>
+    <input type="radio" id="selectEtc" class="selectCategory" name="projectCategoryCode" value="CT6"/><label id="selectEtcLabel" class="selectCategoryLabel" for="selectEtc">기타</label>
+  </div>
+  <label for="selectMember" id="selectMemberLabel">인원</label>
+  <div id="selectMember"></div>
+  <button type="button" id="selectConfirm">확인</button>
+</div>
+<script>
+
+  const selectInputTitle = document.getElementById("selectInputTitle");
+  selectInputTitle.readOnly = true;
+
+  const selectInputSummary = document.getElementById("selectInputSummary");
+  selectInputSummary.readOnly = true;
+
+  const selectInputPurpose = document.getElementById("selectInputPurpose");
+  selectInputPurpose.readOnly = true;
+
+  const selectStartDate = document.getElementById("selectStartDate");
+  selectStartDate.readOnly = true;
+
+  const selectEndDate = document.getElementById("selectEndDate");
+  selectEndDate.readOnly = true;
+
+  const selectCategory = document.querySelectorAll(".selectCategory");
+  for(let i = 0; i < selectCategory.length; i++){
+    selectCategory[i].readOnly = true;
+  }
+
+  let selectResultMemberInviteList = null;
+  /* 정보 비동기로 가져오기 */
+  // DB에서 데이터를 가져오는 함수 작성
+  function selectData(projectNo){
+    fetch("/project/selectproject?projectNo=" + projectNo +"")
+            .then(res => res.json())
+            .then(data => {
+              console.log(data);
+              let $selectProjectName = document.getElementById("selectInputTitle");
+              $selectProjectName.value = data.projectName;
+              let $selectProjectSummary = document.getElementById("selectInputSummary");
+              $selectProjectSummary.value = data.projectSummary;
+              let $selectProjectPurpose = document.getElementById("selectInputPurpose");
+              $selectProjectPurpose.value = data.projectPurpose;
+              let $selectStartDate = document.getElementById("selectStartDate");
+              $selectStartDate.value = data.startDate;
+              let $selectEndDate = document.getElementById("selectEndDate");
+              $selectEndDate.value = data.endDate;
+              let $selectProjectNo = document.getElementById("selectProjectNo");
+              $selectProjectNo.value = data.projectNo;
+
+              let selectCategoryList = document.querySelectorAll(".selectCategory");
+              for(let i = 0; i < selectCategoryList.length; i++){
+                selectCategoryList[i].setAttribute('checked', false);
+              }
+              document.querySelector("#selectCategory input[value='"+data.projectCategoryCode+"']").setAttribute('checked' , true);
+              // let updateCategoryList = document.querySelectorAll(".updateCategory");
+              let selectCategoryLabelList = document.querySelectorAll(".selectCategoryLabel");
+              for(let i = 0; i < selectCategoryList.length; i++){
+                // selectCategoryList[i].addEventListener("click", function(){
+                //   selectCategoryLabelList[i].style.background = "#92E2F8";
+                // });
+                // selectCategoryList[i].addEventListener("blur", function(){
+                //   selectCategoryLabelList[i].style.background = "#FFFFFF";
+                // });
+                if(selectCategoryList[i].checked === true){
+                  selectCategoryLabelList[i].style.background = "#92E2F8";
+                } else{
+                  selectCategoryLabelList[i].style.background = "#FFFFFF";
+                }
+              }
+
+              const selectedMemberList = document.getElementById("selectMember");
+              selectedMemberList.innerHTML = ""; // 초기화
+              const selectInvitedMember = data.inviteMemberList;
+              for(let i = 0; i < selectInvitedMember.length; i++) {
+                let selectResultMail = document.createElement("div"); // 이메일 div 생성
+                let selectEmailAdress = document.createTextNode(selectInvitedMember[i].email); // 이메일 주소 생성
+                selectResultMail.appendChild(selectEmailAdress);
+                selectedMemberList.appendChild(selectResultMail); // selectMember div에 추가
+                // 스타일 설정
+                selectResultMail.style.background = "#DFF7FD";
+                selectResultMail.style.borderRadius = "15px";
+                selectResultMail.style.width = "max-content";
+                selectResultMail.style.height = "30px";
+                selectResultMail.style.display = "flex";
+                selectResultMail.style.alignItems = "center";
+                selectResultMail.style.lineHeight = "30px";
+                selectResultMail.style.marginLeft = "15px";
+                selectResultMail.style.marginTop = "5px";
+                selectResultMail.style.padding = "5px 10px";
+              }
+            })
+            .catch(error => console.log(error));
+
+  }
+
+  /* 프로젝트 정보 조회 모달 띄우기 + DB에서 데이터 가져오는 함수 호출 */
+  const projectSelect= document.querySelectorAll("#projectSelect");
+  const selectProjectDataModal = document.getElementById("modalSelectProjectData");
+  selectProjectDataModal.style.display = "none";
+  for(let i = 0; i < projectSelect.length; i++) {
+    projectSelect[i].addEventListener("click", function () {
+      selectData(projectNo[i].value);
+      console.log("프로젝트 번호: " + projectNo[i].value);
+      selectProjectDataModal.style.display = "";
+    })
+  }
+
+  // /* x버튼 취소 버튼 클릭 시 모달 없애기 */
+  const selectConfirm = document.getElementById("selectConfirm");
+  selectConfirm.addEventListener("click", function(){
+    selectProjectDataModal.style.display = "none";
+  });
+  const selectProjectXButton = document.getElementById("selectProjectXButton");
+  selectProjectXButton.addEventListener("click", function(){
+    selectProjectDataModal.style.display = "none";
+  });
 </script>
 </body>
 </html>
