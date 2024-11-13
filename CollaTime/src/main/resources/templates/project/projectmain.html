@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="/css/project/modalManageMember.css">
   <link rel="stylesheet" href="/css/project/modalMoreInviteMember.css">
   <link rel="stylesheet" href="/css/project/modalIsRealDeleteMember.css">
+  <link rel="stylesheet" href="/css/project/modalSelectProjectData.css">
 </head>
 <body>
 <!-- 프로젝트 메인 화면 -->
@@ -29,14 +30,16 @@
       <!-- 프로젝트 폴더 -->
       <div id="createdProjectFolder" th:each="project : ${ projectList }">
         <input type="text" id="projectNo" style="display: none" th:value="${ project.projectNo }"/>
+        <input type="text" id="productorNo" style="display: none" th:value="${ project.productorNo }"/>
         <div id="folderHead"></div>
         <div id="folderBody">
           <div id="projectTitle" th:text="${ project.projectName }"></div>
           <div id="folderMenu">...</div>
           <div id="crudMenu">
-            <span id="projectUpdate" class="crudText">수정하기</span>
-            <span id="projectDelete" class="crudText">삭제하기</span>
-            <span id="manageMember" class="crudText">멤버관리</span>
+            <span id="projectSelect" class="crudText Member">조회하기</span>  <!-- 프로덕터 넘버가 유저 넘버랑 일치하지 않을 때 얘만 열리기 -->
+            <span id="projectUpdate" class="crudText Productor">수정하기</span>
+            <span id="projectDelete" class="crudText Productor">삭제하기</span>
+            <span id="manageMember" class="crudText Productor">멤버관리</span>
           </div>
         </div>
         <span id="projectFullName" th:text="${ project.projectName }" th:title="${ project.projectName }"></span>
@@ -91,6 +94,7 @@
       }
       // 메뉴 텍스트
       let crudText = document.querySelectorAll(".crudText");
+      // crudText.style.display = "none";
       for (let i = 0; i < crudText.length; i++) {
         crudText[i].style.backgroundColor = "#F5F5F5";
         crudText[i].style.width = "90px";
@@ -109,13 +113,35 @@
         // 메뉴 아이콘 ...
         let folderMenu = document.querySelectorAll("#folderMenu");
         let crudMenu = document.querySelectorAll("#crudMenu");
+        let productorNumbers = document.querySelectorAll("#productorNo");
         for (let i = 0; i < folderMenu.length; i++) {
           crudMenu[i].style.display = "none";
           folderMenu[i].onclick = function () {
-            if (crudMenu[i].style.display === 'block') {
-              crudMenu[i].style.display = 'none';
+            if(productorNumbers[i].value === `[[|${#authentication.principal.userNo}|]]`) {
+              console.log("프로덕터 넘버 : " + productorNumbers[i].value + "유저 넘버 : " + `[[|${#authentication.principal.userNo}|]]`);
+              if (crudMenu[i].style.display === 'block') {
+                crudMenu[i].style.display = 'none';
+              } else {
+                crudMenu[i].style.display = 'block';
+              }
             } else {
-              crudMenu[i].style.display = 'block';
+              console.log("프로덕터 넘버 : " + productorNumbers[i].value + "유저 넘버 : " + `[[|${#authentication.principal.userNo}|]]`);
+              if (crudMenu[i].style.display === 'block') {
+                crudMenu[i].style.display = 'none';
+              } else {
+                crudMenu[i].style.display = 'block';
+                // projectSelect 요소는 클릭 가능하게 유지
+                let projectSelect = crudMenu[i].querySelector("#projectSelect");
+                projectSelect.style.pointerEvents = 'auto';
+                projectSelect.style.color = "#282828";  // 기본 색상 유지
+                // .Productor 요소들은 클릭 불가하게 설정
+                let productorMenu = crudMenu[i].querySelectorAll((".Productor"));
+                productorMenu.forEach(function(menu){
+                  menu.onclick = null;  // 이벤트 클릭 제거
+                  menu.style.pointerEvents = "none"; // 클릭 막기
+                  menu.style.color = "#ccc"; // 시각적 효과 추가
+                });
+              }
             }
           }
         }
@@ -744,7 +770,7 @@
     <button type="button" id="updateCancel">취소</button>
     <button type="submit" id="updateConfirm">수정</button>
   </div>
-</form  >
+</form >
 <script>
   let resultMemberInviteList = null;
   /* 정보 비동기로 가져오기 */
@@ -1285,6 +1311,154 @@
   isRealDeleteMemberCancel.onclick = function(){
     modalIsRealDeleteMember.style.display = "none";
   }
+</script>
+<!-- ----------------------------------------- 프로젝트 내용 조회 모달(조회용) ----------------------------------------- -->
+<div id="modalSelectProjectData">
+  <div id="modalSelectProjectHead">
+    <div id="selectProjectXButton">X</div>
+  </div>
+  <!-- 바디 부분 -->
+  <input type="text" id="selectProjectNo" style="display: none" name="projectNo"/>
+  <div id="selectTitle">
+    <input type="text" id="selectInputTitle" placeholder="프로젝트 명을 입력해주세요." name="projectName">
+  </div>
+  <label id="selectSummaryLabel" for="selectInputSummary">개요</label>
+  <div id="selectSummary">
+    <textarea id="selectInputSummary" maxlength="150" placeholder="프로젝트 개요를 적어주세요(최대 150자)." name="projectSummary"></textarea>
+  </div>
+  <label id="selectPurposeLabel" for="selectInputPurpose">목적</label>
+  <div id="selectPurpose">
+    <textarea id="selectInputPurpose" maxlength="150" placeholder="프로젝트 목표 및 목적을 적어주세요(최대 150자)." name="projectPurpose"></textarea>
+  </div>
+  <label for="selectPeriod" id="selectPeriodLabel">기간</label>
+  <div id="selectPeriod">
+    <input type="date" id="selectStartDate" name="startDate"/>
+    <div id="selectWave">~</div>
+    <input type="date" id="selectEndDate" name="endDate"/>
+  </div>
+  <label for="selectCategory" id="selectCategoryLabel">분류</label>
+  <div id="selectCategory">
+    <input type="radio" id="selectBank" class="selectCategory" name="projectCategoryCode" value="CT1"/><label id="selectBankLabel" class="selectCategoryLabel" for="selectBank">은행</label>
+    <input type="radio" id="selectInsurance" class="selectCategory" name="projectCategoryCode" value="CT2"/><label id="selectInsuranceLabel" class="selectCategoryLabel" for="selectInsurance">보험사</label>
+    <input type="radio" id="selectPublicSector" class="selectCategory" name="projectCategoryCode" value="CT3"/><label id="selectPublicSectorLabel" class="selectCategoryLabel" for="selectPublicSector">공공부문</label>
+    <input type="radio" id="selectWeb" class="selectCategory" name="projectCategoryCode" value="CT4"/><label id="selectWebLabel" class="selectCategoryLabel" for="selectWeb">웹포털</label>
+    <input type="radio" id="selectApplication" class="selectCategory" name="projectCategoryCode" value="CT5"/><label id="selectApplicationLabel" class="selectCategoryLabel" for="selectApplication">앱개발</label>
+    <input type="radio" id="selectEtc" class="selectCategory" name="projectCategoryCode" value="CT6"/><label id="selectEtcLabel" class="selectCategoryLabel" for="selectEtc">기타</label>
+  </div>
+  <label for="selectMember" id="selectMemberLabel">인원</label>
+  <div id="selectMember"></div>
+  <button type="button" id="selectConfirm">확인</button>
+</div>
+<script>
+
+  const selectInputTitle = document.querySelectorAll("#selectInputTitle");
+  selectInputTitle.readOnly = true;
+
+  const selectInputSummary = document.getElementById("selectInputSummary");
+  selectInputSummary.readOnly = true;
+
+  const selectInputPurpose = document.getElementById("selectInputPurpose");
+  selectInputPurpose.readOnly = true;
+
+  const selectStartDate = document.getElementById("selectStartDate");
+  selectStartDate.readOnly = true;
+
+  const selectEndDate = document.getElementById("selectEndDate");
+  selectEndDate.readOnly = true;
+
+  const selectCategory = document.querySelectorAll(".selectCategory");
+  for(let i = 0; i < selectCategory.length; i++){
+    selectCategory[i].readOnly = true;
+  }
+
+  let selectResultMemberInviteList = null;
+  /* 정보 비동기로 가져오기 */
+  // DB에서 데이터를 가져오는 함수 작성
+  function selectData(projectNo){
+    fetch("/project/selectproject?projectNo=" + projectNo +"")
+            .then(res => res.json())
+            .then(data => {
+              console.log(data);
+              let $selectProjectName = document.querySelector("#selectInputTitle");
+              $selectProjectName.value = data.projectName;
+              let $selectProjectSummary = document.getElementById("selectInputSummary");
+              $selectProjectSummary.value = data.projectSummary;
+              let $selectProjectPurpose = document.getElementById("selectInputPurpose");
+              $selectProjectPurpose.value = data.projectPurpose;
+              let $selectStartDate = document.getElementById("selectStartDate");
+              $selectStartDate.value = data.startDate;
+              let $selectEndDate = document.getElementById("selectEndDate");
+              $selectEndDate.value = data.endDate;
+              let $selectProjectNo = document.getElementById("selectProjectNo");
+              $selectProjectNo.value = data.projectNo;
+
+              let selectCategoryList = document.querySelectorAll(".selectCategory");
+              for(let i = 0; i < selectCategoryList.length; i++){
+                selectCategoryList[i].setAttribute('checked', false);
+              }
+              document.querySelector("#selectCategory input[value='"+data.projectCategoryCode+"']").setAttribute('checked' , true);
+              // let updateCategoryList = document.querySelectorAll(".updateCategory");
+              let selectCategoryLabelList = document.querySelectorAll(".selectCategoryLabel");
+              for(let i = 0; i < selectCategoryList.length; i++){
+                selectCategoryList[i].addEventListener("click", function(){
+                  selectCategoryLabelList[i].style.background = "#92E2F8";
+                });
+                selectCategoryList[i].addEventListener("blur", function(){
+                  selectCategoryLabelList[i].style.background = "#FFFFFF";
+                });
+                if(selectCategoryList[i].checked === true){
+                  selectCategoryLabelList[i].style.background = "#92E2F8";
+                } else{
+                  selectCategoryLabelList[i].style.background = "#FFFFFF";
+                }
+              }
+
+              const selectedMemberList = document.getElementById("selectMember");
+              selectedMemberList.innerHTML = ""; // 초기화
+              const selectInvitedMember = data.inviteMemberList;
+              for(let i = 0; i < selectInvitedMember.length; i++) {
+                let selectResultMail = document.createElement("div"); // 이메일 div 생성
+                let selectEmailAdress = document.createTextNode(selectInvitedMember[i].email); // 이메일 주소 생성
+                selectResultMail.appendChild(selectEmailAdress);
+                selectedMemberList.appendChild(selectResultMail); // selectMember div에 추가
+                // 스타일 설정
+                selectResultMail.style.background = "#DFF7FD";
+                selectResultMail.style.borderRadius = "15px";
+                selectResultMail.style.width = "max-content";
+                selectResultMail.style.height = "30px";
+                selectResultMail.style.display = "flex";
+                selectResultMail.style.alignItems = "center";
+                selectResultMail.style.lineHeight = "30px";
+                selectResultMail.style.marginLeft = "15px";
+                selectResultMail.style.marginTop = "5px";
+                selectResultMail.style.padding = "5px 10px";
+              }
+            })
+            .catch(error => console.log(error));
+
+  }
+
+  /* 프로젝트 정보 조회 모달 띄우기 + DB에서 데이터 가져오는 함수 호출 */
+  const projectSelect= document.querySelectorAll("#projectSelect");
+  const selectProjectDataModal = document.getElementById("modalSelectProjectData");
+  selectProjectDataModal.style.display = "none";
+  for(let i = 0; i < projectSelect.length; i++) {
+    projectSelect[i].addEventListener("click", function () {
+      selectData(projectNo[i].value);
+      console.log("프로젝트 번호: " + projectNo[i].value);
+      selectProjectDataModal.style.display = "";
+    })
+  }
+
+  // /* x버튼 취소 버튼 클릭 시 모달 없애기 */
+  const selectConfirm = document.getElementById("selectConfirm");
+  selectConfirm.addEventListener("click", function(){
+    selectProjectDataModal.style.display = "none";
+  });
+  const selectProjectXButton = document.getElementById("selectProjectXButton");
+  selectProjectXButton.addEventListener("click", function(){
+    selectProjectDataModal.style.display = "none";
+  });
 </script>
 </body>
 </html>

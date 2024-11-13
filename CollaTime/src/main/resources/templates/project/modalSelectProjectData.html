@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/css/project/reset.css">
+    <link rel="stylesheet" href="/static/css/project/modalSelectProjectData.css">
+</head>
+<body>
+<!-- ----------------------------------------- 프로젝트 내용 조회 모달(조회용) ----------------------------------------- -->
+<!--<div class="modal fade" id="modalUpdateProject" aria-labelledby="modalUpdateProject" aria-hidden="true" style="z-index: 2">-->
+<!--    <div class="modal-dialog">-->
+<!--        <div class="modal-content">-->
+<div id="modalSelectProjectData">
+    <!-- 모달 헤더 -->
+    <div id="modalSelectProjectHead">
+        <div id="selectProjectXButton">X</div>
+    </div>
+    <!-- 내용 바디 -->
+    <div id="modalSelectProjectBody">
+        <div id="selectTitle">
+            <input type="text" id="selectInputTitle" placeholder="프로젝트 명을 입력해주세요." name="projectName" th:text:="${ project.projectName }">
+        </div>
+        <label id="selectSummaryLabel" for="selectInputSummary">개요</label>
+        <div id="selectSummary">
+            <textarea id="selectInputSummary" maxlength="150" placeholder="프로젝트 개요를 적어주세요(최대 150자)." name="projectSummary" th:text="${ project.projectSummary }"></textarea>
+        </div>
+        <label id="selectPurposeLabel" for="selectInputPurpose">목적</label>
+        <div id="selectPurpose">
+            <textarea id="selectInputPurpose" maxlength="150" placeholder="프로젝트 목표 및 목적을 적어주세요(최대 150자)." name="projectPurpose" th:text="${ project.projectPurpose }"></textarea>
+        </div>
+        <label for="selectPeriod" id="selectPeriodLabel">기간</label>
+        <div id="selectPeriod">
+            <input type="date" id="selectStartDate" min="2023-01-01" max="2077-06-20" name="startDate" th:text="${ project.startDate }"/>
+            <div id="selectWave">~</div>
+            <input type="date" id="selectEndDate"  min="2023-01-01" max="2077-06-20" name="endDate" th:text="${ project.endDate }"/>
+        </div>
+        <label for="selectCategory" id="selectCategoryLabel">분류</label>
+        <div id="selectCategory" th:text="${ project.projectCategoryCode }">
+            <input type="radio" id="selectBank" class="selectCategory" name="projectCategoryCode" value="CT1"/><label id="selectBankLabel" class="selectCategoryLabel" for="selectBank">은행</label>
+            <input type="radio" id="selectInsurance" class="selectCategory" name="projectCategoryCode" value="CT2"/><label id="selectInsuranceLabel" class="selectCategoryLabel" for="selectInsurance">보험사</label>
+            <input type="radio" id="selectPublicSector" class="selectCategory" name="projectCategoryCode" value="CT3"/><label id="selectPublicSectorLabel" class="selectCategoryLabel" for="selectPublicSector">공공부문</label>
+            <input type="radio" id="selectWeb" class="selectCategory" name="projectCategoryCode" value="CT4"/><label id="selectWebLabel" class="selectCategoryLabel" for="selectWeb">웹포털</label>
+            <input type="radio" id="selectApplication" class="selectCategory" name="projectCategoryCode" value="CT5"/><label id="selectApplicationLabel" class="selectCategoryLabel" for="selectApplication">앱개발</label>
+            <input type="radio" id="selectEtc" class="selectCategory" name="projectCategoryCode" value="CT6"/><label id="selectEtcLabel" class="selectCategoryLabel" for="selectEtc">기타</label>
+        </div>
+        <label for="selectMember" id="selectMemberLabel">인원초대</label>
+        <div id="selectMember"></div>
+        <button type="submit" id="selectConfirm">확인</button>
+    </div>
+</div>
+<script>
+    const selectInputTitle = document.getElementById("selectInputTitle");
+    selectInputTitle.readOnly = true;
+
+    const selectInputSummary = document.getElementById("selectInputSummary");
+    selectInputSummary.readOnly = true;
+
+    const selectInputPurpose = document.getElementById("selectInputPurpose");
+    selectInputPurpose.readOnly = true;
+
+    const selectStartDate = document.getElementById("selectStartDate");
+    selectStartDate.readOnly = true;
+
+    const selectEndDate = document.getElementById("selectEndDate");
+    selectEndDate.readOnly = true;
+
+    const selectCategory = document.querySelectorAll(".selectCategory");
+    for(let i = 0; i < selectCategory.length; i++){
+        selectCategory[i].readOnly = true;
+    }
+
+    // let resultMemberInviteList = null;
+    /* 정보 비동기로 가져오기 */
+    // DB에서 데이터를 가져오는 함수 작성
+    function selectData(projectNo){
+        fetch("/project/selectproject?projectNo=" + projectNo +"")
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                let $selectProjectName = document.querySelector("#selectInputTitle");
+                $selectProjectName.value = data.projectName;
+                let $selectProjectSummary = document.getElementById("selectInputSummary");
+                $selectProjectSummary.value = data.projectSummary;
+                let $selectProjectPurpose = document.getElementById("selectInputPurpose");
+                $selectProjectPurpose.value = data.projectPurpose;
+                let $selectStartDate = document.getElementById("selectStartDate");
+                $selectStartDate.value = data.startDate;
+                let $selectEndDate = document.getElementById("selectEndDate");
+                $selectEndDate.value = data.endDate;
+                let $selectProjectNo = document.getElementById("selectProjectNo");
+                $selectProjectNo.value = data.projectNo;
+
+
+
+                const selectMemberList = document.getElementById("selectMember");
+                selectMemberList.innerHTML = "";
+                const invitedMemberList = data.inviteMemberList;
+                resultMemberInviteList = invitedMemberList;
+                for(let i = 0; i < invitedMemberList.length; i++) {
+
+                    resultEmailList
+                        = [...resultEmailList, invitedMemberList[i].email]
+                    // 이메일 div 생성
+                    let resultMail = document.createElement("div");  // 이메일 div
+                    let emailAdress = document.createTextNode(invitedMemberList[i].email);  // 이메일 주소
+                    resultMail.appendChild(emailAdress);
+                    memberListArea.appendChild(resultMail);
+                    // 스타일 설정
+                    resultMail.style.backgournd = "#DFF7FD";
+                    resultMail.style.borderRadius = "15px";
+                    resultMail.style.width = "max-content";
+                    resultMail.style.height = "30px";
+                    resultMail.style.display = "flex";
+                    resultMail.style.alignItems = "center";
+                    resultMail.style.lineHeight = "30px";
+                    resultMail.style.margin = "5px";
+                    resultMail.style.padding = "5px 10px";
+
+                    // 멤버 추가 버튼 위치 조정
+                    const inviteMemberButton = document.getElementById("inviteMember");
+                    inviteMemberButton.style.order = 1;
+                }
+
+
+                let selectCategoryList = document.querySelectorAll(".selectCategory");
+                for(let i = 0; i < selectCategoryList.length; i++){
+                    selectCategoryList[i].setAttribute('checked', false);
+                }
+                document.querySelector("#selectCategory input[value='"+data.projectCategoryCode+"']").setAttribute('checked' , true);
+                // let updateCategoryList = document.querySelectorAll(".updateCategory");
+                let selectCategoryLabelList = document.querySelectorAll(".selectCategoryLabel");
+                for(let i = 0; i < selectCategoryList.length; i++){
+                    selectCategoryList[i].addEventListener("click", function(){
+                        selectCategoryLabelList[i].style.background = "#92E2F8";
+                    });
+                    selectCategoryList[i].addEventListener("blur", function(){
+                        selectCategoryLabelList[i].style.background = "#FFFFFF";
+                    });
+                    if(selectCategoryList[i].checked === true){
+                        selectCategoryLabelList[i].style.background = "#92E2F8";
+                    } else{
+                        selectCategoryLabelList[i].style.background = "#FFFFFF";
+                    }
+                }
+            })
+            .catch(error => console.log(error));
+    }
+
+    /* 프로젝트 정보 수정 모달 띄우기 + DB에서 데이터 가져오는 함수 호출 */
+    const selecProject= document.querySelectorAll("#projectSelect");
+    const selectProjectModal = document.getElementById("modalSelectProjectData");
+    const projectNo = document.querySelectorAll("#projectNo");   // 알아보긴ㅇㅇㄹㄴ알나어ㅏㄴㅇㄹㅇㄴㄹㅇ나러ㅣㅏ
+    // selectProjectModal.style.display = "none";
+    for(let i = 0; i < selecProject.length; i++) {
+        selecProject[i].addEventListener("click", function () {
+            selectData(projectNo[i].value);
+            console.log(projectNo[i].value);
+            selectProjectModal.style.display = "";
+        })
+    }
+
+    // /* x버튼 취소 버튼 클릭 시 모달 없애기 */
+    const selectConfirm = document.getElementById("selectConfirm");
+    selectConfirm.addEventListener("click", function(){
+        selectProjectModal.style.display = "none";
+    });
+    const selectProjectXButton = document.getElementById("selectProjectXButton");
+    selectProjectXButton.addEventListener("click", function(){
+        selectProjectModal.style.display = "none";
+    });
+
+
+</script>
+</body>
+</html>
