@@ -1,35 +1,29 @@
 @charset "UTF-8";
 
-#deleteModal{
+#modalIsRealDeleteMember{
 
     position: absolute;
     width: 554px;
     height: 284px;
     left: 683px;
     top: 260px;
-
     background: #FFFFFF;
     border:1px solid #595959;
-    /*box-shadow: 0px 3.02732px 3.02732px rgba(0, 0, 0, 0.25);*/
     border-radius: 25px;
-
-
 }
 
-#deleteHeader{
+#isRealDeleteMemberHeader{
 
     position: absolute;
     width: 554px;
     height: 51px;
-
     background: #92E2F8;
     border-bottom: 1px solid #282828;
     border-radius: 25px 25px 0px 0px;
 
-
 }
 
-#deleteXButton{
+#isRealDeleteMemberXButton {
 
     width: 30px;
     height: 34px;
@@ -37,50 +31,56 @@
     position: absolute;
     left: 506px;
     top: 5px;
-
 }
 
-#deleteBody{
+#isRealDeleteMemberBody{
 
     position: absolute;
     width: 554px;
-    height: 170px;
+    height: 233px;
     top: 52px;
     display: flex;
-    align-items: center;
-
+    justify-content: center;
 }
 
-#deleteAlertIcon{
+#isRealDeleteThisMember{
 
     position: absolute;
-    width: 29px;
-    left: 80px;
-    height: 70px;
-
-}
-
-#deleteProjectName{
-
-    position: absolute;
-    width: 360px;
-    left: 130px;
-    top: 60px;
+    width: max-content;
+    top: 45px;
     font-style: normal;
     font-weight: 600;
-    font-size: 25px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
     line-height: 33px;
+    text-align: left;
     color: #282828;
-
 }
 
-/* 취소 버튼 */
-#deleteCancel{
+
+/*#isRealDeleteMemberText{*/
+
+/*    position: absolute;*/
+/*    width: 500px;*/
+/*    top: 75px;*/
+/*    font-style: normal;*/
+/*    font-weight: 600;*/
+/*    font-size: 20px;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    line-height: 33px;*/
+/*    text-align: center;*/
+/*    color: #282828;*/
+
+/*}*/
+
+#isRealDeleteMemberCancel{
 
     position: absolute;
     width: 99px;
     height: 31px;
-    left: 286px;
+    left: 300px;
     top: 226px;
     border-radius: 25px;
     background: #DFF7FD;
@@ -96,8 +96,7 @@
 
 }
 
-/* 확인 버튼 */
-#deleteConfirm{
+#isRealDeleteMemberConfirm{
 
     position: absolute;
     width: 99px;
@@ -117,5 +116,3 @@
     color: #282828;
 
 }
-
-

@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="/css/project/modalWrongJoinCode.css">
   <link rel="stylesheet" href="/css/project/modalManageMember.css">
   <link rel="stylesheet" href="/css/project/modalMoreInviteMember.css">
+  <link rel="stylesheet" href="/css/project/modalIsRealDeleteMember.css">
 </head>
 <body>
 <!-- 프로젝트 메인 화면 -->
@@ -912,9 +913,7 @@
             .then(data =>{
               console.log(data);
               let projectName = document.querySelector("#deleteProjectName");
-              projectName.textContent = '"' + data.projectName + '"' + " 을(를) 삭제하시겠습니까?";
-              console.log(data.projectName);
-              console.log(projectName);
+              projectName.innerHTML = `&quot;${data.projectName}&quot;을(를) <br> 삭제하시겠습니까?`;
               let deleteProjectNo = document.getElementById("deleteProjectNo");
               deleteProjectNo.value = data.projectNo;
             })
@@ -1038,22 +1037,53 @@
                   trashcanImg.style.display = "";
                 }
                 trashcanImg.addEventListener("click", function() {
-                  fetch("/project/deleteMemberInfo",
-                          {
-                            method: "POST",
-                            headers: {
-                              'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({
-                              projectNo : projectNumber.value,
-                              userNo : member.userNo,
-                              email : emailP.textContent
+                  // 모달 끄기
+                  modalIsRealDeleteMember.style.display = "";
+                  //누구 지우는지 확인
+                  let isRealDeleteMemberText = document.getElementById("isRealDeleteMemberText");
+                  if (isRealDeleteMemberText) {
+                    isRealDeleteMemberText.innerHTML = `&quot;${nicknameP.textContent}&quot;님을 <br> 본 프로젝트에서 삭제하시겠습니까?`;
+                  }
+                  isRealDeleteMemberText.style.position = "absolute";
+                  isRealDeleteMemberText.style.width = "max-content";
+                  isRealDeleteMemberText.style.height = "20px";
+                  isRealDeleteMemberText.style.top = "75px";
+                  isRealDeleteMemberText.style.fontStyle = "normal";
+                  isRealDeleteMemberText.style.fontWeight = "800";
+                  isRealDeleteMemberText.style.fontSize = "25px";
+                  isRealDeleteMemberText.style.display = "flex";
+                  isRealDeleteMemberText.style.justifyContent = "center";
+                  isRealDeleteMemberText.style.textAlign = "left";
+                  isRealDeleteMemberText.style.color = "#282828";
+
+                  const isRealDeleteMemberConfirm = document.getElementById("isRealDeleteMemberConfirm");
+                  isRealDeleteMemberConfirm.onclick = function() {
+                    modalIsRealDeleteMember.style.display = "none";
+                    // 해당 멤버의 정보를 join_project에서 삭제
+                    fetch("/project/deleteMemberInfo",
+                            {
+                              method: "POST",
+                              headers: {
+                                'Content-Type': 'application/json',
+                              },
+                              body: JSON.stringify({
+                                projectNo: projectNumber.value,
+                                userNo: member.memberNo,
+                                email: emailP.textContent
+                              })
                             })
-                          })
-                          .then((res) => res.json())
-                          .then((result) => console.log(result))
-                          .catch((error) => console.log(error));
+                            .then((res) => {
+                              if(res.ok){
+                                window.location.reload();
+                              } else {
+                                console.error("POST 매핑 실패");
+                              }
+                            })
+                            .then((result) => console.log(result))
+                            .catch((error) => console.log(error));
+                  }
                 });
+
 
                 memberDiv.appendChild(nthList);
                 nthList.appendChild(nicknameP);
@@ -1095,12 +1125,9 @@
   forInviteMember.onclick = function(){
     moreInviteMemberModal.style.display = "";
   }
-
-
-
 </script>
 
-<!-- ----------------------------- 팀원 관리 모달 - 팀원 추가 ------------------------ -->
+<!-- ----------------------------- 팀원 관리 모달 - 팀원 추가 ----------------------------- -->
 <div id="moreInviteMemberModal" style="z-index: 4">
   <div id="moreInviteMemberBlueHeader">
     <div id="moreInviteMemberXButton">X</div>
@@ -1229,6 +1256,35 @@
   }
 
 
+</script>
+
+<!-- --------------- 멤버 관리 페이지에서 멤버 삭제 시 진짜 삭제 여부 묻는 모달 --------------- -->
+<div id="modalIsRealDeleteMember" style="z-index: 3">
+  <div id="isRealDeleteMemberHeader">
+    <div id="isRealDeleteMemberXButton">X</div>
+  </div>
+  <div id="isRealDeleteMemberBody">
+    <p id="isRealDeleteMemberText" value=""></p>
+  </div>
+  <button type="button" id="isRealDeleteMemberCancel">취소</button>
+  <button type="button" id="isRealDeleteMemberConfirm">확인</button>
+</div>
+
+<script>
+
+  // display:none 기본 설정
+  const modalIsRealDeleteMember = document.getElementById("modalIsRealDeleteMember");
+  modalIsRealDeleteMember.style.display = "none";
+  // x 누르면 display:none
+  const isRealDeleteMemberXButton = document.getElementById("isRealDeleteMemberXButton");
+  isRealDeleteMemberXButton.onclick = function(){
+    modalIsRealDeleteMember.style.display = "none";
+  }
+  // 취소 누르면 display:none
+  const isRealDeleteMemberCancel = document.getElementById("isRealDeleteMemberCancel");
+  isRealDeleteMemberCancel.onclick = function(){
+    modalIsRealDeleteMember.style.display = "none";
+  }
 </script>
 </body>
 </html>
