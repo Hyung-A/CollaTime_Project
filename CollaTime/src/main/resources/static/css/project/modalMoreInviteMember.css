@@ -1,7 +1,8 @@
 @charset "utf-8";
 
-#modalManageMember {
+#moreInviteMemberModal {
 
+    cursor: default;
     position: absolute;
     width: 1013px;
     height: 680px;
@@ -13,7 +14,7 @@
     border-radius: 25px;
 }
 
-#manageMemberHeader{
+#moreInviteMemberBlueHeader{
     position: absolute;
     width: 1013px;
     height: 51px;
@@ -23,7 +24,7 @@
     border-radius: 25px 25px 0px 0px;
 }
 
-#manageMemberXButton{
+#moreInviteMemberXButton{
     width: 30px;
     height: 34px;
     font-size: 30px;
@@ -32,50 +33,108 @@
     top: 5px;
 }
 
-#manageMemberText{
+#moreTextMember{
 
     position: absolute;
-    width: max-content;
-    height: 32px;
     left: 83px;
-    top: 107px;
+    top: 137px;
+
+    font-family: "Inter";
     font-style: normal;
     font-weight: 600;
     font-size: 30px;
+    line-height: 42px;
+    text-align: center;
     letter-spacing: 0.03em;
+
     color: #282828;
 
 }
 
-#titleNickname{
-    position: absolute;
-    left: 182px;
-}
+#moreTextEmail{
 
-#titleEmail{
     position: absolute;
-    left: 380px;
-}
+    left: 87px;
+    top: 233px;
 
-#titleNote{
-    position: absolute;
-    left: 690px;
-}
-
-.listHead{
-    position: absolute;
-    width: max-content;
-    height: 23px;
-    top: 189px;
+    font-family: 'Inter';
     font-style: normal;
     font-weight: 600;
-    font-size: 25px;
-    line-height: 29px;
+    font-size: 22px;
+    line-height: 28px;
     letter-spacing: 0.03em;
+
+    color: #282828;
+
+}
+
+#moreSendEmail{
+
+    position: absolute;
+    width: 731px;
+    height: 40px;
+    left: 180px;
+    top: 230px;
+    border-bottom: solid 3px #92E2F8;
+
+}
+
+#moreInputEmail{
+
+    position: absolute;
+    width: 675px;
+    height: 30px;
+    left: 15px;
+    border: none;
+    outline: none;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    letter-spacing: 0.03em;
+
     color: #282828;
 }
 
-#forInviteMember{
+#moreAddIcon{
+
+    position: absolute;
+    height: 40px;
+    left: 695px;
+    top: -4px;
+    border: none;
+    background: none;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 42px;
+    letter-spacing: 0.03em;
+
+    color: #282828;
+
+}
+
+#moreStoreEmailIcon{
+
+    position: absolute;
+    left: 98px;
+    top: 300px;
+
+}
+
+#moreStoreEmailArea{
+
+    position: absolute;
+    width: 731px;
+    height: 270px;
+    left: 180px;
+    top: 300px;
+
+    background: #DFF7FD;
+    border-radius: 15px;
+
+}
+
+#moreSendEmailCancel{
 
     position: absolute;
     left: 730px;
@@ -97,48 +156,7 @@
 
 }
 
-#nthMemberArea{
-    position: relative;
-    height: 500px;
-    overflow-y: auto;
-    border: solid 1px #ccc;
-}
-
-.member-row {
-    display: flex;
-    position: relative; /* 상위 요소를 기준으로 절대 위치 설정 */
-    /*margin-bottom: 10px; !* 각 멤버 간의 간격 *!*/
-    width: 100%;
-    font-size: 23px;
-    font-weight: 400;
-    font-style: normal;
-}
-
-.nickname {
-    position: absolute;
-    left: 162px;
-    width: 100px;
-}
-
-.email {
-    position: absolute;
-    left: 360px;
-    width: 200px;
-}
-
-.note {
-    position: absolute;
-    left: 690px;
-    width: 100px;
-}
-
-.trashcanIcon {
-    position: absolute;
-    left: 831px;
-}
-
-
-#manageMemberConfirm{
+#moreSendEmailConfirm{
 
     position: absolute;
     width: 114px;
@@ -159,4 +177,5 @@
     color: #282828;
 
 }
+
 

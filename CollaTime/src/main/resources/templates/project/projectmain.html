@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="/css/project/modalInputAlert.css">
   <link rel="stylesheet" href="/css/project/modalWrongJoinCode.css">
   <link rel="stylesheet" href="/css/project/modalManageMember.css">
+  <link rel="stylesheet" href="/css/project/modalMoreInviteMember.css">
 </head>
 <body>
 <!-- 프로젝트 메인 화면 -->
@@ -954,6 +955,7 @@
   </div>
   <div id="manageMemberBody">
     <p id="manageMemberText">팀원 관리</p>
+    <input type="text" style="display: none" id="projectNomber"/>
     <div id="manageMemberList">
       <div id="manageMemberListHead">
         <input type="text" id="projectNum" name="projectNo" style="display: none"/>
@@ -982,16 +984,16 @@
             .then((res) => res.json())
             .then((data) => {
               console.log("멤버 정보 : " + data);
+              console.log("projectNo : " +  data.projectNo);
 
               // `manageMemberList` div를 비웁니다.
               const manageMemberList = document.getElementById("manageMemberList");
               const manageMemberListHead = document.getElementById("manageMemberListHead");
               manageMemberList.innerHTML = "";
               manageMemberList.appendChild(manageMemberListHead);
-              manageMemberListHead.style.borderBottom = "solid 3px #92E2F8";
 
               // 데이터를 기반으로 멤버 리스트를 생성합니다.
-              let topPosition = 270;  // 첫 번쨰 요소의 top 위치 설정
+              let topPosition = 260;  // 첫 번쨰 요소의 top 위치 설정
               const gap = 40; // 각 요소 간의 간격 설정
 
               data.forEach((member,index) => {
@@ -1003,7 +1005,6 @@
                 nthList.style.width = "730px";
                 nthList.style.height = "40px";
                 nthList.style.borderBottom = "solid 3px #92E2F8"
-
 
                 const nicknameP = document.createElement("p");
                 nicknameP.className = "nthMember nickname";
@@ -1037,7 +1038,17 @@
                   trashcanImg.style.display = "";
                 }
                 trashcanImg.addEventListener("click", function() {
-                  // 멤버 삭제 코드 추가
+                  fetch("/project/deleteMemberInfo",
+                          {
+                            method: "POST",
+                            headers: {
+                              'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                              projectNo : projectNumber.value,
+                              // emailList:
+                            })
+                          })
                 });
 
                 memberDiv.appendChild(nthList);
@@ -1054,13 +1065,14 @@
             .catch(error => console.log("Error fetching members:", error));
   }
 
-
+ const projectNumber = document.getElementById("projectNumber");
   const modalManageMember = document.getElementById("modalManageMember");
   modalManageMember.style.display = "none";
   const manageMember = document.querySelectorAll("#manageMember");
   for(let i = 0; i < manageMember.length; i++) {
     manageMember[i].onclick = function () {
       modalManageMember.style.display = "";
+      projectNumber.value = projectNo[i].value
       selectMember(projectNo[i].value);
       console.log(projectNo[i].value);
     }
@@ -1077,8 +1089,141 @@
 
   let forInviteMember = document.getElementById("forInviteMember");
   forInviteMember.onclick = function(){
-    inviteMemberModal.style.display = "";
+    moreInviteMemberModal.style.display = "";
   }
+
+
+
+</script>
+
+<!-- ----------------------------- 팀원 관리 모달 - 팀원 추가 ------------------------ -->
+<div id="moreInviteMemberModal" style="z-index: 4">
+  <div id="moreInviteMemberBlueHeader">
+    <div id="moreInviteMemberXButton">X</div>
+  </div>
+  <div id="moreInviteModalMain">
+    <span id="moreTextMember">팀원관리</span>
+    <div id="moreEmailArea">
+      <span id="moreTextEmail">E-mail</span>
+      <div id="moreSendEmail">
+        <input type="text" style="display: none" id="moreEmailProjectNo" name="projectNo"/>
+        <input type="email" id="moreInputEmail" name="inputEmail" placeholder="collaTime@gmail.com" value=""/>
+        <input type="email" style="display: none" id="moreEmailList" name="email"/>
+        <button type="button" id="moreAddIcon">+</button>
+      </div>
+    </div>
+    <div id="moreStore">
+      <img src="/css/project/image/memberIcon.png" id="moreStoreEmailIcon" alt="멤버아이콘">
+      <div id="moreStoreEmailArea" style="display: flex; flex-wrap: wrap; align-content: flex-start; gap: 5px"></div>
+    </div>
+    <button type="button" id="moreSendEmailCancel">취소</button>
+    <button type="button" id="moreSendEmailConfirm">전송</button>
+  </div>
+</div>
+<script>
+
+  const moreInviteMemberModal = document.getElementById("moreInviteMemberModal");
+  moreInviteMemberModal.style.display = "none";
+
+  function deleteMoreEmail (){
+    var moreStoreArea = document.getElementById("moreStoreEmailArea");
+    while(moreStoreArea.hasChildNodes()){
+      moreStoreArea.removeChild(moreStoreArea.firstChild);
+    }
+  }
+
+  // 이메일 입력 후 +를 눌렀을 때 입력한 이메일을 저장 영역(화면)에 띄우기
+  const moreInputEmail = document.getElementById("moreInputEmail");
+  const moreAddIcon = document.getElementById("moreAddIcon");
+  let moreEmailList = [];
+  let resultMoreEmailList = [];
+  moreAddIcon.onclick = function(){
+    moreEmailList.push(moreInputEmail.value);
+    let moreStoreArea = document.getElementById("moreStoreEmailArea");
+    let moreStoreMail = document.createElement("div");
+    let moreAdressArea = document.createElement("div");
+    let moreXBtnArea = document.createElement("div");
+    let moreEmailAdress = document.createTextNode(moreInputEmail.value);
+    let moreXButton = document.createTextNode("X");
+    moreStoreMail.appendChild(moreAdressArea);
+    moreStoreMail.appendChild(moreXBtnArea);
+    moreAdressArea.appendChild(moreEmailAdress);
+    moreXBtnArea.appendChild(moreXButton);
+    moreStoreArea.appendChild(moreStoreMail);
+    moreStoreMail.style.backgroundColor = "#FFFFFF";
+    moreStoreMail.style.height = "30px";
+    moreStoreMail.style.display = "flex";
+    moreStoreMail.style.alignItems = "center";
+    moreStoreMail.style.justifyContent = "center";
+    moreStoreMail.style.lineHeight = "20px";
+    moreStoreMail.style.borderRadius = "15px";
+    moreStoreMail.style.width = "max-content";
+    moreStoreMail.style.margin = "10px"; // 기본 여백 설정
+    moreStoreMail.style.padding = "5px 10px"; // 공간을 더 줘서 컴팩트하게
+    moreAdressArea.style.marginRight = "10px"; // 오른쪽 여백 추가
+    moreXBtnArea.style.cursor = "pointer"; // 클릭 가능한 커서로 변경
+    moreXBtnArea.onclick = function () {
+      moreStoreArea.removeChild(moreStoreMail);  // 요소 삭제
+      moreEmailList = moreEmailList.filter((obj) => obj !== moreInputEmail.value);
+    }
+  }
+
+  // 취소 버튼
+  const moreSendEmailCancel = document.getElementById("moreSendEmailCancel");
+  moreSendEmailCancel.onclick = function(){
+    moreInviteMemberModal.style.display = "none";
+    moreEmailList = [];
+    deleteMoreEmail();
+    const moreInput = document.getElementById("moreInputEmail");
+    moreInput.value = "";
+  }
+
+  // X 버튼
+  const moreInviteMemberXButton = document.getElementById("moreInviteMemberXButton");
+  moreInviteMemberXButton.onclick = function(){
+    moreInviteMemberModal.style.display = "none";
+    moreEmailList = [];
+    deleteMoreEmail();
+    const moreInput = document.getElementById("moreInputEmail");
+    moreInput.value = "";
+  }
+
+  // 전송 버튼
+  const moreSendEmailConfirm = document.getElementById("moreSendEmailConfirm");
+  moreSendEmailConfirm.onclick = function() {
+    moreInviteMemberModal.style.display = "none";
+    resultMoreEmailList = [...moreEmailList];
+    console.log("resultEmailList : " + resultMoreEmailList);
+    deleteMoreEmail();
+    const moreInput = document.getElementById("moreInputEmail");
+    moreInput.value = "";
+    let fetchMoreEmailList = [];
+    for (let i = 0; i < resultMoreEmailList.length; i++) {
+      fetchMoreEmailList = [
+        ...fetchMoreEmailList,
+        {
+          email: resultMoreEmailList[i]
+        }
+      ]
+    }
+    fetch("/project/sendUpdatedEmail",
+            {
+              method: "POST",
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                projectNo : projectNumber.value,
+                emailList: resultMoreEmailList,
+                inviteMemberList: fetchMoreEmailList
+              })
+            })
+            .then((res) => res.json())
+            .then((result) => console.log(result))
+            .catch((error) => console.log(error));
+
+  }
+
 
 </script>
 </body>
