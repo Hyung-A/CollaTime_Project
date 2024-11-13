@@ -35,4 +35,16 @@
         FROM INQUIRY
         WHERE INQUIRY_NO = #{inquiryNo}
     </select>
+
+    <insert id="registPassAuthInquiry" parameterType="com.ohgiraffers.collatime.inquiry.model.dto.InquiryDTO">
+        INSERT INTO INQUIRY VALUES
+        (
+            '0'
+        ,   #{inquiryStatus}
+        ,   #{inquiryTitle}
+        ,   #{inquiryContent}
+        ,   #{userNo}
+        ,   #{answerContent}
+        )
+    </insert>
 </mapper>

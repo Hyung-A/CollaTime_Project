@@ -27,34 +27,36 @@
     <div class="message pwdCheck" id="passAuthority_password_message"></div>
 </div>
 <button type="button" id="passAuthority_cancel_btn">취소</button>
-
+<form th:action="@{/inquiry/passauth}" method="post">
 <div id="passAuthority_area">
     <div id="passAuthority_project_text">위임할 프로젝트 명</div>
-    <select id="passAuthority_project_select" name="projectNo">
+    <select id="passAuthority_project_select" name="passProjectNo">
         <option value="none" selected>위임할 프로젝트를 선택해주세요.</option>
     </select>
     <div id="passAuthority_nickname_text">위임할 멤버 닉네임</div>
-    <select id="passAuthority_nickname_select" name="userNickname">
+    <select id="passAuthority_nickname_select" name="passUserNickname">
         <option value='none' selected>위임할 멤버 닉네임을 선택해주세요.</option>
     </select>
+    <div id="passAuthority_message">프로그램 혹은 멤버를 선택했는지 다시 한번 확인해주세요.</div>
     <div id="passAuthority_guide_text">프로젝트 권한 위임은 24시간 내에 처리됩니다.<br>시간 내에 처리가 되지 않는다면 문의하기에서 문의해주세요.
     </div>
     <button type="button" id="passAuthority_ok_btn">확인</button>
 </div>
+</form>
 <script>
     const checkPassword = document.getElementById('passAuthority_password_input')
     const checkPasswordBtn = document.getElementById('passAuthority_password_btn')
     const passAuthorityPasswordArea = document.getElementById('passAuthority_password_area')
     const passAuthorityArea = document.getElementById('passAuthority_area')
-    const passAuthorityBtn = document.getElementById('passAuthority_btn')
+    const passAuthorityBtn = document.getElementById('passAuthority_ok_btn')
     const checkPasswordMsg = document.getElementById('passAuthority_password_message')
     const projectSelection = document.getElementById('passAuthority_project_select')
     const nicknameSelection = document.getElementById('passAuthority_nickname_select')
+    const passAuthorityMsg = document.getElementById('passAuthority_message')
 
     fetch("/common/leftbar")
         .then(res=>res.json())
         .then(data=>{
-            console.log(data)
             for(let index in data){
                 const option = document.createElement('option')
                 option.value = data[index].projectNo
@@ -86,6 +88,7 @@
                 }
             })
     })
+
     projectSelection.addEventListener('change', ()=>{
         nicknameSelection.options.length = 1;
         const selectedProject = projectSelection.value;
@@ -93,22 +96,29 @@
         fetch("/project/selectMember?projectNo="+selectedProject)
             .then(res=>res.json())
             .then(data=>{
-                console.log(data)
-                if(selectedProject==='none'){
-                    nicknameSelection.append("<option value='none' selected>위임할 멤버 닉네임을 선택해주세요.</option>")
-                }else {
                     for (let index in data) {
-                        const option = document.createElement('option')
-                        option.value = data[index].memberNo
-                        option.textContent = data[index].memberNickname
-                        nicknameSelection.append(option)
+                        if(data[index].memberNo === `[[${#authentication.principal.userNo}]]`){
+                            continue;
+                        }else {
+                            const option = document.createElement('option')
+                            option.value = data[index].memberNickname
+                            option.textContent = data[index].memberNickname
+                            nicknameSelection.append(option)
+                        }
                     }
-                }
-
             })
 
     })
 
+    passAuthorityBtn.addEventListener('click', ()=>{
+        if(projectSelection.value === 'none' || nicknameSelection.value ==='none'){
+            console.log(projectSelection.value + "and " + nicknameSelection.value)
+            passAuthorityMsg.style.display = 'flex';
+        }else{
+            passAuthorityMsg.style.display = 'none';
+            passAuthorityBtn.type = 'submit';
+        }
+    })
 
 </script>
 </body>

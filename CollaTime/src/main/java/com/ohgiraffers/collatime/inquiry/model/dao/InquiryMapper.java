@@ -12,4 +12,6 @@ public interface InquiryMapper {
     List<InquiryDTO> myInquiryList(int userNo);
 
     InquiryDTO inquiryInfoByNo(int inquiryNo);
+
+    int registPassAuthInquiry(InquiryDTO inquiryDTO);
 }
