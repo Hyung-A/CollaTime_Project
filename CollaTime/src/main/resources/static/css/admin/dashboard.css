@@ -1,71 +1,39 @@
 
-#box-container {
-    display: flex;
-    margin-top: 20px;
-
-}
-
-/* 개별 박스 스타일 */
-#box1, #box2, #box3 {
-    position: relative;
-    margin-top: 50px;
-    width: 400px;
-    height: 120px;
-    background-color: white;
-    display: flex;
-    font-size: 18px;
-    font-weight: bold;
-    border-radius: 30px;
-    border: 1px solid black;
-
-}
-
-#box1, #box2, #box3, h3 {
-    margin-left: 30px;
-    margin-top: 30px;
-    font-size: 20px;
-}
-
-#calendar, #members, #project {
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    right: 20px;
-    top: 30%;
-}
-
-#visitor-container {
-    display: flex;
-    margin-top: 20px;
-    gap: 20px;
-    width: 1400px;
-    height: 400px;
-
-}
-
-#month-visitor, #day-visitor {
+#month-visitor{
     background-color: #DFF7FD;
-    position: relative;
-    width: 50%;
+    position: absolute;
+    left: 450px;
+    top: 500px;
+    width: 700px;
     height: 420px;
+    font-size: 30px;
+    font-weight: bold;
+
+}
+
+#day-visitor {
+    background-color: #DFF7FD;
+    position: absolute;
+    left: 1250px;
+    top: 500px;
+    width: 500px;
+    height: 420px;
+    font-size: 30px;
+    font-weight: bold;
 
 }
 
 #month-visitor, #day-visitor, h3{
-    font-size: 35px;
-    font-weight: bold;
 }
 
 /* 차트 전체 스타일 */
 .chart {
     display: flex;
     align-items: flex-end;
-    gap: 10px;
     height: 300px;
     border-bottom: 1px solid #ddd;
-    padding: 0 10px;
-    margin-top: 20px;
-    position: relative;
+
+    padding-left: 10px;
 }
 
 /* y축 스타일 */
@@ -128,6 +96,77 @@
     text-align: center;
 }
 
+/*회원 영역*/
+#dashBoard_userArea{
+    box-sizing: border-box;
 
+    position: absolute;
+    width: 245px;
+    height: 109px;
+    left: 536px;
+    top: 313px;
 
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 30px;
 
+}
+
+/*프로젝트 영역*/
+#dashBoard_projectArea{
+
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 245px;
+    height: 109px;
+    left: 950px;
+    top: 310px;
+
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 30px;
+
+}
+
+/*문의 영역*/
+#dashBoard_inquiryArea{
+
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 245px;
+    height: 109px;
+    left: 1356px;
+    top: 309px;
+
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 30px;
+
+}
+
+/*영역 텍스트 스타일*/
+.areaText{
+    position: absolute;
+    width: 120px;
+    height: 34px;
+    left: 30px;
+    top: 37px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 36px;
+    text-align: center;
+
+    color: #000000;
+
+}
+/*영역 이미지 위치*/
+.areaImg{
+    position: absolute;
+    left: 165px;
+    top: 32px;
+}

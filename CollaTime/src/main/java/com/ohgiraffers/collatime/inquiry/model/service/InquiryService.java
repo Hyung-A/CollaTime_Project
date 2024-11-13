@@ -34,4 +34,8 @@ public class InquiryService {
     public InquiryDTO inquiryInfoByNo(int inquiryNo) {
         return inquiryMapper.inquiryInfoByNo(inquiryNo);
     }
+
+    public int registPassAuthInquiry(InquiryDTO inquiryDTO) {
+        return inquiryMapper.registPassAuthInquiry(inquiryDTO);
+    }
 }

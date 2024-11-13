@@ -1,5 +1,6 @@
 package com.ohgiraffers.collatime.configuration.handler;
 
+import com.ohgiraffers.collatime.visit.model.service.VisitService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -15,6 +16,12 @@ import java.util.Iterator;
 
 @Configuration
 public class AuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
+
+    private VisitService visitService;
+
+    public AuthSuccessHandler(VisitService visitService){
+        this.visitService = visitService;
+    }
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
@@ -33,6 +40,8 @@ public class AuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
             System.out.println("user");
             response.sendRedirect("/auth/loginresult");
         }
+
+        visitService.loginUser();
 
         super.onAuthenticationSuccess(request, response, authentication);
     }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.collatime.visit.model.dao.VisitMapper">
+    <resultMap id="visit" type="com.ohgiraffers.collatime.visit.model.dto.VisitDTO">
+        <id property="visitDate" column="VISIT_DATE"/>
+        <result property="visitCount" column="VISIT_COUNT"/>
+    </resultMap>
+
+    <select id="visitDate" resultMap="visit">
+        SELECT *
+        FROM VISIT
+        WHERE VISIT_DATE = #{visitDate}
+    </select>
+
+    <insert id="newDateLoginUser" parameterType="com.ohgiraffers.collatime.visit.model.dto.VisitDTO">
+        INSERT INTO VISIT VALUES
+        (
+            #{visitDate}
+        ,   #{visitCount}
+        )
+    </insert>
+
+    <update id="todayLoginUser" parameterType="com.ohgiraffers.collatime.visit.model.dto.VisitDTO">
+        UPDATE VISIT
+        SET VISIT_COUNT = #{visitCount}
+        WHERE VISIT_DATE = #{visitDate}
+    </update>
+</mapper>

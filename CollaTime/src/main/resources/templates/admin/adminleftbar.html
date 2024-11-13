@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/admin/adminleftbar.css">
+</head>
+<body>
+
+<!-- Left Bar 구역 -->
+<div id="leftBarLayout">
+    <div id="blueBackground_admin">
+        <div id="profile"></div>
+        <div id="leftBarNickname" th:text="${#authentication.principal.userNickname}"></div>
+        <div id="whiteBar1"></div>
+        <span id="textMyProject">My Project</span>
+        <div id="projectMenu">
+        </div>
+        <div id="whiteBar2"></div>
+        <div id="doInquiry">
+            <img src="/css/project/image/inquiryIcon.png" id="firstInquiry">
+            <span id="doInquiryText">문의하기</span>
+        </div>
+        <div id="authority">
+            <img src="/css/project/image/inquiryIcon.png" id="secondInquiry">
+            <span id="authorityText">권한 위임 요청</span>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

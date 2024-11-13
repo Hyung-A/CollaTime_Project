@@ -4,105 +4,88 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard Layout</title>
-  <link rel="stylesheet" href="/static/css/admin/dashboard.css">
-  <link rel="stylesheet" href="/static/css/admin/base.css">
+  <link rel="stylesheet" href="/css/admin/dashboard.css">
+  <link rel="stylesheet" href="/css/admin/base.css">
 </head>
 <body>
 
-<div id="header">
-  <h1>Logo</h1>
+<div th:include="/admin/adminleftbar.html"></div>
+<div th:include="/common/programHeader.html"></div>
+
+<div id="dashBoard_userArea">
+  <div class="areaText">회원</div>
+  <img class="areaImg" src="/css/admin/image/회원.png">
+</div>
+<div id="dashBoard_projectArea">
+  <div class="areaText">프로젝트</div>
+  <img class="areaImg" src="/css/admin/image/프젝.png">
+</div>
+<div id="dashBoard_inquiryArea">
+  <div class="areaText">문의</div>
+  <img class="areaImg" src="/css/admin/image/inquiry.png">
 </div>
 
+<div id="month-visitor">
+  <h3>월별 방문자</h3>
+  <div class="chart">
+    <div class="y-axis">
+      <div class="y-label">900</div>
+      <div class="y-label">800</div>
+      <div class="y-label">700</div>
+      <div class="y-label">600</div>
+      <div class="y-label">500</div>
+      <div class="y-label">400</div>
+      <div class="y-label">300</div>
+      <div class="y-label">200</div>
+      <div class="y-label">100</div>
+      <div class="y-label">0</div>
+    </div>
 
-<div id="layout">
-  <div id="sidebar">
-    <h2>Sidebar</h2>
-  </div>
-
-
-  <div id="main">
-    <h1>DashBoard</h1>
-      <div id="box-container">
-
-        <div id="box1">
-          <h3>방문자</h3>
-          <img src="/static/css/admin/image/달력.png" id="calendar">
-        </div>
-
-        <div id="box2">
-          <h3>회원</h3>
-          <img src="/static/css/admin/image/회원.png" id="members">
-        </div>
-
-        <div id="box3">
-          <h3>프로젝트</h3>
-          <img src="/static/css/admin/image/프젝.png" id="project">
-        </div>
-
-      </div>
-    <div id="visitor-container">
-      <div id="month-visitor">
-        <h3>월별 방문자</h3>
-        <div class="chart">
-          <div class="y-axis">
-            <div class="y-label">900</div>
-            <div class="y-label">800</div>
-            <div class="y-label">700</div>
-            <div class="y-label">600</div>
-            <div class="y-label">500</div>
-            <div class="y-label">400</div>
-            <div class="y-label">300</div>
-            <div class="y-label">200</div>
-            <div class="y-label">100</div>
-            <div class="y-label">0</div>
-          </div>
-
-          <div class="bars">
-            <div class="bar" id="jan" style="height: 28%;">Jan</div>
-            <div class="bar" id="feb" style="height: 49%;">Feb</div>
-            <div class="bar" id="mar" style="height: 88%;">Mar</div>
-            <div class="bar" id="apr" style="height: 74%;">Apr</div>
-            <div class="bar" id="may" style="height: 81.3%;">May</div>
-            <div class="bar" id="jun" style="height: 69.7%;">Jun</div>
-            <div class="bar" id="jul" style="height: 70.4%;">Jul</div>
-            <div class="bar" id="aug" style="height: 86.9%;">Aug</div>
-            <div class="bar" id="sep" style="height: 63.5%;">Sep</div>
-            <div class="bar" id="oct" style="height: 51.7%;">Oct</div>
-            <div class="bar" id="nov" style="height: 54.7%;">Nov</div>
-            <div class="bar" id="dec" style="height: 34.1%;">Dec</div>
-          </div>
-        </div>
-      </div>
-
-      <div id="day-visitor">
-        <h3>일별 방문자</h3>
-        <div class="chart">
-          <div class="y-axis">
-            <div class="y-label">140</div>
-            <div class="y-label">120</div>
-            <div class="y-label">100</div>
-            <div class="y-label">80</div>
-            <div class="y-label">60</div>
-            <div class="y-label">40</div>
-            <div class="y-label">20</div>
-            <div class="y-label">0</div>
-          </div>
-
-          <div class="bars2">
-            <div class="bar2" id="mon" style="height: 48%;">Mon</div>
-            <div class="bar2" id="tue" style="height: 50%;">Tue</div>
-            <div class="bar2" id="wed" style="height: 37%;">Wed</div>
-            <div class="bar2" id="thru" style="height: 94%;">Thru</div>
-            <div class="bar2" id="fri" style="height: 81.3%;">Fri</div>
-            <div class="bar2" id="sat" style="height: 33.2%;">Sat</div>
-            <div class="bar2" id="sun" style="height: 70.4%;">Sun</div>
-
-          </div>
-        </div>
-      </div>
-      </div>
+    <div class="bars">
+      <div class="bar" id="jan" style="height: 28%;">Jan</div>
+      <div class="bar" id="feb" style="height: 49%;">Feb</div>
+      <div class="bar" id="mar" style="height: 88%;">Mar</div>
+      <div class="bar" id="apr" style="height: 74%;">Apr</div>
+      <div class="bar" id="may" style="height: 81.3%;">May</div>
+      <div class="bar" id="jun" style="height: 69.7%;">Jun</div>
+      <div class="bar" id="jul" style="height: 70.4%;">Jul</div>
+      <div class="bar" id="aug" style="height: 86.9%;">Aug</div>
+      <div class="bar" id="sep" style="height: 63.5%;">Sep</div>
+      <div class="bar" id="oct" style="height: 51.7%;">Oct</div>
+      <div class="bar" id="nov" style="height: 54.7%;">Nov</div>
+      <div class="bar" id="dec" style="height: 34.1%;">Dec</div>
     </div>
   </div>
 </div>
+
+<div id="day-visitor">
+  <h3>일별 방문자</h3>
+  <div class="chart">
+    <div class="y-axis">
+      <div class="y-label">140</div>
+      <div class="y-label">120</div>
+      <div class="y-label">100</div>
+      <div class="y-label">80</div>
+      <div class="y-label">60</div>
+      <div class="y-label">40</div>
+      <div class="y-label">20</div>
+      <div class="y-label">0</div>
+    </div>
+
+    <div class="bars2">
+      <div class="bar2" id="mon" style="height: 48%;">Mon</div>
+      <div class="bar2" id="tue" style="height: 50%;">Tue</div>
+      <div class="bar2" id="wed" style="height: 37%;">Wed</div>
+      <div class="bar2" id="thru" style="height: 94%;">Thru</div>
+      <div class="bar2" id="fri" style="height: 81.3%;">Fri</div>
+      <div class="bar2" id="sat" style="height: 33.2%;">Sat</div>
+      <div class="bar2" id="sun" style="height: 70.4%;">Sun</div>
+
+    </div>
+  </div>
+</div>
+<script>
+  document.getElementById('logo').addEventListener('click', ()=>{location.href="/admin/dashboard"})
+</script>
 </body>
 </html>

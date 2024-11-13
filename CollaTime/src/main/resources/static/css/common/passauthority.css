@@ -228,6 +228,26 @@
     border: 2px solid #92E2F8;
 
 }
+
+/*권한 위임 메세지*/
+#passAuthority_message{
+    z-index: 10010;
+
+    display: none;
+    position: absolute;
+    width: 520px;
+    height: 54px;
+    left: 779px;
+    top: 511px;
+
+    color: red;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+}
+
 /*권한 위임 가이드*/
 #passAuthority_guide_text{
     z-index: 10010;
