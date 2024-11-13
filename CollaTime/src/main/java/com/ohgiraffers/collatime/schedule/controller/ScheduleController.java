@@ -77,5 +77,21 @@ public class ScheduleController {
         scheduleService.deleteSchedule(scheduleNo);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/schedule/details/{scheduleNo}")
+    public String getScheduleDetails(@PathVariable("scheduleNo") int scheduleNo, Model model) {
+        // scheduleNo에 맞는 스케줄 정보를 DB에서 가져오기
+        ScheduleDTO schedule = scheduleService.getScheduleById(scheduleNo);
+
+        // 데이터를 모델에 추가
+        model.addAttribute("scheduleTitle", schedule.getScheduleTitle());
+        model.addAttribute("scheduleStartDate", schedule.getScheduleStartDate());
+        model.addAttribute("scheduleEndDate", schedule.getScheduleEndDate());
+        model.addAttribute("memo", schedule.getScheduleContent());
+        model.addAttribute("colorCode", schedule.getColorCode());
+        model.addAttribute("creatorName", schedule.getScheduleCreator());
+
+        return "schedule/details"; // 해당 데이터를 가지고 details.html로 이동
+    }
 }
 

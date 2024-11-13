@@ -265,55 +265,25 @@
                     }
                 })
         }
-
+        // 스케줄 목록을 표시하는 함수
         function displaySchedules(schedules) {
             const scheduleList = document.getElementById("scheduleList");
-            scheduleList.innerHTML = "";
+            scheduleList.innerHTML = "";  // 기존 목록 초기화
 
+            // 각 스케줄을 화면에 표시
             schedules.forEach(schedule => {
                 const item = document.createElement("div");
-                item.classList.add("schedule-item"); // 각 스케줄들 꾸밀때 css , schedule-item
-                item.textContent = `${schedule.scheduleTitle}`;
+                item.classList.add("schedule-item");  // 항목 스타일 추가
+                item.textContent = schedule.scheduleTitle;  // 제목만 표시
 
-                item.addEventListener("click", () =>  {const detailsModal = document.getElementById("detailsModal");
+                // 클릭 시 detailsModal 열기
+                item.addEventListener("click", () => openDetailsModal(schedule.scheduleNo));
 
-                document.getElementById("scheduleTitle").textContent = schedule.scheduleTitle;
-                document.getElementById("scheduleStartDate").value = schedule.scheduleStartDate;
-                document.getElementById("scheduleEndDate").value = schedule.scheduleEndDate;
-                document.getElementById("memo").value = schedule.scheduleContent;
-
-                // detailsModal을 화면에 보이도록 설정
-                detailsModal.style.display = "flex";
-            });
+                // 리스트에 항목 추가
                 scheduleList.appendChild(item);
             });
         }
 
-
-
-        // function openDetailsModal(scheduleNo) {
-        //     console.log("스케줄 번호 확인..", scheduleNo);
-        //
-        //
-        //     fetch(`/api/schedules/${scheduleNo}`)
-        //         .then(response => response.json())
-        //         .then(data => {
-        //             detailsModal.style.display = "flex";
-        //
-        //             console.log("Fetched schedule details:", data); // 가져온 데이터 확인
-        //
-        //             document.getElementById("scheduleTitle").textContent = data.scheduleTitle;
-        //
-        //             document.getElementById("selectedColor").value = data.colorCode;
-        //             document.getElementById("scheduleStartDate").value = data.scheduleStartDate;
-        //             document.getElementById("scheduleEndDate").value = data.scheduleEndDate;
-        //             document.getElementById("memo").value = data.scheduleContent;
-        //
-        //         })
-        //
-        //         .catch(error => console.error("Error fetching schedule details:", error));
-        //
-        // }
 
         document.getElementById("detailsXButton").addEventListener("click", function () {
             document.getElementById("detailsModal").style.display = "none";
