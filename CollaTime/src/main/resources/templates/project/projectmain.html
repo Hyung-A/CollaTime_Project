@@ -34,7 +34,7 @@
         <input type="text" id="projectNo" style="display: none" th:value="${ project.projectNo }"/>
         <input type="text" id="productorNo" style="display: none" th:value="${ project.productorNo }"/>
         <div id="folderHead"></div>
-        <div id="folderBody">
+        <div id="folderBody" onclick="goToSchedulePage('${project.projectNo}')">
           <div id="projectTitle" th:text="${ project.projectName }"></div>
           <div id="folderMenu">...</div>
           <div id="crudMenu">
@@ -57,6 +57,12 @@
     </div>
   </div>
 </div>
+<script>
+  function goToSchedulePage(projectNo) {
+    // projectNo를 쿼리 파라미터로 추가하여 /schedule 페이지로 이동
+    window.location.href = '/schedule?projectNo=' + projectNo;
+  }
+</script>
 <script>
   // ------------------------------ Left Bar ------------------------------
   window.onload = function() {
