@@ -6,6 +6,7 @@
   <title>Dashboard Layout</title>
   <link rel="stylesheet" href="/css/admin/dashboard.css">
   <link rel="stylesheet" href="/css/admin/base.css">
+  <link rel="stylesheet" href="/css/project/reset.css">
 </head>
 <body>
 
@@ -26,7 +27,7 @@
 </div>
 
 <div id="month-visitor">
-  <h3>월별 방문자</h3>
+  <h3 class="visitor_text">월별 방문자</h3>
   <div class="chart">
     <div class="y-axis">
       <div class="y-label">900</div>
@@ -59,7 +60,7 @@
 </div>
 
 <div id="day-visitor">
-  <h3>일별 방문자</h3>
+  <h3 class="visitor_text">일별 방문자</h3>
   <div class="chart">
     <div class="y-axis">
       <div class="y-label">140</div>
@@ -73,19 +74,137 @@
     </div>
 
     <div class="bars2">
-      <div class="bar2" id="mon" style="height: 48%;">Mon</div>
-      <div class="bar2" id="tue" style="height: 50%;">Tue</div>
-      <div class="bar2" id="wed" style="height: 37%;">Wed</div>
-      <div class="bar2" id="thru" style="height: 94%;">Thru</div>
-      <div class="bar2" id="fri" style="height: 81.3%;">Fri</div>
-      <div class="bar2" id="sat" style="height: 33.2%;">Sat</div>
-      <div class="bar2" id="sun" style="height: 70.4%;">Sun</div>
+      <div class="bar2" id="mon">Mon</div>
+      <div class="bar2" id="tue">Tue</div>
+      <div class="bar2" id="wed">Wed</div>
+      <div class="bar2" id="thu">Thu</div>
+      <div class="bar2" id="fri">Fri</div>
+      <div class="bar2" id="sat">Sat</div>
+      <div class="bar2" id="sun">Sun</div>
 
     </div>
   </div>
 </div>
 <script>
   document.getElementById('logo').addEventListener('click', ()=>{location.href="/admin/dashboard"})
+
+
+  // 밑의 메소드는 컨트롤러에서 구현함
+  // // 월요일을 기준으로 하기 위한 메소드
+  // function thisWeek() {
+  //   const day = new Date();
+  //   let sunday;
+  //   if (day.getDay() === 0) {
+  //     sunday = day.getTime() - 86400000 * 7
+  //   } else {
+  //     sunday = day.getTime() - 86400000 * day.getDay()
+  //   }
+  //   day.setTime(sunday + 86400000)
+  //
+  //   const week = [day.toISOString().substring(0, 10)]
+  //
+  //   for (let i = 1; i < 7; i++) {
+  //     day.setTime(day.getTime() + 86400000);
+  //     week.push(day.toISOString().slice(0, 10));
+  //   }
+  //   console.log(week)
+  //   return week;
+  // }
+  const Mon = document.getElementById('mon');
+  const Tue = document.getElementById('tue')
+  const Wed = document.getElementById('wed')
+  const Thu = document.getElementById('thu')
+  const Fri = document.getElementById('fri')
+  const Sat = document.getElementById('sat')
+  const Sun = document.getElementById('sun')
+
+  fetch("/admin/weekmaker")
+          .then(res=>res.json())
+          .then(data=>{
+            console.log((data[0]/140*100)+'%')
+            console.log((data[0]/140*100))
+            Mon.style.height = (data[0]/140*100+2)+'%'
+            Mon.addEventListener("mouseover", ()=>{Mon.innerText = data[0]})
+            Mon.addEventListener("mouseout", ()=>{Mon.innerText = 'Mon'})
+            Tue.style.height = (data[1]/140*100+2)+'%'
+            Tue.addEventListener("mouseover", ()=>{Tue.innerText = data[1]})
+            Tue.addEventListener("mouseout", ()=>{Tue.innerText = 'Tue'})
+            Wed.style.height = (data[2]/140*100+2)+'%'
+            Wed.addEventListener("mouseover", ()=>{Wed.innerText = data[2]})
+            Wed.addEventListener("mouseout", ()=>{Wed.innerText = 'Wed'})
+            Thu.style.height = (data[3]/140*100+2)+'%'
+            Thu.addEventListener("mouseover", ()=>{Thu.innerText = data[3]})
+            Thu.addEventListener("mouseout", ()=>{Thu.innerText = 'Thu'})
+            Fri.style.height = (data[4]/140*100+2)+'%'
+            Fri.addEventListener("mouseover", ()=>{Fri.innerText = data[4]})
+            Fri.addEventListener("mouseout", ()=>{Fri.innerText = 'Fri'})
+            Sat.style.height = (data[5]/140*100+2)+'%'
+            Sat.addEventListener("mouseover", ()=>{Sat.innerText = data[5]})
+            Sat.addEventListener("mouseout", ()=>{Sat.innerText = 'Sat'})
+            Sun.style.height = (data[6]/140*100+2)+'%'
+            Sun.addEventListener("mouseover", ()=>{Sun.innerText = data[6]})
+            Sun.addEventListener("mouseout", ()=>{Sun.innerText = 'Sun'})
+          })
+
+  const Jan = document.getElementById('jan');
+  const Feb = document.getElementById('feb');
+  const Mar = document.getElementById('mar');
+  const Apr = document.getElementById('apr');
+  const May = document.getElementById('may');
+  const Jun = document.getElementById('jun');
+  const Jul = document.getElementById('jul');
+  const Aug = document.getElementById('aug');
+  const Sep = document.getElementById('sep');
+  const Oct = document.getElementById('oct');
+  const Nov = document.getElementById('nov');
+  const Dec = document.getElementById('dec');
+
+
+  fetch("/admin/monthmaker")
+          .then(res=>res.json())
+          .then(data=>{
+            console.log(data)
+            Jan.style.height = (data[0]/900*100+2)+'%'
+            Jan.addEventListener("mouseover", ()=>{Jan.innerText = data[0]})
+            Jan.addEventListener("mouseout", ()=>{Jan.innerText = 'Jan'})
+            Feb.style.height = (data[0]/900*100+2)+'%'
+            Feb.addEventListener("mouseover", ()=>{Jan.innerText = data[0]})
+            Feb.addEventListener("mouseout", ()=>{Jan.innerText = 'Jan'})
+            Mar.style.height = (data[0]/900*100+2)+'%'
+            Mar.addEventListener("mouseover", ()=>{Jan.innerText = data[0]})
+            Mar.addEventListener("mouseout", ()=>{Jan.innerText = 'Jan'})
+            Apr.style.height = (data[0]/900*100+2)+'%'
+            Apr.addEventListener("mouseover", ()=>{Jan.innerText = data[0]})
+            Apr.addEventListener("mouseout", ()=>{Jan.innerText = 'Jan'})
+            May.style.height = (data[0]/900*100+2)+'%'
+            May.addEventListener("mouseover", ()=>{Jan.innerText = data[0]})
+            May.addEventListener("mouseout", ()=>{Jan.innerText = 'Jan'})
+            Jun.style.height = (data[0]/900*100+2)+'%'
+            Jun.addEventListener("mouseover", ()=>{Jan.innerText = data[0]})
+            Jun.addEventListener("mouseout", ()=>{Jan.innerText = 'Jan'})
+            Jul.style.height = (data[0]/900*100+2)+'%'
+            Jul.addEventListener("mouseover", ()=>{Jan.innerText = data[0]})
+            Jul.addEventListener("mouseout", ()=>{Jan.innerText = 'Jan'})
+            Aug.style.height = (data[0]/900*100+2)+'%'
+            Aug.addEventListener("mouseover", ()=>{Jan.innerText = data[0]})
+            Aug.addEventListener("mouseout", ()=>{Jan.innerText = 'Jan'})
+            Sep.style.height = (data[0]/900*100+2)+'%'
+            Sep.addEventListener("mouseover", ()=>{Jan.innerText = data[0]})
+            Sep.addEventListener("mouseout", ()=>{Jan.innerText = 'Jan'})
+            Oct.style.height = (data[0]/900*100+2)+'%'
+            Oct.addEventListener("mouseover", ()=>{Jan.innerText = data[0]})
+            Oct.addEventListener("mouseout", ()=>{Jan.innerText = 'Jan'})
+            Nov.style.height = (data[0]/900*100+2)+'%'
+            Nov.addEventListener("mouseover", ()=>{Jan.innerText = data[0]})
+            Nov.addEventListener("mouseout", ()=>{Jan.innerText = 'Jan'})
+            Dec.style.height = (data[0]/900*100+2)+'%'
+            Dec.addEventListener("mouseover", ()=>{Jan.innerText = data[0]})
+            Dec.addEventListener("mouseout", ()=>{Jan.innerText = 'Jan'})
+
+          })
+
+
+
 </script>
 </body>
 </html>

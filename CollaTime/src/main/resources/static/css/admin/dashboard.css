@@ -3,9 +3,9 @@
     background-color: #DFF7FD;
     position: absolute;
     left: 450px;
-    top: 500px;
+    top: 420px;
     width: 700px;
-    height: 420px;
+    height: 390px;
     font-size: 30px;
     font-weight: bold;
 
@@ -15,15 +15,19 @@
     background-color: #DFF7FD;
     position: absolute;
     left: 1250px;
-    top: 500px;
+    top: 420px;
     width: 500px;
-    height: 420px;
+    height: 390px;
     font-size: 30px;
     font-weight: bold;
 
 }
 
-#month-visitor, #day-visitor, h3{
+
+
+.visitor_text{
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 /* 차트 전체 스타일 */
@@ -74,7 +78,7 @@
 .bar {
     width: 40px;
     background-color: steelblue;
-    color: white;
+    color: black;
     font-size: 12px;
     display: flex;
     align-items: flex-end;
@@ -86,7 +90,7 @@
 .bar2 {
     width: 40px;
     background-color: sandybrown;
-    color: white;
+    color: black;
     font-size: 12px;
     display: flex;
     align-items: flex-end;
@@ -104,7 +108,7 @@
     width: 245px;
     height: 109px;
     left: 536px;
-    top: 313px;
+    top: 209px;
 
     background: #FFFFFF;
     border: 1px solid #000000;
@@ -121,7 +125,7 @@
     width: 245px;
     height: 109px;
     left: 950px;
-    top: 310px;
+    top: 209px;
 
     background: #FFFFFF;
     border: 1px solid #000000;
@@ -138,7 +142,7 @@
     width: 245px;
     height: 109px;
     left: 1356px;
-    top: 309px;
+    top: 209px;
 
     background: #FFFFFF;
     border: 1px solid #000000;
