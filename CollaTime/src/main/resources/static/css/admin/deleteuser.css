@@ -128,3 +128,26 @@
     border-radius: 15px;
     text-align: center;
 }
+
+#small_deleteEnd_btn{
+    display: none;
+
+    position: absolute;
+    width: 100px;
+    height: 40px;
+    left: 430px;
+    top: 222px;
+
+    font-weight: 600;
+    font-size: 20px;
+
+
+    color: #000000;
+    background: #92E2F8;
+    border: none;
+    border-radius: 15px;
+    text-align: center;
+
+    padding-left: 30px;
+    padding-top: 8px;
+}
