@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>403</title>
+    <link rel="stylesheet" href="/css/project/reset.css">
+    <link rel="stylesheet" href="/css/exception/error403page.css">
+</head>
+<body>
+<div id="error403PageHead">
+    <img src="/css/common/image/CollaTime-Logo.png" id="error403PageLogo" onclick="location.href='/main'">
+    <button type="button" id="error403toMain" onclick="location.href='/main'">메인으로 가기</button>
+    <button type="button" id="error403toBefore">이전으로 가기</button>
+</div>
+<div id="error403PageBody">
+    <div id="error403Name" th:text="${ errorname }"></div>
+    <img src="/css/exception/image/errorImage.png" id="error403Image">
+    <div id="error403Code1">4</div>
+    <div id="error403Code2">0</div>
+    <div id="error403Code3">3</div>
+    <div id="error403Code4">에</div>
+    <div id="error403Code5">러</div>
+</div>
+</body>
+</html>
