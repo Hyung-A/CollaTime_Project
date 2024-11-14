@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.collatime.admin.model.dao.AdminVisitMapper">
+    <resultMap id="visit" type="com.ohgiraffers.collatime.admin.model.dto.AdminVisitDTO">
+        <id property="visitDate" column="VISIT_DATE"/>
+        <result property="visitCount" column="VISIT_COUNT"/>
+    </resultMap>
+
+    <select id="weekMaker" parameterType="com.ohgiraffers.collatime.admin.model.dto.AdminVisitDTO" resultMap="visit">
+        SELECT *
+        FROM VISIT
+        WHERE VISIT_DATE BETWEEN #{thisMonday} AND #{thisSunday}
+    </select>
+
+    <select id="monthMaker">
+
+        SELECT
+        MONTH(VISIT_DATE) AS 'month'
+        ,SUM(VISIT_COUNT) AS 'count'
+        FROM VISIT
+        GROUP BY MONTH(VISIT_DATE)
+    </select>
+</mapper>

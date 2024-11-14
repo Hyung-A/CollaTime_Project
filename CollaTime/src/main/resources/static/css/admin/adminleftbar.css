@@ -24,33 +24,29 @@
     border-radius: 25px;
 }
 
-#profile{
+#admin_text{
 
     position: absolute;
-    width: 80px;
+    width: 250px;
     height: 80px;
-    left: 85px;
     top: 34px;
 
-    background: #FFFFFF;
-    border: solid 1px #FFFFFF;
-    border-radius: 6355px;
+    text-align: center;
+    color: black;
+    font-size: 25px;
 
 }
 
-
-
-#leftBarNickname{
+#leftBar_admin_nickname{
 
     position: absolute;
-    width: 130px;
-    height: 30px;
-    left: 60px;
-    top: 180px;
+    width: 250px;
+    height: 50px;
 
-    font-style: normal;
+    top: 150px;
+
     font-weight: 700;
-    font-size: 25px;
+    font-size: 40px;
     line-height: 30px;
     text-align: center;
 
@@ -58,7 +54,7 @@
 
 }
 
-#whiteBar1{
+#whiteBar{
 
     position: absolute;
     width: 210px;
@@ -70,104 +66,25 @@
 
 }
 
-#textMyProject{
-
+#adminMenu{
     position: absolute;
-    width: 100px;
-    height: 15px;
-    left: 30px;
+    width: 250px;
     top: 250px;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 15px;
-    line-height: 15px;
-
-    color: #282828;
-
+    padding-left: 15px;
 }
 
-/* MyProject 프로젝트 리스트 */
-#projectMenu{
-
-    position: absolute;
-    left: 25px;
-    top: 275px;
-
+.adminMenu{
+    margin-top: 30px;
 }
 
-.projectIcon{
-
-    margin-top: 10px;
-
+.admin_to{
+    height: 20px;
+    width: 150px;
+    margin-left: 20px;
+    font-weight: 700;
 }
 
-#menuProjectName{
-
-    position: absolute;
-    left: 25px;
-    top: 5px;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 13px;
-    line-height:15px;
-    color: #282828;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-}
-
-#whiteBar2{
-
-    position: absolute;
-    width: 210px;
-    left: 20px;
-    top: 580px;
-    border: 3px solid #FFFFFF;
-    transform: matrix(-1, 0, 0, -1, 0, 0);
-
-}
-
-/* 문의하기 */
-#firstInquiry{
-
-    position: absolute;
-    left: 30px;
-    top: 600px;
-
-}
-
-#doInquiryText{
-
-    position: absolute;
-    left: 55px;
-    top: 600px;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 15px;
-
-    color: #282828;
-}
-
-/* 권한 위임 요청 */
-#secondInquiry{
-
-    position: absolute;
-    left: 30px;
-    top: 625px;
-
-}
-
-#authorityText{
-
-    position: absolute;
-    left: 55px;
-    top: 625px;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 15px;
-
-    color: #282828;
+.admin_leftBar_img{
+    width: 20px;
+    height: 20px;
 }
