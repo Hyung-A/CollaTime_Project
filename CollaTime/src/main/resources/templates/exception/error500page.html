@@ -9,11 +9,11 @@
 <body>
 <div id="error500PageHead">
     <img src="/css/common/image/CollaTime-Logo.png" id="error500PageLogo" onclick="location.href='/main'">
-    <button type="button" id="error500toMain" onclick="location.href='/main'">메인으로 가기</button>
-    <button type="button" id="error500toBefore">이전으로 가기</button>
 </div>
 <div id="error500PageBody">
     <div id="error500Name">서버가 요청 사항을 수행할 수 없습니다.</div>
+    <button type="button" id="error500toMain" class="error500Button" onclick="location.href='/main'">메인으로 가기</button>
+    <button type="button" id="error500toBefore" class="error500Button" onclick="history.back()">이전으로 가기</button>
     <img src="/css/exception/image/errorImage.png" id="error500Image">
     <div id="error500Code1">5</div>
     <div id="error500Code2">0</div>

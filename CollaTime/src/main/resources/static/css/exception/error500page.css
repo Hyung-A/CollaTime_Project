@@ -24,40 +24,32 @@
 #error500toMain{
 
     position: absolute;
-    width: 195px;
-    height: 50px;
-    left: 1457px;
-    top: 25px;
-    background-color: #DFF7FD;
-    border: none;
-    border-radius: 10px;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 20px;
-    display: flex;
-    justify-content: center;
-    line-height: 50px;
-    color: #000000;
+    left: 700px;
+
 
 }
 
 #error500toBefore{
 
     position: absolute;
-    width: 195px;
-    height: 50px;
-    left: 1689px;
-    top: 25px;
-    background-color: #92E2F8;
+    left: 950px;
+
+}
+
+.error500Button{
+
+    position: absolute;
+    top: 350px;
+    width: 215px;
+    height: 70px;
     border: none;
     border-radius: 10px;
     font-style: normal;
     font-weight: 700;
-    font-size: 20px;
-    display: flex;
-    justify-content: center;
-    line-height: 50px;
-    color: #000000;
+    font-size: 27px;
+    vertical-align: center;
+    color: #282828;
+    background: #D7D7D7;
 
 }
 
@@ -78,7 +70,7 @@
     width: 1237px;
     height: 308px;
     left: 342px;
-    top: 547px;
+    top: 510px;
 
 }
 
@@ -86,9 +78,9 @@
 
     position: absolute;
     width: max-content;
-    height: 300px;
+    height: 250px;
     vertical-align: center;
-    top: 300px;
+    top: 200px;
     font-style: normal;
     font-weight: 600;
     font-size: 50px;
@@ -105,7 +97,7 @@
     width: 116px;
     height: 111px;
     left: 415px;
-    top: 580px;
+    top: 543px;
     font-style: normal;
     font-weight: 900;
     font-size: 50px;
@@ -124,7 +116,7 @@
     width: 116px;
     height: 111px;
     left: 680px;
-    top: 580px;
+    top: 543px;
     font-style: normal;
     font-weight: 900;
     font-size: 50px;
@@ -143,7 +135,7 @@
     width: 116px;
     height: 111px;
     left: 940px;
-    top: 580px;
+    top: 543px;
     font-style: normal;
     font-weight: 900;
     font-size: 50px;
@@ -162,7 +154,7 @@
     width: 116px;
     height: 111px;
     left: 1192px;
-    top: 580px;
+    top: 543px;
     font-style: normal;
     font-weight: 900;
     font-size: 50px;
@@ -181,7 +173,7 @@
     width: 116px;
     height: 111px;
     left: 1460px;
-    top: 580px;
+    top: 543px;
     font-style: normal;
     font-weight: 900;
     font-size: 50px;

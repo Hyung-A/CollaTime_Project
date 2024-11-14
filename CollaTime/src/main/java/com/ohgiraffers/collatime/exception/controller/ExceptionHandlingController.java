@@ -18,7 +18,8 @@ public class ExceptionHandlingController implements ErrorController {
     private final String error404 = "/exception/error404page";
     private final String error403 = "/exception/error403page";
     private final String error500 = "/exception/error500page";
-    private final String errorEtc = "/exception/etcerror";  // 만들 예정
+    private final String error400 = "/exception/error400page";
+    private final String errorEtc = "/exception/erroretcpage";  // 만들 예정
 
     @RequestMapping(value = "/exception")
     public String handleError(HttpServletRequest request, Model model){
@@ -32,28 +33,31 @@ public class ExceptionHandlingController implements ErrorController {
 
             logger.error("httpStatus : " + statusCode);
 
-            // 404 에러
             if(statusCode == HttpStatus.NOT_FOUND.value()){
+                // 404 에러
                 model.addAttribute("errorname", "해당 페이지를 찾을 수 없습니다.");
-//                model.addAttribute("code", status.toString());
-//                model.addAttribute("msg", httpStatus.getReasonPhrase());
                 return error404;
-            }
 
-            // 403 에러
-            if(statusCode == HttpStatus.FORBIDDEN.value()){
+            } else if(statusCode == HttpStatus.FORBIDDEN.value()){
+                // 403 에러
                 model.addAttribute("errorname", "해당 페이지에 대한 접근 권한이 없습니다.");
                 return error403;
-            }
-
-            // 500 에러
-            if(statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()){
+            } else if(statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()){
+                // 500 에러
                 return error500;
+            } else if(statusCode == HttpStatus.BAD_REQUEST.value()){
+                // 400 에러
+                return error400;
+            } else {
+                // 그 외 기타 에러
+                return errorEtc;
             }
 
+        } else {
+            // 그 외 기타 에러
+            return errorEtc;
         }
 
-        return errorEtc;
     }
 
 }
