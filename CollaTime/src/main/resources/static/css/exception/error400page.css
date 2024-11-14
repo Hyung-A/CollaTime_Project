@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-#error404PageLogo{
+#error400PageLogo{
 
     position: absolute;
     top:15px;
@@ -10,20 +10,20 @@
 
 }
 
-#toMain{
+#error400toMain{
 
     position: absolute;
     left: 700px;
 
 }
 
-#toBefore{
+#error400toBefore{
 
     position: absolute;
     left: 950px;
 }
 
-.error404Button {
+.error400Button {
 
     position: absolute;
     top: 350px;
@@ -34,14 +34,14 @@
     font-style: normal;
     font-weight: 700;
     font-size: 27px;
-   vertical-align: center;
+    vertical-align: center;
     color: #282828;
     background: #D7D7D7;
 
 
 }
 
-#error404PageBody{
+#error400PageBody{
 
     position: absolute;
     width: 1920px;
@@ -52,7 +52,7 @@
 
 }
 
-#error404Name{
+#error400Name{
 
     position: absolute;
     width: max-content;
@@ -69,7 +69,7 @@
 
 }
 
-#error404Image{
+#error400Image{
 
     position: absolute;
     width: 1237px;
@@ -79,7 +79,7 @@
 
 }
 
-#error404Code1{
+#error400Code1{
 
     position: absolute;
     width: 116px;
@@ -98,7 +98,7 @@
 
 }
 
-#error404Code2{
+#error400Code2{
 
     position: absolute;
     width: 116px;
@@ -117,7 +117,7 @@
 
 }
 
-#error404Code3{
+#error400Code3{
 
     position: absolute;
     width: 116px;
@@ -136,7 +136,7 @@
 
 }
 
-#error404Code4{
+#error400Code4{
 
     position: absolute;
     width: 116px;
@@ -155,7 +155,7 @@
 
 }
 
-#error404Code5{
+#error400Code5{
 
     position: absolute;
     width: 116px;

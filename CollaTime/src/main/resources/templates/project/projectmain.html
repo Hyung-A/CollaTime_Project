@@ -1064,6 +1064,11 @@
 
   document.getElementById("deleteProjectForm").onsubmit = function(e) {
     e.preventDefault(); // 기본 폼 제출 동작을 방지
+    // const projectName = document.getElementById("updateInputTitle").value.trim();
+    // const projectSummary = document.getElementById("updateInputSummary").value.trim();
+    // const projectPurpose = document.getElementById("updateInputPurpose").value.trim();
+    // const startDate = document.getElementById("updateStartDate").value.trim();
+    // const endDate = document.getElementById("updateEndDate").value.trim();
     fetch(this.action, {
       method: this.method,
       body: new FormData(this)

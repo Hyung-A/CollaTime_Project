@@ -1,6 +1,17 @@
 @charset "UTF-8";
 
-#error404PageLogo{
+#errorEtcPageHead{
+
+    position: absolute;
+    width: 1920px;
+    height: 100px;
+    border-bottom: solid;
+    border-color: #92E2F8;
+    background-color: white;
+
+}
+
+#errorEtcPageLogo{
 
     position: absolute;
     top:15px;
@@ -10,20 +21,20 @@
 
 }
 
-#toMain{
+#errorEtcToMain{
 
     position: absolute;
     left: 700px;
 
 }
 
-#toBefore{
+#errorEtcToBefore{
 
     position: absolute;
     left: 950px;
 }
 
-.error404Button {
+.errorEtcButton {
 
     position: absolute;
     top: 350px;
@@ -34,14 +45,14 @@
     font-style: normal;
     font-weight: 700;
     font-size: 27px;
-   vertical-align: center;
+    vertical-align: center;
     color: #282828;
     background: #D7D7D7;
 
 
 }
 
-#error404PageBody{
+#errorEtcPageBody{
 
     position: absolute;
     width: 1920px;
@@ -52,7 +63,7 @@
 
 }
 
-#error404Name{
+#errorEtcName{
 
     position: absolute;
     width: max-content;
@@ -69,7 +80,7 @@
 
 }
 
-#error404Image{
+#errorEtcImage{
 
     position: absolute;
     width: 1237px;
@@ -79,12 +90,12 @@
 
 }
 
-#error404Code1{
+#errorEtcCode1{
 
     position: absolute;
     width: 116px;
     height: 111px;
-    left: 415px;
+    left: 408px;
     top: 543px;
     font-style: normal;
     font-weight: 900;
@@ -98,12 +109,12 @@
 
 }
 
-#error404Code2{
+#errorEtcCode2{
 
     position: absolute;
     width: 116px;
     height: 111px;
-    left: 680px;
+    left: 670px;
     top: 543px;
     font-style: normal;
     font-weight: 900;
@@ -117,12 +128,12 @@
 
 }
 
-#error404Code3{
+#errorEtcCode3{
 
     position: absolute;
     width: 116px;
     height: 111px;
-    left: 940px;
+    left: 930px;
     top: 543px;
     font-style: normal;
     font-weight: 900;
@@ -136,7 +147,7 @@
 
 }
 
-#error404Code4{
+#errorEtcCode4{
 
     position: absolute;
     width: 116px;
@@ -155,13 +166,13 @@
 
 }
 
-#error404Code5{
+#errorEtcCode5{
 
     position: absolute;
     width: 116px;
     height: 111px;
-    left: 1460px;
-    top: 543px;
+    left: 1478px;
+    top: 540px;
     font-style: normal;
     font-weight: 900;
     font-size: 50px;

@@ -9,11 +9,11 @@
 <body>
 <div id="error404PageHead">
     <img src="/css/common/image/CollaTime-Logo.png" id="error404PageLogo" onclick="location.href='/main'" alt="CollaTime로고"/>
-    <button type="button" id="toMain" onclick="location.href='/main'">메인으로 가기</button>
-    <button type="button" id="toBefore">이전으로 가기</button>
 </div>
 <div id="error404PageBody">
     <div id="error404Name" th:text="${ errorname }"></div>
+    <button type="button" id="toMain" class="error404Button" onclick="location.href='/main'">메인으로 가기</button>
+    <button type="button" id="toBefore" class="error404Button" onclick="history.back()">이전으로 가기</button>
     <img src="/css/exception/image/errorImage.png" id="error404Image">
     <div id="error404Code1">4</div>
     <div id="error404Code2">0</div>
