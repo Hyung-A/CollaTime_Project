@@ -103,4 +103,7 @@ public class AdminController {
 
         return monthlyUsing;
     }
+
+    @GetMapping("/user")
+    public void user(){}
 }

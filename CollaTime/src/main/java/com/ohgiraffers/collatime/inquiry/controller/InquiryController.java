@@ -84,7 +84,6 @@ public class InquiryController {
         inquiryDTO.setInquiryStatus("권한처리중");
         inquiryDTO.setUserNo(authDetails.getUserNo());
         String passAuthContext = authDetails.getUserNickname()+"의 "+ passProjectName+" 프로젝트 권한을 "+passUserNickname+"에게 위임 요청합니다.";
-        System.out.println(passAuthContext);
         inquiryDTO.setInquiryTitle(authDetails.getUserNickname()+"의 권한 위임 요청");
         inquiryDTO.setInquiryContent(passAuthContext);
 

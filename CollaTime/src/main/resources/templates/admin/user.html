@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/project/reset.css">
+    <link rel="stylesheet" href="/css/admin/user.css">
+</head>
+<body>
+<div th:include="/admin/adminleftbar.html"></div>
+<div th:include="/common/programHeader.html"></div>
+
+<div id="userTable_text">회원</div>
+<div id="userTable_area">
+<table id="userTable">
+    <tr>
+        <th style="width: 150px; background-color: #aaaaaa">회원 번호</th>
+        <th style="width: 300px; background-color: #aaaaaa">ID</th>
+        <th style="width: 300px; background-color: #aaaaaa">EMAIL</th>
+        <th style="width: 250px; background-color: #aaaaaa">이름</th>
+        <th style="width: 250px; background-color: #aaaaaa">닉네임</th>
+    </tr>
+    <tr>
+        <th>회원 번호</th>
+        <th>ID</th>
+        <th>EMAIL</th>
+        <th>이름</th>
+        <th>닉네임</th>
+    </tr>
+</table>
+</div>
+</body>
+</html>

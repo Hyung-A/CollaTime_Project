@@ -8,6 +8,7 @@ public class InquiryDTO {
     private String inquiryContent;
     private int userNo;
     private String answerContent;
+//    private int projectNo;
 
     public InquiryDTO(){}
 
