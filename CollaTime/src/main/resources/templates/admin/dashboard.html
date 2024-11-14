@@ -176,7 +176,7 @@
             for(let i = 0; i < 13;i++) {
               Month[i].style.height = (data[i] / 900 * 100 + 2) + '%'
               Month[i].addEventListener("mouseover", () => {
-                Month[i].innerText = data[0];
+                Month[i].innerText = data[i];
                 Month[i].style.color = 'white';
               })
               Month[i].addEventListener("mouseout", () => {

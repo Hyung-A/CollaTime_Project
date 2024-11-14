@@ -2,9 +2,11 @@ package com.ohgiraffers.collatime.admin.controller;
 
 import com.ohgiraffers.collatime.admin.model.dto.AdminVisitDTO;
 import com.ohgiraffers.collatime.admin.model.service.AdminService;
+import com.ohgiraffers.collatime.user.model.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -106,4 +108,20 @@ public class AdminController {
 
     @GetMapping("/user")
     public void user(){}
+
+    @GetMapping(value = "/alluser",  produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public List<UserDTO> alluser(){
+        System.out.println("여까지 왔다.");
+
+        return adminService.searchAllUser();
+    }
+
+    @GetMapping(value = "/user/number/{userNo}",  produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public List<UserDTO> searchUserByNo(@PathVariable("userNo") int userNo){
+        System.out.println("여까지 왔다.");
+
+        return adminService.searchUserByNo(userNo);
+    }
 }
