@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-#dateWarningModal{
+#dataWarningModal{
 
     position: absolute;
     width: 554px;
@@ -14,7 +14,7 @@
     border-radius: 25px;
 
 }
-#warningBlueHeader{
+#dataWarningBlueHeader{
 
     position: absolute;
     width: 554px;
@@ -25,7 +25,7 @@
     border-radius: 25px 25px 0px 0px;
 
 }
-#warningXButton{
+#dataWarningXButton{
 
     width: 30px;
     height: 34px;
@@ -37,7 +37,7 @@
 }
 
 /* 경고아이콘 */
-#warningIcon{
+#dataWarningIcon{
 
     position: absolute;
     width: 80px;
@@ -47,7 +47,7 @@
 
 }
 
-#warningText{
+#dataWarningText{
 
     position: absolute;
     width: 340px;
@@ -73,7 +73,7 @@
 
 
 /* 취소 버튼 */
-#warningCancel{
+#dataWarningCancel{
 
     position: absolute;
     width: 99px;
@@ -99,7 +99,7 @@
 }
 
 /* 확인 버튼 */
-#warningConfirm{
+#dataWarningConfirm{
 
     position: absolute;
     width: 99px;

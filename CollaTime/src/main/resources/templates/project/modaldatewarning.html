@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/static/css/project/modalDateWarning.css">
 </head>
 <body>
-<!-- 중간 모달창 -->
+<!-- ------------------------------ 데이터 저장 기간 알림 ------------------------------ -->
 <div id="dateWarningModal">
     <div id="warningBlueHeader">
         <div id="warningXButton">X</div>
@@ -22,23 +22,7 @@
               14일 이후에는 프로젝트 관련 데이터가 자동 삭제됩니다.</span>
     </div>
     <button type="button" id="warningCancel">취소</button>
-    <button type="submit" id="warningConfirm">확인</button>
-
-    <script>
-        let colorArray = ["FEC4C4", "D9F0FB", "FFEFCC", "FFA990", "B7E58E", "FFDAFA", "F3DAFF", "DADFFF", "EDD5C0", "D6EADF"];
-        var randomColor = "";
-        for(let i = 0; i < colorArray.length; i++){
-            randomcolor = colorArray[i];
-        }
-        console.log(randomcolor);
-
-        const headerColor = document.getElementById("warningBlueHeader");
-        const confirm = document.getElementById("warningConfirm");
-        confirm.onclick = function(){
-            headerColor.style.backgroundColor = "#" + randomcolor;
-        };
-    </script>
-
+    <button type="button" id="warningConfirm">확인</button>
 </div>
 </body>
 </html>

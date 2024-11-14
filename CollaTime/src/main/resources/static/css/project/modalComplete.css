@@ -1,0 +1,91 @@
+@charset "UTF-8";
+
+#modalComplete{
+
+    position: absolute;
+    width: 554px;
+    height: 284px;
+    left: 683px;
+    top: 260px;
+
+    background: #FFFFFF;
+    border:1px solid #595959;
+    /*box-shadow: 0px 3.02732px 3.02732px rgba(0, 0, 0, 0.25);*/
+    border-radius: 25px;
+
+
+}
+
+#completeHeader{
+
+    position: absolute;
+    width: 554px;
+    height: 51px;
+
+    background: #92E2F8;
+    border-bottom: 1px solid #282828;
+    border-radius: 25px 25px 0px 0px;
+
+
+}
+
+#completeXButton{
+
+    width: 30px;
+    height: 34px;
+    font-size: 30px;
+    position: absolute;
+    left: 506px;
+    top: 5px;
+
+}
+
+#completeBody{
+
+    position: absolute;
+    width: 554px;
+    height: 170px;
+    top: 52px;
+    display: flex;
+    justify-content: center;
+    line-height: 170px;
+
+}
+
+#completeText{
+
+    position: absolute;
+    width: max-content;
+    /*left: 130px;*/
+    top: 80px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 33px;
+    color: #282828;
+
+}
+
+/* 확인 버튼 */
+#completeConfirm{
+
+    position: absolute;
+    width: 99px;
+    height: 35px;
+    left: 414px;
+    top: 226px;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 24px;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.03em;
+    border-radius: 25px;
+    background: #92E2F8;
+    border: #92E2F8;
+
+    color: #282828;
+
+}
+
+

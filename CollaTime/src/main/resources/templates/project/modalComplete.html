@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/css/project/reset.css">
+    <link rel="stylesheet" href="/static/css/project/modalComplete.css">
+</head>
+<body>
+<!-- ----------------- 작업 완료 모달 ----------------- -->
+<div id="modalComplete">
+  <div id="completeHeader">
+    <div id="completeXButton">X</div>
+  </div>
+  <!-- 내용 -->
+  <div id="completeBody">
+    <span id="completeText"></span>
+  </div>
+  <button type="button" id="completeConfirm">확인</button>
+</div>
+
+<script>
+  const completeText = document.getElementById("completeText");
+  completeText.innerHTML = "새로운 프로젝트가 생성되었습니다."
+</script>
+</body>
+</html>
