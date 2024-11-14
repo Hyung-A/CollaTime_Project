@@ -3,41 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="/css/schedule/list.css">
-    <title>Title</title>
+  <title>Title</title>
 </head>
 <body>
+
 <!-- 중간 모달창 -->
 <div id="listModal">
-<div id="middleModal">
-  <div id="middleBlueHeader">
-    <div id="listXButton">X</div>
-    <button id="plusList">
-      <img src="/css/schedule/image/plusList.png">
-    </button>
-  </div>
-  <div id="scheduleList">
+  <div id="middleModal">
+    <div id="middleBlueHeader">
+      <div id="listXButton">X</div>
+      <button id="plusList">
+        <img src="/css/schedule/image/plusList.png">
+      </button>
+    </div>
+    <div id="scheduleList">
 
+    </div>
   </div>
 </div>
-</div>
 
-
+</body>
 <script>
   // listXButton을 눌렀을 때 listModal을 닫는 함수
-  document.getElementById("listXButton").addEventListener("click", function() {
+  document.getElementById("listXButton").addEventListener("click", function () {
     document.getElementById("listModal").style.display = "none";
   });
 
   // plusList 버튼을 눌렀을 때 makescheduleModal을 열고 listModal을 닫는 함수
-  document.getElementById("plusList").addEventListener("click", function() {
+  document.getElementById("plusList").addEventListener("click", function () {
     document.getElementById("listModal").style.display = "none"; // 현재 모달 닫기
 
     const makescheduleModal = document.getElementById("makescheduleModal");
     makescheduleModal.querySelectorAll("input, textarea").forEach(input => {
-      input.value= "";
+      input.value = "";
     });
     makescheduleModal.style.display = "flex";
   });
 </script>
-</body>
+
 </html>

@@ -19,7 +19,7 @@ public class ScheduleService {
 
 
     // 특정 일정 조회 (Read by ID)
-    public ScheduleDTO getScheduleById(int scheduleNo) {
+    public ScheduleDTO getScheduleByNo(int scheduleNo) {
         return scheduleMapper.getSchedule(scheduleNo);
     }
 
