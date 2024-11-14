@@ -1,13 +1,13 @@
 @charset "UTF-8";
 
-body {
-    margin: 0;
-}
+/*body {*/
+/*    margin: 0;*/
+/*}*/
 
 
 #collatime-main {
     position: absolute;
-    width: 1920px;
+    width: 1915px;
     height: 853px;
     top:101px;
     background-color: #DFF7FD;
@@ -16,7 +16,6 @@ body {
     position: absolute;
     top: 240px;
     left: 200px;
-    font-family: Inter;
     font-size: 45px;
     font-weight: 700;
     color: #003393;
@@ -25,7 +24,6 @@ body {
     position: absolute;
     top: 420px;
     left: 200px;
-    font-family: Inter;
     font-size: 30px;
     font-weight: bold;
     color: #003393;
@@ -33,114 +31,131 @@ body {
 /* 두번째 섹션 */
 #collatime-second-intro {
     position: absolute;
-    width: 1920px;
-    height: 476px;
+    width: 1915px;
+    height: 853px;
     top: 954px;
     color: #003393;
     background-color: #FFFFFF;
+    border: solid 1px red;
 }
 #big-title1 {
     position: absolute;
     top: 25px;
     left: 830px;
-    font-family: Inter;
     font-size: 45px;
     font-weight: bold;
 }
 #first-title1 {
     position: absolute;
-    top: 150px;
-    left: 200px;
-    font-family: Inter;
+    top: 170px;
+    left: 175px;
     font-size: 30px;
     font-weight: bold;
 }
 #first-intro1 {
     position: absolute;
-    top: 220px;
-    left: 200px;
-    font-family: Inter;
+    top: 240px;
+    left: 175px;
     font-size: 20px;
     font-weight: bold;
 }
+
+#collaTimeImage1{
+
+    position: absolute;
+    top: 130px;
+    left: 490px;
+    width: 230px;
+    height: 230px;
+
+}
+
 #second-title1 {
     position: absolute;
-    top: 150px;
-    left: 1150px;
-    font-family: Inter;
+    top: 170px;
+    left: 1075px;
     font-size: 30px;
     font-weight: bold;
 }
 #second-intro1 {
     position: absolute;
-    top: 220px;
-    left: 1150px;
-    font-family: Inter;
+    top: 240px;
+    left: 1075px;
     font-size: 20px;
     font-weight: bold;
 }
+
+#collaTimeImage2{
+
+    position: absolute;
+    top: 130px;
+    left: 1430px;
+    width: 230px;
+    height: 230px;
+
+}
+
+/*  세번째 섹션 */
 #collatime-third-intro {
     position: absolute;
-    width: 1920px;
-    height: 476px;
+    width: 1915px;
+    height: 853px;
     top: 1430px;
     color: #003393;
     background-color: #FFFFFF;
+    border: solid 1px red;
 }
 
 #big-title2 {
     position: absolute;
     top: 25px;
     left: 878px;
-    font-family: Inter;
     font-size: 45px;
     font-weight: bold;
 }
 #first-title2 {
     position: absolute;
-    top: 150px;
+    top: 170px;
     left: 200px;
-    font-family: Inter;
     font-size: 30px;
     font-weight: bold;
 }
 #first-intro2 {
     position: absolute;
-    top: 220px;
+    top: 240px;
     left: 200px;
-    font-family: Inter;
     font-size: 20px;
     font-weight: bold;
 }
 #second-title2 {
     position: absolute;
-    top: 150px;
+    top: 170px;
     left: 1150px;
-    font-family: Inter;
     font-size: 30px;
     font-weight: bold;
 }
 #second-intro2 {
     position: absolute;
-    top: 220px;
+    top: 240px;
     left: 1150px;
-    font-family: Inter;
     font-size: 20px;
     font-weight: bold;
 }
-/* 직원후기 부분 */
+
+/* 네번째 섹션 - 직원 후기 */
 #collatime-fourth-intro1 {
     position: absolute;
-    width: 1920px;
-    height: 476px;
+    width: 1915px;
+    height: 853px;
     top: 1906px;
     background-color: #FFFFFF;
+    border: solid 1px red;
 }
+
 #big-title3 {
     position: absolute;
     top: 25px;
     left: 601px;
-    font-family: Inter;
     font-size: 45px;
     font-weight: bold;
 }
@@ -171,28 +186,19 @@ body {
     background-color: #B8B8B8;
     border-radius: 10px;
 }
-#sub4 {
-    position: absolute;
-    width: 260px;
-    height: 290px;
-    top: 160px;
-    left: 1309px;
-    background-color: #B8B8B8;
-    border-radius: 10px;
-}
 
 #collatime-fourth-intro2 {
     position: absolute;
-    width: 1920px;
+    width: 1915px;
     height: 476px;
-    top: 2381px;
+    top: 2759px;
     background-color: #92E2F8;
+    border: solid 1px red;
 }
 #big-title4 {
     position: absolute;
     top: 130px;
     left: 455px;
-    font-family: Inter;
     font-size: 64px;
     font-weight: bold;
     color: #003393;

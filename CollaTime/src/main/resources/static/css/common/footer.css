@@ -1,9 +1,9 @@
 /* 푸터 부분 */
 #collatime-footer {
     position: absolute;
-    width: 1920px;
+    width: 1915px;
     height: 356px;
-    top: 2850px;
+    top: 3235px;
     background-color: #FFFFFF;
     border-bottom: solid;
     border-color: #92E2F8;
@@ -55,9 +55,9 @@
 }
 #footer {
     position: absolute;
-    width: 1920px;
+    width: 1915px;
     height: 121px;
-    top: 3208px;
+    top: 3591px;
     background-color: #FFFFFF;
 }
 #footer-text6 {
