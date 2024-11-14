@@ -12,6 +12,16 @@
 <div th:include="/common/programHeader.html"></div>
 
 <div id="userTable_text">회원</div>
+<select id="userTable_category">
+    <option value="none" selected>선택해주세요.</option>
+    <option value="number">회원번호</option>
+    <option value="id">ID</option>
+    <option value="email">EMAIL</option>
+    <option value="name">이름</option>
+    <option value="nickname">닉네임</option>
+</select>
+<input type="text" id="userTable_search">
+<button type="button" id="userTable_search_btn">검색</button>
 <div id="userTable_area">
 <table id="userTable">
     <tr>
@@ -21,14 +31,108 @@
         <th style="width: 250px; background-color: #aaaaaa">이름</th>
         <th style="width: 250px; background-color: #aaaaaa">닉네임</th>
     </tr>
-    <tr>
-        <th>회원 번호</th>
-        <th>ID</th>
-        <th>EMAIL</th>
-        <th>이름</th>
-        <th>닉네임</th>
-    </tr>
 </table>
 </div>
+<script>
+    const userList = document.getElementById('userTable')
+
+    fetch("/admin/alluser")
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data)
+            if(data.length>0){
+                for (var i = 0; i<data.length; i++) {
+                    const userInfo = document.createElement('tr')
+                    let deleteLink = "/admin/deleteUser/"+data[i].userNo;
+                    userInfo.innerHTML =
+                        `
+                        <th>${data[i].userNo}</th>
+                        <th>${data[i].userId}</th>
+                        <th>${data[i].userEmail}</th>
+                        <th>${data[i].userName}</th>
+                        <th>${data[i].userNickname} <button type="button" onclick="location.href='${deleteLink}'" style="float: right">삭제</button></th>
+                        `
+                    userList.append(userInfo)
+                }
+            }else {
+                const NoUserInfo = document.createElement('tr')
+                NoUserInfo.innerHTML = `<th>해당하는 값이 없습니다.</th>`
+                userList.append(NoUserInfo)
+            }
+        })
+
+    const userCategory = document.getElementById('userTable_category')
+    const searchUser = document.getElementById('userTable_search')
+    const searchUserBtn = document.getElementById('userTable_search_btn')
+    searchUser.style.visibility = 'hidden'
+    searchUserBtn.style.visibility = 'hidden'
+
+    userCategory.addEventListener('change', ()=>{
+        if(userCategory.value==='none'){
+            searchUser.style.visibility = 'hidden'
+        }else {
+            searchUser.style.visibility = 'visible'
+        }
+        if(userCategory.value==='number'){
+            searchUser.type = 'number'
+        }
+        else if(userCategory.value==='id'){
+            searchUser.type = 'text'
+
+        }
+        else if(userCategory.value==='email'){
+            searchUser.type = 'email'
+        }
+        else if(userCategory.value==='name'){
+            searchUser.type = 'text'
+        }
+        else if(userCategory.value==='nickname'){
+            searchUser.type = 'text'
+        }
+    })
+
+    searchUser.addEventListener('change', ()=>{
+        if(searchUser.value!=='' && searchUser.value!==null){
+            searchUserBtn.style.visibility = 'visible'
+        }else {
+            searchUserBtn.style.visibility = 'hidden'
+        }
+    })
+
+    searchUserBtn.addEventListener('click', ()=>{
+        let linkUser = "/admin/user/"+userCategory.value+"/"+searchUser.value
+        console.log(linkUser)
+        fetch(linkUser)
+            .then(res=>res.json())
+            .then(data=>{
+                console.log(data)
+                console.log(userList.rows.length)
+                let listLength = userList.rows.length
+                for(var i = 1; i<listLength; i++) {
+                    userList.deleteRow(1)
+                }
+                if(data.length>0){
+                    for (var i = 0; i<data.length; i++) {
+                        const userInfo = document.createElement('tr')
+                        let deleteLink = "/admin/deleteUser/"+data[i].userNo;
+                        userInfo.innerHTML =
+                            `
+                        <th>${data[i].userNo}</th>
+                        <th>${data[i].userId}</th>
+                        <th>${data[i].userEmail}</th>
+                        <th>${data[i].userName}</th>
+                        <th>${data[i].userNickname} <button type="button" onclick="location.href='${deleteLink}'" style="float: right">삭제</button></th>
+                        `
+                        userList.append(userInfo)
+                    }
+                }else {
+                    const NoUserInfo = document.createElement('tr')
+                    NoUserInfo.innerHTML = `<th colspan="5" style="font-size: 40px; text-align: center; height: 60px">해당하는 값이 없습니다.</th>`
+                    userList.append(NoUserInfo)
+                }
+            })
+    })
+
+</script>
 </body>
 </html>

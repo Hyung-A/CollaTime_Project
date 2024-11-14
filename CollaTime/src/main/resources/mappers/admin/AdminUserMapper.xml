@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.collatime.admin.model.dao.AdminUserMapper">
+    <resultMap id="login" type="com.ohgiraffers.collatime.user.model.dto.UserDTO">
+        <id property="userNo" column="CT_USER_NO"/>
+        <result property="userId" column="CT_USER_ID"/>
+        <result property="password" column="PASSWORD"/>
+        <result property="userEmail" column="CT_USER_EMAIL"/>
+        <result property="userName" column="CT_USER_NAME"/>
+        <result property="userNickname" column="CT_USER_NICKNAME"/>
+        <result property="userPicture" column="CT_USER_PICTURE"/>
+        <result property="userColor" column="CT_USER_COLOR"/>
+        <result property="userRole" column="CT_USER_ROLE"/>
+    </resultMap>
+
+    <select id="searchAllUser" resultMap="login">
+        SELECT *
+        FROM CT_USER
+    </select>
+
+    <select id="searchUserByNo" resultMap="login">
+        SELECT *
+        FROM CT_USER
+        WHERE CT_USER_NO = #{userNo}
+    </select>
+</mapper>
+
