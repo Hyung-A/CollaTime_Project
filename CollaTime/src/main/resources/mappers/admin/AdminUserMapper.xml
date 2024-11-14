@@ -25,5 +25,34 @@
         FROM CT_USER
         WHERE CT_USER_NO = #{userNo}
     </select>
+
+    <select id="searchUserById" resultMap="login">
+        SELECT *
+        FROM CT_USER
+        WHERE CT_USER_ID LIKE CONCAT('%', #{userId}, '%')
+    </select>
+
+    <select id="searchUserByEmail" resultMap="login">
+        SELECT *
+        FROM CT_USER
+        WHERE CT_USER_EMAIL LIKE CONCAT('%', #{userEmail}, '%')
+    </select>
+
+    <select id="searchUserByName" resultMap="login">
+        SELECT *
+        FROM CT_USER
+        WHERE CT_USER_NAME LIKE CONCAT('%', #{userName}, '%')
+    </select>
+
+    <select id="searchUserByNickname" resultMap="login">
+        SELECT *
+        FROM CT_USER
+        WHERE CT_USER_NICKNAME LIKE CONCAT('%', #{userNickname}, '%')
+    </select>
+
+    <delete id="deleteUserOk">
+        DELETE FROM CT_USER
+        WHERE CT_USER_NO = #{userNo}
+    </delete>
 </mapper>
 

@@ -10,4 +10,14 @@ public interface AdminUserMapper {
     List<UserDTO> searchAllUser();
 
     List<UserDTO> searchUserByNo(int userNo);
+
+    List<UserDTO> searchUserById(String userId);
+
+    List<UserDTO> searchUserByEmail(String userEmail);
+
+    List<UserDTO> searchUserByName(String userName);
+
+    List<UserDTO> searchUserByNickname(String userNickname);
+
+    int deleteUserOk(int userNo);
 }

@@ -43,7 +43,7 @@
             if(data.length>0){
                 for (var i = 0; i<data.length; i++) {
                     const userInfo = document.createElement('tr')
-                    let deleteLink = "/admin/deleteUser/"+data[i].userNo;
+                    let deleteLink = "/admin/deleteuser/"+data[i].userNo;
                     userInfo.innerHTML =
                         `
                         <th>${data[i].userNo}</th>
@@ -114,7 +114,7 @@
                 if(data.length>0){
                     for (var i = 0; i<data.length; i++) {
                         const userInfo = document.createElement('tr')
-                        let deleteLink = "/admin/deleteUser/"+data[i].userNo;
+                        let deleteLink = "/admin/deleteuser/"+data[i].userNo;
                         userInfo.innerHTML =
                             `
                         <th>${data[i].userNo}</th>

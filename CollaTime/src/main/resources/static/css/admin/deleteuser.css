@@ -1,0 +1,130 @@
+#smallModal_admin_deleteUser{
+
+    position: absolute;
+    width: 554px;
+    height: 284px;
+    left: 683px;
+    top: 260px;
+    background: #FFFFFF;
+    border:1px solid #595959;
+    border-radius: 25px;
+}
+
+#smallBlueHeader_admin_deleteUser{
+
+    position: absolute;
+    width: 554px;
+    height: 51px;
+    background: #92E2F8;
+    border-bottom: 1px solid #282828;
+    border-radius: 25px 25px 0px 0px;
+
+}
+
+#smallXButton_admin_deleteUser{
+
+    width: 30px;
+    height: 34px;
+    font-size: 30px;
+    position: absolute;
+    left: 506px;
+    top: 5px;
+
+}
+
+
+/* 작은 모달창 메세지 */
+#deleteUserInfo{
+    position: absolute;
+    width: 400px;
+    left: 83px;
+    top: 135px;
+
+    font-family: 'Abril Fatface';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+
+    text-align: center;
+    color: #000000;
+
+
+}
+
+#deleteUserResult{
+    /*display: none;*/
+
+    position: absolute;
+    width: 400px;
+    left: 83px;
+    top: 135px;
+
+    font-family: 'Abril Fatface';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+
+    text-align: center;
+    color: #000000;
+
+
+}
+
+
+/* 작은 모달창 확인 */
+#small_deleteOk_btn{
+    position: absolute;
+    width: 100px;
+    height: 40px;
+    left: 430px;
+    top: 222px;
+
+    font-weight: 600;
+    font-size: 20px;
+
+
+    color: #000000;
+    background: #92E2F8;
+    border: none;
+    border-radius: 15px;
+    text-align: center;
+
+}
+
+#small_deleteResultOk_btn{
+    /*display: none;*/
+    position: absolute;
+    width: 100px;
+    height: 40px;
+    left: 430px;
+    top: 222px;
+
+    font-weight: 600;
+    font-size: 20px;
+
+
+    color: #000000;
+    background: #92E2F8;
+    border: none;
+    border-radius: 15px;
+    text-align: center;
+
+}
+
+#small_deleteNo_btn{
+    position: absolute;
+    width: 100px;
+    height: 40px;
+    left: 320px;
+    top: 222px;
+
+    font-weight: 600;
+    font-size: 20px;
+
+
+    color: #000000;
+    background: rgba(146, 226, 248, 0.3);
+    border: none;
+    border-radius: 15px;
+    text-align: center;
+}

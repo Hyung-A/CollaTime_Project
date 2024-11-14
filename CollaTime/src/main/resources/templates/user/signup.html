@@ -195,6 +195,7 @@
     그러므로 귀하가 사용하실 컨텐츠와 링크와 관련된 보호정책을 주의 깊게 읽어보시기를 권장합니다.
         <br><br>&nbsp
         <p style="font-weight: bold; text-align: center;">위의 내용에 동의하신다면 확인을 눌러주세요.</p>
+        <br><br><br>
     </div>
 
     <!-- 이용약관 확인 및 취소 -->
@@ -415,7 +416,8 @@
             isInput[6] = "false";
         })
         content.addEventListener('scroll', function (){
-            if(content.scrollTop >= 1950){
+            console.log(content.scrollTop)
+            if(content.scrollTop >= 1400){
                 acceptBtn.disabled = null;
                 acceptBtn.style.backgroundColor = 'RGB(146, 266, 248)';
                 acceptBtn.style.color = 'black';

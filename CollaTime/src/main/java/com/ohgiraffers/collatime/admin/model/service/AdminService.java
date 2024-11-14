@@ -40,4 +40,24 @@ public class AdminService {
     public List<UserDTO> searchUserByNo(int userNo) {
         return adminUserMapper.searchUserByNo(userNo);
     }
+
+    public List<UserDTO> searchUserById(String userId) {
+        return adminUserMapper.searchUserById(userId);
+    }
+
+    public List<UserDTO> searchUserByEmail(String userEmail) {
+        return adminUserMapper.searchUserByEmail(userEmail);
+    }
+
+    public List<UserDTO> searchUserByName(String userName) {
+        return adminUserMapper.searchUserByName(userName);
+    }
+
+    public List<UserDTO> searchUserByNickname(String userNickname) {
+        return adminUserMapper.searchUserByNickname(userNickname);
+    }
+
+    public int deleteUserOk(int userNo) {
+        return adminUserMapper.deleteUserOk(userNo);
+    }
 }
