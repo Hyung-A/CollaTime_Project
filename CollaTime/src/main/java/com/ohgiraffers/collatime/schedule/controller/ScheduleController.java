@@ -42,13 +42,6 @@ public class ScheduleController {
         return ResponseEntity.ok(schedules);
     }
 
-    // 특정 일정 조회 (GET /api/schedules/{id})
-    @GetMapping("/api/schedules/{scheduleNo}")
-    @ResponseBody // JSON 데이터를 반환
-    public ResponseEntity<ScheduleDTO> getSchedule(@PathVariable("scheduleNo") int scheduleNo) {
-        ScheduleDTO schedule = scheduleService.getScheduleById(scheduleNo);
-        return ResponseEntity.ok(schedule);
-    }
 
     // 일정 추가 (POST /api/schedules)
     @PostMapping("/api/schedules")
@@ -61,37 +54,41 @@ public class ScheduleController {
         // 3. 저장이 성공적으로 완료되면 클라이언트에게 200 OK 응답을 반환합니다.
     }
 
-    // 일정 수정 (PUT /api/schedules/{id})
-    @PutMapping("/api/schedules/{id}")
-    @ResponseBody // JSON 데이터를 반환
-    public ResponseEntity<Void> updateSchedule(@PathVariable("id") int scheduleNo, @RequestBody ScheduleDTO schedule) {
-        schedule.setScheduleNo(scheduleNo);
-        scheduleService.updateSchedule(schedule);
-        return ResponseEntity.ok().build();
-    }
-
+    //    // 일정 수정 (PUT /api/schedules/{id})
+//    @PutMapping("/api/schedules/{id}")
+//    @ResponseBody // JSON 데이터를 반환
+//    public ResponseEntity<Void> updateSchedule(@PathVariable("id") int scheduleNo, @RequestBody ScheduleDTO schedule) {
+//        schedule.setScheduleNo(scheduleNo);
+//        scheduleService.updateSchedule(schedule);
+//        return ResponseEntity.ok().build();
+//    }
+//
     // 일정 삭제 (DELETE /api/schedules/{id})
-    @DeleteMapping("/api/schedules/{id}")
+    @DeleteMapping("/api/schedules/{scheduleNo}")
     @ResponseBody // JSON 데이터를 반환
-    public ResponseEntity<Void> deleteSchedule(@PathVariable("id") int scheduleNo) {
+    public ResponseEntity<Void> deleteSchedule(@PathVariable("scheduleNo") int scheduleNo) {
         scheduleService.deleteSchedule(scheduleNo);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/schedule/details/{scheduleNo}")
-    public String getScheduleDetails(@PathVariable("scheduleNo") int scheduleNo, Model model) {
-        // scheduleNo에 맞는 스케줄 정보를 DB에서 가져오기
-        ScheduleDTO schedule = scheduleService.getScheduleById(scheduleNo);
+    @ResponseBody
+    public ScheduleDTO getScheduleDetails(@PathVariable("scheduleNo") int scheduleNo, Principal principal) {
+        ScheduleDTO schedule = scheduleService.getScheduleByNo(scheduleNo);
 
-        // 데이터를 모델에 추가
-        model.addAttribute("scheduleTitle", schedule.getScheduleTitle());
-        model.addAttribute("scheduleStartDate", schedule.getScheduleStartDate());
-        model.addAttribute("scheduleEndDate", schedule.getScheduleEndDate());
-        model.addAttribute("memo", schedule.getScheduleContent());
-        model.addAttribute("colorCode", schedule.getColorCode());
-        model.addAttribute("creatorName", schedule.getScheduleCreator());
+        String creatorName = principal.getName();
+        schedule.setScheduleCreator(creatorName);
 
-        return "schedule/details"; // 해당 데이터를 가지고 details.html로 이동
+        return schedule;
     }
+
+
+//    // 특정 일정 조회 (GET /api/schedules/{id})
+//    @GetMapping("/api/schedules/{scheduleNo}")
+//    @ResponseBody // JSON 데이터를 반환
+//    public ResponseEntity<ScheduleDTO> getSchedule(@PathVariable("scheduleNo") int scheduleNo) {
+//        ScheduleDTO schedule = scheduleService.getScheduleById(scheduleNo);
+//        return ResponseEntity.ok(schedule);
+//    }
 }
 

@@ -7,17 +7,19 @@
 </head>
 <body>
 <!-- 작은 모달창 -->
-<div id="smallModal">
-  <div id="smallBlueHeader">
-    <div id="smallXButton">X</div>
-  </div>
-  <div id="confirmDelete">
-    <div id="confirmAlarm">삭제가 완료되었습니다.</div>
-  </div>
+<div id="deleteModal">
+    <div id="smallModal">
+        <div id="smallBlueHeader">
+            <div id="deleteXButton" onclick="closeAllModals()">X</div>
+        </div>
+        <div id="confirmDelete">
+            <div id="confirmAlarm">삭제가 완료되었습니다.</div>
+        </div>
 
-  <div id="bottomButtons">
-    <div class="bottomButton" id="confirmButton">확인</div>
-  </div>
+        <div id="bottomButtons">
+            <div class="bottomButton" id="deleteConfirmButton" onclick="closeAllModals()">확인</div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

@@ -3,23 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/schedule/deletecheck.css">
-
-
     <title>Title</title>
 </head>
-<body>
-<div id="smallModal">
-    <div id="smallBlueHeader">
-        <div id="smallXButton">X</div>
-    </div>
-    <div id="checkDelete">
-        <div id="confirmCheck">일정을 삭제하시겠습니까?</div>
-    </div>
 
-    <div id="bottomButtons">
-        <div class="bottomButton" id="cancelButton">취소</div>
-        <div class="bottomButton" id="confirmButton">확인</div>
+<body>
+<div id="deleteCheckModal">
+    <div id="smallModal">
+        <div id="smallBlueHeader">
+            <div id="deleteCheckXButton" onclick="closeDeleteCheckModal()">X</div>
+        </div>
+        <div id="checkDelete">
+            <div id="deleteConfirmCheck">일정을 삭제하시겠습니까?</div>
+        </div>
+
+        <div id="bottomButtons">
+            <div class="bottomButton" id="deleteCheckCancelButton" onclick="closeDeleteCheckModal()">취소</div>
+            <div class="bottomButton" id="deleteCheckConfirmButton" onclick="confirmDeleteSchedule()">확인</div>
+        </div>
     </div>
 </div>
+<script>
+    function closeDeleteCheckModal() {
+        document.getElementById("deleteCheckModal").style.display = "none";
+    }
+
+    function confirmDeleteSchedule() {
+        const scheduleNo = currentScheduleNo;
+
+        fetch(`/api/schedules/${scheduleNo}`, {
+            method: 'DELETE'
+        })
+            .then(response => {
+                if (response.ok) {
+                    console.log("스케줄 삭제 성공")
+
+                    document.getElementById("deleteModal").style.display = "flex"; // 삭제 완료 모달 열기
+
+                } else {
+                    console.error("실패");
+                }
+            })
+            .catch(error => console.error("fetch 에러 :", error));
+    }
+</script>
+
 </body>
 </html>

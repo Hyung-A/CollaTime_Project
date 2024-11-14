@@ -7,71 +7,71 @@
 </head>
 
 <body>
+<!--<div id="detailsModal">-->
+    <div id="middleModal">
+        <div id="middleBlueHeader">
+            <div id="detailsXButton">X</div>
+        </div>
 
-<div id="detailsModal">
-    <div id="middleBlueHeader">
-        <div id="detailsXButton">X</div>
+        <form id="scheduleForm">
+
+            <div id="modifyList">
+                <img src="/css/schedule/image/연필.png" id="modifySchedule">
+            </div>
+            <div id="deleteList">
+                <img src="/css/schedule/image/휴지통.png" id="deleteSchedule" onclick="openDeleteCheckModal()">
+            </div>
+
+
+            <!-- 일정 제목 -->
+            <div id="scheduleTitle"></div>
+
+            <!-- 색상 선택 옵션 -->
+            <div id="colorOptions">
+                <div class="color-button" id="color-button" ></div>
+                <!-- 색상 출력 -->
+                <input type="hidden" name="colorCode" id="selectedColor">
+            </div>
+
+            <!-- 스케줄 기간-->
+            <div id="schedulePeriod">
+                <img src="/css/schedule/image/시계.png" id="watch">
+                <input type="date" id="scheduleStartDate" readonly>
+                <div id="slash">-</div>
+                <input type="date" id="scheduleEndDate" readonly>
+            </div>
+
+            <!-- 참여자 -->
+            <div id="participant-container">
+                <div id="invite-icon">
+                    <img src="/css/schedule/image/인원.png" id="people">
+                </div>
+                <div id="participant-list">
+                    <span id="placeholder-text">참여자(닉네임)</span>
+                </div>
+            </div>
+
+            <!-- 메모 -->
+            <span><img src="/css/schedule/image/과제내용.png" id="memoIcon"></span>
+            <textarea id="memo" class="memo-input" readonly ></textarea>
+
+
+            <div id="creator-info">
+                생성자 | <span th:text="${creatorName}"></span>
+            </div>
+            <button type="button" id="details-confirmButton">확인</button>
+        </form>
     </div>
-
-    <form id="scheduleForm">
-
-        <div id="modifyList">
-            <img src="/css/schedule/image/연필.png" id="modifySchedule">
-        </div>
-        <div id="deleteList">
-            <img src="/css/schedule/image/휴지통.png" id="deleteSchedule">
-        </div>
-
-
-        <!-- 일정 제목 -->
-        <div id="scheduleTitle" th:text="${schedule.scheduleTitle}"></div>
-
-        <!-- 색상 선택 옵션 -->
-        <div id="colorOptions">
-            <div class="color-button" id="color-button" th:style="'background-color: ' + ${schedule.colorCode}"></div> <!-- 색상 출력 -->
-            <input type="hidden" name="colorCode" id="selectedColor" th:value="${schedule.colorCode}">
-        </div>
-
-        <!-- 스케줄 기간-->
-        <div id="schedulePeriod">
-            <img src="/css/schedule/image/시계.png" id="watch">
-            <input type="date" id="scheduleStartDate" th:value="${schedule.scheduleStartDate}" readonly>
-            <div id="slash">-</div>
-            <input type="date" id="scheduleEndDate" th:value="${schedule.scheduleEndDate}" readonly>
-        </div>
-
-        <!-- 참여자 -->
-        <div id="participant-container">
-            <div id="invite-icon">
-                <img src="/css/schedule/image/인원.png" id="people">
-            </div>
-            <div id="participant-list">
-                <span id="placeholder-text">참여자(닉네임)</span>
-            </div>
-        </div>
-
-        <!-- 메모 -->
-        <span><img src="/css/schedule/image/과제내용.png" id="memoIcon"></span>
-        <textarea id="memo" class="memo-input" readonly th:text="${schedule.scheduleContent}"></textarea>
-
-
-
-        <div id="creator-info">
-            생성자 | <span th:text="${creatorName}"></span>
-        </div>
-        <button type="button" id="details-confirmButton">확인</button>
-    </form>
-</div>
-
+<!--</div>-->
 </body>
 
 <script>
 
-    document.getElementById("details-confirmButton").addEventListener("click", function() {
+    document.getElementById("details-confirmButton").addEventListener("click", function () {
         document.getElementById("detailsModal").style.display = "none";
     });
 
-    document.getElementById("detailsXButton").addEventListener("click", function() {
+    document.getElementById("detailsXButton").addEventListener("click", function () {
         document.getElementById("detailsModal").style.display = "none";
     });
 
