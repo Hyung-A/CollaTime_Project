@@ -2,6 +2,7 @@
 #month-visitor{
     background-color: #DFF7FD;
     position: absolute;
+    overflow: hidden;
     left: 450px;
     top: 420px;
     width: 700px;
@@ -14,6 +15,7 @@
 #day-visitor {
     background-color: #DFF7FD;
     position: absolute;
+    overflow: hidden;
     left: 1250px;
     top: 420px;
     width: 500px;
@@ -36,6 +38,7 @@
     align-items: flex-end;
     height: 300px;
     border-bottom: 1px solid #ddd;
+
 
     padding-left: 10px;
 }
