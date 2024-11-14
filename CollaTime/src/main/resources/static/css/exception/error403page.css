@@ -1,0 +1,195 @@
+@charset "UTF-8";
+
+#error403PageHead{
+
+    position: absolute;
+    width: 1920px;
+    height: 100px;
+    border-bottom: solid;
+    border-color: #92E2F8;
+    background-color: white;
+
+}
+
+#error403PageLogo{
+
+    position: absolute;
+    top:15px;
+    left: 39px;
+    width: 186px;
+    height: 67px;
+
+}
+
+#error403toMain{
+
+    position: absolute;
+    width: 195px;
+    height: 50px;
+    left: 1457px;
+    top: 25px;
+    background-color: #DFF7FD;
+    border: none;
+    border-radius: 10px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    line-height: 50px;
+    color: #000000;
+
+}
+
+#error403toBefore{
+
+    position: absolute;
+    width: 195px;
+    height: 50px;
+    left: 1689px;
+    top: 25px;
+    background-color: #92E2F8;
+    border: none;
+    border-radius: 10px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    line-height: 50px;
+    color: #000000;
+
+}
+
+#error403PageBody{
+
+    position: absolute;
+    width: 1920px;
+    height: 852px;
+    display: flex;
+    justify-content: center;
+    line-height: 852px;
+
+}
+
+#error403Name{
+
+    position: absolute;
+    width: max-content;
+    height: 300px;
+    vertical-align: center;
+    top: 300px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+    line-height: 50px;
+    color: #787878;
+
+}
+
+#error403Image{
+
+    position: absolute;
+    width: 1237px;
+    height: 308px;
+    left: 342px;
+    top: 547px;
+
+}
+
+#error403Code1{
+
+    position: absolute;
+    width: 116px;
+    height: 111px;
+    left: 415px;
+    top: 580px;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 50px;
+    line-height: 61px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #282828;
+
+}
+
+#error403Code2{
+
+    position: absolute;
+    width: 116px;
+    height: 111px;
+    left: 680px;
+    top: 580px;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 50px;
+    line-height: 61px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #282828;
+
+}
+
+#error403Code3{
+
+    position: absolute;
+    width: 116px;
+    height: 111px;
+    left: 940px;
+    top: 580px;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 50px;
+    line-height: 61px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #282828;
+
+}
+
+#error403Code4{
+
+    position: absolute;
+    width: 116px;
+    height: 111px;
+    left: 1192px;
+    top: 580px;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 50px;
+    line-height: 61px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #282828;
+
+}
+
+#error403Code5{
+
+    position: absolute;
+    width: 116px;
+    height: 111px;
+    left: 1460px;
+    top: 580px;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 50px;
+    line-height: 61px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #282828;
+
+}
