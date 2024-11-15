@@ -71,6 +71,8 @@
     const answerList = document.getElementById('inquiryTableAnswer')
     const readList = document.getElementById('inquiryTableRead')
     const deleteReadBtn = document.getElementById('deleteAllRead')
+    const logo = document.getElementById('logo')
+    logo.addEventListener('click', ()=>{location.href='/admin/dashboard'})
 
     fetch("/admin/PassAuth")
         .then(res=>res.json())
@@ -109,7 +111,7 @@
             if(data.length>0){
                 for (var i = 0; i<data.length; i++) {
                     const inquiryInfo = document.createElement('tr')
-                    let answerLink = "/admin/answer/"+data[i].inquiryNo;
+                    let answerLink = "/admin/inquiryanswer/"+data[i].inquiryNo;
                     let answer = '';
                     if(data[i].answerContent===null || data[i].answerContent===''){
                         answer = 'N'
@@ -138,7 +140,7 @@
             console.log(data)
             if(data.length>0){
                 for (var i = 0; i<data.length; i++) {
-                    let inquiryLink = "/inquiry/admininquiryinfo/"+data[i].inquiryNo;
+                    let inquiryLink = "/admin/inquiryinfo/"+data[i].inquiryNo;
                     const inquiryInfo = document.createElement('tr')
                     let answer = '';
                     if(data[i].answerContent===null || data[i].answerContent===''){
@@ -169,7 +171,7 @@
             console.log(data)
             if(data.length>0){
                 for (var i = 0; i<data.length; i++) {
-                    let inquiryLink = "/inquiry/admininquiryinfo/"+data[i].inquiryNo;
+                    let inquiryLink = "/admin/inquiryinfo/"+data[i].inquiryNo;
                     const inquiryInfo = document.createElement('tr')
                     let answer = '';
                     if(data[i].answerContent===null || data[i].answerContent===''){

@@ -111,4 +111,7 @@ public class AdminService {
 
     public int inquiryUpdateStatus(InquiryDTO inquiryDTO) { return adminInquiryMapper.inquiryUpdateStatus(inquiryDTO);
     }
+
+    public int addAnswer(int inquiryNo, String answerContent) { return adminInquiryMapper.addAnswer(inquiryNo, answerContent);
+    }
 }

@@ -46,6 +46,8 @@
 <script>
     const projectActiveList = document.getElementById('projectTableActive')
     const projectDeactiveList = document.getElementById('projectTableDeactive')
+    const logo = document.getElementById('logo')
+    logo.addEventListener('click', ()=>{location.href='/admin/dashboard'})
 
     fetch("/admin/allActiveProject")
         .then(res=>res.json())
