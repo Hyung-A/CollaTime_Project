@@ -1,7 +1,9 @@
 package com.ohgiraffers.collatime.admin.model.service;
 
+import com.ohgiraffers.collatime.admin.model.dao.AdminProjectMapper;
 import com.ohgiraffers.collatime.admin.model.dao.AdminUserMapper;
 import com.ohgiraffers.collatime.admin.model.dao.AdminVisitMapper;
+import com.ohgiraffers.collatime.admin.model.dto.AdminProjectDTO;
 import com.ohgiraffers.collatime.admin.model.dto.AdminVisitDTO;
 import com.ohgiraffers.collatime.user.model.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +20,12 @@ public class AdminService {
 
     private AdminUserMapper adminUserMapper;
 
+    private AdminProjectMapper adminProjectMapper;
     @Autowired
-    public AdminService(AdminVisitMapper adminVisitMapper, AdminUserMapper adminUserMapper) {
+    public AdminService(AdminVisitMapper adminVisitMapper, AdminUserMapper adminUserMapper, AdminProjectMapper adminProjectMapper) {
         this.adminVisitMapper = adminVisitMapper;
         this.adminUserMapper = adminUserMapper;
+        this.adminProjectMapper = adminProjectMapper;
     }
 
     public List<AdminVisitDTO> weekMaker(LocalDate thisMonday, LocalDate thisSunday) {
@@ -59,5 +63,13 @@ public class AdminService {
 
     public int deleteUserOk(int userNo) {
         return adminUserMapper.deleteUserOk(userNo);
+    }
+
+    public List<AdminProjectDTO> allActiveProject() {
+        return adminProjectMapper.allActiveProject();
+    }
+
+    public int deleteAllDeactive(List<Integer> list) {
+        return adminProjectMapper.deleteAllDeactive(list);
     }
 }

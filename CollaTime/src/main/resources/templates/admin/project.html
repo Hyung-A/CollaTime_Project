@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/project/reset.css">
+    <link rel="stylesheet" href="/css/admin/project.css">
+
+</head>
+<body>
+<div th:include="/admin/adminleftbar.html"></div>
+<div th:include="/common/programHeader.html"></div>
+
+<div id="projectTable_text">프로젝트</div>
+<select id="projectTable_category">
+    <option value="none" selected>선택해주세요.</option>
+    <option value="number">프로젝트번호</option>
+    <option value="name">프로젝트제목</option>
+    <option value="enddate">종료일자</option>
+    <option value="productorno">생성자번호</option>
+</select>
+<input type="text" id="projectTable_search">
+<button type="button" id="projectTable_search_btn">검색</button>
+<div id="projectTableActive_area">
+    <table id="projectTableActive">
+        <tr>
+            <th style="width: 70px; background-color: #aaaaaa">번호</th>
+            <th style="width: 295px; background-color: #aaaaaa">프로젝트 제목</th>
+            <th style="width: 150px; background-color: #aaaaaa">종료일자</th>
+            <th style="width: 120px; background-color: #aaaaaa">생성자 번호</th>
+        </tr>
+    </table>
+</div>
+<div id="projectTableDeactive_area">
+    <table id="projectTableDeactive">
+        <tr>
+            <th style="width: 70px; background-color: #aaaaaa">번호</th>
+            <th style="width: 295px; background-color: #aaaaaa">프로젝트 제목</th>
+            <th style="width: 150px; background-color: #aaaaaa">종료일자</th>
+            <th style="width: 120px; background-color: #aaaaaa">생성자 번호</th>
+        </tr>
+    </table>
+</div>
+<button type="button" id="deleteAllDeactive" onclick="location.href='/admin/deleteproject'">일괄삭제</button>
+<script>
+    const projectActiveList = document.getElementById('projectTableActive')
+    const projectDeactiveList = document.getElementById('projectTableDeactive')
+
+    fetch("/admin/allActiveProject")
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data)
+            if(data.length>0){
+                for (var i = 0; i<data.length; i++) {
+                    const projectInfo = document.createElement('tr')
+                    projectInfo.innerHTML =
+                        `
+                        <th>${data[i].projectNo}</th>
+                        <th>${data[i].projectName}</th>
+                        <th>${data[i].projectEndDate}</th>
+                        <th>${data[i].productorNo}</th>
+                        `
+                    projectActiveList.append(projectInfo)
+                }
+            }else {
+                const NoProjectInfo = document.createElement('tr')
+                NoProjectInfo.innerHTML = `<th colspan="5" style="font-size: 40px; text-align: center; height: 60px">해당하는 값이 없습니다.</th>`
+                projectActiveList.append(NoProjectInfo)
+            }
+        })
+
+    const deleteProjectList = []
+    fetch("/admin/allDeactiveProject")
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data)
+            if(data.length>0){
+                for (var i = 0; i<data.length; i++) {
+                    console.log(data[i].projectNo)
+                    deleteProjectList.push(data[i].projectNo)
+                    const projectInfo = document.createElement('tr')
+                    projectInfo.innerHTML =
+                        `
+                        <th>${data[i].projectNo}</th>
+                        <th>${data[i].projectName}</th>
+                        <th>${data[i].projectEndDate}</th>
+                        <th>${data[i].productorNo}</th>
+                        `
+                    projectDeactiveList.append(projectInfo)
+                }
+            }else {
+                const NoProjectInfo = document.createElement('tr')
+                NoProjectInfo.innerHTML = `<th colspan="5" style="font-size: 40px; text-align: center; height: 60px">해당하는 값이 없습니다.</th>`
+                projectDeactiveList.append(NoProjectInfo)
+            }
+        })
+
+
+</script>
+</body>
+</html>

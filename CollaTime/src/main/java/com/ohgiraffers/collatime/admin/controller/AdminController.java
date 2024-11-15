@@ -1,7 +1,9 @@
 package com.ohgiraffers.collatime.admin.controller;
 
+import com.ohgiraffers.collatime.admin.model.dto.AdminProjectDTO;
 import com.ohgiraffers.collatime.admin.model.dto.AdminVisitDTO;
 import com.ohgiraffers.collatime.admin.model.service.AdminService;
+import com.ohgiraffers.collatime.project.model.dto.ProjectDTO;
 import com.ohgiraffers.collatime.user.model.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -170,13 +172,95 @@ public class AdminController {
         String message = "";
 
         if(result>0){
-            message = "delete success";
+            message = "삭제가 완료되었습니다.";
         }else {
-            message = "delete fail";
+            message = "삭제에 실패했습니다.";
         }
 
         mv.addObject("message",message);
         mv.setViewName("admin/deleteresult");
         return mv;
     }
+
+//    프로젝트
+    @GetMapping("/project")
+    public void project(){}
+
+    @GetMapping(value = "/allActiveProject",  produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public List<AdminProjectDTO> allActiveProject(){
+        LocalDate today = LocalDate.now();
+        LocalDate activeDay = today.plusDays(14);
+//        List<AdminProjectDTO> a = adminService.allActiveProject(activeDay);
+        List<AdminProjectDTO> activeProject = compareEndDate(1);
+
+        System.out.println("activeProject = " + activeProject);
+        return activeProject;
+    }
+    @GetMapping(value = "/allDeactiveProject",  produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public List<AdminProjectDTO> allDeactiveProject(){
+        List<AdminProjectDTO> deativeProject = compareEndDate(2);
+        System.out.println("deativeProject = " + deativeProject);
+        return deativeProject;
+    }
+
+    private List<AdminProjectDTO> compareEndDate(int compare){
+        LocalDate today = LocalDate.now();
+        LocalDate activeDay = today.minusDays(14);
+        List<AdminProjectDTO> project = adminService.allActiveProject();
+        List<AdminProjectDTO> ActiveProject = new ArrayList<>();
+        List<AdminProjectDTO> DeactiveProject = new ArrayList<>();
+
+        for (int i = 0; i < project.size(); i++ ) {
+            LocalDate projectDate = LocalDate.parse(project.get(i).getProjectEndDate());
+            if(activeDay.isAfter(projectDate)){
+                DeactiveProject.add(project.get(i));
+            }else {
+                ActiveProject.add(project.get(i));
+            }
+        }
+
+        if (compare == 1){
+            return ActiveProject;
+        }else{
+            return DeactiveProject;
+        }
+    }
+
+    @GetMapping("/deleteproject")
+    public ModelAndView deleteproject(ModelAndView mv){
+        String message = "";
+
+        message = "일괄삭제를 진행하시겠습니까?";
+        mv.addObject("message", message);
+        mv.setViewName("admin/deleteproject");
+        return mv;
+    }
+
+    @GetMapping(value = "/deleteAllDeactive",  produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public List<String> deleteAllDeactive(){
+        List<AdminProjectDTO> deativeProject = compareEndDate(2);
+        List<Integer> deleteProjectList = new ArrayList<>();
+        List<String> message = new ArrayList<>();
+        if(deativeProject.size()>0) {
+            for (int i = 0; i < deativeProject.size(); i++) {
+                deleteProjectList.add(deativeProject.get(i).getProjectNo());
+            }
+            int result = adminService.deleteAllDeactive(deleteProjectList);
+
+
+            if (result > 0) {
+                message.add("일괄삭제가 완료되었습니다.");
+            } else {
+                message.add("삭제에 실패했습니다.");
+            }
+
+        }else {
+            message.add("데이터가 없습니다.");
+        }
+        return message;
+    }
 }
+

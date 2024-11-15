@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.collatime.admin.model.dao.AdminProjectMapper">
+    <resultMap id="project" type="com.ohgiraffers.collatime.admin.model.dto.AdminProjectDTO">
+        <id property="projectNo" column="PROJECT_NO"/>
+        <result property="projectName" column="PROJECT_NAME"/>
+        <result property="projectEndDate" column="PROJECT_END_DATE"/>
+        <result property="productorNo" column="PRODUCTOR_NO"/>
+    </resultMap>
+
+    <select id="allActiveProject" resultMap="project">
+        SELECT
+            PROJECT_NO
+        ,   PROJECT_NAME
+        ,   PROJECT_END_DATE
+        ,   PRODUCTOR_NO
+        FROM PROJECT
+    </select>
+
+    <delete id="deleteAllDeactive" parameterType="java.util.List">
+        DELETE FROM PROJECT
+        WHERE PROJECT_NO IN
+        <foreach item="projectNo" collection="list" open="(" separator=", " close=")">
+                #{projectNo}
+        </foreach>
+    </delete>
+</mapper>
