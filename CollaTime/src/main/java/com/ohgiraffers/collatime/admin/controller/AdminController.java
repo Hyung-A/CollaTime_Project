@@ -389,5 +389,37 @@ public class AdminController {
 
         return mv;
     }
+
+    @GetMapping("/deleteinquiry")
+    public ModelAndView deleteinquiry(ModelAndView mv){
+        String message = "";
+
+        message = "일괄삭제를 진행하시겠습니까?";
+        mv.addObject("message", message);
+        mv.setViewName("admin/deleteinquiry");
+        return mv;
+    }
+
+    @GetMapping(value = "/deleteReadInquiry",  produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public List<String> deleteReadInquiry(){
+
+        List<Integer> deleteList = adminService.ReadInquiryList();
+        System.out.println("deleteList = " + deleteList);
+        List<String> message = new ArrayList<>();
+
+        if(deleteList.size()>0){
+            int result = adminService.deleteReadInquiry(deleteList);
+        if (result > 0) {
+            message.add("일괄삭제가 완료되었습니다.");
+        } else {
+                message.add("삭제에 실패했습니다.");
+        }
+
+        }else {
+            message.add("데이터가 없습니다.");
+        }
+        return message;
+    }
 }
 

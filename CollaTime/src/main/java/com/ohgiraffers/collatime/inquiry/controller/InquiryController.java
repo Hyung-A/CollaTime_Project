@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -106,6 +107,30 @@ public class InquiryController {
 
         mv.setViewName("/common/resultinquirymodal");
         return mv;
+    }
+
+    @GetMapping(value = "/userReadInquiry/{inquiryNo}", produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public List<String> userReadInquiry(@PathVariable("inquiryNo") int inquiryNo){
+
+        List<String> message = new ArrayList<>();
+
+        int result = inquiryService.userReadInquiry(inquiryNo);
+
+        if(result>0){
+            message.add("문의를 읽으셨습니다.");
+        }else {
+            message.add("문의를 읽음 변환 실패.");
+        }
+        return message;
+    }
+
+
+    @GetMapping(value = "/productorOfProject", produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public List<ProjectDTO> productorOfProject(@AuthenticationPrincipal AuthDetails authDetails){
+        List<ProjectDTO> projectList = projectService.productorOfProject(authDetails.getUserNo());
+        return projectList;
     }
 //    @GetMapping(value = "/havingproject", produces = "application/json; charset=UTF-8")
 //    @ResponseBody
