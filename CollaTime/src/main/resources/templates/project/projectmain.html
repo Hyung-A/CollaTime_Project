@@ -35,7 +35,7 @@
         <input type="text" id="productorNo" style="display: none" th:value="${ project.productorNo }"/>
         <div id="folderHead"></div>
         <div id="folderBody">
-          <div id="projectTitle" th:text="${ project.projectName }" onclick="goToSchedulePage('${project.projectNo}')"></div>
+          <div id="projectTitle" th:text="${ project.projectName }"></div>
           <div id="folderMenu">...</div>
           <div id="crudMenu">
             <span id="projectSelect" class="crudText Member">조회하기</span>  <!-- 프로덕터 넘버가 유저 넘버랑 일치하지 않을 때 얘만 열리기 -->
@@ -58,9 +58,20 @@
   </div>
 </div>
 <script>
-  function goToSchedulePage(projectNo) {
-    // projectNo를 쿼리 파라미터로 추가하여 /schedule 페이지로 이동
-    window.location.href = '/schedule?projectNo=' + projectNo;
+  // function goToSchedulePage(projectNo) {
+  //   // projectNo를 쿼리 파라미터로 추가하여 /schedule 페이지로 이동
+  //   window.location.href = '/schedule?projectNo=' + projectNo;
+  // }
+  const projectTitle = document.querySelectorAll("#projectTitle");
+  for(let i = 0; i < projectTitle.length; i++) {
+    let toScheduleLink = "/schedule?projectNo=" + projectNo[i].value;
+    projectTitle[i].onclick = function(){
+       location.href = `${ toScheduleLink }`;
+    }
+
+  }
+  projectTitle.onclick = function () {
+    location.href = "${toScheduleLink}";
   }
 </script>
 <script>
