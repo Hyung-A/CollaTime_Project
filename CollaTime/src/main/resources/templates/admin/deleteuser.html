@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/admin/deleteuser.css">
+</head>
+<body>
+<div th:replace="/admin/user.html"></div>
+
+<div id="smallModal_admin_deleteUser">
+    <div id="smallBlueHeader_admin_deleteUser">
+        <div id="smallXButton_admin_deleteUser">X</div>
+        <div id="deleteUserInfo" th:text="${ message }"></div>
+        <button id="small_deleteOk_btn" type="button">확인</button>
+        <button id="small_deleteNo_btn" type="button">취소</button>
+    </div>
+</div>
+<script>
+    const xBtnAdminDelete = document.getElementById('smallXButton_admin_deleteUser')
+    const cancelAdminDelete = document.getElementById('small_deleteNo_btn')
+    const deleteOkBtn = document.getElementById('small_deleteOk_btn')
+
+    xBtnAdminDelete.addEventListener('click', ()=>{history.back()})
+    cancelAdminDelete.addEventListener('click', ()=>{history.back()})
+
+    deleteOkBtn.addEventListener("click", ()=>{
+        let link = "/admin/deleteresult/"+`[[${user.userNo}]]`
+        console.log(link)
+        location.href=link
+    })
+
+</script>
+</body>
+</html>

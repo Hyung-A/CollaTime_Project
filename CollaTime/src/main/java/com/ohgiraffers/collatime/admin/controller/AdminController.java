@@ -5,10 +5,8 @@ import com.ohgiraffers.collatime.admin.model.service.AdminService;
 import com.ohgiraffers.collatime.user.model.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -54,13 +52,11 @@ public class AdminController {
             int check = 0;
             for (int j = 0; j < thisWeek.size(); j++) {
                 if (compareThisWeek.get(i).equals(thisWeek.get(j).getVisitDate())) {
-                    System.out.println("compareThisWeekFor = " + compareThisWeek.get(i));
                     dailyUsing.add(thisWeek.get(j).getVisitCount());
                 }else {
                     check++;
                 }
             }
-            System.out.println(check);
             if(check==thisWeek.size()){
                 dailyUsing.add(0);
             }
@@ -77,10 +73,6 @@ public class AdminController {
         List<Integer> monthlyUsing = new ArrayList<>();
 
         List<Map<Integer, Integer>> collaUsingMonth = adminService.monthMaker();
-        System.out.println("collaUsingMonth = " + collaUsingMonth);
-        System.out.println("달이 잘 나오나 "+collaUsingMonth.get(4).get("month"));
-        System.out.println("카운트가 잘 나오나 "+collaUsingMonth.get(4).get("count"));
-        System.out.println("collaUsingMonth 사이즈가 얼마고 = " + collaUsingMonth.size());
 
         List<Integer> compareMonth = new ArrayList<>();
         for (int i = 1; i < 13; i++){
@@ -91,13 +83,11 @@ public class AdminController {
             int check = 0;
             for (int j = 0; j < collaUsingMonth.size(); j++) {
                 if (compareMonth.get(i) == collaUsingMonth.get(j).get("month")) {
-                    System.out.println("compareThisWeekFor = " + compareMonth.get(i));
                     monthlyUsing.add(Integer.parseInt(String.valueOf(collaUsingMonth.get(j).get("count"))));
                 }else {
                     check++;
                 }
             }
-            System.out.println(check);
             if(check==collaUsingMonth.size()){
                 monthlyUsing.add(0);
             }
@@ -123,5 +113,70 @@ public class AdminController {
         System.out.println("여까지 왔다.");
 
         return adminService.searchUserByNo(userNo);
+    }
+
+    @GetMapping(value = "/user/id/{userId}",  produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public List<UserDTO> searchUserById(@PathVariable("userId") String userId){
+        System.out.println("id 여까지 왔다.");
+
+        return adminService.searchUserById(userId);
+    }
+
+    @GetMapping(value = "/user/email/{userEmail}",  produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public List<UserDTO> searchUserByEmail(@PathVariable("userEmail") String userEmail){
+        System.out.println("id 여까지 왔다.");
+
+        return adminService.searchUserByEmail(userEmail);
+    }
+
+    @GetMapping(value = "/user/name/{userName}",  produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public List<UserDTO> searchUserByName(@PathVariable("userName") String userName){
+        System.out.println("id 여까지 왔다.");
+
+        return adminService.searchUserByName(userName);
+    }
+
+    @GetMapping(value = "/user/nickname/{userNickname}",  produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public List<UserDTO> searchUserByNickname(@PathVariable("userNickname") String userNickname){
+        System.out.println("id 여까지 왔다.");
+
+        return adminService.searchUserByNickname(userNickname);
+    }
+
+    @GetMapping("/deleteuser/{userNo}")
+    public ModelAndView deleteUser(ModelAndView mv,@PathVariable("userNo") int userNo){
+        UserDTO userDTO = adminService.searchUserByNo(userNo).get(0);
+        System.out.println(userDTO);
+
+        String message = "";
+
+        message = userDTO.getUserNo()+"번 회원의 정보를 삭제하시겠습니까?";
+
+        mv.addObject("user", userDTO);
+        mv.addObject("message", message);
+        mv.setViewName("admin/deleteuser");
+
+        return mv;
+    }
+
+    @GetMapping( "/deleteresult/{deleteUserNo}")
+    public ModelAndView deleteuserok(ModelAndView mv, @PathVariable("deleteUserNo") int deleteUserNo){
+        System.out.println("왔당");
+        int result = adminService.deleteUserOk(deleteUserNo);
+        String message = "";
+
+        if(result>0){
+            message = "delete success";
+        }else {
+            message = "delete fail";
+        }
+
+        mv.addObject("message",message);
+        mv.setViewName("admin/deleteresult");
+        return mv;
     }
 }
