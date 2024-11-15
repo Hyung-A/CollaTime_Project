@@ -86,6 +86,8 @@ CREATE TABLE IF NOT EXISTS INQUIRY
     INQUIRY_CONTENT    VARCHAR(255) NOT NULL COMMENT '문의내용',
     CT_USER_NO    INT NOT NULL COMMENT '회원번호',
     ANSWER_CONTENT    VARCHAR(255) COMMENT '답변내용',
+    PROJECT_NO INT COMMENT '위임 프로젝트번호',
+    PASSAUTH_NAME VARCHAR(20) COMMENT '위임받는 회원번호',
     CONSTRAINT FK_USER_NO FOREIGN KEY (CT_USER_NO) REFERENCES CT_USER (CT_USER_NO) ON DELETE CASCADE
     )ENGINE=INNODB COMMENT = '문의';
 
@@ -114,8 +116,9 @@ INSERT INTO CT_USER VALUES
 
 -- 문의 테이블 데이터 삽입
 INSERT INTO INQUIRY VALUES
-                        (1, '처리완료','마이페이지', '마이페이지가 보고싶어요', 2, '아직 개발중입니다.'),
-                        (2, '처리중','스케줄 색상', '스케줄 색상 좀 늘려주세요', 3, null);
+                        (1, '읽음','마이페이지', '마이페이지가 보고싶어요', 2, '아직 개발중입니다.', null, null),
+                        (2, '답변','마이페이지', '프로필 늘려주세요', 1, '아직 개발중입니다.', null, null),
+                        (3, '문의처리중','스케줄 색상', '스케줄 색상 좀 늘려주세요', 3, null, null, null);
 
 -- 방문 테이블 데이터 삽입
 INSERT INTO VISIT VALUES
@@ -159,3 +162,18 @@ INSERT INTO CT_SCHEDULE VALUES(1,1,'24-10-28','24-10-30',"","",1,'CO1');
 
 -- 스케줄 참가자 데이터 삽입
 INSERT INTO JOIN_SCHEDULE VALUES(1,1);
+
+-- 방문자 데이터 추가
+insert into visit values ('2024-11-12', 140);
+insert into visit values ('2024-11-11', 120);
+insert into visit values ('2024-01-11', 120);
+insert into visit values ('2024-02-11', 140);
+insert into visit values ('2024-03-11', 290);
+insert into visit values ('2024-04-11', 500);
+insert into visit values ('2024-05-11', 620);
+insert into visit values ('2024-06-11', 1000);
+insert into visit values ('2024-07-11', 900);
+insert into visit values ('2024-08-11', 830);
+insert into visit values ('2024-09-11', 450);
+insert into visit values ('2024-10-11', 300);
+

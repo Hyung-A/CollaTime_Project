@@ -1,34 +1,140 @@
-#line {
-    border: 3px solid #92E2F8;
-    width: 800px;
-    margin-left: 100px;
-    margin-top: 120px;
+
+
+#inquiryTable_text{
+
+    position: absolute;
+    width: 192px;
+    height: 63px;
+    left: 401px;
+    top: 146px;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 58px;
+
+    color: #000000;
 }
 
-#inquiryHead{
+#inquiryTable_category{
+    position: absolute;
+    width: 200px;
+    height: 50px;
+    left: 601px;
+    top: 151px;
 
-    display: flex;
-}
-#inquiryTitle {
-
-    margin-top: 40px;
-    font-size: 22px;
-    font-weight: bold;
-    margin-left: 50px;
-}
-
-#inquiryTitle2 {
-
-    width: 750px;
-    height: 60px;
-    border: 1px solid #92E2F8;
-    margin-top: 40px;
-    font-size: 22px;
-    font-weight: bold;
-    margin-left: 50px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    border-radius: 10px;
 }
 
-#inquiryTitle2 h3{
-    ;
+#inquiryTable_search{
+    position: absolute;
+    width: 700px;
+    height: 50px;
+    left: 819px;
+    top: 148px;
+
+    text-align: right;
+    font-weight: 400;
+    font-size: 25px;
+    border-radius: 10px;
+    padding-right: 10px;
+}
+#inquiryTable_search_btn{
+    position: absolute;
+    width: 80px;
+    height: 50px;
+    left: 1541px;
+    top: 150px;
+
+    font-weight: 400;
+    font-size: 20px;
+    border-radius: 10px;
 }
 
+#inquiryTablePassAuth{
+    position: absolute;
+    width: 625px;
+
+}
+
+#inquiryTablePassAuth_area{
+    overflow: auto;
+    position: absolute;
+    width: 625px;
+    top: 250px;
+    left: 400px;
+    height: 280px;
+    border: 1px solid black;
+}
+
+#inquiryTableRequire{
+    position: absolute;
+    width: 625px;
+
+}
+
+#inquiryTableRequire_area{
+    overflow: auto;
+    position: absolute;
+    width: 625px;
+    top: 250px;
+    left: 1100px;
+    height: 280px;
+    border: 1px solid black;
+}
+
+#inquiryTableAnswer{
+    position: absolute;
+    width: 625px;
+
+}
+
+#inquiryTableAnswer_area{
+    overflow: auto;
+    position: absolute;
+    width: 625px;
+    top: 600px;
+    left: 400px;
+    height: 280px;
+    border: 1px solid black;
+}
+
+#inquiryTableRead{
+    position: absolute;
+    width: 625px;
+
+}
+
+#inquiryTableRead_area{
+    overflow: auto;
+    position: absolute;
+    width: 625px;
+    top: 600px;
+    left: 1100px;
+    height: 280px;
+    border: 1px solid black;
+}
+
+th, td{
+    border: 1px solid black;
+    text-align: left;
+    padding-left: 10px;
+    font-size: 18px;
+    height: 40px;
+    align-content: center;
+}
+
+#deleteAllRead{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    left: 1730px;
+    top: 600px;
+
+    border-radius: 15px;
+    font-size: 16px;
+
+}

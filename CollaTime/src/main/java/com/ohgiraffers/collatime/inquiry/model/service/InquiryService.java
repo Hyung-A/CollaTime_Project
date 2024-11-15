@@ -18,7 +18,7 @@ public class InquiryService {
 
     public int registInquiry(InquiryDTO inquiryDTO) {
         inquiryDTO.setInquiryNo(0);
-        inquiryDTO.setInquiryStatus("문의요청");
+        inquiryDTO.setInquiryStatus("문의처리중");
         System.out.println(inquiryDTO);
 
         return inquiryMapper.registInquiry(inquiryDTO);

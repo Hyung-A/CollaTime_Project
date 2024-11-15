@@ -1,10 +1,12 @@
 package com.ohgiraffers.collatime.admin.model.service;
 
+import com.ohgiraffers.collatime.admin.model.dao.AdminInquiryMapper;
 import com.ohgiraffers.collatime.admin.model.dao.AdminProjectMapper;
 import com.ohgiraffers.collatime.admin.model.dao.AdminUserMapper;
 import com.ohgiraffers.collatime.admin.model.dao.AdminVisitMapper;
 import com.ohgiraffers.collatime.admin.model.dto.AdminProjectDTO;
 import com.ohgiraffers.collatime.admin.model.dto.AdminVisitDTO;
+import com.ohgiraffers.collatime.inquiry.model.dto.InquiryDTO;
 import com.ohgiraffers.collatime.user.model.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,11 +23,14 @@ public class AdminService {
     private AdminUserMapper adminUserMapper;
 
     private AdminProjectMapper adminProjectMapper;
+
+    private AdminInquiryMapper adminInquiryMapper;
     @Autowired
-    public AdminService(AdminVisitMapper adminVisitMapper, AdminUserMapper adminUserMapper, AdminProjectMapper adminProjectMapper) {
+    public AdminService(AdminVisitMapper adminVisitMapper, AdminUserMapper adminUserMapper, AdminProjectMapper adminProjectMapper, AdminInquiryMapper adminInquiryMapper) {
         this.adminVisitMapper = adminVisitMapper;
         this.adminUserMapper = adminUserMapper;
         this.adminProjectMapper = adminProjectMapper;
+        this.adminInquiryMapper = adminInquiryMapper;
     }
 
     public List<AdminVisitDTO> weekMaker(LocalDate thisMonday, LocalDate thisSunday) {
@@ -83,5 +88,27 @@ public class AdminService {
     }
 
     public List<AdminProjectDTO> searchProjectByProductorNo(int productorNo) { return adminProjectMapper.searchProjectByProductorNo(productorNo);
+    }
+
+    public List<InquiryDTO> passAuth() {
+        return adminInquiryMapper.passAuth();
+    }
+
+    public List<InquiryDTO> require() { return adminInquiryMapper.require();
+    }
+
+    public List<InquiryDTO> answer() { return adminInquiryMapper.answer();
+    }
+
+    public List<InquiryDTO> read() { return adminInquiryMapper.read();
+    }
+
+    public InquiryDTO searchInquiry(int inquiryNo) { return adminInquiryMapper.searchInquiry(inquiryNo);
+    }
+
+    public int authPassUser(InquiryDTO inquiryDTO) { return adminProjectMapper.authPassUser(inquiryDTO);
+    }
+
+    public int inquiryUpdateStatus(InquiryDTO inquiryDTO) { return adminInquiryMapper.inquiryUpdateStatus(inquiryDTO);
     }
 }
