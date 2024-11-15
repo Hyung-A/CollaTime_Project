@@ -38,11 +38,12 @@
         if(data.length>0){
             // 프로젝트와 스케줄 연결하면 onclick으로 해당 프로젝트 아이디 가지고 넘어갈 수 있게 만들자.
             for (var i = 0; i<data.length; i++) {
+                let scheduleLink = "/schedule?projectNo=" + `${data[i].projectNo}`;
                 const myProjectList = document.createElement("div")
                 myProjectList.innerHTML =
                     `<div class="projectList">
                     <img src="/css/project/image/folderIcon.png" class="projectIcon">
-                    <span class="menuProjectName">${data[i].projectName}</span>
+                    <span class="menuProjectName" onclick="location.href='${scheduleLink}'">${data[i].projectName}</span>
                     </div>`
                 leftBarProjectMenu.append(myProjectList);
                 let menuProjectName = document.querySelectorAll(".menuProjectName");

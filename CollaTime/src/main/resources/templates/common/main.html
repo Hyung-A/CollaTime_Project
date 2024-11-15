@@ -53,27 +53,175 @@
             기능
         </p>
         <p id="first-title2">
-            프로젝트 생성
+            프로젝트 관리
         </p>
         <p id="first-intro2">
-            이메일과 단톡방 소통의 한계로 인해 불필요한 시간낭비를 줄이고<br>
-            프로젝트 별로 모여 쉽게 공유하고 효율적으로 협업할 수 있다.
+            진행하는 프로젝트에 대한 전반적인 관리를 할 수 있습니다.
         </p>
+        <img id="projectImg" alt="프로젝트 관리 화면" src="/css/common/image/projectPage.png"/>
+        <div id="createFunctionArea">
+            <div id="explainProjectFunction"></div>
+            <button id="create" class="projectFunction">프로젝트 조회</button>
+            <button id="select" class="projectFunction">프로젝트 생성</button>
+            <button id="join" class="projectFunction">프로젝트 참여</button>
+            <button id="update" class="projectFunction">프로젝트 수정</button>
+            <button id="delete" class="projectFunction">프로젝트 삭제</button>
+            <button id="memberManagement" class="projectFunction">멤버 관리</button>
+        </div>
+        <script>
+            const projectFunction = document.querySelectorAll(".projectFunction");
+            const explainProjectFunction = document.getElementById("explainProjectFunction");
+
+            projectFunction.forEach((button, index) => {
+                button.addEventListener("click", function() {
+                    // 설명 영역 표시
+                    explainProjectFunction.style.display = "block";
+                    explainProjectFunction.style.borderRadius = "15px";
+                    explainProjectFunction.style.border = "none";
+                    explainProjectFunction.style.display = "flex";
+                    explainProjectFunction.style.justifyContent = "center";
+                    explainProjectFunction.style.alignItems = "center";
+                    explainProjectFunction.style.paddingLeft = "10px";
+                    explainProjectFunction.style.paddingRight = "10px";
+                    explainProjectFunction.style.lineHeight = "1.2";
+
+
+                    // 버튼에 따라 설명 텍스트 변경
+                    let explanation = "";
+                    switch (index) {
+                        case 0:
+                            explanation = "현재 사용자가 진행하고 있는 모든 프로젝트를 조회할 수 있습니다.<br> 또한 사용자가 선택한 프로젝트에 대한 데이터도 조회할 수 있습니다.";
+                            break;
+                        case 1:
+                            explanation = "언제든지 새로운 프로젝트를 생성하고 팀원들을 초대할 수 있습니다.";
+                            break;
+                        case 2:
+                            explanation = "내가 생성한 프로젝트가 아닌 경우 프로젝트 참여 코드로 다른 유저가 만든 프로젝트에 참여할 수 있습니다. <br> 해당 프로젝트의 참여 코드는 프로젝트 생성자가 초대 메일을 보내야만 코드가 발송됩니다.";
+                            break;
+                        case 3:
+                            explanation = "프로젝트 진행 중 본 프로젝트의 내용이나 진행 사항이 변경되었을 때 입력했던 내용을 수정할 수 있습니다.";
+                            break;
+                        case 4:
+                            explanation = "프로젝트가 끝났을 경우 혹은 프로젝트를 더이상 진행할 수 없는 경우 프로젝트를 직접 삭제할 수 있습니다.";
+                            break;
+                        case 5:
+                            explanation = "프로젝트를 생성한 후에 새로운 멤버를 추가하거나 혹은 기존 멤버를 프로젝트에서 제외해야하는 경우 멤버 관리를 통해 진행할 수 있습니다.";
+                            break;
+                    }
+                    explainProjectFunction.innerHTML = explanation;
+                    explainProjectFunction.style.fontSize = "20px";
+                    explainProjectFunction.style.fontStyle = "bold";
+                    explainProjectFunction.style.color = "#282828";
+
+                    // 모든 버튼 숨기기
+                    projectFunction.forEach(btn => btn.style.display = "none");
+
+                    // 현재 버튼만 보이기
+                    this.style.display = "block";
+                });
+
+                button.addEventListener("blur", function() {
+                    // 설명 영역 숨기기
+                    explainProjectFunction.style.display = "none";
+
+                    // 모든 버튼 다시 보이기
+                    projectFunction.forEach(btn => btn.style.display = "inline-block");
+                });
+
+                // original-text 속성에 원래 텍스트 저장
+                button.setAttribute("original-text", button.innerText);
+            });
+
+
+        </script>
+
         <p id="second-title2">
-            스케줄 관리
+            일정 관리
         </p>
         <p id="second-intro2">
-            프로젝트 마다의 스케줄 정보를 한눈에 확인할 수 있고<br>
-            프로젝트의 일정과 공지사항 등을 관리하고 볼 수 있다.
+            진행하는 프로젝트의 일정을 관리할 수 있습니다.
         </p>
+        <img id="scheduleImg" alt="일정 관리 화면" src=""/>
+        <div id="scheduleFunctionArea">
+            <div id="explainScheduleFunction"></div>
+            <button id="scheduleSelect" class="scheduleFunction">일정 조회</button>
+            <button id="scheduleCreate" class="scheduleFunction">일정 생성</button>
+            <button id="scheduleUpdate" class="scheduleFunction">일정 수정</button>
+            <button id="scheduleDelete" class="scheduleFunction">일정 삭제</button>
+        </div>
     </div>
+    <script>
+        const scheduleFunction = document.querySelectorAll(".scheduleFunction");
+        const explainScheduleFunction = document.getElementById("explainScheduleFunction");
+
+        scheduleFunction.forEach((button, index) => {
+            button.addEventListener("click", function() {
+                // 설명 영역 표시
+                explainScheduleFunction.style.display = "block";
+                explainScheduleFunction.style.borderRadius = "15px";
+                explainScheduleFunction.style.border = "none";
+                explainScheduleFunction.style.display = "flex";
+                explainScheduleFunction.style.justifyContent = "center";
+                explainScheduleFunction.style.alignItems = "center";
+                explainScheduleFunction.style.paddingLeft = "10px";
+                explainScheduleFunction.style.paddingRight = "10px";
+                explainScheduleFunction.style.lineHeight = "1.2";
+
+
+                // 버튼에 따라 설명 텍스트 변경
+                let explanation1 = "";
+                switch (index) {
+                    case 0:
+                        explanation1 = "본 프로젝트와 관련된 모든 일정 및 특정 일정을 조회하실 수 있습니다. <br> 뿐만 아니라 모든 일정을 한 눈에 볼 수 있도록 달력에 본 프로젝트와 관련된 모든 일정을 표시해줍니다.";
+                        break;
+                    case 1:
+                        explanation1 = "언제든지 프로젝트와 관련된 일정을 간편하게 추가할 수 있습니다.";
+                        break;
+                    case 2:
+                        explanation1 = "해당 일정의 내용이 변경되었을 경우 수정할 수 있으며 모든 팀원이 수정된 사항을 확인할 수 있습니다.";
+                        break;
+                    case 3:
+                        explanation1 = "본 일정이 취소될 경우 본 일정을 삭제할 수 있습니다.";
+                        break;
+                }
+                explainScheduleFunction.innerHTML = explanation1;
+                explainScheduleFunction.style.fontSize = "20px";
+                explainScheduleFunction.style.fontStyle = "bold";
+                explainScheduleFunction.style.color = "#282828";
+
+                // 모든 버튼 숨기기
+                scheduleFunction.forEach(btn => btn.style.display = "none");
+
+                // 현재 버튼만 보이기
+                this.style.display = "block";
+            });
+
+            button.addEventListener("blur", function() {
+                // 설명 영역 숨기기
+                explainScheduleFunction.style.display = "none";
+
+                // 모든 버튼 다시 보이기
+                scheduleFunction.forEach(btn => btn.style.display = "inline-block");
+            });
+
+            // original-text 속성에 원래 텍스트 저장
+            button.setAttribute("original-text", button.innerText);
+        });
+
+
+    </script>
     <!-- 네 번째 페이지 부분 -->
     <div id="collatime-fourth-intro1">
         <p id="big-title3">
             직원들의 실제 후기로 보는 CollaTime
         </p>
         <img src="/css/common/image/HS.png" alt="팀원아이콘.HS" class="memberImage" id="HSImage"/>
-        <div id="sub1"></div>
+        <div id="sub1">
+            <div class="memberComment">
+                제가 만들었지만 CollaTime을 사용하니까 협업할 때 일정 관리하기 너무 편리했어요. 일정이 변경되었을 때 모든 팀원들에게 일일이 다 설명하지 않아도 CollaTime에 내용 기재했다는 말만 공지하면
+                모든 팀원들이 일정 변경 사항을 다 볼 수 있어서 좋았어요. 두 번 일 안 해도 되는 격이니까요. 누가 보면 팔이 안으로 굽는다고 하겠지만 전 정말 유용하게 잘 쓰고 있어요. 여러분들도 저를 믿고 한 번 써보세요!!
+            </div>
+        </div>
         <img src="/css/common/image/JH.png" alt="팀원아이콘.JH" class="memberImage" id="JHImage"/>
         <div id="sub2">
             <div class="memberComment">
@@ -83,7 +231,13 @@
             </div>
         </div>
         <img src="/css/common/image/SW.png" alt="팀원아이콘.SW" class="memberImage" id="SWImage"/>
-        <div id="sub3"></div>
+        <div id="sub3">
+            <div class="memberComment">
+                CollaTime은 사용하기 간편하지만 막상 만들어보니 너무 어려웠어요. 그만큼 정말 애정 가는 아이이면서 모든 팀원들이 정말 열심히 만들었어요. 그래서 저희 CollaTime에 대한 자부심이 엄청나답니다.
+                한 번 사용해보시면 다른 협업툴보다는 사용하기 편하고 접근성도 좋으면서 기본적인 일정 관리 기능은 다 충족되는 점에서 만족하실 것이라 믿어 의심치 않습니다.
+                협업의 기초를 마련할 때 저희 CollaTime을 한 번 써보세요!!
+            </div>
+        </div>
     </div>
     <div id="collatime-fourth-intro2">
         <p id="big-title4">

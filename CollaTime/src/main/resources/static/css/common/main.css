@@ -38,7 +38,6 @@
     top: 954px;
     color: #003393;
     background-color: #FFFFFF;
-    border: solid 1px red;
 }
 #big-title1 {
     position: absolute;
@@ -107,7 +106,6 @@
     top: 1430px;
     color: #003393;
     background-color: #FFFFFF;
-    border: solid 1px red;
 }
 
 #big-title2 {
@@ -132,6 +130,81 @@
     font-weight: bold;
     line-height: 1.5;
 }
+
+#projectImg{
+
+    position: absolute;
+    width: 300px;
+    height: 150px;
+    left: 780px;
+    top: 120px;
+    box-shadow: 5px 5px 5px #858585;
+
+}
+
+#createFunctionArea{
+
+    position: relative;
+    width: 500px;
+    height: 180px;
+    left: 210px;
+    top: 280px;
+
+}
+
+#explainProjectFunction {
+    position: absolute; /* 위치를 고정하기 위해 absolute 설정 */
+    display: none; /* 기본적으로 숨기기 */
+    z-index: 10; /* 다른 요소 위로 올리기 */
+    width: 480px; /* 너비 설정 */
+    height: 160px; /* 높이 설정 */
+    background: #DFF7FD; /* 배경 색상 설정 */
+    border: 1px solid #000; /* 테두리 설정 */
+    top: 10px; /* 상단 위치 설정 */
+    left: 10px; /* 좌측 위치 설정 */
+}
+
+
+.projectFunction{
+
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: max-content;
+    height: 50px;
+    background: #FFFFFF;
+    border-radius: 15px;
+    border: solid 2px #92E2F8;
+    font-size: 15px;
+    font-weight: bold;
+    transition: all 0.3s ease; /* 부드러운 전환 효과 추가 */
+}
+
+#create{
+    float: left;
+}
+#select{
+    float: left;
+    margin-left: 120px;
+}
+#join{
+    float: left;
+    margin-left: 240px;
+}
+#update{
+    float: left;
+    margin-left: 360px;
+}
+#delete{
+    float: left;
+    margin-top: 70px;
+}
+#memberManagement{
+    float: left;
+    margin-left: 120px;
+    margin-top: 70px;
+}
+
 #second-title2 {
     position: absolute;
     top: 170px;
@@ -146,6 +219,71 @@
     font-size: 20px;
     font-weight: bold;
     line-height: 1.5;
+}
+
+#scheduleImg{
+
+    position: absolute;
+    width: 300px;
+    height: 150px;
+    left: 780px;
+    top: 290px;
+    box-shadow: 5px 5px 5px #858585;
+}
+
+#scheduleFunctionArea{
+
+    position: absolute;
+    width: 500px;
+    height: 180px;
+    left: 1180px;
+    top: 280px;
+}
+
+#explainScheduleFunction {
+    position: absolute; /* 위치를 고정하기 위해 absolute 설정 */
+    display: none; /* 기본적으로 숨기기 */
+    z-index: 10; /* 다른 요소 위로 올리기 */
+    width: 480px; /* 너비 설정 */
+    height: 160px; /* 높이 설정 */
+    background: #DFF7FD; /* 배경 색상 설정 */
+    border: 1px solid #000; /* 테두리 설정 */
+    top: 10px; /* 상단 위치 설정 */
+    left: 10px; /* 좌측 위치 설정 */
+}
+
+.scheduleFunction{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: max-content;
+    height: 50px;
+    background: #FFFFFF;
+    border-radius: 15px;
+    border: solid 2px #92E2F8;
+    font-size: 15px;
+    font-weight: bold;
+    transition: all 0.3s ease; /* 부드러운 전환 효과 추가 */
+
+}
+
+#scheduleSelect{
+    float: left;
+}
+#scheduleCreate{
+    float: left;
+    margin-left: 90px;
+
+}
+#scheduleUpdate{
+    float: left;
+    margin-left: 180px;
+
+}
+#scheduleDelete{
+    float: left;
+    margin-left: 270px;
+
 }
 
 /* 네번째 섹션 - 직원 후기 */
