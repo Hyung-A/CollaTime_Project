@@ -5,20 +5,32 @@
     <title>header</title>
     <link rel="stylesheet" href="/css/common/header.css">
     <link rel="stylesheet" href="/css/project/reset.css">
-  
+
 </head>
 <body>
     <!-- header 부분-->
     <div id="header">
         <div id="header-logo">
-          
+
             <img id="header-logo-img" src="/css/common/image/CollaTime-Logo.png" onclick="location.href='/main'">
 
-            <button id="intro1"><a>소개</a></button>
-            <button id="intro2"><a>기능</a></button>
+            <button id="intro1">소개</button>
+            <button id="intro2">기능</button>
             <button id="login" onclick="location.href='/auth/login'">로그인</button>
             <button id="sign-up" onclick="location.href='/user/signup'">회원가입</button>
         </div>
     </div>
+<script>
+    const intro1 = document.getElementById("intro1");
+    intro1.onclick = function(){
+        const information = document.getElementById("collatime-second-intro");
+        information.scrollIntoView({behavior: 'smooth'});
+    }
+    const intro2 = document.getElementById("intro2");
+    intro2.onclick = function(){
+        const skill = document.getElementById("collatime-third-intro");
+        skill.scrollIntoView({behavior: 'smooth'});
+    }
+</script>
 </body>
 </html>

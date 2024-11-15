@@ -18,6 +18,7 @@
     left: 200px;
     font-size: 45px;
     font-weight: 700;
+    line-height: 1.5;
     color: #003393;
 }
 #main-intro2 {
@@ -26,6 +27,7 @@
     left: 200px;
     font-size: 30px;
     font-weight: bold;
+    line-height: 1.5;
     color: #003393;
 }
 /* 두번째 섹션 */
@@ -40,7 +42,7 @@
 }
 #big-title1 {
     position: absolute;
-    top: 25px;
+    top: 45px;
     left: 830px;
     font-size: 45px;
     font-weight: bold;
@@ -58,15 +60,16 @@
     left: 175px;
     font-size: 20px;
     font-weight: bold;
+    line-height: 1.5;
 }
 
 #collaTimeImage1{
 
     position: absolute;
-    top: 130px;
-    left: 490px;
-    width: 230px;
-    height: 230px;
+    top: 180px;
+    left: 560px;
+    width: 200px;
+    height: 200px;
 
 }
 
@@ -83,15 +86,16 @@
     left: 1075px;
     font-size: 20px;
     font-weight: bold;
+    line-height: 1.5;
 }
 
 #collaTimeImage2{
 
     position: absolute;
-    top: 130px;
-    left: 1430px;
-    width: 230px;
-    height: 230px;
+    top: 180px;
+    left: 1460px;
+    width: 200px;
+    height: 200px;
 
 }
 
@@ -108,7 +112,7 @@
 
 #big-title2 {
     position: absolute;
-    top: 25px;
+    top: 45px;
     left: 878px;
     font-size: 45px;
     font-weight: bold;
@@ -126,6 +130,7 @@
     left: 200px;
     font-size: 20px;
     font-weight: bold;
+    line-height: 1.5;
 }
 #second-title2 {
     position: absolute;
@@ -140,6 +145,7 @@
     left: 1150px;
     font-size: 20px;
     font-weight: bold;
+    line-height: 1.5;
 }
 
 /* 네번째 섹션 - 직원 후기 */
@@ -149,56 +155,107 @@
     height: 853px;
     top: 1906px;
     background-color: #FFFFFF;
-    border: solid 1px red;
+    display: flex;
+    justify-content: center;
 }
 
 #big-title3 {
     position: absolute;
-    top: 25px;
-    left: 601px;
+    top: 45px;
     font-size: 45px;
     font-weight: bold;
 }
+
+.memberImage{
+    width: 150px;
+    height: 180px;
+}
+
+.memberComment{
+
+    position: absolute;
+    font-size: 18px;
+    font-style: normal;
+    width: 760px;
+    height: 110px;
+    left: 20px;
+    top: 30px;
+
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*line-height: 150px;*/
+
+}
+
+#HSImage {
+    position: absolute;
+    left: 270px;
+    top: 145px;
+}
+
 #sub1 {
     position: absolute;
-    width: 260px;
-    height: 290px;
-    top: 160px;
-    left: 341px;
-    background-color: #B8B8B8;
+    width: 800px;
+    height: 150px;
+    top: 180px;
+    left: 450px;
+    background-color: #E7E7E7;
     border-radius: 10px;
+
 }
+
+#JHImage {
+    position: absolute;
+    left: 1540px;
+    top: 350px
+}
+
 #sub2 {
     position: absolute;
-    width: 260px;
-    height: 290px;
-    top: 160px;
-    left: 664px;
-    background-color: #B8B8B8;
+    width: 800px;
+    height: 150px;
+    top: 385px;
+    left: 710px;
+    background-color: #E7E7E7;
     border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    line-height: 1.3;
+
 }
+
+#SWImage {
+    position: absolute;
+    left: 270px;
+    top: 565px;
+}
+
 #sub3 {
     position: absolute;
-    width: 260px;
-    height: 290px;
-    top: 160px;
-    left: 986px;
-    background-color: #B8B8B8;
+    width: 800px;
+    height: 150px;
+    top: 600px;
+    left: 450px;
+    background-color: #E7E7E7;
     border-radius: 10px;
 }
 
+/* 4번째 섹션 */
 #collatime-fourth-intro2 {
     position: absolute;
     width: 1915px;
     height: 476px;
     top: 2759px;
     background-color: #92E2F8;
-    border: solid 1px red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
 #big-title4 {
     position: absolute;
-    top: 130px;
-    left: 455px;
+    /*top: 130px;*/
+    /*left: 455px;*/
     font-size: 64px;
     font-weight: bold;
     color: #003393;

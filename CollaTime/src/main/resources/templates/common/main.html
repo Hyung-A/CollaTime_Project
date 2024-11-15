@@ -10,7 +10,7 @@
 <body>
     <!-- 메인 -->
     <!-- 메인 페이지 헤더 부분 -->
-
+    <div th:include="common/header.html"></div>
 
     <!-- 메인 페이지 메인 부분-->
     <div id="collatime-main">
@@ -35,7 +35,7 @@
             초보자와 학생들에게 단순하면서 <br>
             접근성이 용이하도록 만들었습니다.
         </p>
-        <img id="collaTimeImage1" src="/css/common/image/collaborationImage.jpg">
+        <img id="collaTimeImage1" src="/css/common/image/easy.jpg">
         <p id="second-title1">
             CollaTime의 목적
         </p>
@@ -45,7 +45,7 @@
             초보자 혹은 학생들에게 협업에 대한<br>
             경험을 제공하는 것이 목표입니다.
         </p>
-        <img id="collaTimeImage2" src="/css/common/image/collaborationPNG.png"/>
+        <img id="collaTimeImage2" src="/css/common/image/collaborationImage.jpg"/>
     </div>
     <!-- 세번째 설명 페이지 부분 -->
     <div id="collatime-third-intro">
@@ -72,8 +72,17 @@
         <p id="big-title3">
             직원들의 실제 후기로 보는 CollaTime
         </p>
+        <img src="/css/common/image/HS.png" alt="팀원아이콘.HS" class="memberImage" id="HSImage"/>
         <div id="sub1"></div>
-        <div id="sub2"></div>
+        <img src="/css/common/image/JH.png" alt="팀원아이콘.JH" class="memberImage" id="JHImage"/>
+        <div id="sub2">
+            <div class="memberComment">
+                프로그램 취지에 걸맞게 프로젝트 및 스케줄을 생성, 추가 삭제 등의 관리를 하는데에 있어
+                전혀 어려움이 없어요. 일반 스케줄러 혹은 다이어리를 관리하는 것처럼 간단하고 누구나 사용하기 좋아요.
+                근데 이거를 나만이 아닌 다른 사람과 공유하여 쓸 수 있다는 점에서 팀플할 때 너무 유용해요.
+            </div>
+        </div>
+        <img src="/css/common/image/SW.png" alt="팀원아이콘.SW" class="memberImage" id="SWImage"/>
         <div id="sub3"></div>
     </div>
     <div id="collatime-fourth-intro2">
@@ -82,6 +91,6 @@
         </p>
     </div>
     <div th:include="common/footer.html"></div>
-    <div th:include="common/header.html"></div>
+
 </body>
 </html>
