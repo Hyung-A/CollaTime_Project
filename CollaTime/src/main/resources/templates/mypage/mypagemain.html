@@ -112,11 +112,12 @@
                 console.log(data)
                 if(data.length>0){
                     for (var i = 0; i<data.length; i++) {
+                        let scheduleLink = "/schedule?projectNo=" + `${data[i].projectNo}`;
                         const myProjectList = document.createElement("div")
                         myProjectList.innerHTML =
                             `<div class="projectList">
                     <img src="/css/project/image/folderIcon.png" class="projectIcon">
-                    <span class="menuProjectName">${data[i].projectName}</span></div>`
+                    <span class="menuProjectName" onclick="location.href='${scheduleLink}'">${data[i].projectName}</span></div>`
                         myPageProjectMenu.append(myProjectList);
                     }
                 }
