@@ -26,4 +26,41 @@
                 #{projectNo}
         </foreach>
     </delete>
+
+    <select id="searchProjectByNo" resultMap="project">
+        SELECT
+        PROJECT_NO
+        ,   PROJECT_NAME
+        ,   PROJECT_END_DATE
+        ,   PRODUCTOR_NO
+        FROM PROJECT
+        WHERE PROJECT_NO = #{projectNo}
+    </select>
+    <select id="searchProjectByName" resultMap="project">
+        SELECT
+        PROJECT_NO
+        ,   PROJECT_NAME
+        ,   PROJECT_END_DATE
+        ,   PRODUCTOR_NO
+        FROM PROJECT
+        WHERE PROJECT_NAME LIKE CONCAT('%', #{projectName}, '%')
+    </select>
+    <select id="searchProjectByEndDate" resultMap="project">
+        SELECT
+        PROJECT_NO
+        ,   PROJECT_NAME
+        ,   PROJECT_END_DATE
+        ,   PRODUCTOR_NO
+        FROM PROJECT
+        WHERE PROJECT_END_DATE LIKE CONCAT('%', #{projectEndDate}, '%')
+    </select>
+    <select id="searchProjectByProductorNo" resultMap="project">
+        SELECT
+        PROJECT_NO
+        ,   PROJECT_NAME
+        ,   PROJECT_END_DATE
+        ,   PRODUCTOR_NO
+        FROM PROJECT
+        WHERE PRODUCTOR_NO = #{productorNo}
+    </select>
 </mapper>

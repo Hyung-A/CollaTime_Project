@@ -72,4 +72,16 @@ public class AdminService {
     public int deleteAllDeactive(List<Integer> list) {
         return adminProjectMapper.deleteAllDeactive(list);
     }
+
+    public List<AdminProjectDTO> searchProjectByNo(int projectNo) { return adminProjectMapper.searchProjectByNo(projectNo);
+    }
+
+    public List<AdminProjectDTO> searchProjectByName(String projectName) { return adminProjectMapper.searchProjectByName(projectName);
+    }
+
+    public List<AdminProjectDTO> searchProjectByEndDate(String projectEndDate) { return adminProjectMapper.searchProjectByEndDate(projectEndDate);
+    }
+
+    public List<AdminProjectDTO> searchProjectByProductorNo(int productorNo) { return adminProjectMapper.searchProjectByProductorNo(productorNo);
+    }
 }
