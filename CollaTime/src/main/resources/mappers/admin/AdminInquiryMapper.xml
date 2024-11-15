@@ -45,7 +45,25 @@
 
     <update id="inquiryUpdateStatus" parameterType="com.ohgiraffers.collatime.inquiry.model.dto.InquiryDTO">
         UPDATE INQUIRY
-        SET INQUIRY_STATUS = '답변'
+        SET INQUIRY_STATUS = '답변', ANSWER_CONTENT = '위임이 완료되었습니다.'
         WHERE INQUIRY_NO = #{inquiryNo}
     </update>
+
+    <update id="addAnswer">
+        UPDATE INQUIRY
+        SET INQUIRY_STATUS = '답변', ANSWER_CONTENT = #{answerContent}
+        WHERE INQUIRY_NO = #{inquiryNo}
+    </update>
+
+    <select id="ReadInquiryList">
+        SELECT INQUIRY_NO FROM INQUIRY WHERE INQUIRY_STATUS = '읽음'
+    </select>
+
+    <delete id="deleteReadInquiry" parameterType="java.util.List">
+        DELETE FROM INQUIRY
+        WHERE INQUIRY_NO IN
+        <foreach item="inquiryNo" collection="list" open="(" separator=", " close=")">
+            #{inquiryNo}
+        </foreach>
+    </delete>
 </mapper>

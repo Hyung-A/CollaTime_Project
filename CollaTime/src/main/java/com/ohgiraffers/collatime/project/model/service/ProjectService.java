@@ -92,4 +92,8 @@ public class ProjectService {
     public void deleteMemberInfo(InviteMemberDTO inviteMemberDTO) {
         projectMapper.deleteMemberInfo(inviteMemberDTO);
     }
+
+    public List<ProjectDTO> productorOfProject(int userNo) {
+        return projectMapper.productorOfProject(userNo);
+    }
 }

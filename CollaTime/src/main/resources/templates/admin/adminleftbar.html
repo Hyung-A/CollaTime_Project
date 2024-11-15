@@ -15,19 +15,19 @@
         <div id="leftBar_admin_nickname" th:text="${#authentication.principal.userNickname}"></div>
         <div id="whiteBar"></div>
         <div id="adminMenu">
-            <div class="adminMenu">
+            <div class="adminMenu" onclick="location.href='/admin/dashboard'">
                 <img src="/css/project/image/folderIcon.png" class="admin_leftBar_img">
                 <span class="admin_to">대쉬보드</span>
             </div>
-            <div class="adminMenu">
+            <div class="adminMenu"  onclick="location.href='/admin/user'">
                 <img src="/css/admin/image/회원.png" class="admin_leftBar_img">
                 <span class="admin_to">회원</span>
             </div>
-            <div class="adminMenu">
+            <div class="adminMenu" onclick="location.href='/admin/project'">
                 <img src="/css/admin/image/프젝.png" class="admin_leftBar_img">
                 <span class="admin_to">프로젝트</span>
             </div>
-            <div class="adminMenu">
+            <div class="adminMenu" onclick="location.href='/admin/inquiry'">
                 <img src="/css/admin/image/inquiry.png" class="admin_leftBar_img">
                 <span class="admin_to">고객 문의 내역</span>
             </div>

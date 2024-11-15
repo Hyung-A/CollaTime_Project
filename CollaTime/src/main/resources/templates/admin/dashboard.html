@@ -13,15 +13,15 @@
 <div th:include="/admin/adminleftbar.html"></div>
 <div th:include="/common/programHeader.html"></div>
 
-<div id="dashBoard_userArea">
+<div id="dashBoard_userArea" onclick="location.href='/admin/user'">
   <div class="areaText">회원</div>
   <img class="areaImg" src="/css/admin/image/회원.png">
 </div>
-<div id="dashBoard_projectArea">
+<div id="dashBoard_projectArea" onclick="location.href='/admin/project'">
   <div class="areaText">프로젝트</div>
   <img class="areaImg" src="/css/admin/image/프젝.png">
 </div>
-<div id="dashBoard_inquiryArea">
+<div id="dashBoard_inquiryArea" onclick="location.href='/admin/inquiry'">
   <div class="areaText">문의</div>
   <img class="areaImg" src="/css/admin/image/inquiry.png">
 </div>

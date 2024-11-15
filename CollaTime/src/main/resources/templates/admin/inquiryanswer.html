@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/admin/inquiryanswer.css">
+    <link rel="stylesheet" href="/css/project/reset.css">
+</head>
+<body>
+<div th:replace="/admin/inquiry.html"></div>
+
+<div id="bigModal_myInquiryInfo">
+    <div id="bigBlueHeader_myInquiryInfo">
+        <div id="bigXButton_myInquiryInfo">X</div>
+    </div>
+</div>
+<!--문의내역 텍스트-->
+<div id="myInquiryInfo_text">문의 내역</div>
+<!--문의 제목 구간-->
+<div id="myInquiryInfo_title_text">문의 제목</div>
+<div id="myInquiryInfo_title_line"></div>
+<div id="myInquiryInfo_title_context" th:text="${inquiryTitle}"></div>
+
+<!--문의 내용 구간-->
+<div id="myInquiryInfo_content_text">문의 내용</div>
+<div id="myInquiryInfo_content_line"></div>
+<div id="myInquiryInfo_content_context" th:text="${inquiryContent}"></div>
+<!--답변 내용 구간-->
+<div id="myInquiryInfo_answer_text">답변 내용</div>
+<div id="myInquiryInfo_answer_line"></div>
+<form th:action="@{/admin/addanswer}" method="post">
+    <input type="hidden" name="inquiryNo" th:value="${inquiryNo}">
+<textarea id="Inquiry_content_box" name="inquiryAnswerContent" required></textarea>
+<button id="myInquiryInfo_ok_btn">확인</button>
+</form>
+<script>
+
+
+    const myInquiryInfoXBtn = document.getElementById('bigXButton_myInquiryInfo')
+    const myInquiryInfoOkBtn = document.getElementById('myInquiryInfo_ok_btn')
+    myInquiryInfoXBtn.addEventListener('click', ()=>{location.href="/admin/inquiry"})
+    myInquiryInfoOkBtn.addEventListener('click', ()=>{location.href="/admin/inquiry"})
+</script>
+</body>
+</html>

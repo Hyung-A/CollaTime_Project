@@ -14,4 +14,6 @@ public interface InquiryMapper {
     InquiryDTO inquiryInfoByNo(int inquiryNo);
 
     int registPassAuthInquiry(InquiryDTO inquiryDTO);
+
+    int userReadInquiry(int inquiryNo);
 }

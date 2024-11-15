@@ -193,6 +193,11 @@
                CT_USER_NO = #{ userNo }
     </delete>
 
+    <select id="productorOfProject" resultMap="projectResultMap">
+        SELECT *
+        FROM PROJECT
+        WHERE PRODUCTOR_NO = #{userNo}
+    </select>
 </mapper>
 
 

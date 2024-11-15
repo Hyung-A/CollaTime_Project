@@ -53,4 +53,10 @@
         ,   #{passAuthName}
         )
     </insert>
+
+    <update id="userReadInquiry">
+        UPDATE INQUIRY
+        SET INQUIRY_STATUS = '읽음'
+        WHERE INQUIRY_NO = #{inquiryNo}
+    </update>
 </mapper>

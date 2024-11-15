@@ -9,6 +9,7 @@ import com.ohgiraffers.collatime.user.model.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -339,6 +340,86 @@ public class AdminController {
         mv.addObject("message", message);
         mv.setViewName("/admin/inquiry");
         return mv;
+    }
+
+    @GetMapping("/inquiryinfo/{inquiryNo}")
+    public String adminInquiryInfo(ModelMap map, @PathVariable("inquiryNo") int inquiryNo){
+        InquiryDTO inquiryDTO = adminService.searchInquiry(inquiryNo);
+        System.out.println(inquiryDTO);
+        String answerContent = "";
+        if(inquiryDTO.getAnswerContent()==null||inquiryDTO.getAnswerContent().equals("")){
+            answerContent = "처리중입니다.";
+        }else {
+            answerContent =inquiryDTO.getAnswerContent();
+        }
+//        mv.addObject("inquiry", inquiryDTO);
+//        mv.setViewName("admin/inquiryinfo");
+        map.addAttribute("inquiryTitle", inquiryDTO.getInquiryTitle());
+        map.addAttribute("inquiryContent", inquiryDTO.getInquiryContent());
+        map.addAttribute("answerContent", answerContent);
+        System.out.println("간다!");
+        return "admin/inquiryinfo";
+    }
+
+    @GetMapping("/inquiryanswer/{inquiryNo}")
+    public String adminInquiryAnswer(ModelMap map, @PathVariable("inquiryNo") int inquiryNo){
+        InquiryDTO inquiryDTO = adminService.searchInquiry(inquiryNo);
+        System.out.println(inquiryDTO);
+
+        map.addAttribute("inquiryTitle", inquiryDTO.getInquiryTitle());
+        map.addAttribute("inquiryContent", inquiryDTO.getInquiryContent());
+        map.addAttribute("inquiryNo", inquiryNo);
+        return "admin/inquiryanswer";
+    }
+
+    @PostMapping("/addanswer")
+    public ModelAndView addAnswer (ModelAndView mv, @RequestParam String inquiryAnswerContent, @RequestParam int inquiryNo){
+        System.out.println("inquiryAnswerContent = " + inquiryAnswerContent);
+        System.out.println("inquiryNo = " + inquiryNo);
+        int result = adminService.addAnswer(inquiryNo, inquiryAnswerContent);
+        String message = "";
+
+        if (result > 0) {
+            message = "답변이 완료되었습니다.";
+        } else {
+            message = "답변에 실패했습니다.";
+        }
+        mv.addObject("message", message);
+        mv.setViewName("/admin/inquiryresult");
+
+        return mv;
+    }
+
+    @GetMapping("/deleteinquiry")
+    public ModelAndView deleteinquiry(ModelAndView mv){
+        String message = "";
+
+        message = "일괄삭제를 진행하시겠습니까?";
+        mv.addObject("message", message);
+        mv.setViewName("admin/deleteinquiry");
+        return mv;
+    }
+
+    @GetMapping(value = "/deleteReadInquiry",  produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public List<String> deleteReadInquiry(){
+
+        List<Integer> deleteList = adminService.ReadInquiryList();
+        System.out.println("deleteList = " + deleteList);
+        List<String> message = new ArrayList<>();
+
+        if(deleteList.size()>0){
+            int result = adminService.deleteReadInquiry(deleteList);
+        if (result > 0) {
+            message.add("일괄삭제가 완료되었습니다.");
+        } else {
+                message.add("삭제에 실패했습니다.");
+        }
+
+        }else {
+            message.add("데이터가 없습니다.");
+        }
+        return message;
     }
 }
 

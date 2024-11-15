@@ -18,4 +18,10 @@ public interface AdminInquiryMapper {
     InquiryDTO searchInquiry(int inquiryNo);
 
     int inquiryUpdateStatus(InquiryDTO inquiryDTO);
+
+    int addAnswer(int inquiryNo, String answerContent);
+
+    List<Integer> ReadInquiryList();
+
+    int deleteReadInquiry(List<Integer> deleteList);
 }

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/admin/deleteuser.css">
+    <link rel="stylesheet" href="/css/project/reset.css">
+</head>
+<body>
+<div th:replace="/admin/inquiry.html"></div>
+
+<div id="smallModal_admin_deleteUser">
+    <div id="smallBlueHeader_admin_deleteUser">
+        <div id="smallXButton_admin_deleteUser">X</div>
+        <div id="deleteUserResult" th:text="${ message }"></div>
+        <button id="small_deleteResultOk_btn" type="button">확인</button>
+    </div>
+</div>
+</body>
+<script>
+    const resultX = document.getElementById('smallXButton_admin_deleteUser')
+    const resultOk = document.getElementById('small_deleteResultOk_btn')
+
+    resultX.addEventListener('click', ()=>{location.href="/admin/inquiry"})
+    resultOk.addEventListener('click', ()=>{location.href="/admin/inquiry"})
+
+</script>
+</html>

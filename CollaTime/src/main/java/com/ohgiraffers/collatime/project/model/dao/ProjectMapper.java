@@ -50,4 +50,6 @@ public interface ProjectMapper {
     List<MemberListDTO> getMemberManager(ProjectDTO projectDTO);
 
     void deleteMemberInfo(InviteMemberDTO inviteMemberDTO);
+
+    List<ProjectDTO> productorOfProject(int userNo);
 }

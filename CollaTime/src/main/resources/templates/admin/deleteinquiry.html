@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/admin/deleteuser.css">
+</head>
+<body>
+<div th:replace="/admin/inquiry.html"></div>
+
+<div id="smallModal_admin_deleteUser">
+    <div id="smallBlueHeader_admin_deleteUser">
+        <div id="smallXButton_admin_deleteUser">X</div>
+        <div id="deleteUserInfo" th:text="${ message }"></div>
+        <button id="small_deleteOk_btn" type="button">확인</button>
+        <button id="small_deleteNo_btn" type="button">취소</button>
+        <button id="small_deleteEnd_btn" type="button">확인</button>
+    </div>
+</div>
+<script>
+    const xBtnAdminDelete = document.getElementById('smallXButton_admin_deleteUser')
+    const cancelAdminDelete = document.getElementById('small_deleteNo_btn')
+    const deleteOkBtn = document.getElementById('small_deleteOk_btn')
+    const deleteMsg = document.getElementById('deleteUserInfo')
+    const deleteEndBtn = document.getElementById('small_deleteEnd_btn')
+
+    xBtnAdminDelete.addEventListener('click', ()=>{history.back()})
+    cancelAdminDelete.addEventListener('click', ()=>{history.back()})
+    deleteEndBtn.addEventListener('click', ()=>{history.back()})
+
+    deleteOkBtn.addEventListener("click", ()=>{
+        fetch("/admin/deleteReadInquiry")
+            .then(res=>res.json())
+            .then(data=>{
+                deleteMsg.innerText = data[0]
+                cancelAdminDelete.style.display = 'none'
+                deleteOkBtn.style.display = 'none'
+                deleteEndBtn.style.display = 'flex'
+            })
+    })
+
+</script>
+</body>
+</html>
