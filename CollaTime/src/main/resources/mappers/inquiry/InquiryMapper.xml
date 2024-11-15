@@ -10,6 +10,8 @@
         <result property="inquiryContent" column="INQUIRY_CONTENT"/>
         <result property="userNo" column="CT_USER_NO"/>
         <result property="answerContent" column="ANSWER_CONTENT"/>
+        <result property="projectNo" column="PROJECT_NO"/>
+        <result property="passAuthName" column="PASSAUTH_NAME"/>
     </resultMap>
 
     <insert id="registInquiry" parameterType="com.ohgiraffers.collatime.inquiry.model.dto.InquiryDTO">
@@ -21,6 +23,8 @@
         ,   #{inquiryContent}
         ,   #{userNo}
         ,   #{answerContent}
+        ,   null
+        ,   null
         )
     </insert>
 
@@ -45,6 +49,8 @@
         ,   #{inquiryContent}
         ,   #{userNo}
         ,   #{answerContent}
+        ,   #{projectNo}
+        ,   #{passAuthName}
         )
     </insert>
 </mapper>

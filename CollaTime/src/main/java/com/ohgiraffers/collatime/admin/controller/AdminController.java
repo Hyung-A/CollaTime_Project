@@ -3,9 +3,11 @@ package com.ohgiraffers.collatime.admin.controller;
 import com.ohgiraffers.collatime.admin.model.dto.AdminProjectDTO;
 import com.ohgiraffers.collatime.admin.model.dto.AdminVisitDTO;
 import com.ohgiraffers.collatime.admin.model.service.AdminService;
+import com.ohgiraffers.collatime.inquiry.model.dto.InquiryDTO;
 import com.ohgiraffers.collatime.project.model.dto.ProjectDTO;
 import com.ohgiraffers.collatime.user.model.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -285,6 +287,58 @@ public class AdminController {
     @ResponseBody
     public List<AdminProjectDTO> searchProjectByProductorNo(@PathVariable("productorNo") int productorNo){
         return adminService.searchProjectByProductorNo(productorNo);
+    }
+
+//    문의
+    @GetMapping("/inquiry")
+    public void inquiry(){}
+
+    @GetMapping(value = "/PassAuth",  produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public List<InquiryDTO> passAuth(){
+        return adminService.passAuth();
+    }
+
+    @GetMapping(value = "/Require",  produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public List<InquiryDTO> require(){
+        return adminService.require();
+    }
+
+    @GetMapping(value = "/Answer",  produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public List<InquiryDTO> answer(){
+        return adminService.answer();
+    }
+
+    @GetMapping(value = "/Read",  produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public List<InquiryDTO> read(){
+        return adminService.read();
+    }
+
+    @GetMapping("/authpass/{inquiryNo}")
+    public ModelAndView doPassAuth(ModelAndView mv, @PathVariable("inquiryNo") int inquiryNo){
+
+        System.out.println("권한 위임 하이");
+        InquiryDTO inquiryDTO = adminService.searchInquiry(inquiryNo);
+        String message = "";
+        int resultAuthPass = adminService.authPassUser(inquiryDTO);
+        System.out.println("resultAuthPass = " + resultAuthPass);
+
+        if(resultAuthPass>0) {
+            int resultUpdate = adminService.inquiryUpdateStatus(inquiryDTO);
+            if(resultUpdate>0){
+                message = "답변에 성공했습니다.";
+            }else {
+                message = "답변에 실패했습니다.";
+            }
+        }else {
+            message = "수정에 실패했습니다.";
+        }
+        mv.addObject("message", message);
+        mv.setViewName("/admin/inquiry");
+        return mv;
     }
 }
 

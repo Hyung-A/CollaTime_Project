@@ -54,6 +54,7 @@
     const nicknameSelection = document.getElementById('passAuthority_nickname_select')
     const passAuthorityMsg = document.getElementById('passAuthority_message')
 
+    // 생성자 아닌 사람도 나온다. 따로 만들어서 수정하자.
     fetch("/common/leftbar")
         .then(res=>res.json())
         .then(data=>{

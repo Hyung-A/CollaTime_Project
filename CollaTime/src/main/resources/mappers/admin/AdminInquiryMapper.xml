@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.collatime.admin.model.dao.AdminInquiryMapper">
+    <resultMap id="inquiry" type="com.ohgiraffers.collatime.inquiry.model.dto.InquiryDTO">
+        <id property="inquiryNo" column="INQUIRY_NO"/>
+        <result property="inquiryStatus" column="INQUIRY_STATUS"/>
+        <result property="inquiryTitle" column="INQUIRY_TITLE"/>
+        <result property="inquiryContent" column="INQUIRY_CONTENT"/>
+        <result property="userNo" column="CT_USER_NO"/>
+        <result property="answerContent" column="ANSWER_CONTENT"/>
+        <result property="projectNo" column="PROJECT_NO"/>
+        <result property="passAuthName" column="PASSAUTH_NAME"/>
+    </resultMap>
+    <select id="passAuth" resultMap="inquiry">
+        SELECT *
+        FROM INQUIRY
+        WHERE INQUIRY_STATUS = '권한처리중'
+    </select>
+
+    <select id="require" resultMap="inquiry">
+        SELECT *
+        FROM INQUIRY
+        WHERE INQUIRY_STATUS = '문의처리중'
+    </select>
+
+    <select id="answer" resultMap="inquiry">
+        SELECT *
+        FROM INQUIRY
+        WHERE INQUIRY_STATUS = '답변'
+    </select>
+
+    <select id="read" resultMap="inquiry">
+        SELECT *
+        FROM INQUIRY
+        WHERE INQUIRY_STATUS = '읽음'
+    </select>
+
+    <select id="searchInquiry" resultMap="inquiry">
+        SELECT *
+        FROM INQUIRY
+        WHERE INQUIRY_NO = #{inquiryNo}
+    </select>
+
+    <update id="inquiryUpdateStatus" parameterType="com.ohgiraffers.collatime.inquiry.model.dto.InquiryDTO">
+        UPDATE INQUIRY
+        SET INQUIRY_STATUS = '답변'
+        WHERE INQUIRY_NO = #{inquiryNo}
+    </update>
+</mapper>

@@ -86,6 +86,8 @@ public class InquiryController {
         String passAuthContext = authDetails.getUserNickname()+"의 "+ passProjectName+" 프로젝트 권한을 "+passUserNickname+"에게 위임 요청합니다.";
         inquiryDTO.setInquiryTitle(authDetails.getUserNickname()+"의 권한 위임 요청");
         inquiryDTO.setInquiryContent(passAuthContext);
+        inquiryDTO.setProjectNo(passProjectNo);
+        inquiryDTO.setPassAuthName(passUserNickname);
 
         int result = inquiryService.registPassAuthInquiry(inquiryDTO);
         String message = "";

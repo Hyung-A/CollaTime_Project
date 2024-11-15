@@ -8,17 +8,37 @@ public class InquiryDTO {
     private String inquiryContent;
     private int userNo;
     private String answerContent;
+    private int projectNo;
+    private String passAuthName;
 //    private int projectNo;
 
     public InquiryDTO(){}
 
-    public InquiryDTO(int inquiryNo, String inquiryStatus, String inquiryTitle, String inquiryContent, int userNo, String answerContent) {
+    public InquiryDTO(int inquiryNo, String inquiryStatus, String inquiryTitle, String inquiryContent, int userNo, String answerContent, int projectNo, String passAuthName) {
         this.inquiryNo = inquiryNo;
         this.inquiryStatus = inquiryStatus;
         this.inquiryTitle = inquiryTitle;
         this.inquiryContent = inquiryContent;
         this.userNo = userNo;
         this.answerContent = answerContent;
+        this.projectNo = projectNo;
+        this.passAuthName = passAuthName;
+    }
+
+    public String getPassAuthName() {
+        return passAuthName;
+    }
+
+    public void setPassAuthName(String passAuthName) {
+        this.passAuthName = passAuthName;
+    }
+
+    public int getProjectNo() {
+        return projectNo;
+    }
+
+    public void setProjectNo(int projectNo) {
+        this.projectNo = projectNo;
     }
 
     public int getInquiryNo() {
@@ -78,6 +98,8 @@ public class InquiryDTO {
                 ", inquiryContent='" + inquiryContent + '\'' +
                 ", userNo=" + userNo +
                 ", answerContent='" + answerContent + '\'' +
+                ", projectNo='" + projectNo + '\'' +
+                ", passAuthName='" + passAuthName + '\'' +
                 '}';
     }
 }

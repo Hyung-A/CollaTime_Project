@@ -4,20 +4,196 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-    <link rel="stylesheet" href="/css/common/bigmodal.css">
+    <link rel="stylesheet" href="/css/project/reset.css">
     <link rel="stylesheet" href="/css/admin/inquiry.css">
 </head>
 <body>
-<!-- 큰 모달창 -->
-<div id="bigModal">
-    <div id="bigBlueHeader">
-        <div id="bigXButton">X</div>
-    </div>
-    <div id="line"></div>
-    <div id="inquiryHead">
-        <div id="inquiryTitle">문의 제목</div>
-        <div id="inquiryTitle2"><h3>여기는 제목을적어요</h3></div>
-    </div>
+<div th:include="/admin/adminleftbar.html"></div>
+<div th:include="/common/programHeader.html"></div>
+
+<div id="inquiryTable_text">문의</div>
+
+                                <!--검색이 필요할까?-->
+<!--<select id="inquiryTable_category">-->
+<!--    <option value="none" selected>선택해주세요.</option>-->
+<!--    <option value="passauth">권한처리중</option>-->
+<!--    <option value="inquiry">문의처리중</option>-->
+<!--    <option value="answer">답변</option>-->
+<!--    <option value="read">읽음</option>-->
+<!--</select>-->
+<!--<input type="text" id="inquiryTable_search">-->
+<!--<button type="button" id="inquiryTable_search_btn">검색</button>-->
+<div id="inquiryTablePassAuth_area">
+    <table id="inquiryTablePassAuth">
+        <tr>
+            <th style="width: 70px; background-color: #aaaaaa">번호</th>
+            <th style="width: 150px; background-color: #aaaaaa">처리상태</th>
+            <th style="width: 350px; background-color: #aaaaaa">문의제목</th>
+            <th style="width: 70px; background-color: #aaaaaa">답변</th>
+        </tr>
+    </table>
 </div>
+<div id="inquiryTableRequire_area">
+    <table id="inquiryTableRequire">
+        <tr>
+            <th style="width: 70px; background-color: #aaaaaa">번호</th>
+            <th style="width: 150px; background-color: #aaaaaa">처리상태</th>
+            <th style="width: 350px; background-color: #aaaaaa">문의제목</th>
+            <th style="width: 70px; background-color: #aaaaaa">답변</th>
+        </tr>
+    </table>
+</div>
+<div id="inquiryTableAnswer_area">
+    <table id="inquiryTableAnswer">
+        <tr>
+            <th style="width: 70px; background-color: #aaaaaa">번호</th>
+            <th style="width: 160px; background-color: #aaaaaa">처리상태</th>
+            <th style="width: 350px; background-color: #aaaaaa">문의제목</th>
+            <th style="width: 70px; background-color: #aaaaaa">답변</th>
+        </tr>
+    </table>
+</div>
+<div id="inquiryTableRead_area">
+    <table id="inquiryTableRead">
+        <tr>
+            <th style="width: 70px; background-color: #aaaaaa">번호</th>
+            <th style="width: 160px; background-color: #aaaaaa">처리상태</th>
+            <th style="width: 350px; background-color: #aaaaaa">문의제목</th>
+            <th style="width: 70px; background-color: #aaaaaa">답변</th>
+        </tr>
+    </table>
+</div>
+<button type="button" id="deleteAllRead" onclick="location.href='/admin/deleteproject'">일괄삭제</button>
+</div>
+<script>
+    const passAuthList = document.getElementById('inquiryTablePassAuth')
+    const requireList = document.getElementById('inquiryTableRequire')
+    const answerList = document.getElementById('inquiryTableAnswer')
+    const readList = document.getElementById('inquiryTableRead')
+    const deleteReadBtn = document.getElementById('deleteAllRead')
+
+    fetch("/admin/PassAuth")
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data)
+            if(data.length>0){
+                for (var i = 0; i<data.length; i++) {
+                    const inquiryInfo = document.createElement('tr')
+                    let answer = '';
+                    let passLink = "/admin/authpass/"+data[i].inquiryNo;
+                    if(data[i].answerContent===null || data[i].answerContent===''){
+                        answer = 'N'
+                    }else {
+                        answer = 'Y'
+                    }
+                    inquiryInfo.innerHTML =
+                        `
+                        <th>${data[i].inquiryNo}</th>
+                        <th>${data[i].inquiryStatus}</th>
+                        <th>${data[i].inquiryTitle}</th>
+                        <th>${answer} <button type="button" onclick="location.href='${passLink}'" style="float: right">위임</button></th>
+                        `
+                    passAuthList.append(inquiryInfo)
+                }
+            }else {
+                const NoInquiryInfo = document.createElement('tr')
+                NoInquiryInfo.innerHTML = `<th colspan="5" style="font-size: 40px; text-align: center; height: 60px">해당하는 값이 없습니다.</th>`
+                passAuthList.append(NoInquiryInfo)
+            }
+        })
+
+    fetch("/admin/Require")
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data)
+            if(data.length>0){
+                for (var i = 0; i<data.length; i++) {
+                    const inquiryInfo = document.createElement('tr')
+                    let answerLink = "/admin/answer/"+data[i].inquiryNo;
+                    let answer = '';
+                    if(data[i].answerContent===null || data[i].answerContent===''){
+                        answer = 'N'
+                    }else {
+                        answer = 'Y'
+                    }
+                    inquiryInfo.innerHTML =
+                        `
+                        <th>${data[i].inquiryNo}</th>
+                        <th>${data[i].inquiryStatus}</th>
+                        <th>${data[i].inquiryTitle}</th>
+                        <th>${answer} <button type="button" onclick="location.href='${answerLink}'" style="float: right">답변</button></th>
+                        `
+                    requireList.append(inquiryInfo)
+                }
+            }else {
+                const NoInquiryInfo = document.createElement('tr')
+                NoInquiryInfo.innerHTML = `<th colspan="5" style="font-size: 40px; text-align: center; height: 60px">해당하는 값이 없습니다.</th>`
+                requireList.append(NoInquiryInfo)
+            }
+        })
+
+    fetch("/admin/Answer")
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data)
+            if(data.length>0){
+                for (var i = 0; i<data.length; i++) {
+                    let inquiryLink = "/inquiry/admininquiryinfo/"+data[i].inquiryNo;
+                    const inquiryInfo = document.createElement('tr')
+                    let answer = '';
+                    if(data[i].answerContent===null || data[i].answerContent===''){
+                        answer = 'N'
+                    }else {
+                        answer = 'Y'
+                    }
+                    inquiryInfo.innerHTML =
+                        `
+                        <th>${data[i].inquiryNo} <button type="button" onclick="location.href='${inquiryLink}'" style="float: right">상세</button></th>
+                        <th>${data[i].inquiryStatus}</th>
+                        <th>${data[i].inquiryTitle}</th>
+                        <th>${answer}</th>
+                        `
+                    answerList.append(inquiryInfo)
+                }
+            }else {
+                const NoInquiryInfo = document.createElement('tr')
+                NoInquiryInfo.innerHTML = `<th colspan="5" style="font-size: 40px; text-align: center; height: 60px">해당하는 값이 없습니다.</th>`
+                answerList.append(NoInquiryInfo)
+            }
+        })
+
+
+    fetch("/admin/Read")
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data)
+            if(data.length>0){
+                for (var i = 0; i<data.length; i++) {
+                    let inquiryLink = "/inquiry/admininquiryinfo/"+data[i].inquiryNo;
+                    const inquiryInfo = document.createElement('tr')
+                    let answer = '';
+                    if(data[i].answerContent===null || data[i].answerContent===''){
+                        answer = 'N'
+                    }else {
+                        answer = 'Y'
+                    }
+                    inquiryInfo.innerHTML =
+                        `
+                        <th>${data[i].inquiryNo} <button type="button" onclick="location.href='${inquiryLink}'" style="float: right">상세</button></th>
+                        <th>${data[i].inquiryStatus}</th>
+                        <th>${data[i].inquiryTitle}</th>
+                        <th>${answer}</th>
+                        `
+                    readList.append(inquiryInfo)
+                }
+            }else {
+                const NoInquiryInfo = document.createElement('tr')
+                NoInquiryInfo.innerHTML = `<th colspan="5" style="font-size: 40px; text-align: center; height: 60px">해당하는 값이 없습니다.</th>`
+                readList.append(NoInquiryInfo)
+            }
+        })
+
+
+</script>
 </body>
 </html>

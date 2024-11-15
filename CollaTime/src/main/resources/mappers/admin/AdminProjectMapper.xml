@@ -63,4 +63,10 @@
         FROM PROJECT
         WHERE PRODUCTOR_NO = #{productorNo}
     </select>
+
+    <update id="authPassUser" parameterType="com.ohgiraffers.collatime.inquiry.model.dto.InquiryDTO">
+        UPDATE PROJECT
+        SET PRODUCTOR_NO = (SELECT CT_USER_NO FROM CT_USER WHERE CT_USER_NICKNAME = #{passAuthName})
+        WHERE PROJECT_NO = #{projectNo}
+    </update>
 </mapper>
