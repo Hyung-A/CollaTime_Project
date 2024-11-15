@@ -1,244 +1,244 @@
 @charset "UTF-8";
 
 /* 헤더 */
-#head{
+/*#head{*/
 
-    cursor: default;
-    width: 1915px;
-    height: 100px;
-    /*border-bottom: solid 1px #282828;*/
-    border-bottom: solid;
-    border-color: #92E2F8;
+/*    cursor: default;*/
+/*    width: 1915px;*/
+/*    height: 100px;*/
+/*    !*border-bottom: solid 1px #282828;*!*/
+/*    border-bottom: solid;*/
+/*    border-color: #92E2F8;*/
 
-}
+/*}*/
 
-#logo{
+/*#logo{*/
 
-    position: absolute;
-    width: 186px;
-    height: 67px;
-    left: 39px;
-    top: 15px;
+/*    position: absolute;*/
+/*    width: 186px;*/
+/*    height: 67px;*/
+/*    left: 39px;*/
+/*    top: 15px;*/
 
-}
+/*}*/
 
-#logOut{
+/*#logOut{*/
 
-    position: absolute;
-    width: 130px;
-    height: 50px;
-    left: 1746px;
-    top: 25px;
-    background: #DFF7FD;
-    border: none;
-    border-radius: 10px;
+/*    position: absolute;*/
+/*    width: 130px;*/
+/*    height: 50px;*/
+/*    left: 1746px;*/
+/*    top: 25px;*/
+/*    background: #DFF7FD;*/
+/*    border: none;*/
+/*    border-radius: 10px;*/
 
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 20px;
-    display: flex;
-    justify-content: center;
-    line-height: 50px;
+/*    font-family: 'Inter';*/
+/*    font-style: normal;*/
+/*    font-weight: 700;*/
+/*    font-size: 20px;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    line-height: 50px;*/
 
-    color: #000000;
+/*    color: #000000;*/
 
-}
+/*}*/
 
 
 
 /* 왼쪽바 */
-#leftBarLayout{
+/*#leftBarLayout{*/
 
-    cursor: default;
-    position: absolute;
-    width: 310px;
-    height: 813px;
-    top: 103px;
+/*    cursor: default;*/
+/*    position: absolute;*/
+/*    width: 310px;*/
+/*    height: 813px;*/
+/*    top: 103px;*/
 
-    background: #FFFFFF;
-    border-right: solid 1px #282828;
+/*    background: #FFFFFF;*/
+/*    border-right: solid 1px #282828;*/
 
-}
+/*}*/
 
-#blueBackground{
+/*#blueBackground{*/
 
-    position: absolute;
-    width: 250px;
-    height: 720px;
-    left: 32px;
-    top: 48px;
+/*    position: absolute;*/
+/*    width: 250px;*/
+/*    height: 720px;*/
+/*    left: 32px;*/
+/*    top: 48px;*/
 
-    background: #92E2F8;
-    border-radius: 25px;
+/*    background: #92E2F8;*/
+/*    border-radius: 25px;*/
 
-}
+/*}*/
 
-#profile{
+/*#profile{*/
 
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    left: 85px;
-    top: 34px;
+/*    position: absolute;*/
+/*    width: 80px;*/
+/*    height: 80px;*/
+/*    left: 85px;*/
+/*    top: 34px;*/
 
-    background: #FFFFFF;
-    border: solid 1px #FFFFFF;
-    border-radius: 6355px;
+/*    background: #FFFFFF;*/
+/*    border: solid 1px #FFFFFF;*/
+/*    border-radius: 6355px;*/
 
-}
+/*}*/
 
-#nickname{
+/*#nickname{*/
 
-    position: absolute;
-    width: 200px;
-    height: 178px;
-    left: 30px;
-    top: 135px;
+/*    position: absolute;*/
+/*    width: 200px;*/
+/*    height: 178px;*/
+/*    left: 30px;*/
+/*    top: 135px;*/
 
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 18px;
+/*    font-family: 'Inter';*/
+/*    font-style: normal;*/
+/*    font-weight: 600;*/
+/*    font-size: 20px;*/
+/*    line-height: 18px;*/
 
-    color: #000000;
+/*    color: #000000;*/
 
-}
+/*}*/
 
-#myPage{
+/*#myPage{*/
 
-    position: absolute;
-    width: 130px;
-    height: 30px;
-    left: 65px;
-    top: 180px;
+/*    position: absolute;*/
+/*    width: 130px;*/
+/*    height: 30px;*/
+/*    left: 65px;*/
+/*    top: 180px;*/
 
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 25px;
-    line-height: 30px;
+/*    font-family: 'Inter';*/
+/*    font-style: normal;*/
+/*    font-weight: 700;*/
+/*    font-size: 25px;*/
+/*    line-height: 30px;*/
 
-    color: #000000;
+/*    color: #000000;*/
 
-}
+/*}*/
 
-#whiteBar1{
+/*#whiteBar1{*/
 
-    position: absolute;
-    width: 210px;
-    left: 20px;
-    top: 230px;
+/*    position: absolute;*/
+/*    width: 210px;*/
+/*    left: 20px;*/
+/*    top: 230px;*/
 
-    border: 3px solid #FFFFFF;
-    transform: matrix(-1, 0, 0, -1, 0, 0);
+/*    border: 3px solid #FFFFFF;*/
+/*    transform: matrix(-1, 0, 0, -1, 0, 0);*/
 
-}
+/*}*/
 
-#textMyProject{
+/*#textMyProject{*/
 
-    position: absolute;
-    width: 100px;
-    height: 15px;
-    left: 30px;
-    top: 250px;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 15px;
-    line-height: 15px;
+/*    position: absolute;*/
+/*    width: 100px;*/
+/*    height: 15px;*/
+/*    left: 30px;*/
+/*    top: 250px;*/
+/*    font-style: normal;*/
+/*    font-weight: 600;*/
+/*    font-size: 15px;*/
+/*    line-height: 15px;*/
 
-    color: #282828;
+/*    color: #282828;*/
 
-}
+/*}*/
 
-/* MyProject 프로젝트 리스트 */
-#projectMenu{
+/*!* MyProject 프로젝트 리스트 *!*/
+/*#projectMenu{*/
 
-    position: absolute;
-    left: 25px;
-    top: 275px;
+/*    position: absolute;*/
+/*    left: 25px;*/
+/*    top: 275px;*/
 
-}
+/*}*/
 
-#projectIcon{
+/*#projectIcon{*/
 
-    position: absolute;
-    left: 5px;
-    top: 5px;
+/*    position: absolute;*/
+/*    left: 5px;*/
+/*    top: 5px;*/
 
-}
+/*}*/
 
-#menuProjectName{
+/*#menuProjectName{*/
 
-    position: absolute;
-    left: 25px;
-    top: 5px;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 13px;
-    line-height:15px;
-    color: #282828;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+/*    position: absolute;*/
+/*    left: 25px;*/
+/*    top: 5px;*/
+/*    font-style: normal;*/
+/*    font-weight: 400;*/
+/*    font-size: 13px;*/
+/*    line-height:15px;*/
+/*    color: #282828;*/
+/*    overflow: hidden;*/
+/*    text-overflow: ellipsis;*/
+/*    white-space: nowrap;*/
 
-}
+/*}*/
 
-#whiteBar2{
+/*#whiteBar2{*/
 
-    position: absolute;
-    width: 210px;
-    left: 20px;
-    top: 580px;
-    border: 3px solid #FFFFFF;
-    transform: matrix(-1, 0, 0, -1, 0, 0);
+/*    position: absolute;*/
+/*    width: 210px;*/
+/*    left: 20px;*/
+/*    top: 580px;*/
+/*    border: 3px solid #FFFFFF;*/
+/*    transform: matrix(-1, 0, 0, -1, 0, 0);*/
 
-}
+/*}*/
 
-/* 문의하기 */
-#firstInquiry{
+/*!* 문의하기 *!*/
+/*#firstInquiry{*/
 
-    position: absolute;
-    left: 30px;
-    top: 600px;
+/*    position: absolute;*/
+/*    left: 30px;*/
+/*    top: 600px;*/
 
-}
+/*}*/
 
-#doInquiryText{
+/*#doInquiryText{*/
 
-    position: absolute;
-    left: 55px;
-    top: 600px;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 15px;
+/*    position: absolute;*/
+/*    left: 55px;*/
+/*    top: 600px;*/
+/*    font-style: normal;*/
+/*    font-weight: 400;*/
+/*    font-size: 13px;*/
+/*    line-height: 15px;*/
 
-    color: #282828;
-}
+/*    color: #282828;*/
+/*}*/
 
-/* 권한 위임 요청 */
-#secondInquiry{
+/*!* 권한 위임 요청 *!*/
+/*#secondInquiry{*/
 
-    position: absolute;
-    left: 30px;
-    top: 625px;
+/*    position: absolute;*/
+/*    left: 30px;*/
+/*    top: 625px;*/
 
-}
+/*}*/
 
-#authorityText{
+/*#authorityText{*/
 
-    position: absolute;
-    left: 55px;
-    top: 625px;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 15px;
+/*    position: absolute;*/
+/*    left: 55px;*/
+/*    top: 625px;*/
+/*    font-style: normal;*/
+/*    font-weight: 400;*/
+/*    font-size: 13px;*/
+/*    line-height: 15px;*/
 
-    color: #282828;
-}
+/*    color: #282828;*/
+/*}*/
 
 /* ----------------------------------------------------------- */
 /* 메인 구역 */
@@ -295,6 +295,16 @@
 
 #folderBody{
 
+    /*position: absolute;*/
+    /*left: 5px;*/
+    /*top: 27px;*/
+    /*width: 210px;*/
+    /*height: 141px;*/
+    /*border: solid 1px #282828;*/
+    /*display: flex;*/
+    /*vertical-align: center;*/
+    /*justify-content: center;*/
+    /*!*line-height: 141px;*!*/
     position: absolute;
     left: 5px;
     top: 27px;
@@ -302,32 +312,36 @@
     height: 141px;
     border: solid 1px #282828;
     display: flex;
-    vertical-align: center;
     justify-content: center;
-    /*line-height: 141px;*/
-
+    /* line-height: 141px; */
 }
 
-#projectTitle{
-
+#projectTitle {
+    line-height: 1.2;
     position: absolute;
+    margin-top: 10px;
     width: 160px;
+    height: 120px;
     font-style: normal;
     font-weight: 900;
     font-size: 25px;
     color: #282828;
     overflow: hidden;
     text-overflow: ellipsis;
-    /* white-space: nowrap; */
-    word-wrap: break-word;
-    word-break: keep-all;
-    transform: translate(0, 50px);
+    display: flex;
+    /* word-wrap: break-word; */
+    overflow-wrap: break-word;
+    white-space: normal;
+    word-break: break-word;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-
 }
+
 
 #folderMenu{
 
+    /* ... */
     position: absolute;
     left: 186px;
     font-style: normal;

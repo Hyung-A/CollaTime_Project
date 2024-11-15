@@ -34,8 +34,8 @@
         <input type="text" id="projectNo" style="display: none" th:value="${ project.projectNo }"/>
         <input type="text" id="productorNo" style="display: none" th:value="${ project.productorNo }"/>
         <div id="folderHead"></div>
-        <div id="folderBody" onclick="goToSchedulePage('${project.projectNo}')">
-          <div id="projectTitle" th:text="${ project.projectName }"></div>
+        <div id="folderBody">
+          <div id="projectTitle" th:text="${ project.projectName }" onclick="goToSchedulePage('${project.projectNo}')"></div>
           <div id="folderMenu">...</div>
           <div id="crudMenu">
             <span id="projectSelect" class="crudText Member">조회하기</span>  <!-- 프로덕터 넘버가 유저 넘버랑 일치하지 않을 때 얘만 열리기 -->
@@ -249,8 +249,10 @@
               .then((res) => res.json())
               .then((data) => {
                 console.log(data);
+                let isTrue = false;  // 코드 맞는지 확인
                 for(let i = 0; i < data.length; i++) {
                   if ($inputCode.value === data[i].joinCode) {
+                    isTrue = true;
                     console.log(data[i]);
                     $wrongJoinCode.style.display = "none";
                     inputUserNo = document.getElementById("inputUserNo");
@@ -264,7 +266,7 @@
                                       },
                               body: JSON.stringify({
                                 joinCode : data[i].joinCode,
-                                email : `[[|${#authentication.principal.userEmail}|]]`,
+                                // email : `[[|${#authentication.principal.userEmail}|]]`,
                                 userNo : `[[|${#authentication.principal.userNo}|]]`
                               })
                             })
@@ -280,22 +282,22 @@
                               completeConfirm.onclick = function(){
                                 modalComplete.style.display = "none";
                               }
-                              setTimeout(() => {
-                                if (res.redirected) {
-                                  window.location.href = res.url;
-                                } else {
-                                  window.location.href = "/project/projectmain";
-                                }
-                              }, 2000);
+                              if (res.redirected) {
+                                window.location.href = res.url;
+                              } else {
+                                window.location.href = "/project";
+                              }
                             })
                             .then((result) => console.log(result))
                             .catch((error) => console.log(error));
-                  } else if($inputCode.value !== data[i].joinCode) {
-                    /* 다시 입력하라는 모달 띄우기 */
-                    $wrongJoinCode = document.getElementById("wrongJoinCode");
-                    $wrongJoinCode.style.display = "";
                   }
                 }
+                if(!isTrue) {
+                  /* 다시 입력하라는 모달 띄우기 */
+                  $wrongJoinCode = document.getElementById("wrongJoinCode");
+                  $wrongJoinCode.style.display = "";
+                }
+
               });
   }
 
@@ -494,13 +496,11 @@
                   completeConfirm.onclick = function(){
                     modalComplete.style.display = "none";
                   }
-                  setTimeout(() => {
-                    if (res.redirected) {
-                      window.location.href = res.url;
-                    } else {
-                      window.location.href = "/project/projectmain";
-                    }
-                  }, 2000);
+                  if (res.redirected) {
+                    window.location.href = res.url;
+                  } else {
+                    window.location.href = "/project";
+                  }
                 })
                 .then((result) => console.log(result))
                 .catch((error) => console.log(error));
@@ -731,59 +731,64 @@
     const input = document.getElementById("inputEmail");
     input.value = "";
     // 요소 생성 - 프로젝트 생성 시
-    let popupType = document.getElementById("popupType");
-    if (popupType.value === "create") {
-      const resultEmailArea = document.getElementById("addedMember");
-      resultEmailArea.innerHTML = "";
-      for (let i = 0; i < resultEmailList.length; i++) {
-        // 이메일 div 생성
-        let resultMail = document.createElement("div");  // 이메일 div
-        let emailAdress = document.createTextNode(resultEmailList[i]);  // 이메일 주소
-        resultMail.appendChild(emailAdress);
-        resultEmailArea.appendChild(resultMail);
-        // 스타일 설정
-        resultMail.style.backgournd = "#DFF7FD";
-        resultMail.style.borderRadius = "15px";
-        resultMail.style.width = "max-content";
-        resultMail.style.height = "30px";
-        resultMail.style.display = "flex";
-        resultMail.style.alignItems = "center";
-        resultMail.style.lineHeight = "30px";
-        resultMail.style.margin = "5px";
-        resultMail.style.padding = "5px 10px";
+    const resultEmailArea = document.getElementById("addedMember");
+    resultEmailArea.innerHTML = "";
 
-        // 멤버 추가 버튼 위치 조정
-        const inviteMemberButton = document.getElementById("inviteMember");
-        inviteMemberButton.style.order = 1;
+    if(resultEmailList.length > 0) {
+
+      let emailFirstText = resultEmailList[0];
+      if(resultEmailList.length > 1){
+        emailFirstText = emailFirstText + " 그 외 " + (resultEmailList.length-1) + "명";
       }
-    } else {
 
-      // 요소 생성 - 프로젝트 수정 시
-      const updateEmailList = document.getElementById("memberList");
-      updateEmailList.innerHTML = "";
+      // 이메일 div 생성
+      let resultMail = document.createElement("div");  // 이메일 div
+      let emailAdress = document.createTextNode(emailFirstText);  // 이메일 주소
+      resultMail.appendChild(emailAdress);
+      resultEmailArea.appendChild(resultMail);
+      // 스타일 설정
+      resultMail.style.backgroundColor = "#DFF7FD";
+      resultMail.style.borderRadius = "15px";
+      resultMail.style.width = "max-content";
+      resultMail.style.height = "30px";
+      resultMail.style.display = "flex";
+      resultMail.style.alignItems = "center";
+      resultMail.style.lineHeight = "30px";
+      // resultMail.style.marginLeft = "15px";
+      resultMail.style.padding = "5px 10px";
 
-      for (let i = 0; i < resultMemberInviteList.length; i++) {
-        // 이메일 div 생성
-        let resultMail = document.createElement("div");  // 이메일 div
-        let emailAdress = document.createTextNode(resultMemberInviteList[i].email);  // 이메일 주소
-        resultMail.appendChild(emailAdress);
-        updateEmailList.appendChild(resultMail);
-        // 스타일 설정
-        resultMail.style.backgournd = "#DFF7FD";
-        resultMail.style.borderRadius = "15px";
-        resultMail.style.width = "max-content";
-        resultMail.style.height = "30px";
-        resultMail.style.display = "flex";
-        resultMail.style.alignItems = "center";
-        resultMail.style.lineHeight = "30px";
-        resultMail.style.margin = "5px";
-        resultMail.style.padding = "5px 10px";
-
-        // 멤버 추가 버튼 위치 조정
-        const updateInviteMember = document.getElementById("updateInviteMember");
-        updateInviteMember.style.order = 1;
-      }
+      // 멤버 추가 버튼 위치 조정
+      const inviteMemberButton = document.getElementById("inviteMember");
+      inviteMemberButton.style.order = 2;
     }
+
+
+      // // 요소 생성 - 프로젝트 수정 시
+      // const updateEmailList = document.getElementById("memberList");
+      // updateEmailList.innerHTML = "";
+      //
+      // for (let i = 0; i < resultMemberInviteList.length; i++) {
+      //   // 이메일 div 생성
+      //   let resultMail = document.createElement("div");  // 이메일 div
+      //   let emailAdress = document.createTextNode(resultMemberInviteList[i].email);  // 이메일 주소
+      //   resultMail.appendChild(emailAdress);
+      //   updateEmailList.appendChild(resultMail);
+      //   // 스타일 설정
+      //   resultMail.style.backgournd = "#DFF7FD";
+      //   resultMail.style.borderRadius = "15px";
+      //   resultMail.style.width = "max-content";
+      //   resultMail.style.height = "30px";
+      //   resultMail.style.display = "flex";
+      //   resultMail.style.alignItems = "center";
+      //   resultMail.style.lineHeight = "30px";
+      //   resultMail.style.margin = "5px";
+      //   resultMail.style.padding = "5px 10px";
+      //
+      //   // 멤버 추가 버튼 위치 조정
+      //   const updateInviteMember = document.getElementById("updateInviteMember");
+      //   updateInviteMember.style.order = 1;
+      // }
+
   }
 </script>
 <!-- ----------------------------------------- 프로젝트 내용 조회 및 수정 모달 ----------------------------------------- -->
@@ -875,18 +880,19 @@
               //     updateCategoryLabelList[i].style.background = "#92E2F8";
               //   });
               // }
-
-
-              document.querySelector("#updateCategory input[value='"+data.projectCategoryCode+"']").setAttribute('checked' , true);
+              let categoryCodeList = document.querySelector("#updateCategory input[value='" + data.projectCategoryCode+"']");
+              if(categoryCodeList !== null && categoryCodeList !== undefined ) {
+                categoryCodeList.setAttribute('checked', true);
+              }
               let updateCategoryList = document.querySelectorAll(".updateCategory");
               let updateCategoryLabelList = document.querySelectorAll(".updateCategoryLabel");
               for(let i = 0; i < updateCategoryList.length; i++){
-                  updateCategoryList[i].addEventListener("click", function(){
-                    for(let j = 0; j < updateCategoryLabelList.length; j++){
-                      updateCategoryLabelList[j].style.background = "#FFFFFF";
-                    }
-                    updateCategoryLabelList[i].style.background = "#92E2F8";
-                  });
+                updateCategoryList[i].addEventListener("click", function(){
+                  for(let j = 0; j < updateCategoryLabelList.length; j++){
+                    updateCategoryLabelList[j].style.background = "#FFFFFF";
+                  }
+                  updateCategoryLabelList[i].style.background = "#92E2F8";
+                });
                 if(updateCategoryList[i].checked === true){
                   updateCategoryLabelList[i].style.background = "#92E2F8";
                 } else{
@@ -966,6 +972,23 @@
 
   document.getElementById("updateProjectForm").onsubmit = function(e) {
     e.preventDefault(); // 기본 폼 제출 동작을 방지
+    if (document.getElementById("updateInputTitle").value === "") {
+      $modalInputAlert.style.display = "";
+      // alert("필수 기입 사항을 입력해주세요.");
+      return;
+    } else if (document.getElementById("updateInputSummary").value === "") {
+      $modalInputAlert.style.display = "";
+      return;
+    } else if (document.getElementById("updateInputPurpose").value === "") {
+      $modalInputAlert.style.display = "";
+      return;
+    } else if (document.getElementById("updateStartDate").value === "") {
+      $modalInputAlert.style.display = "";
+      return;
+    } else if (document.getElementById("updateEndDate").value === "") {
+      $modalInputAlert.style.display = "";
+      return;
+    }
     fetch(this.action, {
       method: this.method,
       body: new FormData(this)
@@ -984,11 +1007,7 @@
                 completeConfirm.onclick = function() {
                   modalComplete.style.display = "none";
                 };
-
-                // 일정 시간 후 리다이렉트
-                setTimeout(() => {
-                  window.location.href = "/project/projectmain";
-                }, 2000); // 2초 지연 후 리디렉션
+                window.location.href = "/project";
               } else {
                 console.error("Request failed.");
               }
@@ -1070,11 +1089,6 @@
 
   document.getElementById("deleteProjectForm").onsubmit = function(e) {
     e.preventDefault(); // 기본 폼 제출 동작을 방지
-    // const projectName = document.getElementById("updateInputTitle").value.trim();
-    // const projectSummary = document.getElementById("updateInputSummary").value.trim();
-    // const projectPurpose = document.getElementById("updateInputPurpose").value.trim();
-    // const startDate = document.getElementById("updateStartDate").value.trim();
-    // const endDate = document.getElementById("updateEndDate").value.trim();
     fetch(this.action, {
       method: this.method,
       body: new FormData(this)
@@ -1093,11 +1107,7 @@
                 completeConfirm.onclick = function() {
                   modalComplete.style.display = "none";
                 };
-
-                // 일정 시간 후 리다이렉트
-                setTimeout(() => {
-                  window.location.href = "/project/projectmain";
-                }, 2000); // 2초 지연 후 리디렉션
+                window.location.href = "/project";
               } else {
                 console.error("Request failed.");
               }
@@ -1462,14 +1472,7 @@
               completeConfirm.onclick = function(){
                 modalComplete.style.display = "none";
               }
-              setTimeout(() => {
                 modalComplete.style.display = "none";
-                // if (res.redirected) {
-                //   window.location.href = res.url;
-                // } else {
-                //   window.location.href = "/project/projectmain";
-                // }
-              }, 2000);
             })
             .then((result) => console.log(result))
             .catch((error) => console.log(error));

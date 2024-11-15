@@ -36,7 +36,7 @@ public interface ProjectMapper {
     void deleteMember(InviteMemberDTO inviteMemberDTO);
 
     // 프로젝트 수정 - join_project DB
-    void updateMember(InviteMemberDTO inviteMemberDTO);
+//    void updateMember(InviteMemberDTO inviteMemberDTO);
 
     List<InviteMemberDTO> getInviteMemberList(ProjectDTO projectDTO);
 

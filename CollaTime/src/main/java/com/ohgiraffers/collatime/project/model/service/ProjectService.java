@@ -64,10 +64,10 @@ public class ProjectService {
     }
 
     // 프로젝트 수정 - join_project 내용 수정
-    @Transactional
-    public void updateMember(InviteMemberDTO inviteMemberDTO) {
-        projectMapper.updateMember(inviteMemberDTO);
-    }
+//    @Transactional
+//    public void updateMember(InviteMemberDTO inviteMemberDTO) {
+//        projectMapper.updateMember(inviteMemberDTO);
+//    }
 
     public List<InviteMemberDTO> getInviteMemberList(ProjectDTO projectDTO) {
         return projectMapper.getInviteMemberList(projectDTO);

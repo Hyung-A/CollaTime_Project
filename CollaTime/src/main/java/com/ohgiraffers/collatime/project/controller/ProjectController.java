@@ -21,7 +21,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 
 @Controller
-@RequestMapping("/project")
+@RequestMapping("/")
 public class ProjectController {
 
     private final ProjectService projectService;
@@ -34,7 +34,7 @@ public class ProjectController {
     }
 
     // 메인 화면에서 내가 참여하는 프로젝트 전체 조회
-    @GetMapping(value="/projectmain")
+    @GetMapping(value="/project")
     public ModelAndView projectmain(HttpServletRequest req, ModelAndView mv, @AuthenticationPrincipal AuthDetails authDetails){
         HttpSession session = req.getSession();
         Enumeration<String> attrNames = session.getAttributeNames();
@@ -56,7 +56,7 @@ public class ProjectController {
     }
 
     // 프로젝트 생성
-    @PostMapping(value = "/projectmain", produces = "application/json; charset=UTF-8")
+    @PostMapping(value = "/project/projectmain", produces = "application/json; charset=UTF-8")
     @ResponseBody
     public List<ProjectDTO> insertProject(ModelAndView mv, @RequestBody ProjectDTO projectDTO, @AuthenticationPrincipal AuthDetails authDetails) throws MessagingException {
 
@@ -93,7 +93,7 @@ public class ProjectController {
             mailService.sendJoinCodeMail(email, createJoinCode);
 
         }
-        mv.setViewName("redirect:/project/projectmain");
+        mv.setViewName("redirect:/project");
 
         return projectService.getList(userNo);
     }
@@ -120,7 +120,7 @@ public class ProjectController {
     }
 
     // 프로젝트 내용 조회
-    @GetMapping(value="selectproject", produces = "application/json; charset=UTF-8")
+    @GetMapping(value="/project/selectproject", produces = "application/json; charset=UTF-8")
     @ResponseBody
     public ProjectDTO selectSpecificProject(ModelAndView mv, @ModelAttribute ProjectDTO projectDTO){
         projectDTO = projectService.getProject(projectDTO);
@@ -134,7 +134,7 @@ public class ProjectController {
     }
 
     // 프로젝트 내용 수정
-    @PostMapping("/updateproject")
+    @PostMapping("/project/updateproject")
     public ModelAndView updateProject(ModelAndView mv, @ModelAttribute ProjectDTO projectDTO, @AuthenticationPrincipal AuthDetails authDetails){
         projectService.updateProject(projectDTO);
         InviteMemberDTO inviteMemberDTO = new InviteMemberDTO();
@@ -149,12 +149,12 @@ public class ProjectController {
 
         mv.addObject("projectList", projectService.getList(userNo));
         System.out.println("update" + projectDTO);
-        mv.setViewName("redirect:/project/projectmain");
+        mv.setViewName("redirect:/project");
         return mv;
     }
 
     // 프로젝트 삭제
-    @PostMapping("/deleteproject")
+    @PostMapping("/project/deleteproject")
     public ModelAndView deleteProject(ModelAndView mv, @ModelAttribute ProjectDTO projectDTO, @AuthenticationPrincipal AuthDetails authDetails){
         projectService.deleteProject(projectDTO);
         InviteMemberDTO inviteMemberDTO = new InviteMemberDTO();
@@ -169,12 +169,12 @@ public class ProjectController {
 
         mv.addObject("projectList", projectService.getList(userNo));
         System.out.println("delete" + projectDTO);
-        mv.setViewName("redirect:/project/projectmain");
+        mv.setViewName("redirect:/project");
         return mv;
     }
 
     // joinCode 전체 조회하기
-    @GetMapping(value = "selectJoinCode", produces = "application/json; charset=UTF-8")
+    @GetMapping(value = "/project/selectJoinCode", produces = "application/json; charset=UTF-8")
     @ResponseBody
     public List<InviteMemberDTO> selectJoinCode(ModelAndView mv, @ModelAttribute InviteMemberDTO inviteMemberDTO){
         System.out.println("컨트롤러다아아아");
@@ -186,33 +186,33 @@ public class ProjectController {
         return inviteMemberList;
     }
 
-    @PostMapping(value="updateUserNo")
+    @PostMapping(value="/project/updateUserNo")
     public ModelAndView updateUserNo (ModelAndView mv, @RequestBody InviteMemberDTO inviteMemberDTO){
         System.out.println("updateUserNo 포스트 매핑 성공" + inviteMemberDTO);
 
         projectService.updateUserNo(inviteMemberDTO);
 
-        mv.setViewName("redirect:/project/projectmain");
+        mv.setViewName("redirect:/project");
 
         return mv;
     }
 
     // 팀원 관리 모달  - 팀원 정보 조회
-    @GetMapping(value="selectMember", produces = "application/json; charset=UTF-8")
+    @GetMapping(value="/project/selectMember", produces = "application/json; charset=UTF-8")
     @ResponseBody
     public List<MemberListDTO> getManageMember(ModelAndView mv, @ModelAttribute MemberListDTO memberListDTO, @ModelAttribute ProjectDTO projectDTO){
 
         List<MemberListDTO> memberList = projectService.getMemberManager(projectDTO);
         System.out.println(memberList);
         mv.addObject("memberManagement", memberList);
-        mv.setViewName("redierect:/project/projectmain");
+        mv.setViewName("redierect:/project");
 
         return memberList;
 
     }
 
     // 팀원 관리 모달에서 멤버 추가 했을 때 이메일 전송 및 DB에 넣기
-    @PostMapping(value = "/sendUpdatedEmail", produces = "application/json; charset=UTF-8")
+    @PostMapping(value = "/project/sendUpdatedEmail", produces = "application/json; charset=UTF-8")
     @ResponseBody
     public void sendUpdatedEmail(@RequestBody ProjectDTO projectDTO) throws MessagingException{
 
@@ -236,7 +236,7 @@ public class ProjectController {
     }
 
     // 팀원 관리 페이지에서 팀원 삭제하기
-    @PostMapping(value = "/deleteMemberInfo", produces = "application/json; charset=UTF-8")
+    @PostMapping(value = "/project/deleteMemberInfo", produces = "application/json; charset=UTF-8")
     @ResponseBody
     public void deleteMemberInfo(@RequestBody InviteMemberDTO inviteMemberDTO){
 

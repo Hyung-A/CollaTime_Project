@@ -113,12 +113,14 @@
 .projectIcon{
 
     margin-top: 10px;
+    margin-left: 5px;
 
 }
 
-#menuProjectName{
+.menuProjectName{
 
     position: absolute;
+    width: 150px;
     left: 25px;
     top: 5px;
     font-style: normal;
@@ -129,6 +131,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+
 
 }
 

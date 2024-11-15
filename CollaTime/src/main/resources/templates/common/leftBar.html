@@ -45,6 +45,23 @@
                     <span class="menuProjectName">${data[i].projectName}</span>
                     </div>`
                 leftBarProjectMenu.append(myProjectList);
+                let menuProjectName = document.querySelectorAll(".menuProjectName");
+                let topPosition = 10;
+                const gap = 28;
+                for(let j = 0; j < menuProjectName.length; j++){
+                    menuProjectName[j].style.position = "absolute";
+                    menuProjectName[j].style.width = "150px";
+                    menuProjectName[j].style.left = "30px";
+                    menuProjectName[j].style.top = topPosition + "px";
+                    menuProjectName[j].style.fontSize = "13px";
+                    menuProjectName[j].style.fontStyle = "normal";
+                    menuProjectName[j].style.fontWeight = "400";
+                    menuProjectName[j].style.lineHeight = "15px";
+                    menuProjectName[j].style.overflow = "hidden";
+                    menuProjectName[j].style.textOverflow = "ellipsis";
+                    menuProjectName[j].style.whiteSpace = "nowrap";
+                    topPosition += gap;
+                }
             }
         }
     })

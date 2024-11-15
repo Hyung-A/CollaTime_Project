@@ -42,12 +42,15 @@ public class ExceptionHandlingController implements ErrorController {
                 // 403 에러
                 model.addAttribute("errorname", "해당 페이지에 대한 접근 권한이 없습니다.");
                 return error403;
+
             } else if(statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()){
                 // 500 에러
                 return error500;
+
             } else if(statusCode == HttpStatus.BAD_REQUEST.value()){
                 // 400 에러
                 return error400;
+
             } else {
                 // 그 외 기타 에러
                 return errorEtc;
