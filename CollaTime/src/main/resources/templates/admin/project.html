@@ -96,6 +96,81 @@
             }
         })
 
+    const projectCategory = document.getElementById('projectTable_category')
+    const searchProject = document.getElementById('projectTable_search')
+    const searchProjectBtn = document.getElementById('projectTable_search_btn')
+    searchProject.style.visibility = 'hidden'
+    searchProjectBtn.style.visibility = 'hidden'
+
+    projectCategory.addEventListener('change', ()=>{
+        if(projectCategory.value==='none'){
+            searchProject.style.visibility = 'hidden'
+        }else {
+            searchProject.style.visibility = 'visible'
+        }
+        if(projectCategory.value==='number'){
+            searchProject.type = 'number'
+        }
+        else if(projectCategory.value==='name'){
+            searchProject.type = 'text'
+
+        }
+        else if(projectCategory.value==='enddate'){
+            searchProject.type = 'email'
+        }
+        else if(projectCategory.value==='productorno'){
+            searchProject.type = 'number'
+        }
+    })
+
+    searchProject.addEventListener('change', ()=>{
+        if(searchProject.value!=='' && searchProject.value!==null){
+            searchProjectBtn.style.visibility = 'visible'
+        }else {
+            searchProjectBtn.style.visibility = 'hidden'
+        }
+    })
+
+    searchProjectBtn.addEventListener('click', ()=>{
+        let linkProject = "/admin/project/"+projectCategory.value+"/"+searchProject.value
+        console.log(linkProject)
+        fetch(linkProject)
+            .then(res=>res.json())
+            .then(data=>{
+                console.log(data)
+                let listLength = projectActiveList.rows.length
+                for(var i = 1; i<listLength; i++) {
+                    projectActiveList.deleteRow(1)
+                }
+                let deleteListLength = projectDeactiveList.rows.length
+                for(var i = 1; i<deleteListLength; i++) {
+                    projectDeactiveList.deleteRow(1)
+                }
+                const searchProjectInfo = document.createElement('tr')
+                searchProjectInfo.innerHTML =
+                    `
+                        <th colspan="5" style="font-size: 35px; text-align: center; height: 100px">검색모드입니다. 검색 값을 왼쪽입니다.</th>
+                    `
+                projectDeactiveList.append(searchProjectInfo)
+                if(data.length>0){
+                    for (var i = 0; i<data.length; i++) {
+                        const projectInfo = document.createElement('tr')
+                        projectInfo.innerHTML =
+                            `
+                            <th>${data[i].projectNo}</th>
+                            <th>${data[i].projectName}</th>
+                            <th>${data[i].projectEndDate}</th>
+                            <th>${data[i].productorNo}</th>
+                            `
+                        projectActiveList.append(projectInfo)
+                    }
+                }else {
+                    const NoProjectInfo = document.createElement('tr')
+                    NoProjectInfo.innerHTML = `<th colspan="5" style="font-size: 40px; text-align: center; height: 60px">해당하는 값이 없습니다.</th>`
+                    projectActiveList.append(NoProjectInfo)
+                }
+            })
+    })
 
 </script>
 </body>

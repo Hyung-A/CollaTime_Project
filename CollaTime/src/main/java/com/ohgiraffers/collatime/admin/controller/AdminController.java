@@ -262,5 +262,29 @@ public class AdminController {
         }
         return message;
     }
+
+    @GetMapping(value = "/project/number/{projectNo}",  produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public List<AdminProjectDTO> searchProjectByNo(@PathVariable("projectNo")int projectNo){
+        return adminService.searchProjectByNo(projectNo);
+    }
+
+    @GetMapping(value = "/project/name/{projectName}",  produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public List<AdminProjectDTO> searchProjectByName(@PathVariable("projectName")String projectName){
+        return adminService.searchProjectByName(projectName);
+    }
+
+    @GetMapping(value = "/project/enddate/{projectEndDate}",  produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public List<AdminProjectDTO> searchProjectByEndDate(@PathVariable("projectEndDate") String projectEndDate){
+        return adminService.searchProjectByEndDate(projectEndDate);
+    }
+
+    @GetMapping(value = "/project/productorno/{productorNo}",  produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public List<AdminProjectDTO> searchProjectByProductorNo(@PathVariable("productorNo") int productorNo){
+        return adminService.searchProjectByProductorNo(productorNo);
+    }
 }
 

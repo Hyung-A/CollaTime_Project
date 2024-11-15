@@ -9,4 +9,12 @@ public interface AdminProjectMapper {
     List<AdminProjectDTO> allActiveProject();
 
     int deleteAllDeactive(List<Integer> list);
+
+    List<AdminProjectDTO> searchProjectByNo(int projectNo);
+
+    List<AdminProjectDTO> searchProjectByName(String projectName);
+
+    List<AdminProjectDTO> searchProjectByEndDate(String projectEndDate);
+
+    List<AdminProjectDTO> searchProjectByProductorNo(int productorNo);
 }
