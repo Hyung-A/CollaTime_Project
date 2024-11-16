@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-#middleModal {
+#detailsModal {
 
     position: absolute;
     width: 554px;
@@ -10,6 +10,7 @@
     background: #FFFFFF;
     border: 1px solid #595959;
     border-radius: 25px;
+    display: none;
 
 }
 
@@ -45,8 +46,8 @@
     border: none;
     cursor: pointer;
     padding: 0;
-    margin-top: 60px;
-    right: 12%;
+    top: 5px;
+    right: 160px;
 }
 
 #deleteList {
@@ -57,8 +58,8 @@
     border: none;
     cursor: pointer;
     padding: 0;
-    right: 4%;
-    margin-top: 60px;
+    top: 5px;
+    right: 100px;
 }
 
 #watch {
@@ -68,8 +69,29 @@
     border: none;
 }
 
+
+
+
+.middleBlueHeader{
+    position: absolute;
+    width: 554px;
+    height: 49px;
+    background: #92E2F8;
+    border-bottom: 1px solid #282828;
+    border-radius: 25px 25px 0px 0px;
+}
+
+.makeScheduleXButton{
+    width: 30px;
+    height: 34px;
+    font-size: 30px;
+    position: absolute;
+    left: 506px;
+    top: 5px;
+}
+
 /* 일정 제목 */
-#scheduleTitle {
+.scheduleTitle {
 
     position: absolute;
     width: 350px;
@@ -80,6 +102,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.scheduleInputTitle{
+
+    width: 400px;
+    height: 50px;
+    border: none;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 25px;
+    letter-spacing: 0.03em;
+    color: #282828;
+    outline: none;
 }
 
 .colorOptions {
@@ -101,12 +137,40 @@
     border-radius: 50%;
     background-color: #FF0000; /* 기본 빨간색 */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 약간의 그림자 */
+    cursor: pointer;
     border: 1px solid #ccc;
 }
 
+.update-color-dropdown {
+    display: none; /* 기본적으로 숨김 */
+    position: absolute;
+    top: 140px;
+    left: 50px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
 
+.color-option {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 5px;
+    display: inline-block;
+}
 
-#schedulePeriod {
+.dropdown-icon {
+    position: absolute;
+    left: 30px;
+    font-size: 12px;
+    color: #aaa;
+    cursor: pointer;
+}
+.schedulePeriod{
     position: absolute;
     width: 350px;
     height: 62px;
@@ -114,8 +178,7 @@
     top: 150px;
     border-bottom: solid 3px #92E2F8;
 }
-
-#scheduleStartDate {
+.scheduleStartDate{
 
     position: absolute;
     width: 150px;
@@ -135,7 +198,7 @@
     outline: none;
 }
 
-#scheduleEndDate {
+.scheduleEndDate {
     position: absolute;
     width: 150px;
     height: 40px;
@@ -154,7 +217,7 @@
     outline: none;
 }
 
-#slash {
+.slash {
     position: absolute;
     left: 185px;
     top: 1px;
@@ -170,12 +233,12 @@
     color: #282828;
 }
 
-#watch {
+.watch {
     position: absolute;
     width: 20px;
 }
 
-#participant-container {
+.participant-container {
     position: absolute;
     display: flex;
     align-items: center;
@@ -186,24 +249,24 @@
     border-bottom: solid 3px #92E2F8;
 }
 
-#invite-icon {
+.invite-icon {
     cursor: pointer;
 
 }
 
-#participant-list {
+.participant-list {
     font-size: 18px;
     color: #666;
     margin-left: 10px;
 }
 
-#memoIcon {
+.memoIcon {
     position: absolute;
     top: 310px;
     left: 40px;
 }
 
-#memo {
+.memo {
     position: absolute;
     top: 310px;
     left: 80px;
@@ -219,19 +282,35 @@
     border-radius: 10px; /* 모서리를 둥글게 */
 }
 
-#creator-info {
+.creator-info {
 
     position: absolute;
     bottom: 60px; /* 버튼 위에 위치할 수 있도록 설정 */
-    left: 40px; /* 왼쪽 여백 */
+    left: 40px;   /* 왼쪽 여백 */
     font-size: 14px;
-    color: #666; /* 텍스트 색상 */
+    color: #666;  /* 텍스트 색상 */
     font-weight: bold;
 }
+.update-makeSchedule-CancelButton {
+    position: absolute;
+    left: 325px;
+    top: 545px;
+    background: #DEF6FD;
+    border: #DEF6FD;
+    width: 99px;
+    height: 31px;
+    border-radius: 10px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    line-height: 36px;
+    letter-spacing: 0.03em;
+    color: #282828;
+}
 
-
-
-#details-confirmButton {
+.update-schedule-confirmButton {
     position: absolute;
     width: 99px;
     height: 31px;
@@ -251,3 +330,49 @@
 }
 
 
+
+
+.color-dropdown {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.color-option {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.textColorOptions {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: absolute;
+    justify-content: flex-end;
+    top: 80px;
+    right: 15px;
+    width: 101px;
+}
+.grid-box{
+    display: grid;
+    gap: 10px;
+}
+
+
+.readonly {
+    background-color: #fff; /* 읽기 전용 모드 배경 색상 */
+    border: none;
+    pointer-events: none;
+    border-bottom: none;
+}
+.hidden {
+    display: none;
+}
+
+.update-makeSchedule-CancelButton , .update-schedule-confirmButton{
+    cursor: pointer;
+}

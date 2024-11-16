@@ -27,5 +27,6 @@ public interface ScheduleMapper {
     void deleteSchedule(int scheduleNo); // ID를 통해 삭제
 
 
+    List<ScheduleDTO> getScheduleNoList(ScheduleDTO scheduleDTO);
 
 }

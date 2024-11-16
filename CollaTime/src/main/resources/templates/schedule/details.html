@@ -3,78 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/schedule/details.css">
-    <title>Title</title>
+    <title>Schedule Details</title>
+
 </head>
 
 <body>
-<!--<div id="detailsModal">-->
-    <div id="middleModal">
-        <div id="middleBlueHeader">
-            <div id="detailsXButton">X</div>
+
+<div id="detailsModal">
+    <div id="middleBlueHeader">
+        <div id="detailsXButton" style="cursor: pointer" onclick="closeDetailsModal()">X</div>
+    </div>
+
+    <form id="scheduleForm" >
+        <div id="modifyList">
+            <img src="/css/schedule/image/연필.png" id="modifySchedule" style="cursor: pointer;">
+        </div>
+        <div id="deleteList">
+            <img src="/css/schedule/image/휴지통.png" id="deleteSchedule">
         </div>
 
-        <form id="scheduleForm">
+        <!-- 일정 제목 -->
+        <div class="scheduleTitle readonly">
+            <input type="text" class="scheduleInputTitle readonly" placeholder="일정 제목" name="scheduleName" required>
+        </div>
 
-            <div id="modifyList">
-                <img src="/css/schedule/image/연필.png" id="modifySchedule">
+        <!-- 색상 선택 옵션 -->
+        <div class="colorOptions">
+            <div class="color-button">
+                <div class="dropdown-icon">▼</div>
             </div>
-            <div id="deleteList">
-                <img src="/css/schedule/image/휴지통.png" id="deleteSchedule" onclick="openDeleteCheckModal()">
+            <div class="update-color-dropdown">
+                <div class="color-option" data-color="#ff0000" style="background-color: #ff0000;"></div>
+                <div class="color-option" data-color="#ff8c00" style="background-color: #ff8c00;"></div>
+                <div class="color-option" data-color="#ffff00" style="background-color: #ffff00;"></div>
+                <div class="color-option" data-color="#008000" style="background-color: #008000;"></div>
+                <div class="color-option" data-color="#0000ff" style="background-color: #0000ff;"></div>
+                <div class="color-option" data-color="#4b0082" style="background-color: #4b0082;"></div>
+                <div class="color-option" data-color="#800080" style="background-color: #800080;"></div>
             </div>
+            <input type="hidden" name="colorCode">
+        </div>
 
-
-            <!-- 일정 제목 -->
-            <div id="scheduleTitle"></div>
-
-            <!-- 색상 선택 옵션 -->
-            <div id="colorOptions">
-                <div class="color-button" id="color-button" ></div>
-                <!-- 색상 출력 -->
-                <input type="hidden" name="colorCode" id="selectedColor">
+        <!-- 글자색 선택 옵션 추가 -->
+        <div class="textColorOptions">
+            <div class="grid-box">
+                <label for="textColor">글자색</label>
+                <input type="color" class="textColorPicker readonly" value="#000000">
+                <input type="hidden" name="textColorCode" class="selectedTextColor">
             </div>
+        </div>
 
-            <!-- 스케줄 기간-->
-            <div id="schedulePeriod">
-                <img src="/css/schedule/image/시계.png" id="watch">
-                <input type="date" id="scheduleStartDate" readonly>
-                <div id="slash">-</div>
-                <input type="date" id="scheduleEndDate" readonly>
+        <!-- 스케줄 기간 -->
+        <div class="schedulePeriod">
+            <img src="/css/schedule/image/시계.png" class="watch">
+            <input type="date" class="scheduleStartDate readonly" min="2024-01-01" max="2099-12-31" name="scheduleStart" required>
+            <div class="slash">-</div>
+            <input type="date" class="scheduleEndDate readonly" min="2024-01-01" max="2099-12-31" name="scheduleEnd" required>
+        </div>
+
+        <!-- 참여자 -->
+        <div class="participant-container">
+            <div class="invite-icon">
+                <img src="/css/schedule/image/인원.png" class="people readonly">
             </div>
-
-            <!-- 참여자 -->
-            <div id="participant-container">
-                <div id="invite-icon">
-                    <img src="/css/schedule/image/인원.png" id="people">
-                </div>
-                <div id="participant-list">
-                    <span id="placeholder-text">참여자(닉네임)</span>
-                </div>
+            <div class="participant-list readonly">
+                <span class="placeholder-text">참여자(닉네임)</span>
             </div>
+        </div>
 
-            <!-- 메모 -->
-            <span><img src="/css/schedule/image/과제내용.png" id="memoIcon"></span>
-            <textarea id="memo" class="memo-input" readonly ></textarea>
+        <!-- 메모 -->
+        <span><img src="/css/schedule/image/과제내용.png" class="memoIcon"></span>
+        <textarea class="memo memo-input readonly" placeholder="여기에 메모를 입력하세요..." name="scheduleContent"></textarea>
+
+        <!-- 취소 및 확인 버튼 -->
+        <button type="button" class="update-makeSchedule-CancelButton hidden">취소</button>
+        <div class="creator-info">
+            생성자 | <span th:text="${creatorName}"></span>
+        </div>
+        <input type="hidden" name="scheduleNo" >
+        <button type="button" class="update-schedule-confirmButton hidden"
+                onclick="updateSubmitSchedule()">수정하기</button>
+    </form>
 
 
-            <div id="creator-info">
-                생성자 | <span th:text="${creatorName}"></span>
-            </div>
-            <button type="button" id="details-confirmButton">확인</button>
-        </form>
-    </div>
-<!--</div>-->
+
+</div>
+
+
+
+
+
+
+
+
+
+
 </body>
-
-<script>
-
-    document.getElementById("details-confirmButton").addEventListener("click", function () {
-        document.getElementById("detailsModal").style.display = "none";
-    });
-
-    document.getElementById("detailsXButton").addEventListener("click", function () {
-        document.getElementById("detailsModal").style.display = "none";
-    });
-
-
-</script>
 </html>

@@ -2,21 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/static/css/schedule/modifycheck.css">
+    <link rel="stylesheet" href="/css/schedule/modifycheck.css">
     <title>Title</title>
 </head>
 <body>
-<div id="smallModal">
-    <div id="smallBlueHeader">
-        <div id="smallXButton">X</div>
+<div id="update-smallModal">
+    <div id="update-smallBlueHeader" onclick="updateCancelModal()" >
+        <div id="update-smallXButton">X</div>
     </div>
-    <div id="checkModify">
-        <div id="confirmCheck">수정 사항을 저장하시겠습니까?</div>
+    <div id="update-checkModify">
+        <div id="update-confirmCheck">수정 사항을 저장하시겠습니까?</div>
     </div>
 
     <div id="bottomButtons">
-        <div class="bottomButton" id="cancelButton">취소</div>
-        <div class="bottomButton" id="confirmButton">확인</div>
+        <div class="bottomButton" id="update-cancelButton" onclick="updateCancelModal()">취소</div>
+        <div class="bottomButton" id="update-confirmButton" onclick="updateSmallModal()">확인</div>
     </div>
 </div>
 </body>

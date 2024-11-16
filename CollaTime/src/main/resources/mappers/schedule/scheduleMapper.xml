@@ -14,6 +14,7 @@
         <result property="scheduleTitle" column="CT_SCHEDULE_TITLE"/>
         <result property="scheduleCreator" column="CT_SCHEDULE_CREATOR"/>
         <result property="colorCode" column="COLOR_CODE"/>
+        <result property="textColorCode" column="TEXT_COLOR_CODE"/>
     </resultMap>
 
 
@@ -32,7 +33,8 @@
         CT_SCHEDULE_TITLE,
         CT_SCHEDULE_START_DATE,
         CT_SCHEDULE_END_DATE,
-        CT_SCHEDULE_CONTENT
+        CT_SCHEDULE_CONTENT,
+        TEXT_COLOR_CODE
         FROM ct_schedule
         WHERE CT_SCHEDULE_NO = #{scheduleNo}
     </select>
@@ -47,7 +49,8 @@
         CT_SCHEDULE_CONTENT,
         CT_SCHEDULE_TITLE,
         CT_SCHEDULE_CREATOR,
-        COLOR_CODE
+        COLOR_CODE,
+        TEXT_COLOR_CODE
         )
 
         VALUES
@@ -58,33 +61,45 @@
         #{scheduleContent},
         #{scheduleTitle},
         #{scheduleCreator},
-        #{colorCode}
+        #{colorCode},
+        #{textColorCode}
         )
 
     </insert>
 
     <!-- 일정 수정 쿼리 -->
     <update id="updateSchedule" parameterType="com.ohgiraffers.collatime.schedule.model.dto.ScheduleDTO">
-        UPDATE schedule
+        UPDATE ct_schedule
         SET PROJECT_NO = #{projectNo},
         CT_SCHEDULE_START_DATE = #{scheduleStartDate},
         CT_SCHEDULE_END_DATE = #{scheduleEndDate},
         CT_SCHEDULE_CONTENT = #{scheduleContent},
         CT_SCHEDULE_TITLE = #{scheduleTitle},
         CT_SCHEDULE_CREATOR = #{scheduleCreator},
-        COLOR_CODE = #{colorCode}
+        COLOR_CODE = #{colorCode},
+        TEXT_COLOR_CODE= #{textColorCode}
         WHERE CT_SCHEDULE_NO = #{scheduleNo}
     </update>
 
     <!-- 일정 삭제 쿼리 -->
     <delete id="deleteSchedule" parameterType="int">
-        DELETE FROM schedule
+        DELETE FROM ct_schedule
         WHERE CT_SCHEDULE_NO = #{scheduleNo}
     </delete>
 
     <!-- 특정 사용자의 스케줄 개수 조회 (스케줄 존재 여부 확인용) -->
     <select id="countUserSchedules" parameterType="String" resultType="int">
-        SELECT COUNT(*) FROM schedules WHERE schedule_creator = #{username}
+        SELECT COUNT(*) FROM ct_schedule WHERE schedule_creator = #{username}
     </select>
+
+
+    <select id="getScheduleNoList" resultMap="scheduleResultMap">
+        SELECT * FROM ct_schedule
+        WHERE CT_SCHEDULE_NO IN
+        <foreach item="item" index="index" collection="scheduleNoList" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
 
 </mapper>
