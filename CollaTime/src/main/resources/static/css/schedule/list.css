@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-#middleModal{
+#listModal{
 
     position: absolute;
     width: 554px;
@@ -12,9 +12,10 @@
     border: 1px solid #595959;
     /*box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);*/
     border-radius: 25px;
-
+    display: none;
 }
-#middleBlueHeader{
+
+#list-middleBlueHeader{
 
     position: absolute;
     width: 554px;
@@ -25,7 +26,7 @@
     border-radius: 25px 25px 0px 0px;
 
 }
-#listXButton{
+#list-listXButton{
 
     width: 30px;
     height: 34px;
@@ -47,6 +48,7 @@
     border-bottom: 1px solid #e0e0e0;
     background-color: #EEEEEE;
     margin-top: 100px;
+    overflow-y: scroll;
 }
 
 .dot {
@@ -63,7 +65,7 @@
     font-weight: bold;
 }
 
-#plusList {
+#list-plusList {
     position: absolute;
     width: 30px;
     top: 10px;
@@ -75,8 +77,78 @@
     padding: 0;
 }
 
-#plusList img {
+#list-plusList img {
 
     width: 100%;
     height: auto;
+}
+
+.schedule-container {
+    padding: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.schedule-card {
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.schedule-card:hover {
+    transform: translateY(-5px);
+}
+
+.schedule-header h3 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: #333;
+}
+
+.schedule-body p {
+    margin: 8px 0;
+    color: #555;
+}
+
+.schedule-creator {
+    font-size: 0.9rem;
+    color: #888;
+    text-align: right;
+}
+
+
+/* 가운데 정렬을 위한 컨테이너 */
+#centeredContent {
+    position: absolute;
+    display: flex;
+    top: 200px;
+    left: 220px;
+    flex-direction: column;
+}
+
+/* 이미지 스타일 */
+#centerImage {
+
+    width: 100px; /* 원하는 크기로 조정 */
+    margin-bottom: 10px; /* 이미지와 텍스트 간격 */
+}
+
+/* 텍스트 스타일 */
+#centerText {
+
+    margin-left: -15px;
+    font-size: 16px;
+    color: #888888; /* 텍스트 색상 */
+}
+
+
+.emptyModal{
+    border-bottom: none !important;
+    background-color: #fff !important;
+    top: -50px !important;
+    overflow-y: hidden !important;
 }

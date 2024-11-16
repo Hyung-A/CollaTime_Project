@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-#smallModal{
+#delete-smallModal{
 
     position: absolute;
     width: 554px;
@@ -10,9 +10,11 @@
     background: #FFFFFF;
     border:1px solid #595959;
     border-radius: 25px;
+    display: none;
+    z-index: 99;
 }
 
-#smallBlueHeader{
+#delete-smallBlueHeader{
 
     position: absolute;
     width: 554px;
@@ -20,10 +22,10 @@
     background: #92E2F8;
     border-bottom: 1px solid #282828;
     border-radius: 25px 25px 0px 0px;
-
+    cursor: pointer;
 }
 
-#smallXButton{
+#delete-smallXButton{
 
     width: 30px;
     height: 34px;
@@ -34,7 +36,7 @@
 
 }
 
-#checkDelete {
+#delete-checkDelete {
 
     top: 50%;
     left: 50%;
@@ -48,12 +50,12 @@
     font-weight: bold;
 }
 
-#confirmCheck {
+#delete-confirmCheck {
     white-space: nowrap; /* 한 줄로 나오게 하기위해 */
 }
 
 
-#bottomButtons {
+#delete-bottomButtons {
     display: flex;
     justify-content: space-between;
     padding: 20px;
@@ -73,7 +75,7 @@
     align-content: center;
 }
 
-#deleteCheckCancelButton {
+#delete-cancelButton {
     background-color: rgba(146, 226, 248, 0.3);
     color: black;
     font-size: 15px;
@@ -81,7 +83,7 @@
     margin-right: 10px;
 }
 
-#deleteCheckConfirmButton {
+#delete-confirmButton {
     background-color: #92E2F8;
     color: black;
     font-size: 15px;

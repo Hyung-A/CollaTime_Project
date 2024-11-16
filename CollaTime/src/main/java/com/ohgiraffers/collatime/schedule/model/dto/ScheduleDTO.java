@@ -1,5 +1,6 @@
 package com.ohgiraffers.collatime.schedule.model.dto;
 
+
 public class ScheduleDTO {
 
 
@@ -11,6 +12,10 @@ public class ScheduleDTO {
     private String scheduleTitle; // 제목
     private String scheduleCreator;
     private String colorCode;
+
+    private String textColorCode;
+
+    private Integer[]  scheduleNoList;
 
     public ScheduleDTO() {}
 
@@ -89,6 +94,22 @@ public class ScheduleDTO {
         this.colorCode = colorCode;
     }
 
+    public String getTextColorCode() {
+        return textColorCode;
+    }
+
+    public void setTextColorCode(String textColorCode) {
+        this.textColorCode = textColorCode;
+    }
+
+    public Integer[] getScheduleNoList() {
+        return scheduleNoList;
+    }
+
+    public void setScheduleNoList(Integer[] scheduleNoList) {
+        this.scheduleNoList = scheduleNoList;
+    }
+
     @Override
     public String toString() {
         return "ScheduleDTO{" +
@@ -100,6 +121,8 @@ public class ScheduleDTO {
                 ", scheduleTitle='" + scheduleTitle + '\'' +
                 ", scheduleCreator='" + scheduleCreator + '\'' +
                 ", colorCode='" + colorCode + '\'' +
+                ", textColorCode='" + textColorCode + '\'' +
+                ", scheduleNoList=" + scheduleNoList +
                 '}';
     }
 }

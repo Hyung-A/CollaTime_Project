@@ -9,7 +9,7 @@
 <div id="emptyModal">
     <div id="middleModal">
         <div id="middleBlueHeader">
-            <div id="emptyXButton">X</div>
+            <div id="emptyXButton" onclick="emptyModalClose()" style="cursor: pointer">X</div>
             <button id="plusList">
                 <img src="/css/schedule/image/plusList.png">
             </button>
@@ -21,6 +21,12 @@
     </div>
 </div>
 
+
+<script>
+    function emptyModalClose() {
+        document.getElementById("emptyModal").style.display = "none";
+    }
+</script>
 
 </body>
 </html>

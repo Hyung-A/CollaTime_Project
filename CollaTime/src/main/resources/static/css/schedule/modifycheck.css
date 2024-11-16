@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-#smallModal{
+#update-smallModal{
 
     position: absolute;
     width: 554px;
@@ -10,9 +10,11 @@
     background: #FFFFFF;
     border:1px solid #595959;
     border-radius: 25px;
+    display: none;
+    z-index: 999;
 }
 
-#smallBlueHeader{
+#update-smallBlueHeader{
 
     position: absolute;
     width: 554px;
@@ -23,7 +25,7 @@
 
 }
 
-#smallXButton{
+#update-smallXButton{
 
     width: 30px;
     height: 34px;
@@ -31,10 +33,11 @@
     position: absolute;
     left: 506px;
     top: 5px;
+    cursor: pointer;
 
 }
 
-#checkModify {
+#update-checkModify {
 
     top: 50%;
     left: 50%;
@@ -46,13 +49,14 @@
     align-items: center;
     font-size: 25px;
     font-weight: bold;
+    cursor: pointer;
 }
 
-#confirmCheck {
+#update-confirmCheck {
     white-space: nowrap;  /* 한 줄로 나오게 하기위해 */
 }
 
-#bottomButtons {
+#update-bottomButtons {
     display: flex;
     justify-content: space-between;
     padding: 20px;
@@ -72,7 +76,7 @@
     align-content: center;
 }
 
-#cancelButton {
+#update-cancelButton {
     background-color: rgba(146, 226, 248, 0.3);
     color: black;
     font-size: 15px;
@@ -80,7 +84,7 @@
     margin-right: 10px;
 }
 
-#confirmButton {
+#update-confirmButton {
     background-color: #92E2F8;
     color: black;
     font-size: 15px;

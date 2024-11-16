@@ -11,8 +11,11 @@
     background: #FFFFFF;
     border: 1px solid #595959;
     border-radius: 25px;
-    display: flex !important; /* 중요: 다른 CSS 속성 무시 */
+    /*display: flex !important; */
+    /* 중요: 다른 CSS 속성 무시 */
     z-index: 20 !important;    /* 두 번째 모달이 항상 최상위 */
+
+    display: none;
 }
 
 #middleBlueHeader{
@@ -142,23 +145,23 @@
 }
 
 #scheduleEndDate {
-     position: absolute;
-     width: 150px;
-     height: 40px;
-     left: 215px;
-     top: 15px;
-     font-family: 'Inter';
-     font-style: normal;
-     font-weight: 300;
-     font-size: 18px;
-     letter-spacing: 0.03em;
-     display: flex;
-     justify-content: center;
-     line-height: 20px;
-     border: none;
-     color: #282828;
-     outline: none;
- }
+    position: absolute;
+    width: 150px;
+    height: 40px;
+    left: 215px;
+    top: 15px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    letter-spacing: 0.03em;
+    display: flex;
+    justify-content: center;
+    line-height: 20px;
+    border: none;
+    color: #282828;
+    outline: none;
+}
 
 #slash {
     position: absolute;
@@ -274,3 +277,33 @@
 
 
 
+
+.color-dropdown {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.color-option {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#textColorOptions {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: absolute;
+    justify-content: flex-end;
+    top: 80px;
+    right: 15px;
+    width: 101px;
+}
+.grid-box{
+    display: grid;
+    gap: 10px;
+}
