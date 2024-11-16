@@ -25,25 +25,29 @@
 <div id="projectTableActive_area">
     <table id="projectTableActive">
         <tr>
-            <th style="width: 70px; background-color: #aaaaaa">번호</th>
-            <th style="width: 295px; background-color: #aaaaaa">프로젝트 제목</th>
-            <th style="width: 150px; background-color: #aaaaaa">종료일자</th>
-            <th style="width: 120px; background-color: #aaaaaa">생성자 번호</th>
+            <th style="width: 70px; background-color: #8DE6FF">번호</th>
+            <th style="width: 295px; background-color: #8DE6FF">프로젝트 제목</th>
+            <th style="width: 150px; background-color: #8DE6FF">종료일자</th>
+            <th style="width: 120px; background-color: #8DE6FF">생성자 번호</th>
         </tr>
     </table>
 </div>
 <div id="projectTableDeactive_area">
     <table id="projectTableDeactive">
         <tr>
-            <th style="width: 70px; background-color: #aaaaaa">번호</th>
-            <th style="width: 295px; background-color: #aaaaaa">프로젝트 제목</th>
-            <th style="width: 150px; background-color: #aaaaaa">종료일자</th>
-            <th style="width: 120px; background-color: #aaaaaa">생성자 번호</th>
+            <th style="width: 70px; background-color: #8DE6FF">번호</th>
+            <th style="width: 295px; background-color: #8DE6FF">프로젝트 제목</th>
+            <th style="width: 150px; background-color: #8DE6FF">종료일자</th>
+            <th style="width: 120px; background-color: #8DE6FF">생성자 번호</th>
         </tr>
     </table>
 </div>
 <button type="button" id="deleteAllDeactive" onclick="location.href='/admin/deleteproject'">일괄삭제</button>
 <script>
+    document.getElementById('left_project').style.background = 'white';
+    document.getElementById('left_project').style.boxShadow = 'inset 0.2px 0.2px 2px black';
+
+
     const projectActiveList = document.getElementById('projectTableActive')
     const projectDeactiveList = document.getElementById('projectTableDeactive')
     const logo = document.getElementById('logo')
@@ -93,7 +97,7 @@
                 }
             }else {
                 const NoProjectInfo = document.createElement('tr')
-                NoProjectInfo.innerHTML = `<th colspan="5" style="font-size: 40px; text-align: center; height: 60px">해당하는 값이 없습니다.</th>`
+                NoProjectInfo.innerHTML = `<th colspan="5" style="font-size: 30px; text-align: center; height: 60px">해당하는 값이 없습니다.</th>`
                 projectDeactiveList.append(NoProjectInfo)
             }
         })

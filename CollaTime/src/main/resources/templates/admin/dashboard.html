@@ -26,8 +26,8 @@
   <img class="areaImg" src="/css/admin/image/inquiry.png">
 </div>
 
+<!--<h3 class="visitor_text">월별 사용자</h3>-->
 <div id="month-visitor">
-  <h3 class="visitor_text">월별 사용자</h3>
   <div class="chart">
     <div class="y-axis">
       <div class="y-label">900</div>
@@ -59,8 +59,8 @@
   </div>
 </div>
 
+<!--<h3 class="visitor_text">일별 사용자</h3>-->
 <div id="day-visitor">
-  <h3 class="visitor_text">일별 사용자</h3>
   <div class="chart">
     <div class="y-axis">
       <div class="y-label">140</div>
@@ -86,6 +86,9 @@
   </div>
 </div>
 <script>
+  document.getElementById('left_dashboard').style.background = 'white';
+  document.getElementById('left_dashboard').style.boxShadow = 'inset 0.2px 0.2px 2px black';
+
   document.getElementById('logo').addEventListener('click', ()=>{location.href="/admin/dashboard"})
 
 
@@ -126,8 +129,8 @@
             console.log((data[0]/140*100))
             for(let i = 0; i < 7; i++){
               Day[i].style.height = (data[i]/140*100+2)+'%'
-              Day[i].addEventListener("mouseover", ()=>{Day[i].innerText = data[i]; Day[i].style.color = 'white'})
-              Day[i].addEventListener("mouseout", ()=>{Day[i].innerText = Day[i].id; Day[i].style.color = 'black'})
+              Day[i].addEventListener("mouseover", ()=>{Day[i].innerText = data[i];})
+              Day[i].addEventListener("mouseout", ()=>{Day[i].innerText = Day[i].id;})
             }
             //
             // Mon.style.height = (data[0]/140*100+2)+'%'
@@ -177,11 +180,9 @@
               Month[i].style.height = (data[i] / 900 * 100 + 2) + '%'
               Month[i].addEventListener("mouseover", () => {
                 Month[i].innerText = data[i];
-                Month[i].style.color = 'white';
               })
               Month[i].addEventListener("mouseout", () => {
                 Month[i].innerText = Month[i].id
-                Month[i].style.color = 'black'
               })
             }
             //

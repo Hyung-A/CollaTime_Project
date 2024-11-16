@@ -9,28 +9,26 @@
     height: 390px;
     font-size: 30px;
     font-weight: bold;
+    padding-bottom: 5px;
+    border-radius: 10px;
 
 }
 
 #day-visitor {
     background-color: #DFF7FD;
-    position: absolute;
     overflow: hidden;
+    position: absolute;
     left: 1250px;
     top: 420px;
     width: 500px;
     height: 390px;
     font-size: 30px;
     font-weight: bold;
+    padding-bottom: 5px;
+    border-radius: 10px;
 
 }
 
-
-
-.visitor_text{
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
 
 /* 차트 전체 스타일 */
 .chart {
@@ -45,10 +43,12 @@
 
 /* y축 스타일 */
 .y-axis {
+    position: absolute;
+    top: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%;
+    height: 350px;
     padding-right: 10px;
 }
 
@@ -60,20 +60,24 @@
 
 /* 막대 그래프 영역 */
 .bars {
+    position: absolute;
+    left: 55px;
+    top: 10px;
     display: flex;
     align-items: flex-end;
     gap: 10px;
-    height: 100%;
-    border-left: 1px solid #ddd;
+    height: 350px;
 }
 
 .bars2 {
+    overflow: hidden;
+    position: absolute;
+    left: 55px;
+    top: 10px;
     display: flex;
     align-items: flex-end;
-    margin-left: 10px;
     gap: 20px;
-    height: 100%;
-    border-left: 1px solid #ddd;
+    height: 350px;
 }
 
 
@@ -81,7 +85,7 @@
 .bar {
     width: 40px;
     background-color: steelblue;
-    color: black;
+    color: white;
     font-size: 12px;
     display: flex;
     align-items: flex-end;
@@ -93,7 +97,7 @@
 .bar2 {
     width: 40px;
     background-color: sandybrown;
-    color: black;
+    color: white;
     font-size: 12px;
     display: flex;
     align-items: flex-end;
@@ -101,6 +105,10 @@
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     text-align: center;
+}
+
+.bar:hover{
+
 }
 
 /*회원 영역*/
@@ -117,6 +125,7 @@
     border: 1px solid #000000;
     border-radius: 30px;
 
+    cursor: pointer;
 }
 
 /*프로젝트 영역*/
@@ -134,6 +143,7 @@
     border: 1px solid #000000;
     border-radius: 30px;
 
+    cursor: pointer;
 }
 
 /*문의 영역*/
@@ -151,6 +161,7 @@
     border: 1px solid #000000;
     border-radius: 30px;
 
+    cursor: pointer;
 }
 
 /*영역 텍스트 스타일*/
