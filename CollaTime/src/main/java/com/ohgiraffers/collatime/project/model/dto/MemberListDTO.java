@@ -5,13 +5,15 @@ public class MemberListDTO {
     private String memberNo;
     private String memberNickname;
     private String memberEmail;
+    private String isProductor;
 
     public MemberListDTO(){}
 
-    public MemberListDTO(String memberNo, String memberNickname, String memberEmail) {
+    public MemberListDTO(String memberNo, String memberNickname, String memberEmail, String isProductor) {
         this.memberNo = memberNo;
         this.memberNickname = memberNickname;
         this.memberEmail = memberEmail;
+        this.isProductor = isProductor;
     }
 
     public String getMemberNo() {
@@ -38,12 +40,21 @@ public class MemberListDTO {
         this.memberEmail = memberEmail;
     }
 
+    public String getIsProductor() {
+        return isProductor;
+    }
+
+    public void setIsProductor(String isProductor) {
+        this.isProductor = isProductor;
+    }
+
     @Override
     public String toString() {
         return "MemberListDTO{" +
                 "memberNo='" + memberNo + '\'' +
                 ", memberNickname='" + memberNickname + '\'' +
                 ", memberEmail='" + memberEmail + '\'' +
+                ", isProductor='" + isProductor + '\'' +
                 '}';
     }
 }

@@ -429,8 +429,8 @@
 #selectMember{
 
     position: absolute;
-    overflow-x: auto;
-    width: 780px;
+    overflow-y: scroll;
+    width: 600px;
     height: 50px;
     left: 130px;
     top: 586px;
