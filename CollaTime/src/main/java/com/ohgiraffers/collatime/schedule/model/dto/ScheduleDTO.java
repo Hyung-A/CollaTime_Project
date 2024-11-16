@@ -1,6 +1,9 @@
 package com.ohgiraffers.collatime.schedule.model.dto;
 
 
+import java.util.List;
+import java.util.Map;
+
 public class ScheduleDTO {
 
 
@@ -16,6 +19,11 @@ public class ScheduleDTO {
     private String textColorCode;
 
     private Integer[]  scheduleNoList;
+
+
+    private Integer[]  participantNos;
+
+    private List<Map<String, Object>> participantList;
 
     public ScheduleDTO() {}
 
@@ -110,6 +118,23 @@ public class ScheduleDTO {
         this.scheduleNoList = scheduleNoList;
     }
 
+    public Integer[] getParticipantNos() {
+        return participantNos;
+    }
+
+    public void setParticipantNos(Integer[] participantNos) {
+        this.participantNos = participantNos;
+    }
+
+
+    public List<Map<String, Object>> getParticipantList() {
+        return participantList;
+    }
+
+    public void setParticipantList(List<Map<String, Object>> participantList) {
+        this.participantList = participantList;
+    }
+
     @Override
     public String toString() {
         return "ScheduleDTO{" +
@@ -123,6 +148,8 @@ public class ScheduleDTO {
                 ", colorCode='" + colorCode + '\'' +
                 ", textColorCode='" + textColorCode + '\'' +
                 ", scheduleNoList=" + scheduleNoList +
+                ", participantNos=" + participantNos +
                 '}';
     }
+
 }

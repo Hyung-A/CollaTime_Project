@@ -56,7 +56,7 @@ $(function () {
     $('.update-schedule-confirmButton, .update-makeSchedule-CancelButton').addClass('hidden');
 
     // 수정 버튼 클릭 시 수정 모드로 전환
-    $('#modifySchedule').on('click', function() {
+    $('#modifySchedule').on('click', async function() {
         // 읽기 전용 모드 해제
 
         $('#detailsModal input, #detailsModal textarea').removeClass('readonly').prop('readonly', false);
@@ -67,27 +67,26 @@ $(function () {
 
         $('#detailsModal .scheduleTitle').removeClass('readonly').prop('readonly', false);
 
+        $('#detailsModal .participant-list').removeClass('readonly');
+
+        $(".update-remove-btn").css("display","inline");
+        $(".update-participant-item-span").hide();
 
 
-        const inviteIcon = document.querySelector('.invite-icon');
-        const participantListNode = document.querySelector('.participant-list');
-        const placeholderText = document.querySelector('.placeholder-text');
+        await updateSscheduleParticipantList();
+
+        const inviteIcon = document.querySelector('#update-invite-icon');
+        const participantListNode = document.querySelector('#pdate-participant-list');
+        const placeholderText = document.querySelector('#update-placeholder-text');
 
         inviteIcon.addEventListener('click', () => {
-            // 팀원을 초대하는 모달을 여는 코드 (여기서는 임시로 구현)
-            const newParticipant = document.createElement('span');
-            newParticipant.textContent = "팀원 1"; // 실제로는 초대한 팀원의 이름으로 변경
-            participantListNode.appendChild(newParticipant);
-
-            // 기존의 "참여자(닉네임)" 텍스트를 제거
-            if (placeholderText) {
-                placeholderText.remove();
-            }
+            $("#update-participant-select").show();
         });
-
 
         // 수정 모드로 전환 시 포커스 설정
         $('.scheduleInputTitle').focus();
+
+
     });
 
     // 취소 버튼 클릭 시 다시 읽기 전용 모드로 전환
@@ -105,6 +104,11 @@ $(function () {
         // 확인 및 취소 버튼 숨기기
         $('.update-schedule-confirmButton, .update-makeSchedule-CancelButton').addClass('hidden');
 
+        const inviteIcon = document.querySelector('#update-invite-icon');
+        inviteIcon.addEventListener('click', () => {
+            $("#update-participant-select").hide();
+        });
+
         $("#detailsModal").hide();
     });
 
@@ -112,7 +116,7 @@ $(function () {
 
     // 삭제 버튼 클릭 시
     $('#deleteSchedule').on('click', function() {
-            $("#delete-smallModal").show();
+        $("#delete-smallModal").show();
     });
 
 
@@ -129,8 +133,8 @@ function deleteCancelModal(){
 }
 
 async  function deleteConfirmAction(){
-   const scheduleNo = $("#detailsModal input[name='scheduleNo']").val();
-   const response= await fetch(`/api/schedules/${scheduleNo}`, {
+    const scheduleNo = $("#detailsModal input[name='scheduleNo']").val();
+    const response= await fetch(`/api/schedules/${scheduleNo}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
@@ -186,9 +190,25 @@ function updateSmallModal() {
     const scheduleContent = memoInput ? memoInput.value : '';
     const creatorName = creatorInfo ? creatorInfo.textContent.trim() : '';
 
+
+    const participantList = document.querySelectorAll("#update-participant-list .participant-item");
+    if (participantList.length === 0) {
+        console.log(" 등록 처리 : 팀원이 없습니다. 팀원를 추가해 주세요.",participantList);
+        document.getElementById("alert-confirmAlarm").innerText = "팀원이 없습니다. 팀원를 추가해 주세요.";
+        document.getElementById("alertModal").style.display = "flex";
+        return;
+    }
+
+    // data-memberNo 값을 배열로 수집
+    const participantNos = Array.from(participantList).map(item => item.getAttribute('data-memberNo'));
+
+
+    const urlParam=new URLSearchParams(window.location.search);
+    const projectNo=urlParam.get('projectNo');
+
     // 폼 데이터 구성
     const scheduleData = {
-        projectNo: 1,
+        projectNo: projectNo,
         scheduleNo,
         scheduleTitle,
         colorCode,
@@ -196,7 +216,8 @@ function updateSmallModal() {
         scheduleStartDate,
         scheduleEndDate,
         scheduleContent,
-        scheduleCreator: creatorName
+        scheduleCreator: creatorName,
+        participantNos: participantNos
     };
 
     console.log("업데이트 내용:", scheduleData);
@@ -223,5 +244,85 @@ function updateSmallModal() {
                 alert("저장에 실패했습니다. 다시 시도해주세요.");
             }
         })
-       .catch(error => console.error("Error:", error));
+        .catch(error => console.error("Error:", error));
 }
+
+
+
+
+async function updateSscheduleParticipantList() {
+    const urlParams = new URLSearchParams(window.location.search); // URLSearchParams 라이브러리를 사용
+    const projectNo = urlParams.get('projectNo');
+    console.log("업데이트 : projectNo : ", projectNo);
+
+    const response = await fetch(`/api/schedule/participant/${projectNo}`);
+    if (!response.ok) {
+        console.log("Error: " + response.statusText);
+        return;
+    }
+    const participants = await response.json();
+
+    let htmlTemplate = "<select id='updateParticipantSelect' multiple>"; // multiple 속성으로 여러 선택 가능
+    participants.forEach(participant => {
+        htmlTemplate += `
+             <option value="${participant.memberNo}" data-nickname="${participant.memberNickname}">${participant.memberNickname}</option>   
+        `;
+    });
+    htmlTemplate += "</select>";
+    document.getElementById("update-participant-select").innerHTML = htmlTemplate;
+
+
+
+    // select 요소에서 변화 감지
+    document.getElementById('updateParticipantSelect').addEventListener('change', function () {
+        const selectedOptions = Array.from(this.selectedOptions);
+        const selectedItemsContainer = document.getElementById('update-participant-list');
+
+        // 선택된 항목을 추적하기 위한 Set
+        const selectedMembers = new Set();
+
+        selectedOptions.forEach(option => {
+            const memberNo = option.value;
+            const memberNickname = option.getAttribute('data-nickname');
+
+            const participantItems = selectedItemsContainer.querySelectorAll('.participant-item');
+
+            participantItems.forEach(item => {
+                const memberNo = item.getAttribute('data-memberno');
+                selectedMembers.add(memberNo);
+            });
+
+
+            // 이미 선택된 항목인지 확인
+            if (selectedMembers.has(memberNo)) {
+                return; // 이미 추가된 항목은 건너뜁니다
+            }
+
+            // 선택된 항목을 Set에 추가
+            selectedMembers.add(memberNo);
+
+            // span 요소로 추가
+            const span = document.createElement('span');
+            span.classList.add('participant-item');
+            span.setAttribute('data-memberNo', memberNo); // data-memberNo 속성 추가
+            span.innerHTML = `${memberNickname} <button type="button" class="remove-btn" data-memberNo="${memberNo}">x</button>`;
+
+            // 삭제 버튼 클릭 시 해당 항목 제거
+            span.querySelector('.remove-btn').addEventListener('click', function () {
+                span.remove(); // span 삭제
+                selectedMembers.delete(memberNo); // Set에서 해당 항목 제거
+                const optionToDeselect = document.querySelector(`#participantSelect option[value="${memberNo}"]`);
+                optionToDeselect.selected = false; // select에서 해당 옵션 해제
+            });
+
+            // participant-list에 추가
+            selectedItemsContainer.appendChild(span);
+        });
+
+        // select 박스 숨기기
+        document.querySelector("#update-participant-select").style.display = 'none';
+    });
+}
+
+
+

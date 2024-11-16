@@ -61,15 +61,22 @@
             <input type="date" class="scheduleEndDate readonly" min="2024-01-01" max="2099-12-31" name="scheduleEnd" required>
         </div>
 
+
         <!-- 참여자 -->
-        <div class="participant-container">
-            <div class="invite-icon">
-                <img src="/css/schedule/image/인원.png" class="people readonly">
+        <div id="update-participant-container" class="participant-container" >
+            <div id="update-invite-icon" class="invite-icon" >
+                <img src="/css/schedule/image/인원.png" class="people readonly"  >
             </div>
-            <div class="participant-list readonly">
-                <span class="placeholder-text">참여자(닉네임)</span>
+            <div id="update-participant-list" class="participant-list readonly" >
+                <!-- 선택된 참가자가 여기에 추가됩니다 -->
+            </div>
+            <div id="update-participant-select">
+                <!-- 참가자 목록을 보여주는 셀렉트 박스가 여기에 삽입됩니다 -->
             </div>
         </div>
+
+
+
 
         <!-- 메모 -->
         <span><img src="/css/schedule/image/과제내용.png" class="memoIcon"></span>

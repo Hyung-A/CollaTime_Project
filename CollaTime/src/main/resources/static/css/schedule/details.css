@@ -376,3 +376,69 @@
 .update-makeSchedule-CancelButton , .update-schedule-confirmButton{
     cursor: pointer;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+#update-participant-select {
+    display: none;
+}
+#updateParticipantSelect {
+    width: 30%;
+    /*padding: 12px 20px;*/
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #333;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    appearance: none; /* 기본 드롭다운 화살표 제거 */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+    position: absolute;
+    z-index: 999;
+    left: 34px;
+    top: -46px;
+}
+
+
+
+
+/* 포커스 시 스타일 */
+#updateParticipantSelect:focus {
+    border-color: #4A90E2;
+    box-shadow: 0 0 8px rgba(74, 144, 226, 0.6);
+    outline: none;
+}
+
+/* 기본 옵션 스타일 */
+#updateParticipantSelect option {
+    padding: 10px;
+    font-size: 16px;
+}
+
+/* 드롭다운 화살표 커스터마이즈 */
+#updateParticipantSelect::-ms-expand {
+    display: none;
+}
+
+/* 셀렉트 박스가 비어있을 때 기본 텍스트 스타일 */
+#updateParticipantSelect option:first-child {
+    color: #888;
+    font-style: italic;
+}
+.participant-item{
+    margin-right: 15px;
+}
+

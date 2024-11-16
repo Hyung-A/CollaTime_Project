@@ -4,12 +4,13 @@ import com.ohgiraffers.collatime.schedule.model.dto.ScheduleDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface ScheduleMapper {
 
     // 로그인한 사용자 모든 일정 조회
-    List<ScheduleDTO> getUserSchedules(String username);
+    List<ScheduleDTO> getUserSchedules(Map<String, Object> map);
 
     // 특정 일정 조회
     // ScheduleDTO getSchedule();
@@ -28,5 +29,16 @@ public interface ScheduleMapper {
 
 
     List<ScheduleDTO> getScheduleNoList(ScheduleDTO scheduleDTO);
+
+    List<Map<String, Object>> participantList(Integer projectNo);
+
+
+    //스케쥴 참가자 삭제
+    void deleteParticipant(Map<String, Object> map);
+
+    //스케쥴 참가자 등록
+    void insertParticipant(Map<String, Object> map);
+
+    List<Map<String, Object>> scheduleParticipantList(Integer scheduleNo);
 
 }
