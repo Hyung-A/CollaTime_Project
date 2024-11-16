@@ -53,8 +53,10 @@
 #myPage_modifyUser_icon{
 
     position: absolute;
-    left: 178px;
-    top: 88px;
+    width: 68px;
+    height: 68px;
+    left: 168px;
+    top: 105px;
 
 }
 
@@ -116,10 +118,10 @@
 #myPage_search_inquiry_icon{
 
     position: absolute;
-    width: 48px;
-    height: 48px;
-    left: 178px;
-    top: 88px;
+    width: 68px;
+    height: 68px;
+    left: 168px;
+    top: 105px;
 
 }
 

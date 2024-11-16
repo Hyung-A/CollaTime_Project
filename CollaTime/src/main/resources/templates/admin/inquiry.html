@@ -26,46 +26,49 @@
 <div id="inquiryTablePassAuth_area">
     <table id="inquiryTablePassAuth">
         <tr>
-            <th style="width: 70px; background-color: #aaaaaa">번호</th>
-            <th style="width: 150px; background-color: #aaaaaa">처리상태</th>
-            <th style="width: 350px; background-color: #aaaaaa">문의제목</th>
-            <th style="width: 70px; background-color: #aaaaaa">답변</th>
+            <th style="width: 50px; background-color: #8DE6FF">번호</th>
+            <th style="width: 160px; background-color: #8DE6FF">처리상태</th>
+            <th style="width: 350px; background-color: #8DE6FF">문의제목</th>
+            <th style="width: 90px; background-color: #8DE6FF">답변</th>
         </tr>
     </table>
 </div>
 <div id="inquiryTableRequire_area">
     <table id="inquiryTableRequire">
         <tr>
-            <th style="width: 70px; background-color: #aaaaaa">번호</th>
-            <th style="width: 150px; background-color: #aaaaaa">처리상태</th>
-            <th style="width: 350px; background-color: #aaaaaa">문의제목</th>
-            <th style="width: 70px; background-color: #aaaaaa">답변</th>
+            <th style="width: 50px; background-color: #8DE6FF">번호</th>
+            <th style="width: 160px; background-color: #8DE6FF">처리상태</th>
+            <th style="width: 350px; background-color: #8DE6FF">문의제목</th>
+            <th style="width: 90px; background-color: #8DE6FF">답변</th>
         </tr>
     </table>
 </div>
 <div id="inquiryTableAnswer_area">
     <table id="inquiryTableAnswer">
         <tr>
-            <th style="width: 70px; background-color: #aaaaaa">번호</th>
-            <th style="width: 160px; background-color: #aaaaaa">처리상태</th>
-            <th style="width: 350px; background-color: #aaaaaa">문의제목</th>
-            <th style="width: 70px; background-color: #aaaaaa">답변</th>
+            <th style="width: 50px; background-color: #8DE6FF">번호</th>
+            <th style="width: 160px; background-color: #8DE6FF">처리상태</th>
+            <th style="width: 350px; background-color: #8DE6FF">문의제목</th>
+            <th style="width: 90px; background-color: #8DE6FF">답변</th>
         </tr>
     </table>
 </div>
 <div id="inquiryTableRead_area">
     <table id="inquiryTableRead">
         <tr>
-            <th style="width: 70px; background-color: #aaaaaa">번호</th>
-            <th style="width: 160px; background-color: #aaaaaa">처리상태</th>
-            <th style="width: 350px; background-color: #aaaaaa">문의제목</th>
-            <th style="width: 70px; background-color: #aaaaaa">답변</th>
+            <th style="width: 50px; background-color: #8DE6FF">번호</th>
+            <th style="width: 160px; background-color: #8DE6FF">처리상태</th>
+            <th style="width: 350px; background-color: #8DE6FF">문의제목</th>
+            <th style="width: 90px; background-color: #8DE6FF">답변</th>
         </tr>
     </table>
 </div>
 <button type="button" id="deleteAllRead" onclick="location.href='/admin/deleteinquiry'">일괄삭제</button>
 </div>
 <script>
+    document.getElementById('left_inquiry').style.background = 'white';
+    document.getElementById('left_inquiry').style.boxShadow = 'inset 0.2px 0.2px 2px black';
+
     const passAuthList = document.getElementById('inquiryTablePassAuth')
     const requireList = document.getElementById('inquiryTableRequire')
     const answerList = document.getElementById('inquiryTableAnswer')
@@ -93,7 +96,7 @@
                         <th>${data[i].inquiryNo}</th>
                         <th>${data[i].inquiryStatus}</th>
                         <th>${data[i].inquiryTitle}</th>
-                        <th>${answer} <button type="button" onclick="location.href='${passLink}'" style="float: right">위임</button></th>
+                        <th>${answer} <button type="button" onclick="location.href='${passLink}'" style="float: right; margin-right: 5px; cursor: pointer;">위임</button></th>
                         `
                     passAuthList.append(inquiryInfo)
                 }
@@ -123,7 +126,7 @@
                         <th>${data[i].inquiryNo}</th>
                         <th>${data[i].inquiryStatus}</th>
                         <th>${data[i].inquiryTitle}</th>
-                        <th>${answer} <button type="button" onclick="location.href='${answerLink}'" style="float: right">답변</button></th>
+                        <th>${answer} <button type="button" onclick="location.href='${answerLink}'" style="float: right; margin-right: 5px; cursor: pointer;">답변</button></th>
                         `
                     requireList.append(inquiryInfo)
                 }
@@ -150,10 +153,10 @@
                     }
                     inquiryInfo.innerHTML =
                         `
-                        <th>${data[i].inquiryNo} <button type="button" onclick="location.href='${inquiryLink}'" style="float: right">상세</button></th>
+                        <th>${data[i].inquiryNo}</th>
                         <th>${data[i].inquiryStatus}</th>
                         <th>${data[i].inquiryTitle}</th>
-                        <th>${answer}</th>
+                        <th>${answer}  <button type="button" onclick="location.href='${inquiryLink}'" style="float: right; margin-right: 5px;cursor: pointer;">상세</button></th>
                         `
                     answerList.append(inquiryInfo)
                 }
@@ -181,10 +184,10 @@
                     }
                     inquiryInfo.innerHTML =
                         `
-                        <th>${data[i].inquiryNo} <button type="button" onclick="location.href='${inquiryLink}'" style="float: right">상세</button></th>
+                        <th>${data[i].inquiryNo}</th>
                         <th>${data[i].inquiryStatus}</th>
                         <th>${data[i].inquiryTitle}</th>
-                        <th>${answer}</th>
+                        <th>${answer} <button type="button" onclick="location.href='${inquiryLink}'" style="float: right; margin-right: 5px; cursor: pointer;">상세</button></th>
                         `
                     readList.append(inquiryInfo)
                 }

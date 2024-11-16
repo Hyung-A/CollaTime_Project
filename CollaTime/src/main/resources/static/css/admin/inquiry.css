@@ -68,11 +68,13 @@
     left: 400px;
     height: 280px;
     border: 1px solid black;
+    border-radius: 10px;
 }
 
 #inquiryTableRequire{
     position: absolute;
     width: 625px;
+
 
 }
 
@@ -84,6 +86,7 @@
     left: 1100px;
     height: 280px;
     border: 1px solid black;
+    border-radius: 10px;
 }
 
 #inquiryTableAnswer{
@@ -100,6 +103,7 @@
     left: 400px;
     height: 280px;
     border: 1px solid black;
+    border-radius: 10px;
 }
 
 #inquiryTableRead{
@@ -116,6 +120,7 @@
     left: 1100px;
     height: 280px;
     border: 1px solid black;
+    border-radius: 10px;
 }
 
 th, td{
@@ -137,4 +142,5 @@ th, td{
     border-radius: 15px;
     font-size: 16px;
 
+    cursor: pointer;
 }

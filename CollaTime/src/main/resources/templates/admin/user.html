@@ -25,15 +25,18 @@
 <div id="userTable_area">
 <table id="userTable">
     <tr>
-        <th style="width: 150px; background-color: #aaaaaa">회원 번호</th>
-        <th style="width: 300px; background-color: #aaaaaa">ID</th>
-        <th style="width: 300px; background-color: #aaaaaa">EMAIL</th>
-        <th style="width: 250px; background-color: #aaaaaa">이름</th>
-        <th style="width: 250px; background-color: #aaaaaa">닉네임</th>
+        <th style="width: 150px; background-color: #8DE6FF">회원 번호</th>
+        <th style="width: 300px; background-color: #8DE6FF">ID</th>
+        <th style="width: 300px; background-color: #8DE6FF">EMAIL</th>
+        <th style="width: 250px; background-color: #8DE6FF">이름</th>
+        <th style="width: 250px; background-color: #8DE6FF">닉네임</th>
     </tr>
 </table>
 </div>
 <script>
+    document.getElementById('left_user').style.background = 'white';
+    document.getElementById('left_user').style.boxShadow = 'inset 0.2px 0.2px 2px black';
+
     const userList = document.getElementById('userTable')
     const logo = document.getElementById('logo')
     logo.addEventListener('click', ()=>{location.href='/admin/dashboard'})
@@ -52,7 +55,7 @@
                         <th>${data[i].userId}</th>
                         <th>${data[i].userEmail}</th>
                         <th>${data[i].userName}</th>
-                        <th>${data[i].userNickname} <button type="button" onclick="location.href='${deleteLink}'" style="float: right">삭제</button></th>
+                        <th>${data[i].userNickname} <button type="button" onclick="location.href='${deleteLink}'" style="float: right; margin-right: 10px; ">삭제</button></th>
                         `
                     userList.append(userInfo)
                 }
