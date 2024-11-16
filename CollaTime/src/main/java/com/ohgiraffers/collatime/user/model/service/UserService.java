@@ -44,14 +44,10 @@ public class UserService {
 
     public UserDTO findByUsername(String username) {
 
-        System.out.println(username);
         UserDTO login = userMapper.findByUsername(username);
-        System.out.println(login);
         if(!Objects.isNull(login)){
-            System.out.println(login);
             return login;
         }else {
-            System.out.println("findByUsername fail");
             return null;
         }
 
@@ -61,8 +57,6 @@ public class UserService {
 
         String pwd = passwordEncoder.encode(code);
 
-        System.out.println(mail);
-        System.out.println(code);
         int result = userMapper.modifyPwdByEmail(mail, pwd);
 
         return result;
@@ -70,7 +64,6 @@ public class UserService {
 
     public int modifyUser(UserDTO userDTO, boolean isModifyPwd) {
         if(isModifyPwd){
-            System.out.println("isModify true");
             String newPwd = passwordEncoder.encode(userDTO.getUserPwd());
             userDTO.setUserPwd(newPwd);
         }

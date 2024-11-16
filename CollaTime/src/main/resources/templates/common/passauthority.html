@@ -93,7 +93,6 @@
     projectSelection.addEventListener('change', ()=>{
         nicknameSelection.options.length = 1;
         const selectedProject = projectSelection.value;
-        console.log('proNo '+selectedProject)
         fetch("/project/selectMember?projectNo="+selectedProject)
             .then(res=>res.json())
             .then(data=>{
@@ -113,7 +112,6 @@
 
     passAuthorityBtn.addEventListener('click', ()=>{
         if(projectSelection.value === 'none' || nicknameSelection.value ==='none'){
-            console.log(projectSelection.value + "and " + nicknameSelection.value)
             passAuthorityMsg.style.display = 'flex';
         }else{
             passAuthorityMsg.style.display = 'none';

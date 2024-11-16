@@ -107,55 +107,42 @@ public class AdminController {
     @GetMapping(value = "/alluser",  produces = "application/json; charset=UTF-8")
     @ResponseBody
     public List<UserDTO> alluser(){
-        System.out.println("여까지 왔다.");
-
         return adminService.searchAllUser();
     }
 
     @GetMapping(value = "/user/number/{userNo}",  produces = "application/json; charset=UTF-8")
     @ResponseBody
     public List<UserDTO> searchUserByNo(@PathVariable("userNo") int userNo){
-        System.out.println("여까지 왔다.");
-
         return adminService.searchUserByNo(userNo);
     }
 
     @GetMapping(value = "/user/id/{userId}",  produces = "application/json; charset=UTF-8")
     @ResponseBody
     public List<UserDTO> searchUserById(@PathVariable("userId") String userId){
-        System.out.println("id 여까지 왔다.");
-
         return adminService.searchUserById(userId);
     }
 
     @GetMapping(value = "/user/email/{userEmail}",  produces = "application/json; charset=UTF-8")
     @ResponseBody
     public List<UserDTO> searchUserByEmail(@PathVariable("userEmail") String userEmail){
-        System.out.println("id 여까지 왔다.");
-
         return adminService.searchUserByEmail(userEmail);
     }
 
     @GetMapping(value = "/user/name/{userName}",  produces = "application/json; charset=UTF-8")
     @ResponseBody
     public List<UserDTO> searchUserByName(@PathVariable("userName") String userName){
-        System.out.println("id 여까지 왔다.");
-
         return adminService.searchUserByName(userName);
     }
 
     @GetMapping(value = "/user/nickname/{userNickname}",  produces = "application/json; charset=UTF-8")
     @ResponseBody
     public List<UserDTO> searchUserByNickname(@PathVariable("userNickname") String userNickname){
-        System.out.println("id 여까지 왔다.");
-
         return adminService.searchUserByNickname(userNickname);
     }
 
     @GetMapping("/deleteuser/{userNo}")
     public ModelAndView deleteUser(ModelAndView mv,@PathVariable("userNo") int userNo){
         UserDTO userDTO = adminService.searchUserByNo(userNo).get(0);
-        System.out.println(userDTO);
 
         String message = "";
 
@@ -170,7 +157,6 @@ public class AdminController {
 
     @GetMapping( "/deleteresult/{deleteUserNo}")
     public ModelAndView deleteuserok(ModelAndView mv, @PathVariable("deleteUserNo") int deleteUserNo){
-        System.out.println("왔당");
         int result = adminService.deleteUserOk(deleteUserNo);
         String message = "";
 
@@ -192,19 +178,18 @@ public class AdminController {
     @GetMapping(value = "/allActiveProject",  produces = "application/json; charset=UTF-8")
     @ResponseBody
     public List<AdminProjectDTO> allActiveProject(){
-        LocalDate today = LocalDate.now();
-        LocalDate activeDay = today.plusDays(14);
-//        List<AdminProjectDTO> a = adminService.allActiveProject(activeDay);
+
         List<AdminProjectDTO> activeProject = compareEndDate(1);
 
-        System.out.println("activeProject = " + activeProject);
         return activeProject;
     }
+
     @GetMapping(value = "/allDeactiveProject",  produces = "application/json; charset=UTF-8")
     @ResponseBody
     public List<AdminProjectDTO> allDeactiveProject(){
+
         List<AdminProjectDTO> deativeProject = compareEndDate(2);
-        System.out.println("deativeProject = " + deativeProject);
+
         return deativeProject;
     }
 
@@ -321,11 +306,9 @@ public class AdminController {
     @GetMapping("/authpass/{inquiryNo}")
     public ModelAndView doPassAuth(ModelAndView mv, @PathVariable("inquiryNo") int inquiryNo){
 
-        System.out.println("권한 위임 하이");
         InquiryDTO inquiryDTO = adminService.searchInquiry(inquiryNo);
         String message = "";
         int resultAuthPass = adminService.authPassUser(inquiryDTO);
-        System.out.println("resultAuthPass = " + resultAuthPass);
 
         if(resultAuthPass>0) {
             int resultUpdate = adminService.inquiryUpdateStatus(inquiryDTO);
@@ -345,26 +328,22 @@ public class AdminController {
     @GetMapping("/inquiryinfo/{inquiryNo}")
     public String adminInquiryInfo(ModelMap map, @PathVariable("inquiryNo") int inquiryNo){
         InquiryDTO inquiryDTO = adminService.searchInquiry(inquiryNo);
-        System.out.println(inquiryDTO);
         String answerContent = "";
         if(inquiryDTO.getAnswerContent()==null||inquiryDTO.getAnswerContent().equals("")){
             answerContent = "처리중입니다.";
         }else {
             answerContent =inquiryDTO.getAnswerContent();
         }
-//        mv.addObject("inquiry", inquiryDTO);
-//        mv.setViewName("admin/inquiryinfo");
+
         map.addAttribute("inquiryTitle", inquiryDTO.getInquiryTitle());
         map.addAttribute("inquiryContent", inquiryDTO.getInquiryContent());
         map.addAttribute("answerContent", answerContent);
-        System.out.println("간다!");
         return "admin/inquiryinfo";
     }
 
     @GetMapping("/inquiryanswer/{inquiryNo}")
     public String adminInquiryAnswer(ModelMap map, @PathVariable("inquiryNo") int inquiryNo){
         InquiryDTO inquiryDTO = adminService.searchInquiry(inquiryNo);
-        System.out.println(inquiryDTO);
 
         map.addAttribute("inquiryTitle", inquiryDTO.getInquiryTitle());
         map.addAttribute("inquiryContent", inquiryDTO.getInquiryContent());
@@ -374,8 +353,7 @@ public class AdminController {
 
     @PostMapping("/addanswer")
     public ModelAndView addAnswer (ModelAndView mv, @RequestParam String inquiryAnswerContent, @RequestParam int inquiryNo){
-        System.out.println("inquiryAnswerContent = " + inquiryAnswerContent);
-        System.out.println("inquiryNo = " + inquiryNo);
+
         int result = adminService.addAnswer(inquiryNo, inquiryAnswerContent);
         String message = "";
 
@@ -405,7 +383,6 @@ public class AdminController {
     public List<String> deleteReadInquiry(){
 
         List<Integer> deleteList = adminService.ReadInquiryList();
-        System.out.println("deleteList = " + deleteList);
         List<String> message = new ArrayList<>();
 
         if(deleteList.size()>0){
@@ -422,4 +399,3 @@ public class AdminController {
         return message;
     }
 }
-

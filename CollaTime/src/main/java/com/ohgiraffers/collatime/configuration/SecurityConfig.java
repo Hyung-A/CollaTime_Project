@@ -51,9 +51,10 @@ public class SecurityConfig {
             //            admin 권한이 있어야 들어갈 수 있음
             auth.requestMatchers("/admin/*").hasAnyAuthority(UserRole.ADMIN.getRole());
             //            user 권한이 있어야 들어갈 수 있는 페이지
-            auth.requestMatchers("/user/*","/project/*", "/schedule/*", "/mypage/*", "/inquiry/*", "/common/*").hasAnyAuthority(UserRole.USER.getRole());
+            auth.requestMatchers("/user/*","/project/*", "/schedule/*", "/mypage/*").hasAnyAuthority(UserRole.USER.getRole());
             //            인증이 있어야 들어갈 수 있다는 메소드
             auth.anyRequest().authenticated();
+
         }).formLogin(login -> {
             //            로그인 창이 있는 페이지 설정
             login.loginPage("/auth/login");
@@ -61,8 +62,6 @@ public class SecurityConfig {
             login.usernameParameter("username");
             //            비밀번호 파라미터 키 지정
             login.passwordParameter("pass");
-            //            로그인에 성공했을 때 들어갈 기본 페이지
-//            login.defaultSuccessUrl("/project/projectmain");
             //            로그인 성공 핸들러
             login.successHandler(authSuccessHandler);
             //            로그인 실패 핸들러

@@ -147,13 +147,11 @@
             fetch("/user/check")
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data)
                     for (var i = 0; i < data.length; i++) {
                         if (data[i][2] == checkEmailId.value) {
                             checkMessage.style.color = 'black';
                             checkMessage.innerText = '해당 이메일로 코드를 보냈습니다.';
                             theId = data[i][0];
-                            console.log(theId)
                             goSignup.style.visibility = 'hidden';
                             break;
                         } else {
@@ -176,7 +174,6 @@
 
         // 이메일 인증코드 비교
         function sendCodeCompare() {
-            console.log(checkEmailId.value)
             const mail = document.getElementById('find_id_email_input').value;
             fetch('/mail/sendexistingmail', {
                 method: 'POST',
@@ -187,8 +184,6 @@
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
-                    console.log(data.code);
                     compareCodeIdBtn.addEventListener('click', () => {
                         if (idInputCode.value == data.code) {
                             checkMessage.innerText = `가입하신 아이디는 ${theId} 입니다.`
@@ -238,7 +233,6 @@
         let sendCodePwd = document.getElementById('send_code_pwd_email')
 
         sendCodePwd.addEventListener('click', () => {
-            console.log(theEmail)
             if(checkEmailPwd.value == theEmail) {
                 checkMessage.style.color = 'black';
                 checkMessage.innerText = '해당 이메일로 코드를 보냈습니다.';
@@ -264,8 +258,6 @@
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
-                    console.log(data.code);
                     compareCodePwdBtn.addEventListener('click', () => {
                         compareCodePwdBtn.disabled = true;
                         checkMessage.innerText = `이메일을 보내는 중입니다.`;
