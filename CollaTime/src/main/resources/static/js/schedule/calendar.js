@@ -1,6 +1,6 @@
 let currentMonth=""
 document.addEventListener("DOMContentLoaded", function () {
-    console.log("Details modal count on page load:", document.querySelectorAll("#detailsModal").length);
+
 
     // const makescheduleModal = createModal('schedule/makeschedule.html', 'makescheduleModal');
     //  const createsuccessModal = createModal('schedule/createsuccess.html', 'createsuccessModal');
@@ -182,7 +182,7 @@ function emptyDateClick(dataDate) {
 
 
 function displaySchedules(schedules) {
-    console.log(" displaySchedules  가져오기 :");
+
 
     const scheduleList = document.getElementById("scheduleList");
     scheduleList.innerHTML = "";
@@ -199,7 +199,7 @@ function displaySchedules(schedules) {
 
 
 function calendarDisplaySchedules(schedules) {
-//console.log("displaySchedules 가져오기:");
+
     const dates = $(".date");
 
     schedules.forEach(schedule=> {
@@ -243,13 +243,13 @@ function calendarDisplaySchedules(schedules) {
 }
 
 async function listModalOpen(scheduleNoList, dataDate) {
-//console.log("listModalOpen:", scheduleNoList);
+
     $("#scheduleList").removeClass("emptyModal");
 
     const urlParam=new URLSearchParams(window.location.search);
     const projectNo=urlParam.get('projectNo');
 
-    console.log("scheduleNoList ===== :",scheduleNoList);
+
 
     try {
         // POST 요청으로 변경

@@ -79,7 +79,7 @@ function submitSchedule(event) {
 
 
     if (participantList.length === 0) {
-        console.log(" 등록 처리 : 팀원이 없습니다. 팀원를 추가해 주세요.",participantList);
+
         document.getElementById("alert-confirmAlarm").innerText = "팀원이 없습니다. 팀원를 추가해 주세요.";
         document.getElementById("alertModal").style.display = "flex";
         return;
@@ -116,7 +116,7 @@ function submitSchedule(event) {
 
 
             if (response.ok) {
-                console.log(" 성공 모달: ");
+
 
                 $("#confirmAlarm").html("생성 완료되었습니다.");
 
@@ -143,11 +143,11 @@ function submitSchedule(event) {
 async function scheduleParticipantList() {
     const urlParams = new URLSearchParams(window.location.search); // URLSearchParams 라이브러리를 사용
     const projectNo = urlParams.get('projectNo');
-    console.log("projectNo : ", projectNo);
+
 
     const response = await fetch(`/api/schedule/participant/${projectNo}`);
     if (!response.ok) {
-        console.log("Error: " + response.statusText);
+
         return;
     }
     const participants = await response.json();

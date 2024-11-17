@@ -251,11 +251,10 @@ function updateSmallModal() {
 async function updateSscheduleParticipantList() {
     const urlParams = new URLSearchParams(window.location.search); // URLSearchParams 라이브러리를 사용
     const projectNo = urlParams.get('projectNo');
-    console.log("업데이트 : projectNo : ", projectNo);
+
 
     const response = await fetch(`/api/schedule/participant/${projectNo}`);
     if (!response.ok) {
-        console.log("Error: " + response.statusText);
         return;
     }
     const participants = await response.json();
