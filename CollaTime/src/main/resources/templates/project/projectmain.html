@@ -137,14 +137,15 @@
           crudMenu[i].style.display = "none";
           folderMenu[i].onclick = function () {
             if(productorNumbers[i].value === `[[|${#authentication.principal.userNo}|]]`) {
-              console.log("프로덕터 넘버 : " + productorNumbers[i].value + "유저 넘버 : " + `[[|${#authentication.principal.userNo}|]]`);
+              // console.log("프로덕터 넘버 : " + productorNumbers[i].value + "유저 넘버 : " + `[[|${#authentication.principal.userNo}|]]`);
               if (crudMenu[i].style.display === 'block') {
                 crudMenu[i].style.display = 'none';
               } else {
                 crudMenu[i].style.display = 'block';
+                crudMenu[i].style.cursor = "pointer";
               }
             } else {
-              console.log("프로덕터 넘버 : " + productorNumbers[i].value + "유저 넘버 : " + `[[|${#authentication.principal.userNo}|]]`);
+              // console.log("프로덕터 넘버 : " + productorNumbers[i].value + "유저 넘버 : " + `[[|${#authentication.principal.userNo}|]]`);
               if (crudMenu[i].style.display === 'block') {
                 crudMenu[i].style.display = 'none';
               } else {
@@ -153,12 +154,14 @@
                 let projectSelect = crudMenu[i].querySelector("#projectSelect");
                 projectSelect.style.pointerEvents = 'auto';
                 projectSelect.style.color = "#282828";  // 기본 색상 유지
+                crudMenu[i].style.cursor = "pointer";
                 // .Productor 요소들은 클릭 불가하게 설정
                 let productorMenu = crudMenu[i].querySelectorAll((".Productor"));
                 productorMenu.forEach(function(menu){
                   menu.onclick = null;  // 이벤트 클릭 제거
                   menu.style.pointerEvents = "none"; // 클릭 막기
                   menu.style.color = "#ccc"; // 시각적 효과 추가
+                  crudMenu[i].style.cursor = "default";
                 });
               }
             }
@@ -204,7 +207,7 @@
       <input type="text" id="inputUserNo" style="display: none" name="userNo" />
     </div>
     <button type="button" id="smallCancel">취소</button>
-    <button type="button" id="smallConfirm">확인</button>
+<!--    <button type="button" id="smallConfirm">확인</button>-->
   </div>
 </div>
 <!-- 잘못된 참가코드 입력 시 띄우는 모달 -->
@@ -259,12 +262,12 @@
       fetch("/project/selectJoinCode")
               .then((res) => res.json())
               .then((data) => {
-                console.log(data);
+                // console.log(data);
                 let isTrue = false;  // 코드 맞는지 확인
                 for(let i = 0; i < data.length; i++) {
                   if ($inputCode.value === data[i].joinCode) {
                     isTrue = true;
-                    console.log(data[i]);
+                    // console.log(data[i]);
                     $wrongJoinCode.style.display = "none";
                     inputUserNo = document.getElementById("inputUserNo");
 
@@ -355,9 +358,9 @@
   <span id="startDateStar" class="star">*</span>
   <label for="period" id="periodLabel">기간</label>
   <div id="period">
-    <input type="date" id="projectStartDate" class="date" name="startDate"></input>
+    <input type="date" id="projectStartDate" class="date" name="startDate"/>
     <div id="wave">~</div>
-    <input type="date" id="projectEndDate" class="date" name="endDate"></input>
+    <input type="date" id="projectEndDate" class="date" name="endDate"/>
   </div>
   <label for="category" id="categoryLabel">분류</label>
   <div id="category">
@@ -464,9 +467,9 @@
 
         // 확인 버튼 2번 클릭 막기
         dataWarningConfirm.disabled = true;
-        let fetchEmailList = [];
 
         // 이렇게도 사용 가능, 대신 projectNo가 서버로 가기 전에 생성되어 있는경우만 사용
+        let fetchEmailList = [];
         for (let i = 0; i < resultEmailList.length; i++) {
           fetchEmailList = [
             ...fetchEmailList,
@@ -747,7 +750,7 @@
     // addMemberBtn.style.display = "none";
     // 입력한 이메일 리스트 확정하는 배열
     resultEmailList = [...emailList];
-    console.log("resultEmailList : " + resultEmailList);
+    // console.log("resultEmailList : " + resultEmailList);
     deleteEmail();
     const input = document.getElementById("inputEmail");
     input.value = "";
@@ -868,7 +871,7 @@
     fetch("/project/selectproject?projectNo=" + projectNo +"")
             .then(res => res.json())
             .then(data => {
-              console.log(data);
+              // console.log(data);
               let $projectName = document.querySelector("#updateInputTitle");
               $projectName.value = data.projectName;
               let $projectSummary = document.getElementById("updateInputSummary");
@@ -964,7 +967,7 @@
   for(let i = 0; i < update.length; i++) {
     update[i].addEventListener("click", function () {
       select(projectNo[i].value);
-      console.log(projectNo[i].value);
+      // console.log(projectNo[i].value);
       updateProjectModal.style.display = "";
       // let popupType = document.getElementById("popupType");
       // popupType.value = "update";
@@ -1100,7 +1103,7 @@
     fetch("/project/selectproject?projectNo=" + projectNo + "")
             .then(res => res.json())
             .then(data =>{
-              console.log(data);
+              // console.log(data);
               let projectName = document.querySelector("#deleteProjectName");
               projectName.innerHTML = `&quot;${data.projectName}&quot;을(를) <br> 삭제하시겠습니까?`;
               let deleteProjectNo = document.getElementById("deleteProjectNo");
@@ -1147,7 +1150,7 @@
   for(let i = 0; i < $delete.length; i++) {
     $delete[i].addEventListener("click", function () {
       deleteProject(projectNo[i].value);
-      console.log(projectNo[i].value);
+      // console.log(projectNo[i].value);
       $deleteModal.style.display = "";
     });
   }
@@ -1200,8 +1203,8 @@
     fetch("/project/selectMember?projectNo=" + projectNo)
             .then((res) => res.json())
             .then((data) => {
-              console.log("멤버 정보 : " + data);
-              console.log("projectNo : " +  data.projectNo);
+              // console.log("멤버 정보 : " + data);
+              // console.log("projectNo : " +  data.projectNo);
 
               // `manageMemberList` div를 비웁니다.
               const manageMemberList = document.getElementById("manageMemberList");
@@ -1344,7 +1347,7 @@
       modalManageMember.style.display = "";
       projectNumber.value = projectNo[i].value
       selectMember(projectNo[i].value);
-      console.log(projectNo[i].value);
+      // console.log(projectNo[i].value);
     }
   }
   const manageMemberXButton = document.getElementById("manageMemberXButton");
@@ -1459,7 +1462,7 @@
   moreSendEmailConfirm.onclick = function() {
     moreInviteMemberModal.style.display = "none";
     resultMoreEmailList = [...moreEmailList];
-    console.log("resultEmailList : " + resultMoreEmailList);
+    // console.log("resultEmailList : " + resultMoreEmailList);
     deleteMoreEmail();
     const moreInput = document.getElementById("moreInputEmail");
     moreInput.value = "";
@@ -1594,7 +1597,7 @@
     fetch("/project/selectproject?projectNo=" + projectNo +"")
             .then(res => res.json())
             .then(data => {
-              console.log(data);
+              // console.log(data);
               let $selectProjectName = document.getElementById("selectInputTitle");
               $selectProjectName.value = data.projectName;
               let $selectProjectSummary = document.getElementById("selectInputSummary");
@@ -1639,7 +1642,7 @@
               for(let i = 0; i < selectInvitedMember.length; i++) {
                 let selectResultMail = document.createElement("div"); // 이메일 div 생성
                 let selectEmailAdress = document.createTextNode(selectInvitedMember[i].email);
-                console.log("야아아앙아", selectInvitedMember[i]);// 이메일 주소 생성
+                // console.log("야아아앙아", selectInvitedMember[i]);// 이메일 주소 생성
                 selectResultMail.appendChild(selectEmailAdress);
                 selectedMemberList.appendChild(selectResultMail); // selectMember div에 추가
                 // 스타일 설정
@@ -1667,7 +1670,7 @@
   for(let i = 0; i < projectSelect.length; i++) {
     projectSelect[i].addEventListener("click", function () {
       selectData(projectNo[i].value);
-      console.log("프로젝트 번호: " + projectNo[i].value);
+      // console.log("프로젝트 번호: " + projectNo[i].value);
       selectProjectDataModal.style.display = "";
     })
   }

@@ -1,5 +1,9 @@
 @charset "utf-8";
 
+*{
+    cursor: default;
+}
+
 /* 모달 레이아웃 */
 #createProjectModal{
 
@@ -32,6 +36,7 @@
     position: absolute;
     left: 965px;
     top: 5px;
+    cursor: pointer;
 
 }
 
@@ -64,6 +69,7 @@
     letter-spacing: 0.03em;
     color: #282828;
     outline: none;
+    cursor: text;
 
 }
 
@@ -89,7 +95,6 @@
     position: absolute;
     left: 70px;
     top: 210px;
-
     font-family: 'Inter';
     font-style: normal;
     font-weight: 600;
@@ -129,6 +134,7 @@
     border: none;
     color: #000000;
     outline: none;
+    cursor: text;
 
     /* https://11001.tistory.com/149#google_vignette */
 }
@@ -186,6 +192,7 @@
     border: none;
     color: #000000;
     outline: none;
+    cursor: text;
 
 }
 
@@ -245,6 +252,7 @@
     border: none;
     color: #000000;
     outline: none;
+    cursor: text;
 
 }
 
@@ -266,6 +274,7 @@
     border: none;
     color: #282828;
     outline: none;
+    cursor: text;
 
 }
 
@@ -287,6 +296,10 @@
 
     color: #282828;
 
+}
+
+input[type='date']::-webkit-calendar-picker-indicator {
+    cursor: pointer;
 }
 
 /* 카테고리 */
@@ -338,6 +351,7 @@
 
     position: absolute;
     left: 10px;
+    cursor: pointer;
 
 }
 
@@ -345,6 +359,7 @@
 
     position: absolute;
     left: 100px;
+    cursor: pointer;
 
 }
 
@@ -352,6 +367,7 @@
 
     position: absolute;
     left: 190px;
+    cursor: pointer;
 
 }
 
@@ -359,6 +375,7 @@
 
     position: absolute;
     left: 280px;
+    cursor: pointer;
 
 }
 
@@ -366,6 +383,7 @@
 
     position: absolute;
     left: 370px;
+    cursor: pointer;
 
 }
 
@@ -373,6 +391,7 @@
 
     position: absolute;
     left: 460px;
+    cursor: pointer;
 
 }
 
@@ -386,6 +405,7 @@
     display: flex;
     justify-content: center;
     line-height: 28px;
+    cursor: pointer;
 
 }
 
@@ -493,6 +513,7 @@
     line-height: 23px;
     letter-spacing: 0.03em;
     background: #E7E7E7;
+    cursor: pointer;
 
 }
 
@@ -525,6 +546,7 @@
     line-height: 36px;
     letter-spacing: 0.03em;
     color: #282828;
+    cursor: pointer;
 
 }
 
@@ -545,7 +567,7 @@
     justify-content: center;
     line-height: 36px;
     letter-spacing: 0.03em;
-
     color: #282828;
+    cursor: pointer;
 
 }

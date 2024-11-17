@@ -4,6 +4,9 @@
 /*    margin: 0;*/
 /*}*/
 
+*{
+    cursor: default;
+}
 
 #collatime-main {
     position: absolute;
@@ -182,27 +185,33 @@
 
 #create{
     float: left;
+    cursor: pointer;
 }
 #select{
     float: left;
     margin-left: 120px;
+    cursor: pointer;
 }
 #join{
     float: left;
     margin-left: 240px;
+    cursor: pointer;
 }
 #update{
     float: left;
     margin-left: 360px;
+    cursor: pointer;
 }
 #delete{
     float: left;
     margin-top: 70px;
+    cursor: pointer;
 }
 #memberManagement{
     float: left;
     margin-left: 120px;
     margin-top: 70px;
+    cursor: pointer;
 }
 
 #second-title2 {
@@ -269,20 +278,24 @@
 
 #scheduleSelect{
     float: left;
+    cursor: pointer;
 }
 #scheduleCreate{
     float: left;
     margin-left: 90px;
+    cursor: pointer;
 
 }
 #scheduleUpdate{
     float: left;
     margin-left: 180px;
+    cursor: pointer;
 
 }
 #scheduleDelete{
     float: left;
     margin-left: 270px;
+    cursor: pointer;
 
 }
 
@@ -317,7 +330,7 @@
     width: 760px;
     height: 110px;
     left: 20px;
-    top: 30px;
+    top: 15px;
 
     /*display: flex;*/
     /*justify-content: center;*/
@@ -339,6 +352,7 @@
     left: 450px;
     background-color: #E7E7E7;
     border-radius: 10px;
+    line-height: 1.3;
 
 }
 
@@ -376,6 +390,7 @@
     left: 450px;
     background-color: #E7E7E7;
     border-radius: 10px;
+    line-height: 1.3;
 }
 
 /* 4번째 섹션 */

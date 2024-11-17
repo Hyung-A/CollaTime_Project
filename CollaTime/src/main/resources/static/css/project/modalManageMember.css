@@ -1,5 +1,9 @@
 @charset "utf-8";
 
+*{
+    cursor: default;
+}
+
 #modalManageMember {
 
     position: absolute;
@@ -30,6 +34,7 @@
     position: absolute;
     left: 965px;
     top: 5px;
+    cursor: pointer;
 }
 
 #manageMemberText{
@@ -94,6 +99,7 @@
     line-height: 36px;
     letter-spacing: 0.03em;
     color: #282828;
+    cursor: pointer;
 
 }
 
@@ -135,6 +141,7 @@
 .trashcanIcon {
     position: absolute;
     left: 831px;
+    cursor: pointer;
 }
 
 
@@ -155,8 +162,8 @@
     justify-content: center;
     line-height: 36px;
     letter-spacing: 0.03em;
-
     color: #282828;
+    cursor: pointer;
 
 }
 

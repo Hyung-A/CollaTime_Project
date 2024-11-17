@@ -62,14 +62,13 @@
     height: 30px;
     left: 60px;
     top: 180px;
-
     font-style: normal;
     font-weight: 700;
     font-size: 25px;
     line-height: 30px;
     text-align: center;
-
     color: #000000;
+    cursor: pointer;
 
 }
 
@@ -131,6 +130,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    cursor: pointer;
 
 
 }
@@ -152,6 +152,7 @@
     position: absolute;
     left: 30px;
     top: 600px;
+    cursor: pointer;
 
 }
 
@@ -164,8 +165,8 @@
     font-weight: 400;
     font-size: 13px;
     line-height: 15px;
-
     color: #282828;
+    cursor: pointer;
 }
 
 /* 권한 위임 요청 */
@@ -174,6 +175,7 @@
     position: absolute;
     left: 30px;
     top: 625px;
+    cursor: pointer;
 
 }
 
@@ -186,6 +188,6 @@
     font-weight: 400;
     font-size: 13px;
     line-height: 15px;
-
     color: #282828;
+    cursor: pointer;
 }

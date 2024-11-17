@@ -1,5 +1,9 @@
 @charset "utf-8";
 
+*{
+    cursor: default;
+}
+
 /* 모달 레이아웃 */
 #modalSelectProjectData{
 
@@ -32,6 +36,7 @@
     position: absolute;
     left: 965px;
     top: 5px;
+    cursor: pointer;
 
 }
 
@@ -456,7 +461,7 @@
     justify-content: center;
     line-height: 36px;
     letter-spacing: 0.03em;
-
     color: #282828;
+    cursor: pointer;
 
 }

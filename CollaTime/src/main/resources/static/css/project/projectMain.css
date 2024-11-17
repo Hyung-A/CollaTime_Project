@@ -241,6 +241,10 @@
 /*}*/
 
 /* ----------------------------------------------------------- */
+*{
+    cursor: default;
+}
+
 /* 메인 구역 */
 #mainArea{
 
@@ -271,11 +275,11 @@
 /* 생성된 프로젝트 폴더 */
 #createdProjectFolder{
 
-    cursor: default;
     position:absolute;
     width: 220px;
     height: 183px;
     border: none;
+
 
 }
 
@@ -314,6 +318,8 @@
     display: flex;
     justify-content: center;
     /* line-height: 141px; */
+    cursor: default;
+
 }
 
 #projectTitle {
@@ -336,6 +342,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+    cursor: pointer;
 }
 
 
@@ -349,8 +356,8 @@
     font-size: 18px;
     line-height: 21px;
     letter-spacing: 0.03em;
-
     color: #282828;
+    cursor: pointer;
 
 }
 
@@ -365,6 +372,7 @@
     border: none;
     display: flex;
     justify-content: center;
+    cursor: pointer;
 
 }
 
@@ -381,32 +389,37 @@
     color: #282828;
     border-bottom: solid 2px #E2E2E2;
     text-align: center;
+    cursor: pointer;
 
 }
 #projectSelect{
     position: absolute;
     top: 10px;
+    cursor: pointer;
 }
 
 #projectUpdate{
     position: absolute;
     top: 45px;
+    cursor: pointer;
 }
 
 #projectDelete{
     position: absolute;
     top: 80px;
+    cursor: pointer;
 }
 
 #manageMember{
     position: absolute;
     top: 115px;
+    cursor: pointer;
 }
 
 
 #projectFullName{
 
-    cursor: default;
+    cursor: pointer;
     position: absolute;
     width: 190px;
     left: 10px;
@@ -426,7 +439,6 @@
 
 #newProject{
 
-    cursor: default;
     position:absolute;
     width: 220px;
     height: 183px;
@@ -445,12 +457,13 @@
     border-right: solid 1px #282828;
     border-top: solid 1px #282828;
     background: #F5F4F4;
+    cursor: pointer;
 
 }
 
 #newFolderBody{
 
-    cursor: default;
+    cursor: pointer;
     position: absolute;
     width: 210px;
     height: 141px;
@@ -461,6 +474,7 @@
     display: flex;
     justify-content: center;
     line-height: 125px;
+
 }
 
 #plus{
@@ -470,12 +484,13 @@
     font-weight: 900;
     font-size: 80px;
     color: #282828;
+    cursor: pointer;
 
 }
 
 #newProjectText{
 
-    cursor: default;
+    cursor: pointer;
     position: absolute;
     left: 10px;
     top: 173px;

@@ -15,6 +15,7 @@ body {
 }
 
 #header-logo-img {
+    cursor: pointer;
     position: absolute;
     top:15px;
     left: 39px;
@@ -44,6 +45,7 @@ body {
 }
 
 #intro1:hover {
+    cursor: pointer;
     transform: scale(1.5);
 }
 
@@ -69,6 +71,7 @@ body {
 }
 
 #intro2:hover {
+    cursor: pointer;
     transform: scale(1.5);
 }
 
@@ -90,6 +93,7 @@ body {
     justify-content: center;
     line-height: 50px;
     color: #000000;
+    cursor: pointer;
 }
 
 #sign-up {
@@ -110,4 +114,5 @@ body {
     justify-content: center;
     line-height: 50px;
     color: #000000;
+    cursor: pointer;
 }

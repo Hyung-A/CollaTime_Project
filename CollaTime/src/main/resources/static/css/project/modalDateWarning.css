@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+*{
+    cursor: default;
+}
+
 #dataWarningModal{
 
     position: absolute;
@@ -33,6 +37,7 @@
     position: absolute;
     left: 506px;
     top: 5px;
+    cursor: pointer;
 
 }
 
@@ -83,8 +88,6 @@
     border-radius: 25px;
     background: #DFF7FD;
     border: #DFF7FD;
-
-
     font-family: 'Inter';
     font-style: normal;
     font-weight: 600;
@@ -93,8 +96,8 @@
     vertical-align: center;
     text-align: center;
     letter-spacing: 0.03em;
-
     color: #000000;
+    cursor: pointer;
 
 }
 
@@ -106,7 +109,6 @@
     height: 31px;
     left: 437px;
     top: 540px;
-
     font-family: 'Inter';
     font-style: normal;
     font-weight: 600;
@@ -118,7 +120,7 @@
     border-radius: 25px;
     background: #92E2F8;
     border: #92E2F8;
-
     color: #000000;
+    cursor: pointer;
 }
 

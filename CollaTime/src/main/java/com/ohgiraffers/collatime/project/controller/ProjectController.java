@@ -60,12 +60,8 @@ public class ProjectController {
     @ResponseBody
     public List<ProjectDTO> insertProject(ModelAndView mv, @RequestBody ProjectDTO projectDTO, @AuthenticationPrincipal AuthDetails authDetails) throws MessagingException {
 
-        System.out.println("포스트 매핑 연결 완료" + projectDTO);  // 데이터 잘 넘어옴
-
-        // insert project
+        // insert project -> project table
         projectService.insertProject(projectDTO);
-
-//        System.out.println("projectDTO.getProjectNo() : " + projectDTO.getProjectNo());
 
         int userNo = 0;
         if(authDetails != null){
@@ -74,7 +70,7 @@ public class ProjectController {
 
         // inviteMemberDTO 신규 프로젝트No를 입력
         // 참가 랜덤 코드 inviteMemberDTO에 참가코드 입력
-        // insert inviteMember
+        // insert inviteMember -> joinProject table
         List<InviteMemberDTO> inviteMemberList = projectDTO.getInviteMemberList();
         for(int i = 0; i < inviteMemberList.size(); i++){
             // DB 저장
