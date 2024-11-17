@@ -167,7 +167,7 @@ INSERT INTO COLOR VALUES('CO7','보라색');
 
 -- 스케줄 테이블 생성
 CREATE TABLE `ct_schedule` (
-                               `CT_SCHEDULE_NO` int(11) NOT NULL AUTO_INCREMENT COMMENT '스케줄 번호',
+                               `CT_SCHEDULE_NO` int(50) NOT NULL AUTO_INCREMENT COMMENT '스케줄 번호',
                                `PROJECT_NO` int(11) NOT NULL COMMENT '프로젝트 번호',
                                `CT_SCHEDULE_START_DATE` date NOT NULL COMMENT '스케줄 시작일자',
                                `CT_SCHEDULE_END_DATE` date NOT NULL COMMENT '스케줄 종료일자',
@@ -186,7 +186,7 @@ CREATE TABLE `ct_schedule` (
 
 -- 스케줄 참여 팀원 테이블 생성
 CREATE TABLE `ct_schedule_participant` (
-                                           `CT_SCHEDULE_NO` int(11) NOT NULL COMMENT '스케줄 번호',
+                                           `CT_SCHEDULE_NO` int(50) NOT NULL COMMENT '스케줄 번호',
                                            `PARTICIPANT_NO` int(11) NOT NULL COMMENT '파티참가 회원번호',
                                            CONSTRAINT `FK_CT_SCHEDULE_NO` FOREIGN KEY (`CT_SCHEDULE_NO`) REFERENCES `ct_schedule` (`CT_SCHEDULE_NO`) ON DELETE CASCADE,
                                            CONSTRAINT `FK_CT_USER_NO` FOREIGN KEY (`PARTICIPANT_NO`) REFERENCES `ct_user` (`CT_USER_NO`) ON DELETE CASCADE,
