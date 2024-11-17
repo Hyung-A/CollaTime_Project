@@ -62,7 +62,6 @@
     width: 800px;
     height: 50px;
     border: none;
-    font-family: 'Inter';
     font-style: normal;
     font-weight: 300;
     font-size: 25px;
@@ -78,8 +77,6 @@
     position: absolute;
     left: 70px;
     top: 210px;
-
-    font-family: 'Inter';
     font-style: normal;
     font-weight: 600;
     font-size: 22px;
@@ -109,7 +106,6 @@
     height: 60px;
     left: 10px;
     top: 3px;
-    font-family: 'Inter';
     font-style: normal;
     font-weight: 300;
     font-size: 15px;
@@ -128,8 +124,6 @@
     position: absolute;
     left: 70px;
     top: 320px;
-
-    font-family: 'Inter';
     font-style: normal;
     font-weight: 600;
     font-size: 22px;
@@ -159,7 +153,6 @@
     height: 60px;
     left: 10px;
     top: 3px;
-    font-family: 'Inter';
     font-style: normal;
     font-weight: 300;
     font-size: 15px;
@@ -177,8 +170,6 @@
     position: absolute;
     left: 70px;
     top: 420px;
-
-    font-family: 'Inter';
     font-style: normal;
     font-weight: 600;
     font-size: 22px;
@@ -209,7 +200,6 @@
     height: 40px;
     left: 10px;
     top: 5px;
-    font-family: 'Inter';
     font-style: normal;
     font-weight: 300;
     font-size: 15px;
@@ -230,7 +220,6 @@
     height: 40px;
     left: 205px;
     top: 5px;
-    font-family: 'Inter';
     font-style: normal;
     font-weight: 300;
     font-size: 15px;
@@ -249,8 +238,6 @@
     position: absolute;
     left: 175px;
     top: 12px;
-
-    font-family: 'Inter';
     font-style: normal;
     font-weight: 300;
     font-size: 25px;

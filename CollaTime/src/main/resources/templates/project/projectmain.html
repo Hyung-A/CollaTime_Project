@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>CollaTime</title>
+  <title>Project</title>
+  <link rel="icon" href="/css/common/image/newFavicon.ico">
   <link rel="stylesheet" href="/css/project/reset.css">
   <link rel="stylesheet" href="/css/project/projectMain.css">
   <link rel="stylesheet" href="/css/project/modalCreateOrJoin.css">
@@ -307,8 +308,8 @@
                                 }
                               }
                             })
-                            .then((result) => console.log(result))
-                            .catch((error) => console.log(error));
+                            // .then((result) => console.log(result))
+                            // .catch((error) => console.log(error));
                   }
                 }
                 if(!isTrue) {
@@ -464,7 +465,8 @@
 
       const dataWarningConfirm = document.getElementById("dataWarningConfirm");
       dataWarningConfirm.onclick = function(){
-
+        dataWarningModal.style.cursor = "wait";
+        dataWarningConfirm.style.cursor = "wait";
         // 확인 버튼 2번 클릭 막기
         dataWarningConfirm.disabled = true;
 
@@ -526,8 +528,8 @@
                     }
                   }
                 })
-                .then((result) => console.log(result))
-                .catch((error) => console.log(error));
+                // .then((result) => console.log(result))
+                // .catch((error) => console.log(error));
       }
     }
   }
@@ -924,7 +926,7 @@
                 }
               }
             })
-            .catch(error => console.log(error));
+            // .catch(error => console.log(error));
 
 
 
@@ -1037,7 +1039,7 @@
                 console.error("Request failed.");
               }
             })
-            .catch(error => console.log(error));
+            // .catch(error => console.log(error));
   };
 
 
@@ -1109,7 +1111,7 @@
               let deleteProjectNo = document.getElementById("deleteProjectNo");
               deleteProjectNo.value = data.projectNo;
             })
-            .catch(error => console.log(error));
+            // .catch(error => console.log(error));
   }
 
   document.getElementById("deleteProjectForm").onsubmit = function(e) {
@@ -1138,7 +1140,7 @@
                 console.error("Request failed.");
               }
             })
-            .catch(error => console.log(error));
+            // .catch(error => console.log(error));
   };
 
 
@@ -1318,8 +1320,8 @@
                               //   }
                               // }, 2000);
                             })
-                            .then((result) => console.log(result))
-                            .catch((error) => console.log(error));
+                            // .then((result) => console.log(result))
+                            // .catch((error) => console.log(error));
                   }
                 });
 
@@ -1335,7 +1337,7 @@
                 topPosition += gap; // 다음 요소의 top 위치를 50px씩 증가
               });
             })
-            .catch(error => console.log("Error fetching members:", error));
+            // .catch(error => console.log("Error fetching members:", error));
   }
 
  const projectNumber = document.getElementById("projectNumber");
@@ -1499,8 +1501,8 @@
                 modalComplete.style.display = "none";
               }
             })
-            .then((result) => console.log(result))
-            .catch((error) => console.log(error));
+            // .then((result) => console.log(result))
+            // .catch((error) => console.log(error));
 
   }
 </script>
@@ -1659,7 +1661,7 @@
                 selectResultMail.style.float = "left";
               }
             })
-            .catch(error => console.log(error));
+            // .catch(error => console.log(error));
 
   }
 

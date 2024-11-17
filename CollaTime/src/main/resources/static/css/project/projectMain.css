@@ -1,5 +1,12 @@
 @charset "UTF-8";
 
+/*@font-face {*/
+/*    font-family: 'HakgyoansimWoojuR';*/
+/*    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/HakgyoansimWoojuR.woff2') format('woff2');*/
+/*    font-weight: normal;*/
+/*    font-style: normal;*/
+/*}*/
+
 /* 헤더 */
 /*#head{*/
 
@@ -243,6 +250,7 @@
 /* ----------------------------------------------------------- */
 *{
     cursor: default;
+    font-family: 'HakgyoansimWoojuR', serif;
 }
 
 /* 메인 구역 */
