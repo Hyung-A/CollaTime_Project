@@ -44,15 +44,7 @@ const participantList = document.getElementById('participant-list');
 const placeholderText = document.getElementById('placeholder-text');
 
 inviteIcon.addEventListener('click', () => {
-    // 팀원을 초대하는 모달을 여는 코드 (여기서는 임시로 구현)
-    // const newParticipant = document.createElement('span');
-    //     // newParticipant.textContent = "팀원 1"; // 실제로는 초대한 팀원의 이름으로 변경
-    //     // participantList.appendChild(newParticipant);
-    //     //
-    //     // // 기존의 "참여자(닉네임)" 텍스트를 제거
-    //     // if (placeholderText) {
-    //     //     placeholderText.remove();
-    //     // }
+
     $("#participant-select").show();
 
 });
@@ -77,7 +69,7 @@ function submitSchedule(event) {
     const textColorCodeInput = document.getElementById("selectedTextColor");
 
     // 선택된 값 확인 및 기본값 설정
-    if (!colorCodeInput.value) colorCodeInput.value = "#ff0000"; // 기본 배경색
+    if (!colorCodeInput.value) colorCodeInput.value = "#FEC4C4"; // 기본 배경색
     if (!textColorCodeInput.value) textColorCodeInput.value = "#000000"; // 기본 글자색
 
     const urlParam = new URLSearchParams(window.location.search);

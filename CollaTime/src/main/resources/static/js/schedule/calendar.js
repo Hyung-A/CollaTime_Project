@@ -96,8 +96,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
 
-
-
         await getSchedules();
     }
 
@@ -162,8 +160,6 @@ function emptyDateClick(dataDate) {
 
 
     $("#scheduleList").html(html);
-
-
 
 
     $("#scheduleList").addClass("emptyModal");
@@ -293,7 +289,6 @@ function displayScheduleList(schedules,dataDate) {
         scheduleItem.classList.add("schedule-card");
         scheduleItem.style.backgroundColor = schedule.colorCode;
 
-        console.log(" 스케줄 파티원 : schedule :",schedule.participantList);
         let participantNameList = "";
         if (schedule.participantList.length > 0) {
             schedule.participantList.forEach(participant => {
@@ -356,8 +351,6 @@ function displayScheduleDetail(schedule) {
     $('#detailsModal .scheduleEndDate').val(schedule.scheduleEndDate);
     $('#detailsModal textarea[name="scheduleContent"]').val(schedule.scheduleContent);
     $('#detailsModal .creator-info').html(`생성자 | ${schedule.scheduleCreator}`);
-
-    console.log("================displayScheduleDetail상세보기 :",schedule.participantList);
 
 
     let detailsParticipantNameList="";

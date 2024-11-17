@@ -183,7 +183,7 @@ function updateSmallModal() {
     }
 
     const scheduleTitle = scheduleTitleInput ? scheduleTitleInput.value : '';
-    const colorCode = colorCodeInput && colorCodeInput.value ? colorCodeInput.value : '#ff0000';
+    const colorCode = colorCodeInput && colorCodeInput.value ? colorCodeInput.value : '#FEC4C4';
     const textColorCode = textColorCodeInput && textColorCodeInput.value ? textColorCodeInput.value : '#000000';
     const scheduleStartDate = scheduleStartDateInput ? scheduleStartDateInput.value : '';
     const scheduleEndDate = scheduleEndDateInput ? scheduleEndDateInput.value : '';
@@ -193,12 +193,10 @@ function updateSmallModal() {
 
     const participantList = document.querySelectorAll("#update-participant-list .participant-item");
     if (participantList.length === 0) {
-        console.log(" 등록 처리 : 팀원이 없습니다. 팀원를 추가해 주세요.",participantList);
         document.getElementById("alert-confirmAlarm").innerText = "팀원이 없습니다. 팀원를 추가해 주세요.";
         document.getElementById("alertModal").style.display = "flex";
         return;
     }
-
     // data-memberNo 값을 배열로 수집
     const participantNos = Array.from(participantList).map(item => item.getAttribute('data-memberNo'));
 
@@ -220,7 +218,7 @@ function updateSmallModal() {
         participantNos: participantNos
     };
 
-    console.log("업데이트 내용:", scheduleData);
+
 
     // 서버로 데이터 전송
     fetch(`/api/schedules/${scheduleNo}`, {
