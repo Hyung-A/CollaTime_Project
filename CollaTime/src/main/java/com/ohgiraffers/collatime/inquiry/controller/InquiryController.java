@@ -74,10 +74,11 @@ public class InquiryController {
         projectDTO.setProjectNo(String.valueOf(passProjectNo));
         ProjectDTO projectDTO1 = projectService.getProject(projectDTO);
         String passProjectName = projectDTO1.getProjectName();
+        String passAuthContext = authDetails.getUserNickname()+"의 "+ passProjectName+" 프로젝트 권한을 "+passUserNickname+"에게 위임 요청합니다.";
+
         InquiryDTO inquiryDTO = new InquiryDTO();
         inquiryDTO.setInquiryStatus("권한처리중");
         inquiryDTO.setUserNo(authDetails.getUserNo());
-        String passAuthContext = authDetails.getUserNickname()+"의 "+ passProjectName+" 프로젝트 권한을 "+passUserNickname+"에게 위임 요청합니다.";
         inquiryDTO.setInquiryTitle(authDetails.getUserNickname()+"의 권한 위임 요청");
         inquiryDTO.setInquiryContent(passAuthContext);
         inquiryDTO.setProjectNo(passProjectNo);
@@ -95,25 +96,15 @@ public class InquiryController {
 
         mv.addObject("message", message);
 
-
         mv.setViewName("/common/resultinquirymodal");
         return mv;
     }
 
+
     @GetMapping(value = "/userReadInquiry/{inquiryNo}", produces = "application/json; charset=UTF-8")
     @ResponseBody
-    public List<String> userReadInquiry(@PathVariable("inquiryNo") int inquiryNo){
-
-        List<String> message = new ArrayList<>();
-
-        int result = inquiryService.userReadInquiry(inquiryNo);
-
-        if(result>0){
-            message.add("문의를 읽으셨습니다.");
-        }else {
-            message.add("문의를 읽음 변환 실패.");
-        }
-        return message;
+    public void userReadInquiry(@PathVariable("inquiryNo") int inquiryNo){
+        inquiryService.userReadInquiry(inquiryNo);
     }
 
 

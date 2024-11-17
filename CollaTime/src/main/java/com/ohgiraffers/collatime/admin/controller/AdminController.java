@@ -238,7 +238,6 @@ public class AdminController {
             }
             int result = adminService.deleteAllDeactive(deleteProjectList);
 
-
             if (result > 0) {
                 message.add("일괄삭제가 완료되었습니다.");
             } else {

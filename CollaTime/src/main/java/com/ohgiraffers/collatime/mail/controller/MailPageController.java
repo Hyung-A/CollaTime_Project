@@ -39,11 +39,7 @@ public class MailPageController {
             checkMail.add(user.get(i).getUserEmail());
         }
 
-        System.out.println(checkMail);
-
         MailDTO mail = new MailDTO();
-
-        System.out.println(data);
 
         String email = data.replaceAll("\"", "");
         if(!checkMail.contains(email)) {
@@ -58,7 +54,6 @@ public class MailPageController {
     public MailDTO sendMail(@RequestBody String mail) throws MessagingException {
         List<UserDTO> user = userService.selectAllUser();
         List<String> checkMail = new ArrayList<>();
-        System.out.println(mail);
 
         for (int i = 0; i < user.size(); i++) {
             checkMail.add(user.get(i).getUserEmail());

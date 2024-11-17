@@ -106,7 +106,7 @@ public class MypageController {
 
     @GetMapping(value = "/modifyprofile", produces = "application/json; charset=UTF-8")
     @ResponseBody
-    public int modifyprofile(@AuthenticationPrincipal AuthDetails authDetails){
+    public void modifyprofile(@AuthenticationPrincipal AuthDetails authDetails){
         int userNo = authDetails.getUserNo();
         int randomPicture = (int) (Math.random() * 5) + 1;
         int randomColor = (int) (Math.random() * 5) + 1;
@@ -128,8 +128,6 @@ public class MypageController {
         }
 
         userService.modifyProfile(userNo, userPicture, userColor);
-
-        return 1;
     }
 
 }

@@ -101,8 +101,8 @@
             fetch("/mypage/modifyprofile")
                 .then(res=>res.json())
                 .then(data => {
-                    location.reload()
                 })
+            location.reload()
         })
 
         const myPageProjectMenu = document.getElementById('myPage_participation_project_list')
