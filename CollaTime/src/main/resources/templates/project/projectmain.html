@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Project</title>
+  <title>CollaTime</title>
   <link rel="stylesheet" href="/css/project/reset.css">
   <link rel="stylesheet" href="/css/project/projectMain.css">
   <link rel="stylesheet" href="/css/project/modalCreateOrJoin.css">
@@ -288,15 +288,20 @@
                               const completeXButton = document.getElementById("completeXButton");
                               completeXButton.onclick = function(){
                                 modalComplete.style.display = "none";
+                                if (res.redirected) {
+                                  window.location.href = res.url;
+                                } else {
+                                  window.location.href = "/project";
+                                }
                               }
                               const completeConfirm = document.getElementById("completeConfirm");
                               completeConfirm.onclick = function(){
                                 modalComplete.style.display = "none";
-                              }
-                              if (res.redirected) {
-                                window.location.href = res.url;
-                              } else {
-                                window.location.href = "/project";
+                                if (res.redirected) {
+                                  window.location.href = res.url;
+                                } else {
+                                  window.location.href = "/project";
+                                }
                               }
                             })
                             .then((result) => console.log(result))
@@ -502,15 +507,20 @@
                   const completeXButton = document.getElementById("completeXButton");
                   completeXButton.onclick = function(){
                     modalComplete.style.display = "none";
+                    if (res.redirected) {
+                      window.location.href = res.url;
+                    } else {
+                      window.location.href = "/project";
+                    }
                   }
                   const completeConfirm = document.getElementById("completeConfirm");
                   completeConfirm.onclick = function(){
                     modalComplete.style.display = "none";
-                  }
-                  if (res.redirected) {
-                    window.location.href = res.url;
-                  } else {
-                    window.location.href = "/project";
+                    if (res.redirected) {
+                      window.location.href = res.url;
+                    } else {
+                      window.location.href = "/project";
+                    }
                   }
                 })
                 .then((result) => console.log(result))
@@ -650,6 +660,7 @@
     adressArea.appendChild(emailAdress);
     xBtnArea.appendChild(xButton);
     storeArea.appendChild(storeMail);
+    // storeArea.style.left = "50px";
     storeMail.style.backgroundColor = "#FFFFFF";
     storeMail.style.height = "30px";
     storeMail.style.display = "flex";
@@ -675,7 +686,6 @@
   // 인원 추가 버튼 클릭 시 기존에 저장한 이메일이 있으면 불러와서 화면에 띄우기
   const addMemberBtn = document.getElementById("inviteMember");
   const storeArea = document.getElementById("storeEmailArea");
-  storeArea.style.left = "98px";
   addMemberBtn.onclick = function(){
     inviteMemberModal.style.display = "";
     emailList = [...resultEmailList];
@@ -1013,12 +1023,13 @@
 
                 completeXButton.onclick = function() {
                   modalComplete.style.display = "none";
+                  window.location.href = "/project";
                 };
 
                 completeConfirm.onclick = function() {
                   modalComplete.style.display = "none";
+                  window.location.href = "/project";
                 };
-                window.location.href = "/project";
               } else {
                 console.error("Request failed.");
               }
@@ -1113,12 +1124,13 @@
 
                 completeXButton.onclick = function() {
                   modalComplete.style.display = "none";
+                  window.location.href = "/project";
                 };
 
                 completeConfirm.onclick = function() {
                   modalComplete.style.display = "none";
+                  window.location.href = "/project";
                 };
-                window.location.href = "/project";
               } else {
                 console.error("Request failed.");
               }
@@ -1225,7 +1237,7 @@
                 const noteP = document.createElement("p");
                 noteP.className = "nthMember note";
                 noteP.style.left = "540px";
-                if (index === 0) {
+                if (member.isProductor === 'Y') {
                   noteP.textContent = "팀장";
                 } else {
                   noteP.textContent = "";
@@ -1237,7 +1249,7 @@
                 trashcanImg.className = "nthMember trashcanIcon";
                 trashcanImg.alt = "삭제 아이콘";
                 trashcanImg.style.left = "670px";
-                if(index === 0){
+                if(member.isProductor === 'Y'){
                   trashcanImg.style.display = "none";
                 } else {
                   trashcanImg.style.display = "";
@@ -1483,7 +1495,6 @@
               completeConfirm.onclick = function(){
                 modalComplete.style.display = "none";
               }
-                modalComplete.style.display = "none";
             })
             .then((result) => console.log(result))
             .catch((error) => console.log(error));
@@ -1601,7 +1612,11 @@
               for(let i = 0; i < selectCategoryList.length; i++){
                 selectCategoryList[i].setAttribute('checked', false);
               }
-              document.querySelector("#selectCategory input[value='"+data.projectCategoryCode+"']").setAttribute('checked' , true);
+
+              let categoryCodeList = document.querySelector("#updateCategory input[value='" + data.projectCategoryCode+"']");
+              if(categoryCodeList !== null && categoryCodeList !== undefined ) {
+                categoryCodeList.setAttribute('checked', true);
+              }
               // let updateCategoryList = document.querySelectorAll(".updateCategory");
               let selectCategoryLabelList = document.querySelectorAll(".selectCategoryLabel");
               for(let i = 0; i < selectCategoryList.length; i++){
@@ -1623,7 +1638,8 @@
               const selectInvitedMember = data.inviteMemberList;
               for(let i = 0; i < selectInvitedMember.length; i++) {
                 let selectResultMail = document.createElement("div"); // 이메일 div 생성
-                let selectEmailAdress = document.createTextNode(selectInvitedMember[i].email); // 이메일 주소 생성
+                let selectEmailAdress = document.createTextNode(selectInvitedMember[i].email);
+                console.log("야아아앙아", selectInvitedMember[i]);// 이메일 주소 생성
                 selectResultMail.appendChild(selectEmailAdress);
                 selectedMemberList.appendChild(selectResultMail); // selectMember div에 추가
                 // 스타일 설정
@@ -1637,6 +1653,7 @@
                 selectResultMail.style.marginLeft = "15px";
                 selectResultMail.style.marginTop = "5px";
                 selectResultMail.style.padding = "5px 10px";
+                selectResultMail.style.float = "left";
               }
             })
             .catch(error => console.log(error));
@@ -1681,15 +1698,11 @@
   const modalComplete = document.getElementById("modalComplete");
   modalComplete.style.display = "none";
   const completeXButton = document.getElementById("completeXButton");
-  // completeXButton.onclick = function(){
-  //   modalComplete.style.display = "none";
-  // }
+
   const completeConfirm = document.getElementById("completeConfirm");
-  // completeConfirm.onclick = function(){
-  //   modalComplete.style.display = "none";
-  // }
+
   const completeText = document.getElementById("completeText");
-  // completeText.innerText = "프로젝트 생성이 완료되었습니다."
+
 </script>
 </body>
 </html>

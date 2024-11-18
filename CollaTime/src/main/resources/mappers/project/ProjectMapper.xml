@@ -22,6 +22,7 @@
         <result property="userNo" column="CT_USER_NO"/>
         <result property="joinCode" column="RANDOM_JOIN_CODE"/>
         <result property="email" column="EMAIL"/>
+        <result property="nickName" column="NICK_NAME"/>
     </resultMap>
 
     <!-- MemberListDTO -->
@@ -29,6 +30,7 @@
         <id property="memberNo" column="CT_USER_NO"/>
         <result property="memberNickname" column="CT_USER_NICKNAME"/>
         <result property="memberEmail" column="CT_USER_EMAIL"/>
+        <result property="isProductor" column="IS_PRODUCTOR"/>
     </resultMap>
 
     <!-- 프로젝트 전체 조회 -->
@@ -72,12 +74,26 @@
     <!-- 프로젝트 멤버 리스트 가져오기 -->
     <select id="getInviteMemberList" resultMap="JoinProjectResultMap" parameterType="com.ohgiraffers.collatime.project.model.dto.ProjectDTO">
         SELECT
-                PROJECT_NO
-              , CT_USER_NO
-              , RANDOM_JOIN_CODE
-              , EMAIL
-          FROM  JOIN_PROJECT
-         WHERE  PROJECT_NO = #{ projectNo }
+                P.PROJECT_NO
+              , P.CT_USER_NO
+              , P.RANDOM_JOIN_CODE
+              , P.EMAIL
+              , (SELECT
+                      U.CT_USER_NICKNAME
+                 FROM CT_USER U
+                WHERE P.CT_USER_NO = U.CT_USER_NO) AS NICK_NAME
+          FROM  JOIN_PROJECT P
+         WHERE  P.PROJECT_NO = #{ projectNo }
+
+<!--        SELECT-->
+<!--              J.PROJECT_NO-->
+<!--            , J.CT_USER_NO-->
+<!--            , J.RANDOM_JOIN_CODE-->
+<!--            , J.EMAIL-->
+<!--            , U.CT_USER_NICKNAME AS NICK_NAME-->
+<!--         FROM JOIN_PROJECT J-->
+<!--         LEFT JOIN CT_USER U ON(J.CT_USER_NO = U.CT_USER_NO)-->
+<!--        WHERE J.PROJECT_NO = #{ projectNo }-->
     </select>
 
     <!-- 프로젝트 생성 - Project DB에 저장 -->
@@ -180,10 +196,16 @@
                CT_USER_NO
               ,CT_USER_NICKNAME
               ,CT_USER_EMAIL
+              ,CASE
+                WHEN CT_USER_NO = (SELECT PRODUCTOR_NO FROM PROJECT WHERE PROJECT_NO = #{ projectNo })
+                THEN 'Y'
+                ELSE 'N'
+               END AS IS_PRODUCTOR
           FROM CT_USER
          WHERE CT_USER_NO = (SELECT PRODUCTOR_NO FROM PROJECT WHERE PROJECT_NO = #{ projectNo })
                OR
-               CT_USER_NO IN(SELECT CT_USER_NO FROM JOIN_PROJECT WHERE PROJECT_NO = #{ projectNo });
+               CT_USER_NO IN(SELECT CT_USER_NO FROM JOIN_PROJECT WHERE PROJECT_NO = #{ projectNo })
+         ORDER BY IS_PRODUCTOR DESC
     </select>
 
     <delete id="deleteMemberInfo" parameterType="com.ohgiraffers.collatime.project.model.dto.InviteMemberDTO">

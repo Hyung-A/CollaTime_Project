@@ -176,4 +176,3 @@ insert into visit values ('2024-07-11', 900);
 insert into visit values ('2024-08-11', 830);
 insert into visit values ('2024-09-11', 450);
 insert into visit values ('2024-10-11', 300);
-
