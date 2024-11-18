@@ -127,15 +127,18 @@ INSERT INTO CT_USER VALUES
                         (1, 'gudtjrWkd', 'gudtjrWkdWKd12!', 'gudtjr@gmail.com', '조형석', '형석짱짱', 'a2','red', 'ADMIN'),
                         (2, 'wngPqueen', 'wngPking321@@', 'wngP@gmail.com', '김주혜', '주혜퀸', 'a6','green', 'USER'),
                         (3, 'gkdmsgood', 'good1234!@', 'gkdms@gmail.com', '이하은', '하은굿', 'a7','blue', 'USER'),
-                        (4, 'tndhksking', 'king!!1', 'tndhks@gmail.com', '박수완', '수완킹', 'a1', 'red', 'USER');
-                        
+                        (4, 'tndhksking', 'king!!1', 'tndhks@gmail.com', '박수완', '수완킹', 'a1', 'red', 'USER'),
+                        (5, 'test', '$2a$10$Fg4Khv4CyBEBpfY7mqpKiuPNRoJjsr.MXsmv65YEdTLVFc3F5tbXu', 'rhkdlf48301@naver.com', '김주혜', '형아짱', 'profile_rat', 'blue', 'USER'),
+                        (6, 'admin', '$2a$10$skLACK4y0eNc2oOL2l8NT.gR.ILbZlcS2IwRSLxzawdjAxgT3lWoK', 'gudtjr097@naver.com', '조형석', '관리자임다', 'profile_rat', 'blue', 'ADMIN');
 
 -- 문의 테이블 데이터 삽입
 INSERT INTO INQUIRY VALUES
                         (1, '읽음','마이페이지', '마이페이지가 보고싶어요', 2, '아직 개발중입니다.', null, null),
                         (2, '답변','마이페이지', '프로필 늘려주세요', 1, '아직 개발중입니다.', null, null),
-                        (3, '문의처리중','스케줄 색상', '스케줄 색상 좀 늘려주세요', 3, null, null, null);
-
+                        (3, '문의처리중','스케줄 색상', '스케줄 색상 좀 늘려주세요', 3, null, null, null),
+                        (4, '답변','스케줄 글자 색', '스케줄 구간에 있는 색 때문에 검정 글씨가 잘 안보일 때가 있어요 ㅠㅜ 글자색도 설정 가능하게 해주시면 감사하겠습니다.', 5, '글자 색 변경 기능이 이번에 업데이트 되었습니다!! 소중한 의견 감사드리고 항상 CollaTime을 사용해주셔서 감사합니다.', null, null),
+                        (5, '읽음','프로필 종류', '프로필이 정말 귀염뽀짝하네요. 그런데 종류가 너무 적습니다 ㅠㅜ 프로필을 종류를 좀 더 만들어주세요!!! 저는 코뿔소 좋아합니다 ㅎㅎㅎ', 5, '프로필 종류는 현재 개발중에 있습니다. 이번년도 말까지 업데이트 예정이니 기다려주세요!', null, null),
+                        (6, '답변','정말 화가 나네요.', '너무 잘 쓰고 있어서 화가 나네요 ㅎㅎ 앞으로도 많은 기능이 추가될 것이라고 생각합니다ㅎㅎ 개발자님 화이팅!', 5, '감사합니다! ㅎㅎ 앞으로도 더 발전하는 CollaTime이 되겠습니다.', null, null);
 -- 방문 테이블 데이터 삽입
 INSERT INTO VISIT VALUES
                       ('2024-10-27', 100),
@@ -209,3 +212,11 @@ insert into visit values ('2024-07-11', 900);
 insert into visit values ('2024-08-11', 830);
 insert into visit values ('2024-09-11', 450);
 insert into visit values ('2024-10-11', 300);
+insert into visit values ('2024-12-11', 348);
+insert into visit values ('2024-11-18', 50);
+insert into visit values ('2024-11-19', 70);
+insert into visit values ('2024-11-20', 56);
+insert into visit values ('2024-11-21', 84);
+insert into visit values ('2024-11-22', 96);
+insert into visit values ('2024-11-23', 45);
+insert into visit values ('2024-11-24', 18);

@@ -1,3 +1,14 @@
+@font-face {
+    font-family: 'Binggrae';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Binggrae.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body{
+    font-family: 'Binggrae', sans-serif;
+}
+
 #control_doInquiry{
     z-index: 10000;
     display: none;
@@ -69,7 +80,6 @@
     left: 495px;
     top: 304px;
 
-    font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
     font-size: 25px;
@@ -108,7 +118,6 @@
     left: 495px;
     top: 398px;
 
-    font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
     font-size: 25px;
