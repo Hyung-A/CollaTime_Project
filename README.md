@@ -36,7 +36,7 @@
 
 ### 개발 기간
 
-2024년 10월 16일 ~ 2024년 11월 14일 <br>
+2024년 10월 16일 ~ 2024년 11월 18일 <br>
 
 -----------------------------------------------
 
@@ -49,13 +49,20 @@ DataBase : MySQL Workbench 8.0 CE <br>
 
 -----------------------------------------------
 
+### 협업 툴
+
+Figma : https://www.figma.com/design/ksFZ8rr89oyWGSo4gaNKF7/Untitled?node-id=0-1&node-type=canvas&t=OAzPUWNqy36qpgcN-0 <br>
+Discord : 회의 진행
+
+-----------------------------------------------
+
 ### 팀원 소개
 
 | PM<br>(Project Manager) | CM<br>(Config Manager) | DB<br>(Database Manager) |  
 | :------: | :------: | :------: | 
 | [![HS](https://github.com/user-attachments/assets/b9b9af1c-144b-4131-8f4c-01b5550d1113)](https://github.com/Passbob) | [![JH](https://github.com/user-attachments/assets/e582c649-34ab-479d-8d78-e9fb6ddcd0a3)](https://github.com/JUHYE0925) | [![SW](https://github.com/user-attachments/assets/c2f4095c-a507-452a-8a43-655fc01d1d86)](https://github.com/suwanpp) | 
 | 팀장 : 조형석 | 팀원 : 김주혜 | 팀원 : 박수완 | 
-| 담당 : 회원 관리 | 담당 : 프로젝트 관리 | 담당 : 스케줄러 관리 | 
+| 담당 : 로그인/회원가입/마이페이지/문의하기/관리자 | 담당 : 프로젝트/에러페이지/메인 | 담당 : 스케줄러 | 
 
 -----------------------------------------------
 
