@@ -85,8 +85,7 @@ Discord : 회의 진행
    - 비밀번호 찾기를 할 수 있다.<br>
 
 2. 보안
-   - <span style="color:red"> !!!!!!! 추후 추가할 예정!!!!!!! </span>
-  
+   - Session 기반 Spring Security
 
 3. 회원가입
    - 이름, 닉네임, 이메일 주소, 아이디, 비밀번호를 필수로 입력한다. <br>
