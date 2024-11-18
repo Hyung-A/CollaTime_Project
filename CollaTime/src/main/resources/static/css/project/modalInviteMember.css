@@ -1,5 +1,9 @@
 @charset "utf-8";
 
+*{
+    cursor: default;
+}
+
 #inviteMemberModal {
 
     cursor: default;
@@ -31,6 +35,7 @@
     position: absolute;
     left: 965px;
     top: 5px;
+    cursor: pointer;
 }
 
 #textMember{
@@ -93,6 +98,7 @@
     letter-spacing: 0.03em;
 
     color: #282828;
+    cursor: text;
 }
 
 #addIcon{
@@ -110,6 +116,7 @@
     letter-spacing: 0.03em;
 
     color: #282828;
+    cursor: pointer;
 
 }
 
@@ -153,6 +160,7 @@
     line-height: 36px;
     letter-spacing: 0.03em;
     color: #282828;
+    cursor: pointer;
 
 }
 
@@ -173,8 +181,8 @@
     justify-content: center;
     line-height: 36px;
     letter-spacing: 0.03em;
-
     color: #282828;
+    cursor: pointer;
 
 }
 

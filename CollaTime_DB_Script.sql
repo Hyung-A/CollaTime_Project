@@ -54,20 +54,24 @@ CREATE TABLE IF NOT EXISTS PROJECT
     PRODUCTOR_NO INT NOT NULL COMMENT '생성자 회원 번호'
     ) ENGINE = INNODB COMMENT '프로젝트';
 
--- -- 스케줄 테이블 생성
--- CREATE TABLE IF NOT EXISTS CT_SCHEDULE
--- (
---     CT_SCHEDULE_NO    INT AUTO_INCREMENT PRIMARY KEY COMMENT '스케줄 번호',
---     PROJECT_NO    INT NOT NULL COMMENT '프로젝트 번호',
---     CT_SCHEDULE_START_DATE    DATE NOT NULL COMMENT '스케줄 시작일자',
---     CT_SCHEDULE_END_DATE    DATE NOT NULL COMMENT '스케줄 종료일자',
---     CT_SCHEDULE_CONTENT    VARCHAR(255) COMMENT '스케줄 내용',
---     CT_SCHEDULE_TITLE    VARCHAR(255) NOT NULL COMMENT '스케줄 제목',
---     CT_SCHEDULE_CREATOR    VARCHAR(255) NOT NULL COMMENT '스케줄 생성자',
---     COLOR_CODE    VARCHAR(10) NOT NULL COMMENT '색상코드',
---     CONSTRAINT FK_SCHEDULE_PROJECT_NO FOREIGN KEY (PROJECT_NO) REFERENCES PROJECT (PROJECT_NO) ON DELETE CASCADE,
---     CONSTRAINT FK_SCHEDULE_COLOR_CODE FOREIGN KEY (COLOR_CODE) REFERENCES COLOR (COLOR_CODE) ON DELETE CASCADE
---     ) ENGINE=INNODB COMMENT = '스케줄';
+-- 스케줄 테이블 생성
+
+CREATE TABLE `ct_schedule` (
+                               `CT_SCHEDULE_NO` int(100) NOT NULL AUTO_INCREMENT COMMENT '스케줄 번호',
+                               `PROJECT_NO` int(100) NOT NULL COMMENT '프로젝트 번호',
+                               `CT_SCHEDULE_START_DATE` date NOT NULL COMMENT '스케줄 시작일자',
+                               `CT_SCHEDULE_END_DATE` date NOT NULL COMMENT '스케줄 종료일자',
+                               `CT_SCHEDULE_CONTENT` varchar(255) DEFAULT NULL COMMENT '스케줄 내용',
+                               `CT_SCHEDULE_TITLE` varchar(255) NOT NULL COMMENT '스케줄 제목',
+                               `CT_SCHEDULE_CREATOR` varchar(255) NOT NULL COMMENT '스케줄 생성자',
+                               `COLOR_CODE` varchar(10) NOT NULL COMMENT '색상코드',
+                               `TEXT_COLOR_CODE` varchar(10) DEFAULT NULL COMMENT '글자색',
+                               PRIMARY KEY (`CT_SCHEDULE_NO`),
+                               KEY `FK_SCHEDULE_PROJECT_NO` (`PROJECT_NO`),
+                               KEY `FK_SCHEDULE_COLOR_CODE` (`COLOR_CODE`),
+                               CONSTRAINT `FK_SCHEDULE_PROJECT_NO` FOREIGN KEY (`PROJECT_NO`) REFERENCES `project` (`PROJECT_NO`) ON DELETE CASCADE
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='스케줄';
+
 
 -- 프로젝트 참가자 테이블 생성
 CREATE TABLE IF NOT EXISTS JOIN_PROJECT
@@ -135,8 +139,9 @@ INSERT INTO CATEGORY VALUES("CT5", "앱개발");
 INSERT INTO CATEGORY VALUES("CT6", "기타");
 
 -- 프로젝트 테이블 데이터 삽입
-INSERT INTO PROJECT VALUES (null,"계산기 프로그램 개발", "CT5", "2023-11-15", "2023-12-20", "계산기 프로그램 어플리케이션 만들기", "복잡한 기능은 삭제된 간단하고 사용하기 쉬운 계산기 기능만 들어간 가장 기본적인 계산기 어플리케이션을 만든다.", "1" );
-INSERT INTO PROJECT VALUES (null, "엽서 판매 웹사이트 제작", "CT4", "2024-02-01", "2024-04-20", "엽서 판매 웹 사이트 제작하기", "사진 취미러들의 사진을 받아 엽서로 제작하여 사진 입문자들의 사진도 대중들에게 사랑받을 수 있는 기회를 제공한다.", "2" );
+INSERT INTO PROJECT VALUES (null,"계산기 프로그램 개발", "CT5", "2023-11-15", "2023-12-20", "계산기 프로그램 어플리케이션 만들기", "복잡한 기능은 삭제된 간단하고 사용하기 쉬운 계산기 기능만 들어간 가장 기본적인 계산기 어플리케이션을 만든다.", "1" ),
+						   (null, "엽서 판매 웹사이트 제작", "CT4", "2024-02-01", "2024-04-20", "엽서 판매 웹 사이트 제작하기", "사진 취미러들의 사진을 받아 엽서로 제작하여 사진 입문자들의 사진도 대중들에게 사랑받을 수 있는 기회를 제공한다.", "2" );
+                           -- (null, "계산기 어플", "CT5", "2024-10-25","2024-11-25","장사를 하시는 어르신들이 사용하기 편한 계산기 어플을 개발하고자 한다.", "크고 단순한 UI와 정말 기본적인 사칙연산 및 장사에 필요한 계산 기능만 들어있는 계산기 어플을 개발하여 어르신들도 사용하기 좋은 계산기를 제공하는 것이 목표이다.", "6");
 
 -- 프로젝트 참가자 테이블 데이터 삽입
 INSERT INTO JOIN_PROJECT VALUES(1, "-1", "ADF182WE", 'user1@gmail.com'),
@@ -164,6 +169,11 @@ INSERT INTO COLOR VALUES('CO7','보라색');
 -- -- 스케줄 참가자 데이터 삽입
 -- INSERT INTO JOIN_SCHEDULE VALUES(1,1);
 
+-- <<<<<<< feature/152-finalProject
+-- -- 스케줄 테이블 데이터 삽입
+-- -- INSERT INTO CT_SCHEDULE VALUES(1,1,'24-10-28','24-10-30',"","",1,'CO1');
+-- =======
+-- >>>>>>> master
 
 -- 스케줄 테이블 생성
 CREATE TABLE `ct_schedule` (

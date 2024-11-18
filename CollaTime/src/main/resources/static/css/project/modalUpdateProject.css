@@ -1,5 +1,9 @@
 @charset "utf-8";
 
+*{
+    cursor: pointer;
+}
+
 /* 모달 레이아웃 */
 #modalUpdateProject{
 
@@ -32,6 +36,7 @@
     position: absolute;
     left: 965px;
     top: 5px;
+    cursor: pointer;
 
 }
 
@@ -64,6 +69,7 @@
     letter-spacing: 0.03em;
     color: #282828;
     outline: none;
+    cursor: text;
 
 }
 
@@ -129,6 +135,7 @@
     border: none;
     color: #000000;
     outline: none;
+    cursor: text;
 
     /* https://11001.tistory.com/149#google_vignette */
 }
@@ -186,6 +193,7 @@
     border: none;
     color: #000000;
     outline: none;
+    cursor: text;
 
 }
 
@@ -245,6 +253,7 @@
     border: none;
     color: #000000;
     outline: none;
+    cursor: text;
 
 }
 
@@ -266,6 +275,7 @@
     border: none;
     color: #282828;
     outline: none;
+    cursor: text;
 
 }
 
@@ -287,6 +297,10 @@
 
     color: #282828;
 
+}
+
+input[type='date']::-webkit-calendar-picker-indicator {
+    cursor: pointer;
 }
 
 /* 카테고리 */
@@ -331,6 +345,7 @@
     letter-spacing: 0.03em;
     opacity: 0;
     top: 15px;
+    cursor: pointer;
 
 }
 
@@ -386,6 +401,7 @@
     display: flex;
     justify-content: center;
     line-height: 28px;
+    cursor: pointer;
 
 }
 
@@ -513,6 +529,7 @@
     line-height: 36px;
     letter-spacing: 0.03em;
     color: #282828;
+    cursor: pointer;
 
 }
 
@@ -533,7 +550,7 @@
     justify-content: center;
     line-height: 36px;
     letter-spacing: 0.03em;
-
     color: #282828;
+    cursor: pointer;
 
 }

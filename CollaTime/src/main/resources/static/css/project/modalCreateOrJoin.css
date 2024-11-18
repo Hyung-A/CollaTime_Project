@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+*{
+    cursor: default;
+}
+
 /* 전체 레이아웃 */
 #createOrJoin{
 
@@ -37,6 +41,7 @@
     top: 5px;
     border: none;
     background: none;
+    cursor: pointer;
 
 }
 
@@ -72,7 +77,6 @@
     background: #DFF7FD;
     border-radius: 25px;
     border: none;
-
     font-family: 'Inter';
     font-style: normal;
     font-weight: 600;
@@ -80,8 +84,8 @@
     display: flex;
     justify-content: center;
     line-height: 105px;
-
     color: #898989;
+    cursor: pointer;
 
 }
 
@@ -119,6 +123,7 @@
     font-size: 15px;
     text-align: center;
     outline: none;
+    cursor: text;
 
 }
 
@@ -134,7 +139,6 @@
     border-radius: 15px;
     background: #92E2F8;
     border: #92E2F8;
-
     font-family: 'Inter';
     font-style: normal;
     font-weight: 600;
@@ -143,8 +147,8 @@
     align-items: center;
     text-align: center;
     letter-spacing: 0.03em;
-
     color: #000000;
+    cursor: pointer;
 
 }
 
@@ -154,13 +158,11 @@
     position: absolute;
     width: 99px;
     height: 31px;
-    left: 330px;
+    left: 437px;
     top: 540px;
     border-radius: 25px;
     background: #DFF7FD;
     border: #DFF7FD;
-
-
     font-family: 'Inter';
     font-style: normal;
     font-weight: 600;
@@ -169,32 +171,31 @@
     vertical-align: center;
     text-align: center;
     letter-spacing: 0.03em;
-
     color: #000000;
+    cursor: pointer;
 
 }
 
 /* 확인 버튼 */
-#smallConfirm{
+/*#smallConfirm{*/
 
-    position: absolute;
-    width: 99px;
-    height: 31px;
-    left: 437px;
-    top: 540px;
-
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 15px;
-    line-height: 24px;
-    align-items: center;
-    text-align: center;
-    letter-spacing: 0.03em;
-    border-radius: 25px;
-    background: #92E2F8;
-    border: #92E2F8;
-
-    color: #000000;
-}
+/*    position: absolute;*/
+/*    width: 99px;*/
+/*    height: 31px;*/
+/*    left: 437px;*/
+/*    top: 540px;*/
+/*    font-family: 'Inter';*/
+/*    font-style: normal;*/
+/*    font-weight: 600;*/
+/*    font-size: 15px;*/
+/*    line-height: 24px;*/
+/*    align-items: center;*/
+/*    text-align: center;*/
+/*    letter-spacing: 0.03em;*/
+/*    border-radius: 25px;*/
+/*    background: #92E2F8;*/
+/*    border: #92E2F8;*/
+/*    color: #000000;*/
+/*    cursor: pointer;*/
+/*}*/
 
