@@ -99,7 +99,7 @@ public class MypageController {
         mv.addObject("message", message);
         mv.addObject("isPass", isPass);
 
-        mv.setViewName("resultmypagemodal");
+        mv.setViewName("/mypage/resultmypagemodal");
 
         return mv;
     }
