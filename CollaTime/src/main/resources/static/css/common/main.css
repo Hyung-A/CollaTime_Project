@@ -18,7 +18,7 @@
 
 #collatime-main {
     position: absolute;
-    width: 1915px;
+    width: 1903px;
     height: 853px;
     top:101px;
     background-color: #DFF7FD;
@@ -53,7 +53,7 @@
 /* 두번째 섹션 */
 #collatime-second-intro {
     position: absolute;
-    width: 1915px;
+    width: 1903px;
     height: 853px;
     top: 954px;
     color: #003393;
@@ -121,7 +121,7 @@
 /*  세번째 섹션 */
 #collatime-third-intro {
     position: absolute;
-    width: 1915px;
+    width: 1903px;
     height: 853px;
     top: 1430px;
     color: #003393;
@@ -319,7 +319,7 @@
 /* 네번째 섹션 - 직원 후기 */
 #collatime-fourth-intro1 {
     position: absolute;
-    width: 1915px;
+    width: 1903px;
     height: 853px;
     top: 1906px;
     background-color: #FFFFFF;
@@ -413,7 +413,7 @@
 /* 4번째 섹션 */
 #collatime-fourth-intro2 {
     position: absolute;
-    width: 1915px;
+    width: 1903px;
     height: 476px;
     top: 2759px;
     background-color: #92E2F8;
