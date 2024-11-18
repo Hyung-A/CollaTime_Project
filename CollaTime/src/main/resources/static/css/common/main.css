@@ -41,6 +41,15 @@
     line-height: 1.5;
     color: #003393;
 }
+
+#mainSchedule{
+    position: absolute;
+    top: 360px;
+    left: 1000px;
+    width: 300px;
+    height: 150px;
+}
+
 /* 두번째 섹션 */
 #collatime-second-intro {
     position: absolute;

@@ -1,4 +1,7 @@
 /* 푸터 부분 */
+
+
+
 #collatime-footer {
     position: absolute;
     width: 1915px;
@@ -12,7 +15,6 @@
     position: absolute;
     top: 75px;
     left: 132px;
-    font-family: Inter;
     font-size: 16px;
     font-weight: bold;
     color: #003393;
@@ -21,7 +23,6 @@
     position: absolute;
     top: 75px;
     left: 1190px;
-    font-family: Inter;
     font-size: 16px;
     font-weight: bold;
     color: #003393;
@@ -30,7 +31,6 @@
     position: absolute;
     top: 75px;
     left: 1308px;
-    font-family: Inter;
     font-size: 16px;
     font-weight: bold;
     color: #003393;
@@ -39,7 +39,6 @@
     position: absolute;
     top: 75px;
     left: 1485px;
-    font-family: Inter;
     font-size: 16px;
     font-weight: bold;
     color: #003393;
@@ -48,7 +47,6 @@
     position: absolute;
     top: 75px;
     left: 1636px;
-    font-family: Inter;
     font-size: 16px;
     font-weight: bold;
     color: #003393;
@@ -64,7 +62,6 @@
     position: absolute;
     top: 35px;
     left: 132px;
-    font-family: Inter;
     font-size: 16px;
     font-weight: bold;
     color: #003393;
@@ -73,7 +70,6 @@
     position: absolute;
     top: 35px;
     left: 221px;
-    font-family: Inter;
     font-size: 16px;
     font-weight: bold;
     color: #003393;
@@ -82,7 +78,6 @@
     position: absolute;
     top: 35px;
     left: 375px;
-    font-family: Inter;
     font-size: 16px;
     font-weight: bold;
     color: #003393;
