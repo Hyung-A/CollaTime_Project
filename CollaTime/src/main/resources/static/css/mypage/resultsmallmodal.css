@@ -1,3 +1,15 @@
+@font-face {
+    font-family: 'Binggrae';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Binggrae.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body{
+    font-family: 'Binggrae', sans-serif;
+}
+
+
 #smallModalResult{
 
     position: absolute;
@@ -41,7 +53,6 @@
     left: 83px;
     top: 135px;
 
-    font-family: 'Abril Fatface';
     font-style: normal;
     font-weight: 600;
     font-size: 25px;
@@ -49,6 +60,7 @@
     text-align: center;
     color: #000000;
 
+    cursor: default;
 
 }
 

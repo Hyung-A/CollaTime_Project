@@ -51,6 +51,8 @@
 .message{
     font-size: 14px;
     font-weight: 800;
+
+    cursor: default;
 }
 
 /*회원가입 텍스트*/
@@ -61,12 +63,13 @@
     left: 56px;
     top: 85px;
 
-    font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
     font-size: 30px;
 
     color: #000000;
+
+    cursor: default;
 }
 
 /*아이디 입력창*/
@@ -236,13 +239,13 @@
     left: 56px;
     top: 85px;
 
-    font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
     font-size: 30px;
 
     color: #000000;
 
+    cursor: default;
 }
 
 /*이용약관 내용*/
@@ -261,6 +264,7 @@
 
     scrollbar-track-color: white;
 
+    cursor: default;
 }
 
 /*이용약관 스크롤*/
@@ -325,7 +329,6 @@
     left: 83px;
     top: 135px;
 
-    font-family: 'Abril Fatface';
     font-style: normal;
     font-weight: 600;
     font-size: 25px;
@@ -334,6 +337,7 @@
     color: #000000;
 
 
+    cursor: default;
 }
 
 

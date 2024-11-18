@@ -18,7 +18,7 @@
         INSERT INTO INQUIRY VALUES
         (
             #{inquiryNo}
-        ,   #{inquiryStatus}
+        ,   '문의처리중'
         ,   #{inquiryTitle}
         ,   #{inquiryContent}
         ,   #{userNo}

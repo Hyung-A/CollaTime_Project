@@ -41,7 +41,6 @@
     left: 83px;
     top: 135px;
 
-    font-family: 'Abril Fatface';
     font-style: normal;
     font-weight: 600;
     font-size: 22px;
@@ -49,6 +48,7 @@
     text-align: center;
     color: #000000;
 
+    cursor: default;
 
 }
 
@@ -60,7 +60,6 @@
     left: 83px;
     top: 135px;
 
-    font-family: 'Abril Fatface';
     font-style: normal;
     font-weight: 600;
     font-size: 22px;
@@ -68,6 +67,7 @@
     text-align: center;
     color: #000000;
 
+    cursor: default;
 
 }
 
