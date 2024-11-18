@@ -405,7 +405,7 @@
               본 프로그램은 데이터 관리로 인해 <br>
               종료된 프로젝트에 한하여 <br>
               종료일로부터 14일동안만 저장됩니다.<br>
-              14일 이후에는 프로젝트 관련 데이터가 자동 삭제됩니다.</span>
+              14일 이후에는 프로젝트 관련 데이터가 삭제됩니다.</span>
   </div>
   <button type="button" id="dataWarningCancel">취소</button>
   <button type="button" id="dataWarningConfirm">확인</button>
@@ -990,7 +990,7 @@
   let update_timeOff = new Date().getTimezoneOffset()*60000;
   let update_today = new Date(update_now_date-update_timeOff).toISOString().split("T")[0];
   let updateStartDate = document.getElementById("updateStartDate");
-  updateStartDate.setAttribute("min", update_today);
+  // updateStartDate.setAttribute("min", update_today);
   updateStartDate.onchange = function(){
     let updateEndDate = document.getElementById("updateEndDate");
     updateEndDate.setAttribute("min", this.value);
