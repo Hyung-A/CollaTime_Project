@@ -185,6 +185,7 @@ body{
 #watch {
     position: absolute;
     width: 20px;
+    top: 15px;
 }
 
 #participant-container {
