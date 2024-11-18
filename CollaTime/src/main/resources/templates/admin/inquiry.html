@@ -3,26 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
     <link rel="stylesheet" href="/css/project/reset.css">
     <link rel="stylesheet" href="/css/admin/inquiry.css">
 </head>
 <body>
+
 <div th:include="/admin/adminleftbar.html"></div>
 <div th:include="/common/programHeader.html"></div>
 
 <div id="inquiryTable_text">문의</div>
 
-                                <!--검색이 필요할까?-->
-<!--<select id="inquiryTable_category">-->
-<!--    <option value="none" selected>선택해주세요.</option>-->
-<!--    <option value="passauth">권한처리중</option>-->
-<!--    <option value="inquiry">문의처리중</option>-->
-<!--    <option value="answer">답변</option>-->
-<!--    <option value="read">읽음</option>-->
-<!--</select>-->
-<!--<input type="text" id="inquiryTable_search">-->
-<!--<button type="button" id="inquiryTable_search_btn">검색</button>-->
+<div id="inquiryTablePassAuth_text">권한요청 목록</div>
 <div id="inquiryTablePassAuth_area">
     <table id="inquiryTablePassAuth">
         <tr>
@@ -33,16 +24,18 @@
         </tr>
     </table>
 </div>
+<div id="inquiryTableRequire_text">문의요청 목록</div>
 <div id="inquiryTableRequire_area">
     <table id="inquiryTableRequire">
         <tr>
-            <th style="width: 50px; background-color: #8DE6FF">번호</th>
+            <th style="width: 50px; background-color: #8DE6FF;">번호</th>
             <th style="width: 160px; background-color: #8DE6FF">처리상태</th>
             <th style="width: 350px; background-color: #8DE6FF">문의제목</th>
             <th style="width: 90px; background-color: #8DE6FF">답변</th>
         </tr>
     </table>
 </div>
+<div id="inquiryTableAnswer_text">답변완료 목록</div>
 <div id="inquiryTableAnswer_area">
     <table id="inquiryTableAnswer">
         <tr>
@@ -53,6 +46,7 @@
         </tr>
     </table>
 </div>
+<div id="inquiryTableRead_text">읽음 목록</div>
 <div id="inquiryTableRead_area">
     <table id="inquiryTableRead">
         <tr>
@@ -65,6 +59,7 @@
 </div>
 <button type="button" id="deleteAllRead" onclick="location.href='/admin/deleteinquiry'">일괄삭제</button>
 </div>
+
 <script>
     document.getElementById('left_inquiry').style.background = 'white';
     document.getElementById('left_inquiry').style.boxShadow = 'inset 0.2px 0.2px 2px black';
@@ -80,7 +75,6 @@
     fetch("/admin/PassAuth")
         .then(res=>res.json())
         .then(data=>{
-            console.log(data)
             if(data.length>0){
                 for (var i = 0; i<data.length; i++) {
                     const inquiryInfo = document.createElement('tr')
@@ -102,7 +96,7 @@
                 }
             }else {
                 const NoInquiryInfo = document.createElement('tr')
-                NoInquiryInfo.innerHTML = `<th colspan="5" style="font-size: 40px; text-align: center; height: 60px">해당하는 값이 없습니다.</th>`
+                NoInquiryInfo.innerHTML = `<th colspan="5" style="font-size: 25px; text-align: center; height: 60px">해당하는 값이 없습니다.</th>`
                 passAuthList.append(NoInquiryInfo)
             }
         })
@@ -110,7 +104,6 @@
     fetch("/admin/Require")
         .then(res=>res.json())
         .then(data=>{
-            console.log(data)
             if(data.length>0){
                 for (var i = 0; i<data.length; i++) {
                     const inquiryInfo = document.createElement('tr')
@@ -132,7 +125,7 @@
                 }
             }else {
                 const NoInquiryInfo = document.createElement('tr')
-                NoInquiryInfo.innerHTML = `<th colspan="5" style="font-size: 40px; text-align: center; height: 60px">해당하는 값이 없습니다.</th>`
+                NoInquiryInfo.innerHTML = `<th colspan="5" style="font-size: 25px; text-align: center; height: 60px">해당하는 값이 없습니다.</th>`
                 requireList.append(NoInquiryInfo)
             }
         })
@@ -140,7 +133,6 @@
     fetch("/admin/Answer")
         .then(res=>res.json())
         .then(data=>{
-            console.log(data)
             if(data.length>0){
                 for (var i = 0; i<data.length; i++) {
                     let inquiryLink = "/admin/inquiryinfo/"+data[i].inquiryNo;
@@ -162,7 +154,7 @@
                 }
             }else {
                 const NoInquiryInfo = document.createElement('tr')
-                NoInquiryInfo.innerHTML = `<th colspan="5" style="font-size: 40px; text-align: center; height: 60px">해당하는 값이 없습니다.</th>`
+                NoInquiryInfo.innerHTML = `<th colspan="5" style="font-size: 25px; text-align: center; height: 60px">해당하는 값이 없습니다.</th>`
                 answerList.append(NoInquiryInfo)
             }
         })
@@ -171,7 +163,6 @@
     fetch("/admin/Read")
         .then(res=>res.json())
         .then(data=>{
-            console.log(data)
             if(data.length>0){
                 for (var i = 0; i<data.length; i++) {
                     let inquiryLink = "/admin/inquiryinfo/"+data[i].inquiryNo;
@@ -193,10 +184,11 @@
                 }
             }else {
                 const NoInquiryInfo = document.createElement('tr')
-                NoInquiryInfo.innerHTML = `<th colspan="5" style="font-size: 40px; text-align: center; height: 60px">해당하는 값이 없습니다.</th>`
+                NoInquiryInfo.innerHTML = `<th colspan="5" style="font-size: 25px; text-align: center; height: 60px">해당하는 값이 없습니다.</th>`
                 readList.append(NoInquiryInfo)
             }
         })
+
 
 
 </script>

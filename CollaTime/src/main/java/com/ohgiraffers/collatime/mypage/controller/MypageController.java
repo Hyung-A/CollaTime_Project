@@ -30,7 +30,6 @@ public class MypageController {
     @ResponseBody
     public boolean pwdcheck(@AuthenticationPrincipal AuthDetails authDetails, @RequestBody String checkPwd){
 
-        System.out.println("들어왔냐"+authDetails.getPassword());
         System.out.println(checkPwd);
 
         boolean pwdCheck = mypageService.pwdCheck(authDetails.getPassword(), checkPwd);
@@ -58,22 +57,17 @@ public class MypageController {
             isModifyPwd = false;
         }
 
-        System.out.println(isModifyPwd);
-        System.out.println("hi"+userDTO);
         int result = userService.modifyUser(userDTO, isModifyPwd);
 
 
-        System.out.println(result);
         String message = "";
         boolean isPass = true;
 
         if (result > 0) {
             message = "수정이 완료되었습니다.";
-            System.out.println("yes");
 
         } else {
             message = "수정에 실패했습니다.";
-            System.out.println("no");
             isPass = false;
         }
 
@@ -97,10 +91,8 @@ public class MypageController {
 
         if (result > 0) {
             message = "그동안 CollaTime을 사용해주셔서 감사합니다.";
-            System.out.println("yes");
         } else {
             message = "삭제에 실패했습니다.";
-            System.out.println("no");
             isPass = false;
         }
 
@@ -114,7 +106,7 @@ public class MypageController {
 
     @GetMapping(value = "/modifyprofile", produces = "application/json; charset=UTF-8")
     @ResponseBody
-    public int modifyprofile(@AuthenticationPrincipal AuthDetails authDetails){
+    public void modifyprofile(@AuthenticationPrincipal AuthDetails authDetails){
         int userNo = authDetails.getUserNo();
         int randomPicture = (int) (Math.random() * 5) + 1;
         int randomColor = (int) (Math.random() * 5) + 1;
@@ -135,17 +127,7 @@ public class MypageController {
             case 5 : userColor = "yellow"; break;
         }
 
-        System.out.println("userNo = " + userNo);
-        System.out.println("userPicture = " + userPicture);
-        System.out.println("userColor = " + userColor);
-
         userService.modifyProfile(userNo, userPicture, userColor);
-//        mv.addObject("userPicture", userPicture);
-//        mv.addObject("userColor", userColor);
-//        mv.setViewName("mypage/mypagemain");
-//
-//        return mv;
-        return 1;
     }
 
 }

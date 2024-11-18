@@ -38,6 +38,8 @@
     position: absolute;
     left: 965px;
     top: 5px;
+
+    cursor: pointer;
 }
 
 
@@ -160,6 +162,8 @@
 
 
     color: #000000;
+
+    cursor: pointer;
 }
 /*문의하기 확인버튼*/
 #doInquiry_send_btn{
@@ -184,6 +188,8 @@
 
 
     color: #000000;
+
+    cursor: pointer;
 }
 
 #doInquiry_title_message{

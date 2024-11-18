@@ -28,13 +28,16 @@
                 <div class="dropdown-icon">▼</div>
             </div>
             <div class="color-dropdown" id="color-dropdown">
-                <div class="color-option" data-color="#ff0000" style="background-color: #ff0000;"></div>
-                <div class="color-option" data-color="#ff8c00" style="background-color: #ff8c00;"></div>
-                <div class="color-option" data-color="#ffff00" style="background-color: #ffff00;"></div>
-                <div class="color-option" data-color="#008000" style="background-color: #008000;"></div>
-                <div class="color-option" data-color="#0000ff" style="background-color: #0000ff;"></div>
-                <div class="color-option" data-color="#4b0082" style="background-color: #4b0082;"></div>
-                <div class="color-option" data-color="#800080" style="background-color: #800080;"></div>
+                <div class="color-option" data-color="#FEC4C4" style="background-color: #FEC4C4;"></div>
+                <div class="color-option" data-color="#D9F0FB" style="background-color: #D9F0FB;"></div>
+                <div class="color-option" data-color="#FFEFCC" style="background-color: #FFEFCC;"></div>
+                <div class="color-option" data-color="#FFA990" style="background-color: #FFA990;"></div>
+                <div class="color-option" data-color="#B7E58E" style="background-color: #B7E58E;"></div>
+                <div class="color-option" data-color="#FFDAFA" style="background-color: #FFDAFA;"></div>
+                <div class="color-option" data-color="#F3DAFF" style="background-color: #F3DAFF;"></div>
+                <div class="color-option" data-color="#DADFFF" style="background-color: #DADFFF;"></div>
+                <div class="color-option" data-color="#EDD5C0" style="background-color: #EDD5C0;"></div>
+                <div class="color-option" data-color="#D6EADF" style="background-color: #D6EADF;"></div>
             </div>
             <input type="hidden" name="colorCode" id="selectedColor"> <!-- 선택된 색상 값 저장 -->
         </div>
@@ -61,11 +64,14 @@
 
         <!-- 참여자 -->
         <div id="participant-container">
-            <div id="invite-icon">
+            <div id="invite-icon" >
                 <img src="/css/schedule/image/인원.png" id="people">
             </div>
             <div id="participant-list">
-                <span id="placeholder-text">참여자(닉네임)</span>
+                <!-- 선택된 참가자가 여기에 추가됩니다 -->
+            </div>
+            <div id="participant-select">
+                <!-- 참가자 목록을 보여주는 셀렉트 박스가 여기에 삽입됩니다 -->
             </div>
         </div>
 

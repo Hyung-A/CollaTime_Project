@@ -121,10 +121,10 @@
 .colorOptions {
     position: absolute;
     margin-left: 10px;
-    padding: 5px; /* 버튼 주변 여백 */
-    background-color: #f5f5f5; /* 배경색 추가 */
-    border-radius: 8px; /* 모서리를 둥글게 */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 약간의 그림자 효과 */
+    padding: 5px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .color-button {
@@ -135,14 +135,14 @@
     width: 24px;
     height: 24px;
     border-radius: 50%;
-    background-color: #FF0000; /* 기본 빨간색 */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 약간의 그림자 */
+    background-color: #FEC4C4;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     border: 1px solid #ccc;
 }
 
 .update-color-dropdown {
-    display: none; /* 기본적으로 숨김 */
+    display: none;
     position: absolute;
     top: 140px;
     left: 50px;
@@ -273,22 +273,22 @@
     width: 370px;
     height: 200px;
     border: none;
-    resize: none; /* 크기 조절 비활성화 */
+    resize: none;
     outline: none;
-    background-color: #e0f7fa; /* 연한 파란색 배경 */
+    background-color: #e0f7fa;
     font-size: 14px;
     color: #333;
     padding: 5px;
-    border-radius: 10px; /* 모서리를 둥글게 */
+    border-radius: 10px;
 }
 
 .creator-info {
 
     position: absolute;
-    bottom: 60px; /* 버튼 위에 위치할 수 있도록 설정 */
-    left: 40px;   /* 왼쪽 여백 */
+    bottom: 60px;
+    left: 40px;
     font-size: 14px;
-    color: #666;  /* 텍스트 색상 */
+    color: #666;
     font-weight: bold;
 }
 .update-makeSchedule-CancelButton {
@@ -364,7 +364,7 @@
 
 
 .readonly {
-    background-color: #fff; /* 읽기 전용 모드 배경 색상 */
+    background-color: #fff;
     border: none;
     pointer-events: none;
     border-bottom: none;
@@ -376,3 +376,54 @@
 .update-makeSchedule-CancelButton , .update-schedule-confirmButton{
     cursor: pointer;
 }
+
+#update-participant-select {
+    display: none;
+}
+#updateParticipantSelect {
+    width: 30%;
+    /*padding: 12px 20px;*/
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #333;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    appearance: none; /* 기본 드롭다운 화살표 제거 */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+    position: absolute;
+    z-index: 999;
+    left: 34px;
+    top: -46px;
+}
+
+/* 포커스 시 스타일 */
+#updateParticipantSelect:focus {
+    border-color: #4A90E2;
+    box-shadow: 0 0 8px rgba(74, 144, 226, 0.6);
+    outline: none;
+}
+
+/* 기본 옵션 스타일 */
+#updateParticipantSelect option {
+    padding: 10px;
+    font-size: 16px;
+}
+
+/* 드롭다운 화살표 커스터마이즈 */
+#updateParticipantSelect::-ms-expand {
+    display: none;
+}
+
+/* 셀렉트 박스가 비어있을 때 기본 텍스트 스타일 */
+#updateParticipantSelect option:first-child {
+    color: #888;
+    font-style: italic;
+}
+.participant-item{
+    margin-right: 15px;
+}
+

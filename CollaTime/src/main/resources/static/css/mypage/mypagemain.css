@@ -28,6 +28,7 @@
     border: 1px solid rgba(0, 0, 0, 0.4);
     border-radius: 20px;
 
+    cursor: pointer;
 }
 
 /*회원정보 수정 text*/
@@ -88,6 +89,7 @@
     border-radius: 20px;
 
 
+    cursor: pointer;
 }
 
 /*문의 내역 text*/
@@ -196,6 +198,7 @@
     left: 1672px;
     top: 295px;
 
+    cursor: pointer;
 }
 /*프로필 닉네임*/
 #myPage_userNickname{
@@ -327,6 +330,10 @@
     top: 635px;
     width: 360px;
 
+}
+
+.projectList{
+    cursor: pointer;
 }
 /*구분선*/
 .underBar{

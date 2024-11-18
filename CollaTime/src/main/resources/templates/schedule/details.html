@@ -33,13 +33,13 @@
                 <div class="dropdown-icon">▼</div>
             </div>
             <div class="update-color-dropdown">
-                <div class="color-option" data-color="#ff0000" style="background-color: #ff0000;"></div>
-                <div class="color-option" data-color="#ff8c00" style="background-color: #ff8c00;"></div>
-                <div class="color-option" data-color="#ffff00" style="background-color: #ffff00;"></div>
-                <div class="color-option" data-color="#008000" style="background-color: #008000;"></div>
-                <div class="color-option" data-color="#0000ff" style="background-color: #0000ff;"></div>
-                <div class="color-option" data-color="#4b0082" style="background-color: #4b0082;"></div>
-                <div class="color-option" data-color="#800080" style="background-color: #800080;"></div>
+                <div class="color-option" data-color="#FEC4C4" style="background-color: #FEC4C4;"></div>
+                <div class="color-option" data-color="#D9F0FB" style="background-color: #D9F0FB;"></div>
+                <div class="color-option" data-color="#FFEFCC" style="background-color: #FFEFCC;"></div>
+                <div class="color-option" data-color="#FFA990" style="background-color: #FFA990;"></div>
+                <div class="color-option" data-color="#B7E58E" style="background-color: #B7E58E;"></div>
+                <div class="color-option" data-color="#FFDAFA" style="background-color: #FFDAFA;"></div>
+                <div class="color-option" data-color="#F3DAFF" style="background-color: #F3DAFF;"></div>
             </div>
             <input type="hidden" name="colorCode">
         </div>
@@ -61,15 +61,21 @@
             <input type="date" class="scheduleEndDate readonly" min="2024-01-01" max="2099-12-31" name="scheduleEnd" required>
         </div>
 
+
         <!-- 참여자 -->
-        <div class="participant-container">
-            <div class="invite-icon">
-                <img src="/css/schedule/image/인원.png" class="people readonly">
+        <div id="update-participant-container" class="participant-container" >
+            <div id="update-invite-icon" class="invite-icon" >
+                <img src="/css/schedule/image/인원.png" class="people readonly"  >
             </div>
-            <div class="participant-list readonly">
-                <span class="placeholder-text">참여자(닉네임)</span>
+            <div id="update-participant-list" class="participant-list readonly" >
+                <!-- 선택된 참가자가 여기에 추가됩니다 -->
+            </div>
+            <div id="update-participant-select">
+                <!-- 참가자 목록을 보여주는 셀렉트 박스가 여기에 삽입됩니다 -->
             </div>
         </div>
+
+
 
         <!-- 메모 -->
         <span><img src="/css/schedule/image/과제내용.png" class="memoIcon"></span>
@@ -88,15 +94,6 @@
 
 
 </div>
-
-
-
-
-
-
-
-
-
 
 </body>
 </html>

@@ -29,6 +29,8 @@
     position: absolute;
     left: 965px;
     top: 5px;
+
+    cursor: pointer;
 }
 
 
@@ -137,16 +139,22 @@
 }
 /*문의리스트 위치*/
 #myInquiry_list{
+    overflow: auto;
     position: absolute;
 
     left: 590px;
     top: 371px;
 
+    padding-bottom: 10px;
 }
 
 /*문의 상세 사이 위치*/
 .myInquiryInfo{
+    padding-bottom: 10px;
+    border-bottom: 1px solid RGBA(217, 217, 217, 0.4);
     margin-top: 15px;
+
+    cursor: pointer;
 }
 /*문의 텍스트 기본값*/
 .myInquiryInfoText{

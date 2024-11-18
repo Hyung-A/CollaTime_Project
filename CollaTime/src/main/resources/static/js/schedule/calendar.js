@@ -1,11 +1,11 @@
 let currentMonth=""
 document.addEventListener("DOMContentLoaded", function () {
-    console.log("Details modal count on page load:", document.querySelectorAll("#detailsModal").length);
 
-   // const makescheduleModal = createModal('schedule/makeschedule.html', 'makescheduleModal');
-  //  const createsuccessModal = createModal('schedule/createsuccess.html', 'createsuccessModal');
+
+    // const makescheduleModal = createModal('schedule/makeschedule.html', 'makescheduleModal');
+    //  const createsuccessModal = createModal('schedule/createsuccess.html', 'createsuccessModal');
     //const emptyModal = createModal('schedule/empty.html', 'emptyModal');
-   // const listModal = createModal('schedule/list.html', 'listModal');
+    // const listModal = createModal('schedule/list.html', 'listModal');
     //const detailsModal = createModal('schedule/details.html', 'detailsModal');
 
     let date = new Date();
@@ -96,8 +96,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
 
-
-
         await getSchedules();
     }
 
@@ -127,7 +125,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 async  function getSchedules() { // 항상 promise 반환
 
-    await  fetch("/api/schedules/user", {cache: "no-store"}) // await 는 promise 처리될 때 까지 기다림
+
+    const urlParam=new URLSearchParams(window.location.search);
+    const projectNo=urlParam.get('projectNo');
+
+    await  fetch(`/api/schedules/user/${projectNo}`, {cache: "no-store"}) // await 는 promise 처리될 때 까지 기다림
         .then(response => response.json())
         .then(schedules => {
             if (schedules && schedules.length >= 0) {
@@ -149,8 +151,8 @@ async  function getSchedules() { // 항상 promise 반환
 
 
 function emptyDateClick(dataDate) {
-     // $("#emptyModal").show();
-     // $("#middleModal").show();
+    // $("#emptyModal").show();
+    // $("#middleModal").show();
     const html =`<div id="centeredContent">
             <img src="/css/schedule/image/emptycalendar.png" id="centerImage">
                 <p id="centerText">일정을 등록하세요.</p>
@@ -160,9 +162,7 @@ function emptyDateClick(dataDate) {
     $("#scheduleList").html(html);
 
 
-
-
-$("#scheduleList").addClass("emptyModal");
+    $("#scheduleList").addClass("emptyModal");
 
     $("#list-plusList").on("click", function(){
         $("#scheduleStartDate").val(dataDate);
@@ -182,53 +182,53 @@ $("#scheduleList").addClass("emptyModal");
 
 
 function displaySchedules(schedules) {
-console.log(" displaySchedules  가져오기 :");
 
-const scheduleList = document.getElementById("scheduleList");
-scheduleList.innerHTML = "";
 
-schedules.forEach(schedule => {
-    const item = document.createElement("div");
-    item.classList.add("schedule-item");
-    item.textContent = schedule.scheduleTitle;
-    item.addEventListener("click", () => openDetailsModal(schedule.scheduleNo));
-    scheduleList.appendChild(item);
-});
+    const scheduleList = document.getElementById("scheduleList");
+    scheduleList.innerHTML = "";
+
+    schedules.forEach(schedule => {
+        const item = document.createElement("div");
+        item.classList.add("schedule-item");
+        item.textContent = schedule.scheduleTitle;
+        item.addEventListener("click", () => openDetailsModal(schedule.scheduleNo));
+        scheduleList.appendChild(item);
+    });
 }
 
 
 
 function calendarDisplaySchedules(schedules) {
-//console.log("displaySchedules 가져오기:");
-const dates = $(".date");
 
-schedules.forEach(schedule=> {
-    const item = document.createElement("div");
-    item.classList.add("schedule-item");
-    //item.addEventListener("click", listModalOpen(schedules));
-    item.setAttribute("data-schedules-no", schedule.scheduleNo);
-    item.setAttribute("data-scheduleStartDate", schedule.scheduleStartDate);
-    item.setAttribute("data-scheduleEndDate", schedule.scheduleEndDate);
+    const dates = $(".date");
+
+    schedules.forEach(schedule=> {
+        const item = document.createElement("div");
+        item.classList.add("schedule-item");
+        //item.addEventListener("click", listModalOpen(schedules));
+        item.setAttribute("data-schedules-no", schedule.scheduleNo);
+        item.setAttribute("data-scheduleStartDate", schedule.scheduleStartDate);
+        item.setAttribute("data-scheduleEndDate", schedule.scheduleEndDate);
 
 
-    dates.each(function(dateIndex, data) {
-        const dateValue = $(this).data("date");
+        dates.each(function(dateIndex, data) {
+            const dateValue = $(this).data("date");
 
-        if (dateValue >= schedule.scheduleStartDate && dateValue <= schedule.scheduleEndDate) {
-            item.textContent ="";
-            item.style.backgroundColor = schedule.colorCode;
-            if(dateValue==schedule.scheduleStartDate){
-                item.textContent = schedule.scheduleTitle;
-                item.style.color= schedule.textColorCode;
+            if (dateValue >= schedule.scheduleStartDate && dateValue <= schedule.scheduleEndDate) {
+                item.textContent ="";
+                item.style.backgroundColor = schedule.colorCode;
+                if(dateValue==schedule.scheduleStartDate){
+                    item.textContent = schedule.scheduleTitle;
+                    item.style.color= schedule.textColorCode;
+                }
+
+                $(this).append(item.cloneNode(true));
             }
 
-            $(this).append(item.cloneNode(true));
-        }
-
+        });
     });
-});
 
-$(".schedule-item").on("click", function(e) {
+    $(".schedule-item").on("click", function(e) {
         const parentNode= $(this).parent();
         const dataDate = parentNode.data("date");
         const dataSscheduleItemAll = parentNode.find(".schedule-item");
@@ -239,22 +239,26 @@ $(".schedule-item").on("click", function(e) {
             scheduleNoList.push(scheduleNo);
         });
         listModalOpen(scheduleNoList, dataDate);
-});
+    });
 }
 
 async function listModalOpen(scheduleNoList, dataDate) {
-//console.log("listModalOpen:", scheduleNoList);
+
     $("#scheduleList").removeClass("emptyModal");
+
+    const urlParam=new URLSearchParams(window.location.search);
+    const projectNo=urlParam.get('projectNo');
+
 
 
     try {
         // POST 요청으로 변경
-        const response = await fetch("/api/schedules/scheduleNoList", {
+        const response = await fetch(`/api/schedules/scheduleNoList`, {
             method: "POST", // GET -> POST로 변경
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ scheduleNoList })
+            body: JSON.stringify({ scheduleNoList, projectNo })
         });
 
         if (!response.ok) {
@@ -276,17 +280,26 @@ async function listModalOpen(scheduleNoList, dataDate) {
 
 // 스케줄 목록 표시 함수
 function displayScheduleList(schedules,dataDate) {
-const scheduleListContainer = document.getElementById("scheduleList");
-scheduleListContainer.innerHTML = ""; // 기존 내용을 초기화
+    const scheduleListContainer = document.getElementById("scheduleList");
+    scheduleListContainer.innerHTML = ""; // 기존 내용을 초기화
 
-schedules.forEach(schedule => {
-    // 스케줄 항목 생성
-    const scheduleItem = document.createElement("div");
-    scheduleItem.classList.add("schedule-card");
-    scheduleItem.style.backgroundColor = schedule.colorCode;
+    schedules.forEach(schedule => {
+        // 스케줄 항목 생성
+        const scheduleItem = document.createElement("div");
+        scheduleItem.classList.add("schedule-card");
+        scheduleItem.style.backgroundColor = schedule.colorCode;
 
-    // HTML 내용 구성
-    scheduleItem.innerHTML = `
+        let participantNameList = "";
+        if (schedule.participantList.length > 0) {
+            schedule.participantList.forEach(participant => {
+                participantNameList += `<p style="color: ${schedule.textColorCode}" ><strong>팀원:</strong> ${participant.nickName}</p>`;
+
+
+            });
+        }
+
+        // HTML 내용 구성
+        scheduleItem.innerHTML = `
         <div class="schedule-header">
             <h3 style="color: ${schedule.textColorCode}">${schedule.scheduleTitle}</h3>
         </div>
@@ -295,71 +308,90 @@ schedules.forEach(schedule => {
             <p style="color: ${schedule.textColorCode}" >${schedule.scheduleContent}</p>
             <p class="schedule-creator" style="color: ${schedule.textColorCode}" >작성자: ${schedule.scheduleCreator}</p>
 
-
+            ${participantNameList}
+        
           <div class="schedule-footer">
             <button class="view-btn" data-id="${schedule.scheduleNo}">상세보기</button>
           </div>
         </div>
     `;
 
-    // #scheduleList에 추가
-    scheduleListContainer.appendChild(scheduleItem);
+        // #scheduleList에 추가
+        scheduleListContainer.appendChild(scheduleItem);
 
-    // 상세보기 버튼 클릭 시
-    const viewButton = scheduleItem.querySelector(".view-btn");
-    viewButton.addEventListener("click", function() {
-        displayScheduleDetail(schedule); // 상세보기 함수 호출
+        // 상세보기 버튼 클릭 시
+        const viewButton = scheduleItem.querySelector(".view-btn");
+        viewButton.addEventListener("click", function () {
+            displayScheduleDetail(schedule); // 상세보기 함수 호출
+        });
+
+
+        $("#list-listXButton").on("click", function () {
+            $("#listModal").hide();
+        });
+
+        $("#list-plusList").on("click", function () {
+            $("#scheduleStartDate").val(dataDate);
+            $("#scheduleEndDate").val(dataDate);
+            $("#makeScheduleModal").find(".readonly").removeClass("readonly");
+            $("#makeScheduleModal").show();
+        });
+
+
     });
-
-
-    $("#list-listXButton").on("click", function(){
-        $("#listModal").hide();
-    });
-
-    $("#list-plusList").on("click", function(){
-        $("#scheduleStartDate").val(dataDate);
-        $("#scheduleEndDate").val(dataDate);
-        $("#makeScheduleModal").find(".readonly").removeClass("readonly");
-        $("#makeScheduleModal").show();
-    });
-
-
-});
 
 }
 
 // 상세보기 기능
 function displayScheduleDetail(schedule) {
 // 상세보기 페이지에 정보 채우기
-$('#detailsModal input[name="scheduleNo"]').val(schedule.scheduleNo);
-$('#detailsModal .scheduleTitle input').val(schedule.scheduleTitle);
-$('#detailsModal .scheduleStartDate').val(schedule.scheduleStartDate);
-$('#detailsModal .scheduleEndDate').val(schedule.scheduleEndDate);
-$('#detailsModal textarea[name="scheduleContent"]').val(schedule.scheduleContent);
-$('#detailsModal .creator-info').html(`생성자 | ${schedule.scheduleCreator}`);
+    $('#detailsModal input[name="scheduleNo"]').val(schedule.scheduleNo);
+    $('#detailsModal .scheduleTitle input').val(schedule.scheduleTitle);
+    $('#detailsModal .scheduleStartDate').val(schedule.scheduleStartDate);
+    $('#detailsModal .scheduleEndDate').val(schedule.scheduleEndDate);
+    $('#detailsModal textarea[name="scheduleContent"]').val(schedule.scheduleContent);
+    $('#detailsModal .creator-info').html(`생성자 | ${schedule.scheduleCreator}`);
+
+
+    let detailsParticipantNameList="";
+    if (schedule.participantList.length > 0) {
+        schedule.participantList.forEach(participant => {
+            detailsParticipantNameList +=`
+        <span class="participant-item" data-memberno="${participant.participantNo}"> ${participant.nickName}
+            <button type="button" class="remove-btn update-remove-btn" data-memberno="${participant.participantNo}"  
+            onclick="deleteParticipant(this)"               
+            >x</button>         
+           <span class="update-participant-item-span"> ,</span>    
+        </span>
+    `;
+        });
+    }
+    $("#detailsModal #update-participant-list").html(detailsParticipantNameList);
 
 
 
 
-// 색상 선택 옵션
-$('#detailsModal .color-button').css('background-color', schedule.colorCode);
-$('#detailsModal input[name="colorCode"]').val(schedule.colorCode);
+    // 색상 선택 옵션
+    $('#detailsModal .color-button').css('background-color', schedule.colorCode);
+    $('#detailsModal input[name="colorCode"]').val(schedule.colorCode);
 
-// 글자색 선택 옵션
-$('#detailsModal .textColorPicker').val(schedule.textColorCode);
-$('#detailsModal .selectedTextColor').val(schedule.textColorCode);
+    // 글자색 선택 옵션
+    $('#detailsModal .textColorPicker').val(schedule.textColorCode);
+    $('#detailsModal .selectedTextColor').val(schedule.textColorCode);
 
-// 참여자 정보 채우기
-const participantList = $('#detailsModal .participant-list');
-if (schedule.participants) {
-    participantList.html(schedule.participants.map(participant => `<span>${participant}</span>`).join(", "));
-}
+    // 참여자 정보 채우기
+    const participantList = $('#detailsModal .participant-list');
+    if (schedule.participants) {
+        participantList.html(schedule.participants.map(participant => `<span>${participant}</span>`).join(", "));
+    }
 
-
-// 모달 띄우기
+    // 모달 띄우기
     $('#detailsModal').show();
 }
 
+function  deleteParticipant(event) {
+    $(event).parent().remove();
+}
 
 
 

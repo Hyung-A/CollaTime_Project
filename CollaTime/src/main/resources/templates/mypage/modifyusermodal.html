@@ -240,10 +240,8 @@
     let emailMessage = document.getElementById('emailMessage');
     document.getElementById("send_code_email").addEventListener('click', function () {
         let checkEmail = document.getElementById('modify_email_input').value;
-        console.log(checkEmail)
         if (checkEmail == '' || checkEmail.length == 0) {
             emailMessage.style.color = 'red';
-            emailMessage.innerText = '이메일은 공백이 될 수 없습니다.';
             isModify[3] = "false";
         }
         else {
@@ -261,7 +259,6 @@
                             emailMessage.innerText = '해당 이메일로 코드를 보냈습니다.';
                             document.getElementById('compare_modifyCode_email').disabled = null;
                             isModify[3] = "true";
-                            console.log("여기까지 옴")
                         }
                     }
                     if(isModify[3]=='true') {
@@ -272,7 +269,6 @@
         }
     })
     //     이메일 코드 비교
-    console.log("그다음에 넘어옴")
     let inputCode = document.getElementById('randomModifyCode_input');
     let compareCodeBtn = document.getElementById('compare_modifyCode_email');
     document.getElementById("send_code_email").addEventListener('mouseup',function (){
@@ -287,8 +283,6 @@
         })
             .then(res => res.json())
             .then( data => {
-                console.log(data);
-                console.log(data.code);
                 compareCodeBtn.addEventListener('click', ()=>{
                     if(inputCode.value==data.code){
                         emailMessage.style.color = 'green';

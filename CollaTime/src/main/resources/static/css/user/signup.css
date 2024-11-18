@@ -44,6 +44,7 @@
     font-weight: 600;
     align-content: center;
 
+    cursor: pointer;
 }
 
 /*메세지 스타일*/
@@ -165,6 +166,8 @@
     top: 489px;
     font-size: 15px;
     font-weight: 700;
+
+    cursor: pointer;
 }
 
 /*이용약관 링크*/
@@ -174,6 +177,8 @@
     color: blue;
     font-size: 15px;
     text-decoration-line: underline;
+
+    cursor: pointer;
 }
 
 /*회원가입 버튼*/
@@ -189,6 +194,8 @@
     align-content: center;
     text-align: center;
     font-weight: 800;
+
+    cursor: pointer;
 }
 
 /*----------------------------------이용약관------------------------------------------------------*/
@@ -220,16 +227,6 @@
     border-radius: 25px 25px 0px 0px;
 
 }
-#middleXButton_termsOfUse{
-
-    width: 30px;
-    height: 34px;
-    font-size: 30px;
-    position: absolute;
-    left: 506px;
-    top: 5px;
-
-}
 
 /*이용약관 텍스트*/
 #termsOfUse_text{
@@ -245,6 +242,7 @@
     font-size: 30px;
 
     color: #000000;
+
 }
 
 /*이용약관 내용*/
@@ -294,6 +292,7 @@
     background: rgba(146, 226, 248, 0.3);
     border-radius: 15px;
 
+    cursor: pointer;
 }
 
 /*이용약관 확인 버튼*/
@@ -313,6 +312,8 @@
     color: #000000;
 
     border: none;
+
+    cursor: pointer;
 }
 
 /*-----------------------------회원가입 유효성-----------------------------------------------------------*/

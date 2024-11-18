@@ -23,6 +23,7 @@
         SELECT *
         FROM ct_schedule
         WHERE CT_SCHEDULE_CREATOR = #{username}
+        AND PROJECT_NO=#{projectNo}
     </select>
 
     <!-- 특정 일정 조회 쿼리 -->
@@ -37,10 +38,13 @@
         TEXT_COLOR_CODE
         FROM ct_schedule
         WHERE CT_SCHEDULE_NO = #{scheduleNo}
+        AND PROJECT_NO=#{projectNo}
     </select>
 
     <!-- 일정 추가 쿼리 -->
-    <insert id="insertSchedule" parameterType="com.ohgiraffers.collatime.schedule.model.dto.ScheduleDTO">
+    <insert id="insertSchedule" parameterType="com.ohgiraffers.collatime.schedule.model.dto.ScheduleDTO"
+            useGeneratedKeys="true" keyProperty="scheduleNo">
+
         INSERT INTO ct_schedule
         (
         PROJECT_NO,
@@ -89,7 +93,7 @@
 
     <!-- 특정 사용자의 스케줄 개수 조회 (스케줄 존재 여부 확인용) -->
     <select id="countUserSchedules" parameterType="String" resultType="int">
-        SELECT COUNT(*) FROM ct_schedule WHERE schedule_creator = #{username}
+        SELECT COUNT(*) FROM ct_schedule WHERE schedule_creator = #{username}  AND PROJECT_NO=#{projectNo}
     </select>
 
 
@@ -99,6 +103,43 @@
         <foreach item="item" index="index" collection="scheduleNoList" open="(" separator="," close=")">
             #{item}
         </foreach>
+        AND PROJECT_NO=#{projectNo}
+    </select>
+
+    <select id="participantList" resultType="map">
+        SELECT CT_USER_EMAIL AS email  FROM ct_user cu
+        WHERE
+        CT_USER_NO = ( select productor_no from project p where PROJECT_NO = #{projectNo})
+
+        UNION
+
+        SELECT jp.email FROM join_project jp WHERE PROJECT_NO = #{projectNo}
+    </select>
+
+
+
+    <delete id="deleteParticipant">
+        DELETE FROM ct_schedule_participant WHERE  CT_SCHEDULE_NO=#{scheduleNo}
+    </delete>
+
+
+    <insert id="insertParticipant">
+        INSERT INTO ct_schedule_participant  (CT_SCHEDULE_NO, PARTICIPANT_NO) VALUES(#{scheduleNo}, #{participantNo})
+    </insert>
+
+
+    <select id="scheduleParticipantList" resultType="map">
+        SELECT
+        CT_SCHEDULE_NO as scheduleNo ,
+        PARTICIPANT_NO as participantNo,
+        cu.CT_USER_EMAIL as email,
+        cu.CT_USER_NAME as name,
+        cu.CT_USER_NICKNAME as nickName
+        FROM
+        ct_schedule_participant csp
+        INNER JOIN  ct_user cu ON csp.PARTICIPANT_NO = cu.CT_USER_NO
+
+        WHERE  CT_SCHEDULE_NO=#{scheduleNo}
     </select>
 
 
