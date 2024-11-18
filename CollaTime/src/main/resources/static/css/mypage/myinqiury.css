@@ -184,7 +184,6 @@ body{
     overflow: hidden;
     white-space: nowrap;
 
-    cursor: default;
 }
 /*문의리스트 구분선 기본값*/
 .myInquiryInfoLine{
