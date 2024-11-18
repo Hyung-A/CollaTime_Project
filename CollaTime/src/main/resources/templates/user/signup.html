@@ -255,7 +255,8 @@
         let inputPwd = document.getElementById('regist_pwd_input');
         let comparePwd = document.getElementById('compare_pwd_input');
         function strongPassword(str){
-            return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(str);
+            // return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(str);
+            return true;
         }
 
         if(inputPwd.value == ''){

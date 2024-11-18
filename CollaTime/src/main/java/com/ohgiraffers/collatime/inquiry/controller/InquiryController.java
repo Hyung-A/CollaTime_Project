@@ -53,7 +53,6 @@ public class InquiryController {
     @ResponseBody
     public List<InquiryDTO> myinquiry(@AuthenticationPrincipal AuthDetails authDetails){
 
-        inquiryService.myInquiryList(authDetails.getUserNo()).forEach(System.out::println);
         List<InquiryDTO> inquiryDTOList = inquiryService.myInquiryList(authDetails.getUserNo());
 
 

@@ -1,3 +1,13 @@
+@font-face {
+    font-family: 'Binggrae';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Binggrae.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body{
+    font-family: 'Binggrae', sans-serif;
+}
 
 #middleModal_passAuthority{
     z-index: 10000;
@@ -125,6 +135,8 @@
 
     font-size: 20px;
 
+    font-family: "Abril Fatface";
+
 }
 
 /*비밀번호 확인 메세지*/
@@ -208,7 +220,6 @@
     left: 740px;
     top: 421px;
 
-    font-family: 'Inter';
     font-style: normal;
     font-weight: 300;
     font-size: 20px;
