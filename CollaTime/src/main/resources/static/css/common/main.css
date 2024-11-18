@@ -4,8 +4,16 @@
 /*    margin: 0;*/
 /*}*/
 
+@font-face {
+    font-family: 'Binggrae';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Binggrae.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 *{
     cursor: default;
+    font-family: 'Binggrae', sans-serif;
 }
 
 #collatime-main {
