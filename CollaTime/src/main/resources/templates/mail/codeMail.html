@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+    <h1> 안녕하세요.</h1>
+    <h3> 협업의 시작. CollaTime입니다.</h3>
+    <br>
+    <p th:text="|아래의 인증번호를 ${purpose} 창으로 돌아가 입력해주세요.|"></p>
+    <br>
+    <div align="center" style="border:1px solid black;">
+        <div style="font-size:130%" th:text="|${purpose} 코드|"> </div>
+        <div style="font-size:130%" th:text="${code}"> </div>
+    </div>
+    <br>
+
+</body>
+</html>

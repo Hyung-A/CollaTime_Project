@@ -8,7 +8,11 @@ import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
+import org.thymeleaf.spring6.SpringTemplateEngine;
 
 import java.util.Random;
 
@@ -17,16 +21,67 @@ public class MailService {
 
     private JavaMailSender mailSender;
 
-    private UserService userService;
+    private final SpringTemplateEngine templateEngine;
 
-    private ProjectController projectController;
+    private UserService userService;
 
 
     @Autowired
-    public MailService(JavaMailSender mailSender, UserService userService) {
+    public MailService(JavaMailSender mailSender, UserService userService, SpringTemplateEngine templateEngine) {
 
         this.mailSender = mailSender;
         this.userService = userService;
+        this.templateEngine = templateEngine;
+    }
+
+    public MailDTO sendSignUp(String email, String purpose){
+        String code = createCode();
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        try {
+            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, false, "UTF-8");
+            mimeMessageHelper.setTo(email); // 메일 수신자
+            mimeMessageHelper.setSubject("안녕하세요! CollaTime 인증번호요청입니다."); // 메일 제목
+            mimeMessageHelper.setText(setContext(code ,purpose), true); // 메일 본문 내용, HTML 여부
+            mailSender.send(mimeMessage);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        MailDTO mailDTO = new MailDTO();
+        mailDTO.setMail(email);
+        mailDTO.setCode(code);
+
+        return mailDTO;
+    }
+
+    private void createPwdMessage(String mail, String code) throws MessagingException {
+
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        try {
+            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, false, "UTF-8");
+            mimeMessageHelper.setTo(mail); // 메일 수신자
+            mimeMessageHelper.setSubject("안녕하세요! 회원님의 CollaTime 새 비밀번호입니다."); // 메일 제목
+            mimeMessageHelper.setText(setPwdContext(code), true); // 메일 본문 내용, HTML 여부
+            mailSender.send(mimeMessage);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    public MailDTO sendPwd(String mail) throws MessagingException {
+        String code = createPwd();
+        MailDTO mailDTO = new MailDTO();
+
+        int result = userService.modifyPwdByEmail(mail, code);
+
+        if(result>0){
+            mailDTO.setMail(mail);
+            mailDTO.setCode(code);
+            createPwdMessage(mail, code);
+        }
+        return mailDTO;
     }
 
 //    랜덤코드 함수 -> 사이트보고 참조함
@@ -42,40 +97,6 @@ public class MailService {
                 .limit(targetStringLength)
                 .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
                 .toString();
-    }
-
-
-    private MimeMessage createMimeMessage(String mail, String code) throws MessagingException {
-
-        MimeMessage mimeMessage = mailSender.createMimeMessage();
-            mimeMessage.addRecipients(MimeMessage.RecipientType.TO, mail);
-            mimeMessage.setSubject("안녕하세요! CollaTime 인증번호요청입니다.");
-            mimeMessage.setFrom("gudjtr097@gmail.com");
-            mimeMessage.setText(code);
-
-        return mimeMessage;
-    }
-
-    private MimeMessage createPwdMessage(String mail, String code) throws MessagingException {
-
-        MimeMessage mimeMessage = mailSender.createMimeMessage();
-            mimeMessage.addRecipients(MimeMessage.RecipientType.TO, mail);
-            mimeMessage.setSubject("안녕하세요! 회원님의 CollaTime 새 비밀번호입니다.");
-            mimeMessage.setFrom("gudjtr097@gmail.com");
-            mimeMessage.setText(code);
-
-        return mimeMessage;
-    }
-
-    public MailDTO sendMail(String data) throws MessagingException {
-        String code = createCode();
-        MailDTO mailDTO = new MailDTO();
-        mailDTO.setMail(data);
-        mailDTO.setCode(code);
-        MimeMessage mailForm = createMimeMessage(data, code);
-        mailSender.send(mailForm);
-
-        return mailDTO;
     }
 
     private String createPwd(){
@@ -98,19 +119,17 @@ public class MailService {
         return newPwd;
     }
 
-    public MailDTO sendPwd(String mail) throws MessagingException {
-        String code = createPwd();
-        MailDTO mailDTO = new MailDTO();
+    public String setContext(String code, String purpose) {
+        Context context = new Context();
+        context.setVariable("purpose", purpose);
+        context.setVariable("code", code);
+        return templateEngine.process("/mail/codeMail", context);
+    }
 
-        int result = userService.modifyPwdByEmail(mail, code);
-
-        if(result>0){
-            mailDTO.setMail(mail);
-            mailDTO.setCode(code);
-            MimeMessage mailForm = createPwdMessage(mail, code);
-            mailSender.send(mailForm);
-        }
-        return mailDTO;
+    public String setPwdContext(String code) {
+        Context context = new Context();
+        context.setVariable("code", code);
+        return templateEngine.process("/mail/newPwdMail", context);
     }
 
     /* ------------------ 프로젝트 ------------------ */

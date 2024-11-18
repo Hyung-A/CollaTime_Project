@@ -14,6 +14,8 @@
     line-height: 58px;
 
     color: #000000;
+
+    cursor: default;
 }
 
 #inquiryTablePassAuth_text{
@@ -27,6 +29,8 @@
     font-weight: 400;
     font-size: 20px;
     color: #000000;
+
+    cursor: default;
 }
 
 #inquiryTableRequire_text{
@@ -40,6 +44,8 @@
     font-weight: 400;
     font-size: 20px;
     color: #000000;
+
+    cursor: default;
 }
 #inquiryTableAnswer_text{
     position: absolute;
@@ -52,6 +58,8 @@
     font-weight: 400;
     font-size: 20px;
     color: #000000;
+
+    cursor: default;
 }
 #inquiryTableRead_text{
     position: absolute;
@@ -64,6 +72,8 @@
     font-weight: 400;
     font-size: 20px;
     color: #000000;
+
+    cursor: default;
 }
 
 #inquiryTablePassAuth{
@@ -142,6 +152,8 @@ th, td{
     font-size: 18px;
     height: 40px;
     align-content: center;
+
+    cursor: default;
 }
 
 #deleteAllRead{

@@ -1,3 +1,14 @@
+@font-face {
+    font-family: 'Binggrae';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Binggrae.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body{
+    font-family: 'Binggrae', sans-serif;
+}
+
 
 #bigModal_myInquiry {
 
@@ -49,6 +60,8 @@
     letter-spacing: 0.03em;
 
     color: #000000;
+
+    cursor: default;
 }
 /*문의상태 텍스트*/
 #myInquiry_status_text{
@@ -66,6 +79,7 @@
 
     color: #000000;
 
+    cursor: default;
 }
 /*문의상태 언더바*/
 #myInquiry_status_underBar{
@@ -76,6 +90,7 @@
     top: 341px;
 
     border: 3px solid #92E2F8;
+
 
 }
 /*문의제목 텍스트*/
@@ -94,6 +109,7 @@
 
     color: #000000;
 
+    cursor: default;
 
 }
 /*문의제목 언더바*/
@@ -124,6 +140,7 @@
     color: #000000;
 
 
+    cursor: default;
 }
 /*문의내용 언더바*/
 #myInquiry_content_underBar{
@@ -166,6 +183,8 @@
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+
+    cursor: default;
 }
 /*문의리스트 구분선 기본값*/
 .myInquiryInfoLine{

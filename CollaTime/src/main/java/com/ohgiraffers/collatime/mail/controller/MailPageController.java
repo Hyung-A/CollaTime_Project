@@ -43,7 +43,7 @@ public class MailPageController {
 
         String email = data.replaceAll("\"", "");
         if(!checkMail.contains(email)) {
-            mail = mailService.sendMail(email);
+            mail = mailService.sendSignUp(email, "회원가입");
         }
 
         return mail;
@@ -64,7 +64,7 @@ public class MailPageController {
         String email = mail.replaceAll("\"", "");
 
         if(checkMail.contains(email)) {
-            Email = mailService.sendMail(email);
+            Email = mailService.sendSignUp(email, "아이디/비밀번호 찾기");
         }
 
         return Email;

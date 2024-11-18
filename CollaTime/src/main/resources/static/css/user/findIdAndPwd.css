@@ -34,12 +34,13 @@
     left: 56px;
     top: 85px;
 
-    font-family: 'Inter';
     font-style: normal;
     font-weight: 600;
     font-size: 30px;
 
     color: #000000;
+
+    cursor: default;
 }
 
 /*바디 스타일*/
@@ -130,6 +131,8 @@
 
     font-size: 18px;
     font-weight: 800;
+
+    cursor: default;
 }
 
 /*pwd 찾기 안내 메세지*/
@@ -141,6 +144,8 @@
 
     font-size: 18px;
     font-weight: 800;
+
+    cursor: default;
 }
 
 /*pwd 찾기 이메일 안내 메세지*/
@@ -154,6 +159,8 @@
 
     font-size: 18px;
     font-weight: 800;
+
+    cursor: default;
 }
 
 /*id 찾기 이메일 입력창*/
@@ -205,6 +212,8 @@
     top: 108px;
 
     font-size: 12px;
+
+    cursor: default;
 }
 
 /*로그인으로 버튼*/
@@ -262,6 +271,8 @@
     text-align: center;
     font-weight: 800;
     font-size: 20px;
+
+    cursor: default;
 }
 
 #header{

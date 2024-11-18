@@ -1,3 +1,15 @@
+@font-face {
+    font-family: 'Binggrae';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Binggrae.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body{
+    font-family: 'Binggrae', sans-serif;
+}
+
+
 /*취소버튼*/
 #cancel_deleteUser_btn{
 
@@ -89,6 +101,7 @@
 
     color: #000000;
 
+    cursor: default;
 }
 
 /*탈퇴 확인 텍스트*/
@@ -107,6 +120,7 @@
 
     color: red;
 
+    cursor: default;
 }
 
 /*탈퇴 문구 입력창*/
@@ -138,6 +152,7 @@
 
     color: #000000;
 
+    cursor: default;
 
 }
 
@@ -149,4 +164,5 @@
     font-size: 25px;
 
     color: red;
+    cursor: default;
 }

@@ -4,6 +4,8 @@
     left: 470px;
     top: 410px;
     font-size: 30px;
+
+    cursor: default;
 }
 
 #month-visitor{
@@ -25,6 +27,8 @@
     left: 1270px;
     top: 410px;
     font-size: 30px;
+
+    cursor: default;
 }
 
 #day-visitor {
@@ -64,13 +68,16 @@
     height: 360px;
     /*padding-right: 10px;*/
     border-right: 1px solid #787878;
+
+    cursor: default;
 }
 
 .y-label {
     width: 32px;
-    font-size: 12px;
+    font-size: 10px;
     margin-right: -1px;
     color: #333;
+    cursor: default;
 }
 
 /*월별 x축 스타일*/
@@ -86,6 +93,8 @@
     display: flex;
     align-items: center;
     border-top: 1px solid #787878;
+
+    cursor: default;
 }
 
 .monthText{
@@ -107,6 +116,8 @@
     display: flex;
     align-items: center;
     border-top: 1px solid #787878;
+
+    cursor: default;
 }
 
 .weekText{
@@ -124,6 +135,7 @@
     align-items: flex-end;
     gap: 10px;
     height: 350px;
+
 }
 
 .bars2 {
@@ -150,6 +162,8 @@
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     text-align: center;
+
+    cursor: default;
 }
 .bar2 {
     width: 40px;
@@ -164,6 +178,8 @@
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     text-align: center;
+
+    cursor: default;
 }
 
 .bar:hover{
@@ -247,7 +263,6 @@
     left: 30px;
     top: 37px;
 
-    font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
     font-size: 28px;

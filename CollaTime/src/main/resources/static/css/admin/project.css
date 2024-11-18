@@ -12,6 +12,8 @@
     line-height: 58px;
 
     color: #000000;
+
+    cursor: default;
 }
 
 #projectTableActive_text{
@@ -26,6 +28,8 @@
     font-weight: 400;
     font-size: 20px;
     color: #000000;
+
+    cursor: default;
 }
 
 #projectTableDeactive_text{
@@ -41,6 +45,8 @@
     font-size: 20px;
 
     color: #000000;
+
+    cursor: default;
 }
 
 #projectTable_category{
@@ -90,6 +96,7 @@
     position: absolute;
     width: 625px;
 
+    cursor: default;
 }
 
 #projectTableActive_area{
@@ -107,6 +114,7 @@
     position: absolute;
     width: 625px;
 
+    cursor: default;
 }
 
 #projectTableDeactive_area{
