@@ -134,14 +134,18 @@ public class MailService {
 
     /* ------------------ 프로젝트 ------------------ */
     // joinCodeMailForm만들기
-    private MimeMessage createJoinCodeMessage(String email, String joinCode) throws MessagingException{
+    private void createJoinCodeMessage(String email, String joinCode) throws MessagingException{
         MimeMessage mimeMessage = mailSender.createMimeMessage();
-        mimeMessage.addRecipients(MimeMessage.RecipientType.TO, email);
-        mimeMessage.setSubject("안녕하세요! 회원님의 CollaTime 프로젝트 참가 코드 번호 입니다.");
-        mimeMessage.setFrom("gudjtr097@gmail.com");
-        mimeMessage.setText(joinCode);
+        try {
+            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, false, "UTF-8");
+            mimeMessageHelper.setTo(email); // 메일 수신자
+            mimeMessageHelper.setSubject("안녕하세요! 회원님의 CollaTime 프로젝트 참가 코드 번호 입니다."); // 메일 제목
+            mimeMessageHelper.setText(setContext(joinCode ,"프로젝트 참가"), true); // 메일 본문 내용, HTML 여부
+            mailSender.send(mimeMessage);
 
-        return mimeMessage;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     // 프로젝트 조인 코드 보내기
@@ -149,8 +153,8 @@ public class MailService {
         MailDTO mailDTO = new MailDTO();
         mailDTO.setMail(email);
         mailDTO.setCode(joinCode);
-        MimeMessage joinCodeMailForm = createJoinCodeMessage(email, joinCode);
-        mailSender.send(joinCodeMailForm);
+        createJoinCodeMessage(email, joinCode);
+
 
         return mailDTO;
     }
