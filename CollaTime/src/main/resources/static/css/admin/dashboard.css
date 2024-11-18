@@ -1,17 +1,30 @@
 
+#month-visitor-text{
+    position: absolute;
+    left: 470px;
+    top: 410px;
+    font-size: 30px;
+}
+
 #month-visitor{
     background-color: #DFF7FD;
     position: absolute;
     overflow: hidden;
     left: 450px;
-    top: 420px;
+    top: 460px;
     width: 700px;
-    height: 390px;
-    font-size: 30px;
+    height: 420px;
     font-weight: bold;
     padding-bottom: 5px;
     border-radius: 10px;
 
+}
+
+#day-visitor-text{
+    position: absolute;
+    left: 1270px;
+    top: 410px;
+    font-size: 30px;
 }
 
 #day-visitor {
@@ -19,10 +32,9 @@
     overflow: hidden;
     position: absolute;
     left: 1250px;
-    top: 420px;
+    top: 460px;
     width: 500px;
-    height: 390px;
-    font-size: 30px;
+    height: 420px;
     font-weight: bold;
     padding-bottom: 5px;
     border-radius: 10px;
@@ -35,7 +47,6 @@
     display: flex;
     align-items: flex-end;
     height: 300px;
-    border-bottom: 1px solid #ddd;
 
 
     padding-left: 10px;
@@ -44,25 +55,71 @@
 /* y축 스타일 */
 .y-axis {
     position: absolute;
-    top: 10px;
+    top: 30px;
+    padding-top: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 350px;
-    padding-right: 10px;
+    text-align: right;
+    height: 360px;
+    /*padding-right: 10px;*/
+    border-right: 1px solid #787878;
 }
 
 .y-label {
+    width: 32px;
     font-size: 12px;
+    margin-right: -1px;
     color: #333;
 }
 
+/*월별 x축 스타일*/
+.monthTexts{
+    position: absolute;
+    top: 400px;
+    left: 41px;
+    width: 620px;
+    height: 10px;
+    padding-left: 25px;
+    padding-top: 5px;
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #787878;
+}
+
+.monthText{
+    width: 40px;
+    align-items: center;
+    font-size: 12px;
+}
+
+/*주별 x축 스타일*/
+.weekTexts{
+    position: absolute;
+    top: 400px;
+    left: 41px;
+    width: 410px;
+    height: 10px;
+    padding-left: 25px;
+    padding-top: 5px;
+    gap: 20px;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #787878;
+}
+
+.weekText{
+    width: 40px;
+    align-items: center;
+    font-size: 12px;
+}
 
 /* 막대 그래프 영역 */
 .bars {
     position: absolute;
     left: 55px;
-    top: 10px;
+    top: 50px;
     display: flex;
     align-items: flex-end;
     gap: 10px;
@@ -70,10 +127,9 @@
 }
 
 .bars2 {
-    overflow: hidden;
     position: absolute;
     left: 55px;
-    top: 10px;
+    top: 50px;
     display: flex;
     align-items: flex-end;
     gap: 20px;
@@ -84,11 +140,12 @@
 /* 각 막대 스타일 */
 .bar {
     width: 40px;
-    background-color: steelblue;
+    background-color: #1FA8E2;
     color: white;
     font-size: 12px;
     display: flex;
     align-items: flex-end;
+    padding-bottom: 5px;
     justify-content: center;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
@@ -96,11 +153,13 @@
 }
 .bar2 {
     width: 40px;
-    background-color: sandybrown;
+
+    background-color: #CFC049;
     color: white;
     font-size: 12px;
     display: flex;
     align-items: flex-end;
+    padding-bottom: 5px;
     justify-content: center;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
@@ -108,7 +167,13 @@
 }
 
 .bar:hover{
+    font-size: 18px;
+    color: white;
+}
 
+.bar2:hover{
+    font-size: 18px;
+    color: white;
 }
 
 /*회원 영역*/
@@ -128,6 +193,10 @@
     cursor: pointer;
 }
 
+#dashBoard_userArea:hover{
+    transform: scale(1.1);
+    background-color: #8DE6FF;
+}
 /*프로젝트 영역*/
 #dashBoard_projectArea{
 
@@ -145,7 +214,10 @@
 
     cursor: pointer;
 }
-
+#dashBoard_projectArea:hover{
+    transform: scale(1.1);
+    background-color: #8DE6FF;
+}
 /*문의 영역*/
 #dashBoard_inquiryArea{
 
@@ -163,7 +235,10 @@
 
     cursor: pointer;
 }
-
+#dashBoard_inquiryArea:hover{
+    transform: scale(1.1);
+    background-color: #8DE6FF;
+}
 /*영역 텍스트 스타일*/
 .areaText{
     position: absolute;

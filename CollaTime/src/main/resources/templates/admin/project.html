@@ -13,6 +13,8 @@
 <div th:include="/common/programHeader.html"></div>
 
 <div id="projectTable_text">프로젝트</div>
+<div id="projectTableActive_text">기간 내 프로젝트</div>
+<div id="projectTableDeactive_text">보관기간 만료 프로젝트</div>
 <select id="projectTable_category">
     <option value="none" selected>선택해주세요.</option>
     <option value="number">프로젝트번호</option>
@@ -56,7 +58,6 @@
     fetch("/admin/allActiveProject")
         .then(res=>res.json())
         .then(data=>{
-            console.log(data)
             if(data.length>0){
                 for (var i = 0; i<data.length; i++) {
                     const projectInfo = document.createElement('tr')
@@ -71,7 +72,7 @@
                 }
             }else {
                 const NoProjectInfo = document.createElement('tr')
-                NoProjectInfo.innerHTML = `<th colspan="5" style="font-size: 40px; text-align: center; height: 60px">해당하는 값이 없습니다.</th>`
+                NoProjectInfo.innerHTML = `<th colspan="5" style="font-size: 25px; text-align: center; height: 60px">해당하는 값이 없습니다.</th>`
                 projectActiveList.append(NoProjectInfo)
             }
         })
@@ -80,10 +81,8 @@
     fetch("/admin/allDeactiveProject")
         .then(res=>res.json())
         .then(data=>{
-            console.log(data)
             if(data.length>0){
                 for (var i = 0; i<data.length; i++) {
-                    console.log(data[i].projectNo)
                     deleteProjectList.push(data[i].projectNo)
                     const projectInfo = document.createElement('tr')
                     projectInfo.innerHTML =
@@ -97,7 +96,7 @@
                 }
             }else {
                 const NoProjectInfo = document.createElement('tr')
-                NoProjectInfo.innerHTML = `<th colspan="5" style="font-size: 30px; text-align: center; height: 60px">해당하는 값이 없습니다.</th>`
+                NoProjectInfo.innerHTML = `<th colspan="5" style="font-size: 25px; text-align: center; height: 60px">해당하는 값이 없습니다.</th>`
                 projectDeactiveList.append(NoProjectInfo)
             }
         })
@@ -139,11 +138,9 @@
 
     searchProjectBtn.addEventListener('click', ()=>{
         let linkProject = "/admin/project/"+projectCategory.value+"/"+searchProject.value
-        console.log(linkProject)
         fetch(linkProject)
             .then(res=>res.json())
             .then(data=>{
-                console.log(data)
                 let listLength = projectActiveList.rows.length
                 for(var i = 1; i<listLength; i++) {
                     projectActiveList.deleteRow(1)
@@ -155,7 +152,7 @@
                 const searchProjectInfo = document.createElement('tr')
                 searchProjectInfo.innerHTML =
                     `
-                        <th colspan="5" style="font-size: 35px; text-align: center; height: 100px">검색모드입니다. 검색 값을 왼쪽입니다.</th>
+                        <th colspan="5" style="font-size: 20px; text-align: center; height: 100px">검색 값은 왼쪽입니다.</th>
                     `
                 projectDeactiveList.append(searchProjectInfo)
                 if(data.length>0){

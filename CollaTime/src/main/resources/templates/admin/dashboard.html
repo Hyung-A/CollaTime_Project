@@ -4,9 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard Layout</title>
-  <link rel="stylesheet" href="/css/admin/dashboard.css">
-  <link rel="stylesheet" href="/css/admin/base.css">
   <link rel="stylesheet" href="/css/project/reset.css">
+  <link rel="stylesheet" href="/css/admin/dashboard.css">
 </head>
 <body>
 
@@ -26,61 +25,89 @@
   <img class="areaImg" src="/css/admin/image/inquiry.png">
 </div>
 
-<!--<h3 class="visitor_text">월별 사용자</h3>-->
+<div id="month-visitor-text">월별 사용자</div>
 <div id="month-visitor">
   <div class="chart">
     <div class="y-axis">
-      <div class="y-label">900</div>
-      <div class="y-label">800</div>
-      <div class="y-label">700</div>
-      <div class="y-label">600</div>
-      <div class="y-label">500</div>
-      <div class="y-label">400</div>
-      <div class="y-label">300</div>
-      <div class="y-label">200</div>
-      <div class="y-label">100</div>
-      <div class="y-label">0</div>
+      <div class="y-label">900 -</div>
+      <div class="y-label">800 -</div>
+      <div class="y-label">700 -</div>
+      <div class="y-label">600 -</div>
+      <div class="y-label">500 -</div>
+      <div class="y-label">400 -</div>
+      <div class="y-label">300 -</div>
+      <div class="y-label">200 -</div>
+      <div class="y-label">100 -</div>
+      <div class="y-label">0 &nbsp;</div>
     </div>
 
     <div class="bars">
-      <div class="bar" id="Jan">Jan</div>
-      <div class="bar" id="Feb">Feb</div>
-      <div class="bar" id="Mar">Mar</div>
-      <div class="bar" id="Apr">Apr</div>
-      <div class="bar" id="May">May</div>
-      <div class="bar" id="Jun">Jun</div>
-      <div class="bar" id="Jul">Jul</div>
-      <div class="bar" id="Aug">Aug</div>
-      <div class="bar" id="Sep">Sep</div>
-      <div class="bar" id="Oct">Oct</div>
-      <div class="bar" id="Nov">Nov</div>
-      <div class="bar" id="Dec">Dec</div>
+      <div class="bar" id="Jan"></div>
+      <div class="bar" id="Feb"></div>
+      <div class="bar" id="Apr"></div>
+      <div class="bar" id="Mar"></div>
+      <div class="bar" id="May"></div>
+      <div class="bar" id="Jun"></div>
+      <div class="bar" id="Jul"></div>
+      <div class="bar" id="Aug"></div>
+      <div class="bar" id="Sep"></div>
+      <div class="bar" id="Oct"></div>
+      <div class="bar" id="Nov"></div>
+      <div class="bar" id="Dec"></div>
     </div>
+
+    <div class="monthTexts">
+      <div class="monthText">Jan</div>
+      <div class="monthText">Feb</div>
+      <div class="monthText">Mar</div>
+      <div class="monthText">Apr</div>
+      <div class="monthText">May</div>
+      <div class="monthText">Jun</div>
+      <div class="monthText">Jul</div>
+      <div class="monthText">Aug</div>
+      <div class="monthText">Sep</div>
+      <div class="monthText">Oct</div>
+      <div class="monthText">Nov</div>
+      <div class="monthText">Dec</div>
+    </div>
+
   </div>
 </div>
 
-<!--<h3 class="visitor_text">일별 사용자</h3>-->
+
+<div id="day-visitor-text">일별 사용자</div>
 <div id="day-visitor">
   <div class="chart">
     <div class="y-axis">
-      <div class="y-label">140</div>
-      <div class="y-label">120</div>
-      <div class="y-label">100</div>
-      <div class="y-label">80</div>
-      <div class="y-label">60</div>
-      <div class="y-label">40</div>
-      <div class="y-label">20</div>
-      <div class="y-label">0</div>
+      <div class="y-label">140 -</div>
+      <div class="y-label">120 -</div>
+      <div class="y-label">100 -</div>
+      <div class="y-label"> 80 -</div>
+      <div class="y-label"> 60 -</div>
+      <div class="y-label"> 40 -</div>
+      <div class="y-label"> 20 -</div>
+      <div class="y-label">0 &nbsp;</div>
     </div>
 
     <div class="bars2">
-      <div class="bar2" id="Mon">Mon</div>
-      <div class="bar2" id="Tue">Tue</div>
-      <div class="bar2" id="Wed">Wed</div>
-      <div class="bar2" id="Thu">Thu</div>
-      <div class="bar2" id="Fri">Fri</div>
-      <div class="bar2" id="Sat">Sat</div>
-      <div class="bar2" id="Sun">Sun</div>
+      <div class="bar2" id="Mon"></div>
+      <div class="bar2" id="Tue"></div>
+      <div class="bar2" id="Wed"></div>
+      <div class="bar2" id="Thu"></div>
+      <div class="bar2" id="Fri"></div>
+      <div class="bar2" id="Sat"></div>
+      <div class="bar2" id="Sun"></div>
+
+    </div>
+
+    <div class="weekTexts">
+      <div class="weekText">Mon</div>
+      <div class="weekText">Tue</div>
+      <div class="weekText">Wed</div>
+      <div class="weekText">Thu</div>
+      <div class="weekText">Fri</div>
+      <div class="weekText">Sat</div>
+      <div class="weekText">Sun</div>
 
     </div>
   </div>
@@ -91,28 +118,6 @@
 
   document.getElementById('logo').addEventListener('click', ()=>{location.href="/admin/dashboard"})
 
-
-  // 밑의 메소드는 컨트롤러에서 구현함
-  // // 월요일을 기준으로 하기 위한 메소드
-  // function thisWeek() {
-  //   const day = new Date();
-  //   let sunday;
-  //   if (day.getDay() === 0) {
-  //     sunday = day.getTime() - 86400000 * 7
-  //   } else {
-  //     sunday = day.getTime() - 86400000 * day.getDay()
-  //   }
-  //   day.setTime(sunday + 86400000)
-  //
-  //   const week = [day.toISOString().substring(0, 10)]
-  //
-  //   for (let i = 1; i < 7; i++) {
-  //     day.setTime(day.getTime() + 86400000);
-  //     week.push(day.toISOString().slice(0, 10));
-  //   }
-  //   console.log(week)
-  //   return week;
-  // }
   const Mon = document.getElementById('Mon');
   const Tue = document.getElementById('Tue')
   const Wed = document.getElementById('Wed')
@@ -121,39 +126,24 @@
   const Sat = document.getElementById('Sat')
   const Sun = document.getElementById('Sun')
 
-  const Day = [Mon, Tue, Wed, Thu, Fri, Sat, Sun]
+  const day = [Mon, Tue, Wed, Thu, Fri, Sat, Sun]
   fetch("/admin/weekmaker")
           .then(res=>res.json())
           .then(data=>{
-            console.log((data[0]/140*100)+'%')
-            console.log((data[0]/140*100))
             for(let i = 0; i < 7; i++){
-              Day[i].style.height = (data[i]/140*100+2)+'%'
-              Day[i].addEventListener("mouseover", ()=>{Day[i].innerText = data[i];})
-              Day[i].addEventListener("mouseout", ()=>{Day[i].innerText = Day[i].id;})
+              if(data[i]>140){
+                day[i].style.height = '100%'
+                day[i].style.borderRadius = '0px'
+                day[i].style.borderWidth = '2px 0px 0px 0px'
+                day[i].style.borderStyle = 'dashed solid solid solid'
+                day[i].style.borderColor = 'black'
+
+              }else {
+              day[i].style.height = (data[i]/140*100)+'%'
+              }
+              day[i].addEventListener("mouseover", ()=>{day[i].innerText = data[i];})
+              day[i].addEventListener("mouseout", ()=>{day[i].innerText = '';})
             }
-            //
-            // Mon.style.height = (data[0]/140*100+2)+'%'
-            // Mon.addEventListener("mouseover", ()=>{Mon.innerText = data[0]; Mon.style.color = 'white'})
-            // Mon.addEventListener("mouseout", ()=>{Mon.innerText = 'Mon'; Mon.style.color = 'black'})
-            // Tue.style.height = (data[1]/140*100+2)+'%'
-            // Tue.addEventListener("mouseover", ()=>{Tue.innerText = data[1]; Tue.style.color = 'white'})
-            // Tue.addEventListener("mouseout", ()=>{Tue.innerText = 'Tue'; Tue.style.color = 'black'})
-            // Wed.style.height = (data[2]/140*100+2)+'%'
-            // Wed.addEventListener("mouseover", ()=>{Wed.innerText = data[2]; Wed.style.color = 'white'})
-            // Wed.addEventListener("mouseout", ()=>{Wed.innerText = 'Wed'; Wed.style.color = 'black'})
-            // Thu.style.height = (data[3]/140*100+2)+'%'
-            // Thu.addEventListener("mouseover", ()=>{Thu.innerText = data[3]; Thu.style.color = 'white'})
-            // Thu.addEventListener("mouseout", ()=>{Thu.innerText = 'Thu'; Thu.style.color = 'black'})
-            // Fri.style.height = (data[4]/140*100+2)+'%'
-            // Fri.addEventListener("mouseover", ()=>{Fri.innerText = data[4]; Fri.style.color = 'white'})
-            // Fri.addEventListener("mouseout", ()=>{Fri.innerText = 'Fri'; Fri.style.color = 'black'})
-            // Sat.style.height = (data[5]/140*100+2)+'%'
-            // Sat.addEventListener("mouseover", ()=>{Sat.innerText = data[5]; Sat.style.color = 'white'})
-            // Sat.addEventListener("mouseout", ()=>{Sat.innerText = 'Sat'; Sat.style.color = 'black'})
-            // Sun.style.height = (data[6]/140*100+2)+'%'
-            // Sun.addEventListener("mouseover", ()=>{Sun.innerText = data[6]; Sun.style.color = 'white'})
-            // Sun.addEventListener("mouseout", ()=>{Sun.innerText = 'Sun'; Sun.style.color = 'black'})
           })
 
   const Jan = document.getElementById('Jan');
@@ -169,62 +159,30 @@
   const Nov = document.getElementById('Nov');
   const Dec = document.getElementById('Dec');
 
-
-  const Month = [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+  const month = [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
 
   fetch("/admin/monthmaker")
-          .then(res=>res.json())
-          .then(data=>{
-            console.log(data)
-            for(let i = 0; i < 13;i++) {
-              Month[i].style.height = (data[i] / 900 * 100 + 2) + '%'
-              Month[i].addEventListener("mouseover", () => {
-                Month[i].innerText = data[i];
+          .then(res => res.json())
+          .then(data => {
+            for (let i = 0; i < 13; i++) {
+              if (data[i] > 900) {
+                month[i].style.height = '100%'
+                month[i].style.borderRadius = '0px'
+                month[i].style.borderWidth = '2px 0px 0px 0px'
+                month[i].style.borderStyle = 'dashed solid solid solid'
+                month[i].style.borderColor = 'black'
+
+              } else {
+                month[i].style.height = (data[i]/900*100)+'%'
+              }
+              month[i].addEventListener("mouseover", () => {
+                month[i].innerText = data[i];
               })
-              Month[i].addEventListener("mouseout", () => {
-                Month[i].innerText = Month[i].id
+              month[i].addEventListener("mouseout", () => {
+                month[i].innerText = ''
               })
             }
-            //
-            // Jan.style.height = (data[0]/900*100+2)+'%'
-            // Jan.addEventListener("mouseover", ()=>{Jan.innerText = data[0]; Jan.style.color = 'white';})
-            // Jan.addEventListener("mouseout", ()=>{Jan.innerText = 'Jan'; Jan.style.color = 'black'})
-            // Feb.style.height = (data[1]/900*100+2)+'%'
-            // Feb.addEventListener("mouseover", ()=>{Feb.innerText = data[1]; Feb.style.color = 'white'})
-            // Feb.addEventListener("mouseout", ()=>{Feb.innerText = 'Feb'; Feb.style.color = 'black'})
-            // Mar.style.height = (data[2]/900*100+2)+'%'
-            // Mar.addEventListener("mouseover", ()=>{Mar.innerText = data[2]; Mar.style.color = 'white'})
-            // Mar.addEventListener("mouseout", ()=>{Mar.innerText = 'Mar'; Mar.style.color = 'black'})
-            // Apr.style.height = (data[3]/900*100+2)+'%'
-            // Apr.addEventListener("mouseover", ()=>{Apr.innerText = data[3]; Apr.style.color = 'white'})
-            // Apr.addEventListener("mouseout", ()=>{Apr.innerText = 'Apr'; Apr.style.color = 'black'})
-            // May.style.height = (data[4]/900*100+2)+'%'
-            // May.addEventListener("mouseover", ()=>{May.innerText = data[4]; May.style.color = 'white'})
-            // May.addEventListener("mouseout", ()=>{May.innerText = 'May'; May.style.color = 'black'})
-            // Jun.style.height = (data[5]/900*100+2)+'%'
-            // Jun.addEventListener("mouseover", ()=>{Jun.innerText = data[5]; Jun.style.color = 'white'})
-            // Jun.addEventListener("mouseout", ()=>{Jun.innerText = 'Jun'; Jun.style.color = 'black'})
-            // Jul.style.height = (data[6]/900*100+2)+'%'
-            // Jul.addEventListener("mouseover", ()=>{Jul.innerText = data[6]; Jul.style.color = 'white'})
-            // Jul.addEventListener("mouseout", ()=>{Jul.innerText = 'Jul'; Jul.style.color = 'black'})
-            // Aug.style.height = (data[7]/900*100+2)+'%'
-            // Aug.addEventListener("mouseover", ()=>{Aug.innerText = data[7]; Aug.style.color = 'white'})
-            // Aug.addEventListener("mouseout", ()=>{Aug.innerText = 'Aug'; Aug.style.color = 'black'})
-            // Sep.style.height = (data[8]/900*100+2)+'%'
-            // Sep.addEventListener("mouseover", ()=>{Sep.innerText = data[8]; Sep.style.color = 'white'})
-            // Sep.addEventListener("mouseout", ()=>{Sep.innerText = 'Sep'; Sep.style.color = 'black'})
-            // Oct.style.height = (data[9]/900*100+2)+'%'
-            // Oct.addEventListener("mouseover", ()=>{Oct.innerText = data[9]; Oct.style.color = 'white'})
-            // Oct.addEventListener("mouseout", ()=>{Oct.innerText = 'Oct'; Oct.style.color = 'black'})
-            // Nov.style.height = (data[10]/900*100+2)+'%'
-            // Nov.addEventListener("mouseover", ()=>{Nov.innerText = data[10]; Nov.style.color = 'white'})
-            // Nov.addEventListener("mouseout", ()=>{Nov.innerText = 'Nov'; Nov.style.color = 'black'})
-            // Dec.style.height = (data[11]/900*100+2)+'%'
-            // Dec.addEventListener("mouseover", ()=>{Dec.innerText = data[11]; Dec.style.color = 'white'})
-            // Dec.addEventListener("mouseout", ()=>{Dec.innerText = 'Dec'; Dec.style.color = 'black'})
           })
-
-
 
 </script>
 </body>

@@ -22,13 +22,11 @@ public class VisitService {
     }
 
     public void loginUser() {
-        System.out.println("로그인 했다");
 
         LocalDate now = LocalDate.now();
         System.out.println(now);
 
         VisitDTO visitUser = visitDate(now);
-        System.out.println("불러온 오늘 방문자"+ visitUser);
         if(visitUser==null){
             VisitDTO newDate = new VisitDTO();
             newDate.setVisitDate(now);
@@ -36,7 +34,6 @@ public class VisitService {
             visitMapper.newDateLoginUser(newDate);
         }else {
             visitUser.setVisitCount(visitUser.getVisitCount()+1);
-            System.out.println("todayLoginUser"+visitUser);
             visitMapper.todayLoginUser(visitUser);
         }
 

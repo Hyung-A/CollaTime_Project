@@ -42,7 +42,6 @@ public class AdminService {
     }
 
     public List<UserDTO> searchAllUser() {
-        System.out.println("서비스 까지도 왔다..");
         return adminUserMapper.searchAllUser();
     }
 

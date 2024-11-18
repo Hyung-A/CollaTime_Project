@@ -34,7 +34,6 @@
     fetch("/common/leftbar")
     .then(res=>res.json())
     .then(data=>{
-        console.log(data)
         if(data.length>0){
             // 프로젝트와 스케줄 연결하면 onclick으로 해당 프로젝트 아이디 가지고 넘어갈 수 있게 만들자.
             for (var i = 0; i<data.length; i++) {
@@ -76,8 +75,8 @@
     passAuthorityModal.style.display = 'none'
 
     document.getElementById('leftBarNickname').addEventListener('click', ()=>{location.href="/mypage"})
-    clickDoInquiry.addEventListener('click', ()=>{doInquiryModal.style.display = 'flex'})
-    clickPassAuthority.addEventListener('click', ()=>{passAuthorityModal.style.display = 'flex'})
+    clickDoInquiry.addEventListener('click', ()=>{doInquiryModal.style.display = 'flex'; passAuthorityModal.style.display = 'none'})
+    clickPassAuthority.addEventListener('click', ()=>{passAuthorityModal.style.display = 'flex'; doInquiryModal.style.display = 'none'})
     passAuthorityXBtn.addEventListener('click', ()=>{passAuthorityModal.style.display = 'none'})
     passAuthorityCancelBtn.addEventListener('click', ()=>{passAuthorityModal.style.display = 'none'})
 

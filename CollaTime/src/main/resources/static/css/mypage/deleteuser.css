@@ -20,6 +20,7 @@
 
     color: #000000;
 
+    cursor: pointer;
 }
 
 /*회원삭제 확인버튼*/
@@ -43,6 +44,8 @@
 
 
     color: #000000;
+
+    cursor: pointer;
 }
 
 /*비밀번호 확인버튼*/

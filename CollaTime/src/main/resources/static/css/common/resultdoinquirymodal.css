@@ -30,6 +30,7 @@
     left: 506px;
     top: 5px;
 
+    cursor: pointer;
 }
 
 
@@ -70,4 +71,5 @@
     border-radius: 15px;
     text-align: center;
 
+    cursor: pointer;
 }

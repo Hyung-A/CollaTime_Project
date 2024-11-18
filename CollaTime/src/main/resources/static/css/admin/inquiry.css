@@ -16,42 +16,54 @@
     color: #000000;
 }
 
-#inquiryTable_category{
+#inquiryTablePassAuth_text{
     position: absolute;
-    width: 200px;
-    height: 50px;
-    left: 601px;
-    top: 151px;
+    width: 250px;
+    height: 30px;
+    left: 406px;
+    top: 220px;
 
-    font-style: normal;
-    font-weight: 400;
-    font-size: 25px;
-    border-radius: 10px;
-}
-
-#inquiryTable_search{
-    position: absolute;
-    width: 700px;
-    height: 50px;
-    left: 819px;
-    top: 148px;
-
-    text-align: right;
-    font-weight: 400;
-    font-size: 25px;
-    border-radius: 10px;
-    padding-right: 10px;
-}
-#inquiryTable_search_btn{
-    position: absolute;
-    width: 80px;
-    height: 50px;
-    left: 1541px;
-    top: 150px;
-
+    align-content: center;
     font-weight: 400;
     font-size: 20px;
-    border-radius: 10px;
+    color: #000000;
+}
+
+#inquiryTableRequire_text{
+    position: absolute;
+    width: 250px;
+    height: 30px;
+    left: 1106px;
+    top: 220px;
+
+    align-content: center;
+    font-weight: 400;
+    font-size: 20px;
+    color: #000000;
+}
+#inquiryTableAnswer_text{
+    position: absolute;
+    width: 250px;
+    height: 30px;
+    left: 406px;
+    top: 570px;
+
+    align-content: center;
+    font-weight: 400;
+    font-size: 20px;
+    color: #000000;
+}
+#inquiryTableRead_text{
+    position: absolute;
+    width: 250px;
+    height: 30px;
+    left: 1106px;
+    top: 570px;
+
+    align-content: center;
+    font-weight: 400;
+    font-size: 20px;
+    color: #000000;
 }
 
 #inquiryTablePassAuth{
@@ -134,10 +146,11 @@ th, td{
 
 #deleteAllRead{
     position: absolute;
-    width: 50px;
-    height: 50px;
-    left: 1730px;
-    top: 600px;
+    width: 80px;
+    height: 30px;
+    left: 1200px;
+    top: 568px;
+
 
     border-radius: 15px;
     font-size: 16px;

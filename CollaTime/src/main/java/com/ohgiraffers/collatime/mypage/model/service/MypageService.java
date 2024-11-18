@@ -13,8 +13,6 @@ public class MypageService {
 
     public boolean pwdCheck(String password, String checkPwd) {
 
-        System.out.println("서비스옴");
-
         String comparePwd = checkPwd.replace("\"", "");
 
 

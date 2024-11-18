@@ -20,7 +20,7 @@ th, td{
     text-align: left;
     padding-left: 10px;
     font-size: 20px;
-    height: 30px;
+    height: 40px;
     align-content: center;
 }
 
@@ -49,31 +49,35 @@ th, td{
 
     font-style: normal;
     font-weight: 400;
-    font-size: 25px;
     border-radius: 10px;
+    font-size: 20px;
+    padding-left: 10px;
+    cursor: pointer;
 }
 
 #userTable_search{
     position: absolute;
     width: 700px;
-    height: 50px;
+    height: 45px;
     left: 819px;
-    top: 148px;
+    top: 150px;
 
     text-align: right;
     font-weight: 400;
-    font-size: 25px;
+    font-size: 20px;
     border-radius: 10px;
     padding-right: 10px;
 }
 #userTable_search_btn{
     position: absolute;
-    width: 80px;
-    height: 50px;
+    width: 70px;
+    height: 40px;
     left: 1541px;
-    top: 150px;
+    top: 155px;
 
     font-weight: 400;
-    font-size: 20px;
+    font-size: 18px;
     border-radius: 10px;
+
+    cursor: pointer;
 }
