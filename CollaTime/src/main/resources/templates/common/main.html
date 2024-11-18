@@ -22,6 +22,7 @@
             전문적인 협업툴이 익숙하지 않은 초보자에게<br>
             협업에 대한 경험을 제공합니다.</p>
     </div>
+    <img id="mainSchedule" src="/css/common/image/mainSchedule.png" alt="스케줄 페이지 미리보기 이미지">
     <!-- 두번째 설명 페이지 부분 -->
     <div id="collatime-second-intro">
         <p id="big-title1">
@@ -74,7 +75,15 @@
             const explainProjectFunction = document.getElementById("explainProjectFunction");
 
             projectFunction.forEach((button, index) => {
-                projectFunction.style.fontFamily = "Binggrae, sans-serif";
+                button.style.fontFamily = "Binggrae, sans-serif";
+
+                button.addEventListener("mouseover", function(){
+                    button.style.background = "#92E2F8";
+                })
+                button.addEventListener("mouseout", function(){
+                    button.style.background = "#FFFFFF";
+                })
+
                 button.addEventListener("click", function() {
                     // 설명 영역 표시
                     explainProjectFunction.style.display = "block";
@@ -143,7 +152,7 @@
         <p id="second-intro2">
             진행하는 프로젝트의 일정을 관리할 수 있습니다.
         </p>
-        <img id="scheduleImg" alt="일정 관리 화면" src=""/>
+        <img id="scheduleImg" alt="일정 관리 화면" src="/css/common/image/schedulePage.png"/>
         <div id="scheduleFunctionArea">
             <div id="explainScheduleFunction"></div>
             <button id="scheduleSelect" class="scheduleFunction">일정 조회</button>
@@ -157,6 +166,14 @@
         const explainScheduleFunction = document.getElementById("explainScheduleFunction");
 
         scheduleFunction.forEach((button, index) => {
+
+            button.addEventListener("mouseover", function(){
+                button.style.background = "#92E2F8";
+            })
+            button.addEventListener("mouseout", function(){
+                button.style.background = "#FFFFFF";
+            })
+
             button.addEventListener("click", function() {
                 // 설명 영역 표시
                 explainScheduleFunction.style.display = "block";

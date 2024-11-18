@@ -4,12 +4,13 @@ use CollaTime;
 DROP TABLE IF EXISTS INQUIRY CASCADE;
 DROP TABLE IF EXISTS VISIT CASCADE;
 DROP TABLE IF EXISTS JOIN_PROJECT CASCADE;
+DROP TABLE IF EXISTS CT_SCHEDULE_PARTICIPANT CASCADE;
 DROP TABLE IF EXISTS CT_SCHEDULE CASCADE;
 DROP TABLE IF EXISTS PROJECT CASCADE;
 DROP TABLE IF EXISTS CATEGORY CASCADE;
 DROP TABLE IF EXISTS CT_USER CASCADE;
 DROP TABLE IF EXISTS COLOR CASCADE;
-DROP TABLE IF EXISTS CT_SCHEDULE_PARTICIPANT CASCADE;
+-- DROP TABLE IF EXISTS CT_SCHEDULE_PARTICIPANT CASCADE;
 -- DROP TABLE IF EXISTS JOIN_SCHEDULE CASCADE;
 
 -- 멤버 테이블 생성
@@ -73,6 +74,7 @@ CREATE TABLE `ct_schedule` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='스케줄';
 
 
+
 -- 프로젝트 참가자 테이블 생성
 CREATE TABLE IF NOT EXISTS JOIN_PROJECT
 (
@@ -126,6 +128,7 @@ INSERT INTO CT_USER VALUES
                         (2, 'wngPqueen', 'wngPking321@@', 'wngP@gmail.com', '김주혜', '주혜퀸', 'a6','green', 'USER'),
                         (3, 'gkdmsgood', 'good1234!@', 'gkdms@gmail.com', '이하은', '하은굿', 'a7','blue', 'USER'),
                         (4, 'tndhksking', 'king!!1', 'tndhks@gmail.com', '박수완', '수완킹', 'a1', 'red', 'USER');
+                        
 
 -- 문의 테이블 데이터 삽입
 INSERT INTO INQUIRY VALUES
@@ -148,8 +151,8 @@ INSERT INTO CATEGORY VALUES("CT6", "기타");
 
 -- 프로젝트 테이블 데이터 삽입
 INSERT INTO PROJECT VALUES (null,"계산기 프로그램 개발", "CT5", "2023-11-15", "2023-12-20", "계산기 프로그램 어플리케이션 만들기", "복잡한 기능은 삭제된 간단하고 사용하기 쉬운 계산기 기능만 들어간 가장 기본적인 계산기 어플리케이션을 만든다.", "1" ),
-						   (null, "엽서 판매 웹사이트 제작", "CT4", "2024-02-01", "2024-04-20", "엽서 판매 웹 사이트 제작하기", "사진 취미러들의 사진을 받아 엽서로 제작하여 사진 입문자들의 사진도 대중들에게 사랑받을 수 있는 기회를 제공한다.", "2" );
-                           -- (null, "계산기 어플", "CT5", "2024-10-25","2024-11-25","장사를 하시는 어르신들이 사용하기 편한 계산기 어플을 개발하고자 한다.", "크고 단순한 UI와 정말 기본적인 사칙연산 및 장사에 필요한 계산 기능만 들어있는 계산기 어플을 개발하여 어르신들도 사용하기 좋은 계산기를 제공하는 것이 목표이다.", "6");
+						   (null, "엽서 판매 웹사이트 제작", "CT4", "2024-02-01", "2024-04-20", "엽서 판매 웹 사이트 제작하기", "사진 취미러들의 사진을 받아 엽서로 제작하여 사진 입문자들의 사진도 대중들에게 사랑받을 수 있는 기회를 제공한다.", "2" ),
+                           (null, "계산기 어플", "CT5", "2024-10-25","2024-11-25","장사를 하시는 어르신들이 사용하기 편한 계산기 어플을 개발하고자 한다.", "크고 단순한 UI와 정말 기본적인 사칙연산 및 장사에 필요한 계산 기능만 들어있는 계산기 어플을 개발하여 어르신들도 사용하기 좋은 계산기를 제공하는 것이 목표이다.", "5");
 
 -- 프로젝트 참가자 테이블 데이터 삽입
 INSERT INTO JOIN_PROJECT VALUES(1, "-1", "ADF182WE", 'user1@gmail.com'),
@@ -159,7 +162,9 @@ INSERT INTO JOIN_PROJECT VALUES(1, "-1", "ADF182WE", 'user1@gmail.com'),
 							   (2, "-1", "GSE846DS", 'user5@gmail.com'),
 							   (2, "-1", "KFG697GK", 'user6@gmail.com'),
 							   (2, "-1", "LWO465DJ", 'user7@gmail.com'),
-							   (2, "-1", "NKJ357DL", 'user8@gmail.com');
+							   (2, "-1", "NKJ357DL", 'user8@gmail.com'),
+                               (3, "2", "JFH23!KF", 'wngP@gmail.com'),
+                               (3, "4", "HE2KF3LF", 'tndhks@gmail.com');
 
 -- 색상 테이블 데이터 삽입
 INSERT INTO COLOR VALUES('CO1','빨간색');
@@ -169,6 +174,15 @@ INSERT INTO COLOR VALUES('CO4','초록색');
 INSERT INTO COLOR VALUES('CO5','파란색');
 INSERT INTO COLOR VALUES('CO6','남색');
 INSERT INTO COLOR VALUES('CO7','보라색');
+
+INSERT INTO CT_SCHEDULE VALUES(0, 3, "2024-10-25", "2024-10-25", "새 프로젝트 기획 회의 있습니다.","새 프로젝트 기획 회의", "kjh0925", "#FEC4C4", "#000000");
+INSERT INTO CT_SCHEDULE VALUES(0, 3, "2024-10-28", "2024-10-30", "새 프로젝트 기획 기간입니다. 각자 생각하시고 기간 안에 제출해주세요.", "새 프로젝트 기획안 제출", "kjh0925", "#D9F0FB","#000000"),
+                              (0, 3, "2024-10-31", "2024-10-31", "UI 기획 회의 있습니다.", "UI 기획 회의", "kjh0925", "#EDD5C0","#000000"),
+                              (0, 3, "2024-10-31", "2024-11-05","UI 기획안 제출 기간입니다. 기간안에 제출해주세요.", "UI 기획안 제출", "kjh0925", "#FFDAFA", "#000000"),
+                              (0, 3, "2024-11-06", "2024-11-20","프로그램 개발 기간입니다. 화이팅해주세요", "개발 기간", "kjh0925", "#B7E58E", "#000000"),
+                              (0, 3, "2024-11-21", "2024-11-22","프로그램 시연 및 테스트 기간", "프로그램 테스트 및 수정", "kjh0925", "#FFEFCC", "#000000");
+INSERT INTO CT_SCHEDULE VALUES(0, 3, "2024-11-25", "2024-11-25","프로젝트 최종 발표 및 프로그램 배포하는 날입니다. 조금만 화이팅 해주세요.", "프로젝트 최종 보고회", "kjh0925", "#DADFFF", "#000000");
+                              
 
 --
 -- -- 스케줄 테이블 데이터 삽입

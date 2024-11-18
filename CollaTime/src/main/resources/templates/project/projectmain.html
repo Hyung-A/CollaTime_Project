@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Project</title>
+  <title>프로젝트</title>
   <link rel="icon" href="/css/common/image/newFavicon.ico">
   <link rel="stylesheet" href="/css/project/reset.css">
   <link rel="stylesheet" href="/css/project/projectMain.css">
@@ -63,17 +63,18 @@
   //   // projectNo를 쿼리 파라미터로 추가하여 /schedule 페이지로 이동
   //   window.location.href = '/schedule?projectNo=' + projectNo;
   // }
+  const projectNo = document.querySelectorAll("#projectNo");
   const projectTitle = document.querySelectorAll("#projectTitle");
   for(let i = 0; i < projectTitle.length; i++) {
     let toScheduleLink = "/schedule?projectNo=" + projectNo[i].value;
     projectTitle[i].onclick = function(){
-       location.href = `${ toScheduleLink }`;
+       location.href =  toScheduleLink;
     }
 
   }
-  projectTitle.onclick = function () {
-    location.href = "${toScheduleLink}";
-  }
+  // projectTitle.onclick = function () {
+  //   location.href = "${toScheduleLink}";
+  // }
 </script>
 <script>
   // ------------------------------ Left Bar ------------------------------
@@ -964,7 +965,6 @@
   /* 프로젝트 정보 수정 모달 띄우기 + DB에서 데이터 가져오는 함수 호출 */
   const update = document.querySelectorAll("#projectUpdate");
   const updateProjectModal = document.getElementById("modalUpdateProject");
-  const projectNo = document.querySelectorAll("#projectNo");
   updateProjectModal.style.display = "none";
   for(let i = 0; i < update.length; i++) {
     update[i].addEventListener("click", function () {
