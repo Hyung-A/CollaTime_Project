@@ -225,7 +225,7 @@ body{
 .slash {
     position: absolute;
     left: 185px;
-    top: 1px;
+    top: 20px;
     font-weight: 300;
     font-size: 40px;
     letter-spacing: 0.03em;
@@ -239,6 +239,7 @@ body{
 .watch {
     position: absolute;
     width: 20px;
+    top: 20px;
 }
 
 .participant-container {
