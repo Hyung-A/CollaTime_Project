@@ -80,7 +80,7 @@ $(function () {
         const placeholderText = document.querySelector('#update-placeholder-text');
 
         inviteIcon.addEventListener('click', () => {
-            $("#update-participant-select").show();
+            $("#update-participant-select").toggle();x``
         });
 
         // 수정 모드로 전환 시 포커스 설정

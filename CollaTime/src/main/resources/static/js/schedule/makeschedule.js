@@ -45,9 +45,13 @@ const placeholderText = document.getElementById('placeholder-text');
 
 inviteIcon.addEventListener('click', () => {
 
-    $("#participant-select").show();
+    $("#participant-select").toggle();
+
 
 });
+
+
+
 
 function setTextColor() {
     const textColorPicker = document.getElementById("textColorPicker");
