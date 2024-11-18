@@ -127,9 +127,8 @@ INSERT INTO CT_USER VALUES
                         (1, 'gudtjrWkd', 'gudtjrWkdWKd12!', 'gudtjr@gmail.com', '조형석', '형석짱짱', 'a2','red', 'ADMIN'),
                         (2, 'wngPqueen', 'wngPking321@@', 'wngP@gmail.com', '김주혜', '주혜퀸', 'a6','green', 'USER'),
                         (3, 'gkdmsgood', 'good1234!@', 'gkdms@gmail.com', '이하은', '하은굿', 'a7','blue', 'USER'),
-                        (4, 'tndhksking', 'king!!1', 'tndhks@gmail.com', '박수완', '수완킹', 'a1', 'red', 'USER'),
-                        (5, 'test', '$2a$10$Fg4Khv4CyBEBpfY7mqpKiuPNRoJjsr.MXsmv65YEdTLVFc3F5tbXu', 'rhkdlf48301@naver.com', '김주혜', '형아짱', 'profile_rat', 'blue', 'USER'),
-                        (6, 'admin', '$2a$10$skLACK4y0eNc2oOL2l8NT.gR.ILbZlcS2IwRSLxzawdjAxgT3lWoK', 'gudtjr097@naver.com', '조형석', '관리자임다', 'profile_rat', 'blue', 'ADMIN');
+                        (4, 'tndhksking', 'king!!1', 'tndhks@gmail.com', '박수완', '수완킹', 'a1', 'red', 'USER');
+                        
 
 -- 문의 테이블 데이터 삽입
 INSERT INTO INQUIRY VALUES
