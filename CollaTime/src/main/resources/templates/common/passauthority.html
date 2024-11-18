@@ -54,7 +54,6 @@
     const nicknameSelection = document.getElementById('passAuthority_nickname_select')
     const passAuthorityMsg = document.getElementById('passAuthority_message')
 
-    // 생성자 아닌 사람도 나온다. 따로 만들어서 수정하자.
     fetch("/inquiry/productorOfProject")
         .then(res=>res.json())
         .then(data=>{
@@ -93,7 +92,6 @@
     projectSelection.addEventListener('change', ()=>{
         nicknameSelection.options.length = 1;
         const selectedProject = projectSelection.value;
-        console.log('proNo '+selectedProject)
         fetch("/project/selectMember?projectNo="+selectedProject)
             .then(res=>res.json())
             .then(data=>{
@@ -113,7 +111,6 @@
 
     passAuthorityBtn.addEventListener('click', ()=>{
         if(projectSelection.value === 'none' || nicknameSelection.value ==='none'){
-            console.log(projectSelection.value + "and " + nicknameSelection.value)
             passAuthorityMsg.style.display = 'flex';
         }else{
             passAuthorityMsg.style.display = 'none';

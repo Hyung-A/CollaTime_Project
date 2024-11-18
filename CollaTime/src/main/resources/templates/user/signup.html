@@ -107,7 +107,6 @@
 <!-- 이용약관 모달창 -->
 <div id="middleModal_termsOfUse">
     <div id="middleBlueHeader_termsOfUse">
-        <div id="middleXButton_termsOfUse">X</div>
     </div>
 
     <!-- 이용약관 텍스트 -->
@@ -279,8 +278,7 @@
         }
     }
     //     이름 확인
-    document.getElementById('regist_name_input').addEventListener('keyup', nameCheck);
-    document.getElementById('regist_name_input').addEventListener('focusout', nameCheck);
+    document.getElementById('regist_name_input').addEventListener('change', nameCheck);
     function nameCheck(){
         let nameMessage = document.getElementById('nameMessage');
         if (document.getElementById('regist_name_input').value == ''){
@@ -334,7 +332,6 @@
     }
     document.getElementById("send_code_email").addEventListener('click', function () {
         let checkEmail = document.getElementById('regist_email_input').value;
-        console.log(emailCheck(checkEmail))
         if(emailCheck(checkEmail)) {
             fetch("/user/check")
                 .then(res => res.json())
@@ -350,7 +347,6 @@
                             emailMessage.innerText = '해당 이메일로 코드를 보냈습니다.';
                             document.getElementById('compare_code_email').disabled = null;
                             isInput[4] = "true";
-                            console.log("여기까지 옴")
                         }
                     }
                     if(isInput[4]=='true') {
@@ -363,8 +359,9 @@
             isInput[4] = "false";
         }
     })
+
+
     //     이메일 코드 비교
-        console.log("그다음에 넘어옴")
     let inputCode = document.getElementById('randomCode_input');
     let compareCodeBtn = document.getElementById('compare_code_email');
     document.getElementById("send_code_email").addEventListener('mouseup',function (){
@@ -380,8 +377,6 @@
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
-                    console.log(data.code);
                     compareCodeBtn.addEventListener('click', () => {
                         if (inputCode.value == data.code) {
                             emailMessage.style.color = 'green';
@@ -416,7 +411,6 @@
             isInput[6] = "false";
         })
         content.addEventListener('scroll', function (){
-            console.log(content.scrollTop)
             if(content.scrollTop >= 1400){
                 acceptBtn.disabled = null;
                 acceptBtn.style.backgroundColor = 'RGB(146, 266, 248)';
@@ -440,18 +434,11 @@
     let smallOk = document.getElementById('small_signupOk_btn');
     signup_btn.addEventListener('click', ()=>{
         if(isInput.includes('false')){
-            // 회원가입 버튼이 submit이면 제출과 동시에 새로고침이 되기 때문에 문제가 생긴다. 해결책을 한번 생각해보자.
-            //  1. 서밋버튼을 작은 모달창에서 확인을 누르게 하면 되도록 한다. -> 이건 화면창에 나오는 생성 성공과 실패에 따른 메세지에 문제가 생길 것 같다.
-            //  2. alert 창으로 한다 -> 제일 간단하지만 그렇게 하지 않기로 했다.
-            //  3. 그렇다면 다른 곳으로 매핑을 했다가 다시 돌아오게 한 뒤 그것이 참일 때 모달창이 튀어나오고 그 다음 행동이 이루어지도록 하는 것은? 그렇다면 session에 message값을 가지고 있는지 파악하고 그 값을 찾아가는 것으로?
-            //  일단 현재는 1번으로 만들었기 때문에 1번 방법으로 진행하는 것으로 해보자. -> 로그인에서 닉네임을 띄우면서 진행되게 하는게 가능할까?
-            //  다른 곳으로 매핑을 해서 해결했다.
             smallModal.style.display = 'flex'
             smallModalMessage.innerText = '내용을 다시 확인해주세요.';
             smallOk.addEventListener('click', ()=>{smallModal.style.display = 'none';})
             smallX.addEventListener('click', ()=>{smallModal.style.display = 'none';})
-        }else{signup_btn.type='submit';
-        }
+        }else{signup_btn.type='submit';}
     })
 
 

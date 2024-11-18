@@ -9,7 +9,8 @@ DROP TABLE IF EXISTS PROJECT CASCADE;
 DROP TABLE IF EXISTS CATEGORY CASCADE;
 DROP TABLE IF EXISTS CT_USER CASCADE;
 DROP TABLE IF EXISTS COLOR CASCADE;
-DROP TABLE IF EXISTS JOIN_SCHEDULE CASCADE;
+DROP TABLE IF EXISTS CT_SCHEDULE_PARTICIPANT CASCADE;
+-- DROP TABLE IF EXISTS JOIN_SCHEDULE CASCADE;
 
 -- 멤버 테이블 생성
 CREATE TABLE IF NOT EXISTS CT_USER
@@ -71,6 +72,7 @@ CREATE TABLE `ct_schedule` (
                                CONSTRAINT `FK_SCHEDULE_PROJECT_NO` FOREIGN KEY (`PROJECT_NO`) REFERENCES `project` (`PROJECT_NO`) ON DELETE CASCADE
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='스케줄';
 
+
 -- 프로젝트 참가자 테이블 생성
 CREATE TABLE IF NOT EXISTS JOIN_PROJECT
 (
@@ -102,12 +104,12 @@ CREATE TABLE IF NOT EXISTS VISIT
     VISIT_COUNT    INT NOT NULL COMMENT '방문자수'
 )ENGINE=INNODB COMMENT = '방문';
 
--- 스케줄 참가자 테이블 생성
-CREATE TABLE IF NOT EXISTS JOIN_SCHEDULE
-(
-    MEMBER_NO    INT NOT NULL COMMENT '회원번호',
-    SCHEDULE_NO    INT NOT NULL COMMENT '스케줄 번호'
-) ENGINE=INNODB COMMENT = '스케줄 참가자';
+-- -- 스케줄 참가자 테이블 생성
+-- CREATE TABLE IF NOT EXISTS JOIN_SCHEDULE
+-- (
+--     MEMBER_NO    INT NOT NULL COMMENT '회원번호',
+--     SCHEDULE_NO    INT NOT NULL COMMENT '스케줄 번호'
+-- ) ENGINE=INNODB COMMENT = '스케줄 참가자';
 
 
 -- 멤버 테이블 데이터 삽입
@@ -160,12 +162,47 @@ INSERT INTO COLOR VALUES('CO5','파란색');
 INSERT INTO COLOR VALUES('CO6','남색');
 INSERT INTO COLOR VALUES('CO7','보라색');
 
-
--- 스케줄 테이블 데이터 삽입
+--
+-- -- 스케줄 테이블 데이터 삽입
 -- INSERT INTO CT_SCHEDULE VALUES(1,1,'24-10-28','24-10-30',"","",1,'CO1');
+--
+-- -- 스케줄 참가자 데이터 삽입
+-- INSERT INTO JOIN_SCHEDULE VALUES(1,1);
 
--- 스케줄 참가자 데이터 삽입
-INSERT INTO JOIN_SCHEDULE VALUES(1,1);
+-- <<<<<<< feature/152-finalProject
+-- -- 스케줄 테이블 데이터 삽입
+-- -- INSERT INTO CT_SCHEDULE VALUES(1,1,'24-10-28','24-10-30',"","",1,'CO1');
+-- =======
+-- >>>>>>> master
+
+-- 스케줄 테이블 생성
+CREATE TABLE `ct_schedule` (
+                               `CT_SCHEDULE_NO` int(50) NOT NULL AUTO_INCREMENT COMMENT '스케줄 번호',
+                               `PROJECT_NO` int(11) NOT NULL COMMENT '프로젝트 번호',
+                               `CT_SCHEDULE_START_DATE` date NOT NULL COMMENT '스케줄 시작일자',
+                               `CT_SCHEDULE_END_DATE` date NOT NULL COMMENT '스케줄 종료일자',
+                               `CT_SCHEDULE_CONTENT` varchar(255) DEFAULT NULL COMMENT '스케줄 내용',
+                               `CT_SCHEDULE_TITLE` varchar(255) NOT NULL COMMENT '스케줄 제목',
+                               `CT_SCHEDULE_CREATOR` varchar(255) NOT NULL COMMENT '스케줄 생성자',
+                               `COLOR_CODE` varchar(10) NOT NULL COMMENT '색상코드',
+                               `TEXT_COLOR_CODE` varchar(10) DEFAULT NULL COMMENT '글자색',
+                               PRIMARY KEY (`CT_SCHEDULE_NO`),
+                               KEY `FK_SCHEDULE_PROJECT_NO` (`PROJECT_NO`),
+                               KEY `FK_SCHEDULE_COLOR_CODE` (`COLOR_CODE`),
+                               CONSTRAINT `FK_SCHEDULE_PROJECT_NO` FOREIGN KEY (`PROJECT_NO`) REFERENCES `project` (`PROJECT_NO`) ON DELETE CASCADE
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+
+-- 스케줄 참여 팀원 테이블 생성
+CREATE TABLE `ct_schedule_participant` (
+                                           `CT_SCHEDULE_NO` int(50) NOT NULL COMMENT '스케줄 번호',
+                                           `PARTICIPANT_NO` int(11) NOT NULL COMMENT '파티참가 회원번호',
+                                           CONSTRAINT `FK_CT_SCHEDULE_NO` FOREIGN KEY (`CT_SCHEDULE_NO`) REFERENCES `ct_schedule` (`CT_SCHEDULE_NO`) ON DELETE CASCADE,
+                                           CONSTRAINT `FK_CT_USER_NO` FOREIGN KEY (`PARTICIPANT_NO`) REFERENCES `ct_user` (`CT_USER_NO`) ON DELETE CASCADE,
+                                           INDEX `idx_schedule_participant` (`CT_SCHEDULE_NO`, `PARTICIPANT_NO`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='스케쥴 파티원 테이블';
+
 
 -- 방문자 데이터 추가
 insert into visit values ('2024-11-12', 140);

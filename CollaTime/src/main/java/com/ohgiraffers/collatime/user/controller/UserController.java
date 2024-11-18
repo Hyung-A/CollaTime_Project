@@ -32,34 +32,24 @@ public class UserController {
 
 
     @GetMapping("/signup")
-    public void signup() {
-        System.out.println("hi");
-    }
+    public void signup() {}
 
 
     @GetMapping("/findidandpwd")
-    public void findIdAndPwd() {
-        System.out.println("find");
-    }
+    public void findIdAndPwd(){}
 
     @PostMapping("/signup")
     public ModelAndView signup(ModelAndView mv, @ModelAttribute SignupDTO signupDTO) {
-        System.out.println("hi post");
-        System.out.println(signupDTO);
         int result = userService.registUser(signupDTO);
 
-
-        System.out.println(result);
         String message = "";
         boolean isPass = true;
 
         if (result > 0) {
             message = "회원가입이 완료되었습니다.";
-            System.out.println("yes");
 
         } else {
             message = "내용을 다시 확인해주세요.";
-            System.out.println("no");
             isPass = false;
         }
 
@@ -73,7 +63,6 @@ public class UserController {
     @GetMapping(value = "/check", produces = "application/json; charset=UTF-8")
     @ResponseBody
     public List<String[]> check() {
-        System.out.println("check호출");
         List<UserDTO> user = userService.selectAllUser();
         List<String[]> checkDB = new ArrayList<>();
 
@@ -82,9 +71,7 @@ public class UserController {
             checkDB.add(allUserInfo);
         }
         return checkDB;
-
     }
-
 }
 
 

@@ -88,6 +88,9 @@
 <div th:replace="common/leftBar.html" ></div>
 <!-- 모달 창 -->
 
+<div th:replace="schedule/alertModal.html"  ></div>
+
+
 <div th:replace="schedule/empty.html" id="emptyModal" style="display: none; z-index: 5"></div> <!-- 날짜 클릭 시 스케줄 없을 때-->
 <div th:replace="schedule/list.html" ></div><!-- 날짜 클릭 시 스케줄 있을 때-->
 <div th:replace="schedule/createsuccess.html"></div>
@@ -106,8 +109,6 @@
         id="detailsModal"
         style="display: none; z-index: 10; position:absolute;">
 </div>
-
-
 
 
 <script>
@@ -143,5 +144,8 @@
 <script src="/js/schedule/calendar.js"></script>
 <script src="/js/schedule/makeschedule.js"></script>
 <script src="/js/schedule/details.js"></script>
+
+
+
 </body>
 </html>

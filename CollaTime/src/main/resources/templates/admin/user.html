@@ -44,7 +44,6 @@
     fetch("/admin/alluser")
         .then(res=>res.json())
         .then(data=>{
-            console.log(data)
             if(data.length>0){
                 for (var i = 0; i<data.length; i++) {
                     const userInfo = document.createElement('tr')
@@ -55,13 +54,13 @@
                         <th>${data[i].userId}</th>
                         <th>${data[i].userEmail}</th>
                         <th>${data[i].userName}</th>
-                        <th>${data[i].userNickname} <button type="button" onclick="location.href='${deleteLink}'" style="float: right; margin-right: 10px; ">삭제</button></th>
+                        <th>${data[i].userNickname} <button type="button" onclick="location.href='${deleteLink}'" style="float: right; margin-right: 10px; cursor: pointer;">삭제</button></th>
                         `
                     userList.append(userInfo)
                 }
             }else {
                 const NoUserInfo = document.createElement('tr')
-                NoUserInfo.innerHTML = `<th colspan="5" style="font-size: 40px; text-align: center; height: 60px">해당하는 값이 없습니다.</th>`
+                NoUserInfo.innerHTML = `<th colspan="5" style="font-size: 25px; text-align: center; height: 60px">해당하는 값이 없습니다.</th>`
                 userList.append(NoUserInfo)
             }
         })
@@ -106,12 +105,9 @@
 
     searchUserBtn.addEventListener('click', ()=>{
         let linkUser = "/admin/user/"+userCategory.value+"/"+searchUser.value
-        console.log(linkUser)
         fetch(linkUser)
             .then(res=>res.json())
             .then(data=>{
-                console.log(data)
-                console.log(userList.rows.length)
                 let listLength = userList.rows.length
                 for(var i = 1; i<listLength; i++) {
                     userList.deleteRow(1)
@@ -126,13 +122,13 @@
                         <th>${data[i].userId}</th>
                         <th>${data[i].userEmail}</th>
                         <th>${data[i].userName}</th>
-                        <th>${data[i].userNickname} <button type="button" onclick="location.href='${deleteLink}'" style="float: right">삭제</button></th>
+                        <th>${data[i].userNickname} <button type="button" onclick="location.href='${deleteLink}'" style="float: right; margin-right: 10px; cursor: pointer;">삭제</button></th>
                         `
                         userList.append(userInfo)
                     }
                 }else {
                     const NoUserInfo = document.createElement('tr')
-                    NoUserInfo.innerHTML = `<th colspan="5" style="font-size: 40px; text-align: center; height: 60px">해당하는 값이 없습니다.</th>`
+                    NoUserInfo.innerHTML = `<th colspan="5" style="font-size: 25px; text-align: center; height: 60px">해당하는 값이 없습니다.</th>`
                     userList.append(NoUserInfo)
                 }
             })

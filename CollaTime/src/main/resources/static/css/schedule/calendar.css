@@ -222,3 +222,16 @@ body {
 .delete-btn:hover {
     background-color: #e53935;
 }
+
+
+.remove-btn{
+    background: red;
+    color: #fff;
+    border: none;
+    padding: 3px;
+    cursor: pointer;
+}
+
+.update-remove-btn{
+    display: none;
+}

@@ -81,7 +81,6 @@
     fetch("/common/profile")
         .then(res=>res.json())
         .then(data=>{
-            console.log(data)
             myPicture = data[0];
             myColor = data[1];
 

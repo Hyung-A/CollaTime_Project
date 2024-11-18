@@ -36,6 +36,7 @@
     left: 506px;
     top: 5px;
 
+    cursor: pointer;
 }
 
 /*권한 위임 요청 텍스트*/
@@ -80,6 +81,8 @@
 
 
     color: #000000;
+
+    cursor: pointer;
 }
 
 
@@ -156,6 +159,8 @@
 
 
     color: #000000;
+
+    cursor: pointer;
 }
 
 /*위임할 프로젝트 텍스트*/
@@ -190,6 +195,7 @@
     background: #FFFFFF;
     border: 2px solid #92E2F8;
 
+    cursor: pointer;
 }
 /*위임할 닉네임 텍스트*/
 #passAuthority_nickname_text{
@@ -227,6 +233,7 @@
     background: #FFFFFF;
     border: 2px solid #92E2F8;
 
+    cursor: pointer;
 }
 
 /*권한 위임 메세지*/
@@ -287,6 +294,8 @@
     text-align: center;
 
     color: #000000;
+
+    cursor: pointer;
 }
 
 #passAuthority_password_area{

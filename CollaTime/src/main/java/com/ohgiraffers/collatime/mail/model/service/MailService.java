@@ -94,7 +94,6 @@ public class MailService {
                 newPwd += (char) charRandom;
             }
         }
-        System.out.println(newPwd);
 
         return newPwd;
     }

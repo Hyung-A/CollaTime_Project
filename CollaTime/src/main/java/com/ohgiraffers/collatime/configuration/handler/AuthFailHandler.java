@@ -20,9 +20,6 @@ public class AuthFailHandler extends SimpleUrlAuthenticationFailureHandler {
 
 
 //    사용자의 잘못된 로그인 시도를 커스텀 사기 위한 핸들러이다.
-//    request : 사용자 요청 개체
-//    response : 서버 응답값
-//    exception : 발생한 오류를 담는 개체
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
         String errorMessage = "";

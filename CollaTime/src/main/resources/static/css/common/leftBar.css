@@ -70,6 +70,7 @@
     color: #000000;
     cursor: pointer;
 
+    cursor: pointer;
 }
 
 #whiteBar1{
@@ -107,6 +108,7 @@
     left: 25px;
     top: 275px;
 
+    cursor: pointer;
 }
 
 .projectIcon{
@@ -154,6 +156,7 @@
     top: 600px;
     cursor: pointer;
 
+    cursor: pointer;
 }
 
 #doInquiryText{
@@ -177,6 +180,7 @@
     top: 625px;
     cursor: pointer;
 
+    cursor: pointer;
 }
 
 #authorityText{

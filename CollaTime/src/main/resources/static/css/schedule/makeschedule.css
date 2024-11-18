@@ -81,7 +81,7 @@
     width: 24px;
     height: 24px;
     border-radius: 50%;
-    background-color: #FF0000; /* 기본 빨간색 */
+    background-color: #FEC4C4; /* 기본 빨간색 */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 약간의 그림자 */
     cursor: pointer;
     border: 1px solid #ccc;
@@ -221,20 +221,20 @@
     border: none;
     resize: none; /* 크기 조절 비활성화 */
     outline: none;
-    background-color: #e0f7fa; /* 연한 파란색 배경 */
+    background-color: #e0f7fa;
     font-size: 14px;
     color: #333;
     padding: 5px;
-    border-radius: 10px; /* 모서리를 둥글게 */
+    border-radius: 10px;
 }
 
 #creator-info {
 
     position: absolute;
-    bottom: 60px; /* 버튼 위에 위치할 수 있도록 설정 */
-    left: 40px;   /* 왼쪽 여백 */
+    bottom: 60px;
+    left: 40px;
     font-size: 14px;
-    color: #666;  /* 텍스트 색상 */
+    color: #666;
     font-weight: bold;
 }
 #makeSchedule-CancelButton {
@@ -254,6 +254,7 @@
     line-height: 36px;
     letter-spacing: 0.03em;
     color: #282828;
+    cursor: pointer;
 }
 
 #makeSchedule-confirmButton {
@@ -273,6 +274,7 @@
     line-height: 36px;
     letter-spacing: 0.03em;
     color: #282828;
+    cursor: pointer;
 }
 
 
@@ -307,3 +309,58 @@
     display: grid;
     gap: 10px;
 }
+
+
+#participant-select {
+    display: none;
+}
+#participantSelect {
+    width: 30%;
+    /*padding: 12px 20px;*/
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #333;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    appearance: none; /* 기본 드롭다운 화살표 제거 */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+    position: absolute;
+    z-index: 999;
+    left: 34px;
+    top: -46px;
+}
+
+
+
+
+/* 포커스 시 스타일 */
+#participantSelect:focus {
+    border-color: #4A90E2;
+    box-shadow: 0 0 8px rgba(74, 144, 226, 0.6);
+    outline: none;
+}
+
+/* 기본 옵션 스타일 */
+#participantSelect option {
+    padding: 10px;
+    font-size: 16px;
+}
+
+/* 드롭다운 화살표 커스터마이즈 */
+#participantSelect::-ms-expand {
+    display: none;
+}
+
+/* 셀렉트 박스가 비어있을 때 기본 텍스트 스타일 */
+#participantSelect option:first-child {
+    color: #888;
+    font-style: italic;
+}
+.participant-item{
+    margin-right: 15px;
+}
+
