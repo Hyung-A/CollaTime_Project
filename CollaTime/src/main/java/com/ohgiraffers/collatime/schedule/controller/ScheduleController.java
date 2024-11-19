@@ -62,7 +62,7 @@ public class ScheduleController {
     @ResponseBody // JSON 데이터를 반환
     public ResponseEntity<List<ScheduleDTO>> getUserSchedules(Principal principal ,
                                                               @PathVariable("projectNo") String projectNo) {
-
+    
         String username = principal.getName(); // 현재 로그인한 사용자 이름 가져옴
         List<ScheduleDTO> schedules = scheduleService.getUserSchedules(username, projectNo);
         return ResponseEntity.ok(schedules);
